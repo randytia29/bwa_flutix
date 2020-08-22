@@ -8,12 +8,12 @@ class AuthServices {
     try {
       AuthResult result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
-      User user = result.user.convertToUser(
+      UserFlutix userFlutix = result.user.convertToUserFlutix(
           name: name,
           selectedGenres: selectedGenres,
           selectedLanguage: selectedLanguage);
-      await UserServices.updateUser(user);
-      return SignInSignUpResult(user: user);
+      await UserFlutixServices.updateUser(userFlutix);
+      return SignInSignUpResult(userFlutix: userFlutix);
     } catch (e) {
       return SignInSignUpResult(message: e.toString().split(',')[1].trim());
     }
@@ -24,8 +24,8 @@ class AuthServices {
     try {
       AuthResult result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
-      User user = await result.user.fromFireStore();
-      return SignInSignUpResult(user: user);
+      UserFlutix userFlutix = await result.user.fromFireStore();
+      return SignInSignUpResult(userFlutix: userFlutix);
     } catch (e) {
       return SignInSignUpResult(message: e.toString().split(',')[1].trim());
     }
@@ -48,10 +48,10 @@ class AuthServices {
 }
 
 class SignInSignUpResult {
-  final User user;
+  final UserFlutix userFlutix;
   final String message;
 
-  SignInSignUpResult({this.user, this.message});
+  SignInSignUpResult({this.userFlutix, this.message});
 }
 
 class ResetPasswordResult {

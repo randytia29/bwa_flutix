@@ -1,24 +1,24 @@
-part of 'user_bloc.dart';
+part of 'user_flutix_bloc.dart';
 
-abstract class UserEvent extends Equatable {
-  const UserEvent();
+abstract class UserFlutixEvent extends Equatable {
+  const UserFlutixEvent();
 }
 
-class LoadUser extends UserEvent {
+class LoadUserFlutix extends UserFlutixEvent {
   final String id;
 
-  LoadUser(this.id);
+  LoadUserFlutix(this.id);
 
   @override
   List<Object> get props => [id];
 }
 
-class SignOut extends UserEvent {
+class SignOut extends UserFlutixEvent {
   @override
   List<Object> get props => [];
 }
 
-class UpdateData extends UserEvent {
+class UpdateData extends UserFlutixEvent {
   final String name;
   final String profileImage;
 
@@ -28,7 +28,7 @@ class UpdateData extends UserEvent {
   List<Object> get props => [name, profileImage];
 }
 
-class TopUp extends UserEvent {
+class TopUp extends UserFlutixEvent {
   final int amount;
 
   TopUp(this.amount);
@@ -37,7 +37,7 @@ class TopUp extends UserEvent {
   List<Object> get props => [amount];
 }
 
-class Purchase extends UserEvent {
+class Purchase extends UserFlutixEvent {
   final int amount;
 
   Purchase(this.amount);

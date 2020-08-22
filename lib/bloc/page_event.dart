@@ -130,10 +130,10 @@ class GoToWalletPage extends PageEvent {
 }
 
 class GoToEditProfilePage extends PageEvent {
-  final User user;
+  final UserFlutix userFlutix;
 
-  GoToEditProfilePage(this.user);
+  GoToEditProfilePage(this.userFlutix);
 
   @override
-  List<Object> get props => [user];
+  List<Object> get props => [userFlutix];
 }

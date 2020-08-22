@@ -135,10 +135,10 @@ class OnWalletPage extends PageState {
 }
 
 class OnEditProfilePage extends PageState {
-  final User user;
+  final UserFlutix userFlutix;
 
-  OnEditProfilePage(this.user);
+  OnEditProfilePage(this.userFlutix);
 
   @override
-  List<Object> get props => [user];
+  List<Object> get props => [userFlutix];
 }

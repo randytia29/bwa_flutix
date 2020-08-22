@@ -1,9 +1,9 @@
 part of 'pages.dart';
 
 class EditProfilePage extends StatefulWidget {
-  final User user;
+  final UserFlutix userFlutix;
 
-  EditProfilePage(this.user);
+  EditProfilePage(this.userFlutix);
 
   @override
   _EditProfilePageState createState() => _EditProfilePageState();
@@ -20,8 +20,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
   @override
   void initState() {
     super.initState();
-    profilePath = widget.user.profilePicture;
-    nameController = TextEditingController(text: widget.user.name);
+    profilePath = widget.userFlutix.profilePicture;
+    nameController = TextEditingController(text: widget.userFlutix.name);
   }
 
   @override
@@ -104,9 +104,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                       setState(() {
                                         isDataEdited = (nameController.text
                                                         .trim() !=
-                                                    widget.user.name ||
+                                                    widget.userFlutix.name ||
                                                 profilePath !=
-                                                    widget.user.profilePicture)
+                                                    widget.userFlutix
+                                                        .profilePicture)
                                             ? true
                                             : false;
                                       });
@@ -133,8 +134,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             child: TextField(
                               style:
                                   whiteNumberFont.copyWith(color: accentColor3),
-                              controller:
-                                  TextEditingController(text: widget.user.id),
+                              controller: TextEditingController(
+                                  text: widget.userFlutix.id),
                               decoration: InputDecoration(
                                   labelText: "User ID",
                                   border: OutlineInputBorder(
@@ -148,7 +149,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             child: TextField(
                               style: greyTextFont,
                               controller: TextEditingController(
-                                  text: widget.user.email),
+                                  text: widget.userFlutix.email),
                               decoration: InputDecoration(
                                   labelText: "Email Address",
                                   border: OutlineInputBorder(
@@ -161,12 +162,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           TextField(
                             onChanged: (text) {
                               setState(() {
-                                isDataEdited =
-                                    (text.trim() != widget.user.name ||
-                                            profilePath !=
-                                                widget.user.profilePicture)
-                                        ? true
-                                        : false;
+                                isDataEdited = (text.trim() !=
+                                            widget.userFlutix.name ||
+                                        profilePath !=
+                                            widget.userFlutix.profilePicture)
+                                    ? true
+                                    : false;
                               });
                             },
                             style: blackTextFont,
@@ -221,7 +222,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                   ? null
                                   : () async {
                                       await AuthServices.resetPassword(
-                                          widget.user.email);
+                                          widget.userFlutix.email);
                                       Flushbar(
                                         duration: Duration(milliseconds: 2000),
                                         flushbarPosition: FlushbarPosition.TOP,
@@ -268,7 +269,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                               });
                                               if (profileImageFile != null) {
                                                 photoDelete = widget
-                                                    .user.profilePicture
+                                                    .userFlutix.profilePicture
                                                     .split("/o/")[1]
                                                     .split("?")[0]
                                                     .trim();
@@ -276,8 +277,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                                     profileImageFile);
                                                 await deleteImage(photoDelete);
                                               }
-                                              context.bloc<UserBloc>().add(
-                                                  UpdateData(
+                                              context
+                                                  .bloc<UserFlutixBloc>()
+                                                  .add(UpdateData(
                                                       name: nameController.text,
                                                       profileImage:
                                                           profilePath));

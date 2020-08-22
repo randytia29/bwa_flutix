@@ -157,8 +157,8 @@ class _TopUpPageState extends State<TopUpPage> {
                       margin: EdgeInsets.symmetric(horizontal: 55),
                       width: 250,
                       height: 46,
-                      child: BlocBuilder<UserBloc, UserState>(
-                        builder: (_, userState) => RaisedButton(
+                      child: BlocBuilder<UserFlutixBloc, UserFlutixState>(
+                        builder: (_, userFlutixState) => RaisedButton(
                           elevation: 0,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8)),
@@ -167,8 +167,10 @@ class _TopUpPageState extends State<TopUpPage> {
                                   context.bloc<PageBloc>().add(GoToSuccessPage(
                                       null,
                                       FlutixTransaction(
-                                          userID:
-                                              (userState as UserLoaded).user.id,
+                                          userID: (userFlutixState
+                                                  as UserFlutixLoaded)
+                                              .userFlutix
+                                              .id,
                                           title: "Top Up Wallet",
                                           amount: selectedAmount,
                                           subtitle:

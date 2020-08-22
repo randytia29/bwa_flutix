@@ -137,7 +137,7 @@ class _SignInPageState extends State<SignInPage> {
                                           await AuthServices.signIn(
                                               emailController.text,
                                               passwordController.text);
-                                      if (result.user == null) {
+                                      if (result.userFlutix == null) {
                                         setState(() {
                                           isSigningIn = false;
                                         });

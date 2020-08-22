@@ -11,4 +11,4 @@ part 'promo.dart';
 part 'registration_data.dart';
 part 'theater.dart';
 part 'ticket.dart';
-part 'user.dart';
+part 'user_flutix.dart';

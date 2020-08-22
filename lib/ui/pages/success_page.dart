@@ -111,13 +111,13 @@ class SuccessPage extends StatelessWidget {
   }
 
   Future<void> processingTicketOrder(BuildContext context) async {
-    context.bloc<UserBloc>().add(Purchase(ticket.totalPrice));
+    context.bloc<UserFlutixBloc>().add(Purchase(ticket.totalPrice));
     context.bloc<TicketBloc>().add(BuyTicket(ticket, transaction.userID));
     await FlutixTransactionServices.saveTransaction(transaction);
   }
 
   Future<void> processingTopUp(BuildContext context) async {
-    context.bloc<UserBloc>().add(TopUp(transaction.amount));
+    context.bloc<UserFlutixBloc>().add(TopUp(transaction.amount));
     await FlutixTransactionServices.saveTransaction(transaction);
   }
 }

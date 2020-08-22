@@ -98,8 +98,8 @@ class _SelectSchedulePageState extends State<SelectSchedulePage> {
                   ),
                   Align(
                     alignment: Alignment.topCenter,
-                    child: BlocBuilder<UserBloc, UserState>(
-                      builder: (_, userState) => FloatingActionButton(
+                    child: BlocBuilder<UserFlutixBloc, UserFlutixState>(
+                      builder: (_, userFlutixState) => FloatingActionButton(
                         elevation: 0,
                         backgroundColor:
                             isValid ? mainColor : Color(0xFFE4E4E4),
@@ -120,7 +120,9 @@ class _SelectSchedulePageState extends State<SelectSchedulePage> {
                                         selectedTime),
                                     randomAlphaNumeric(12).toUpperCase(),
                                     null,
-                                    (userState as UserLoaded).user.name,
+                                    (userFlutixState as UserFlutixLoaded)
+                                        .userFlutix
+                                        .name,
                                     null)));
                           }
                         },

@@ -29,9 +29,10 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   color: Colors.white,
                 ),
               ),
-              BlocBuilder<UserBloc, UserState>(
-                builder: (_, userState) {
-                  User user = (userState as UserLoaded).user;
+              BlocBuilder<UserFlutixBloc, UserFlutixState>(
+                builder: (_, userFlutixState) {
+                  UserFlutix userFlutix =
+                      (userFlutixState as UserFlutixLoaded).userFlutix;
                   return ListView(
                     children: [
                       Stack(
@@ -347,9 +348,9 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                         locale: 'id_ID',
                                         decimalDigits: 0,
                                         symbol: 'IDR ')
-                                    .format(user.balance),
+                                    .format(userFlutix.balance),
                                 style: whiteNumberFont.copyWith(
-                                    color: (user.balance >= total)
+                                    color: (userFlutix.balance >= total)
                                         ? Color(0xFF3E9D9D)
                                         : Color(0xFFFF5C83),
                                     fontSize: 16,
@@ -367,7 +368,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                         height: 46,
                         child: RaisedButton(
                           child: Text(
-                            (user.balance >= total)
+                            (userFlutix.balance >= total)
                                 ? 'Checkout Now'
                                 : 'Top Up My Wallet',
                             style: whiteTextFont.copyWith(fontSize: 16),
@@ -375,13 +376,13 @@ class _CheckoutPageState extends State<CheckoutPage> {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8)),
                           elevation: 0,
-                          color: (user.balance >= total)
+                          color: (userFlutix.balance >= total)
                               ? Color(0xFF3E9D9D)
                               : mainColor,
                           onPressed: () {
-                            if (user.balance >= total) {
+                            if (userFlutix.balance >= total) {
                               FlutixTransaction transaction = FlutixTransaction(
-                                  userID: user.id,
+                                  userID: userFlutix.id,
                                   title: widget.ticket.movieDetail.title,
                                   subtitle: widget.ticket.theater.name,
                                   time: DateTime.now(),

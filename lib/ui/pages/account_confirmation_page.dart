@@ -114,7 +114,7 @@ class _AccountConfirmationPageState extends State<AccountConfirmationPage> {
                                       widget.registrationData.name,
                                       widget.registrationData.selectedGenres,
                                       widget.registrationData.selectedLang);
-                              if (result.user == null) {
+                              if (result.userFlutix == null) {
                                 setState(() {
                                   isSigningUp = false;
                                 });
