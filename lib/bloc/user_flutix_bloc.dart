@@ -24,7 +24,7 @@ class UserFlutixBloc extends Bloc<UserFlutixEvent, UserFlutixState> {
       UserFlutix updateUserFlutix = (state as UserFlutixLoaded)
           .userFlutix
           .copyWith(name: event.name, profilePicture: event.profileImage);
-      await UserFlutixServices.updateUser(updateUserFlutix);
+      await UserFlutixServices.updateUserFlutix(updateUserFlutix);
       yield UserFlutixLoaded(updateUserFlutix);
     } else if (event is TopUp) {
       if (state is UserFlutixLoaded) {
@@ -34,7 +34,7 @@ class UserFlutixBloc extends Bloc<UserFlutixEvent, UserFlutixState> {
               .copyWith(
                   balance: (state as UserFlutixLoaded).userFlutix.balance +
                       event.amount);
-          await UserFlutixServices.updateUser(updatedUserFlutix);
+          await UserFlutixServices.updateUserFlutix(updatedUserFlutix);
           yield UserFlutixLoaded(updatedUserFlutix);
         } catch (e) {
           print(e);
@@ -48,7 +48,7 @@ class UserFlutixBloc extends Bloc<UserFlutixEvent, UserFlutixState> {
               .copyWith(
                   balance: (state as UserFlutixLoaded).userFlutix.balance -
                       event.amount);
-          await UserFlutixServices.updateUser(updatedUserFlutix);
+          await UserFlutixServices.updateUserFlutix(updatedUserFlutix);
           yield UserFlutixLoaded(updatedUserFlutix);
         } catch (e) {
           print(e);

@@ -6,13 +6,14 @@ class AuthServices {
   static Future<SignInSignUpResult> signUp(String email, String password,
       String name, List<String> selectedGenres, String selectedLanguage) async {
     try {
-      AuthResult result = await _auth.createUserWithEmailAndPassword(
+      UserCredential result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
-      UserFlutix userFlutix = result.user.convertToUserFlutix(
+      UserFlutix userFlutix = UserFlutix(result.user.uid, result.user.email,
           name: name,
           selectedGenres: selectedGenres,
-          selectedLanguage: selectedLanguage);
-      await UserFlutixServices.updateUser(userFlutix);
+          selectedLanguage: selectedLanguage,
+          balance: 50000);
+      await UserFlutixServices.updateUserFlutix(userFlutix);
       return SignInSignUpResult(userFlutix: userFlutix);
     } catch (e) {
       return SignInSignUpResult(message: e.toString().split(',')[1].trim());
@@ -22,9 +23,10 @@ class AuthServices {
   static Future<SignInSignUpResult> signIn(
       String email, String password) async {
     try {
-      AuthResult result = await _auth.signInWithEmailAndPassword(
+      UserCredential result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
-      UserFlutix userFlutix = await result.user.fromFireStore();
+      UserFlutix userFlutix =
+          await UserFlutixServices.getUserFlutix(result.user.uid);
       return SignInSignUpResult(userFlutix: userFlutix);
     } catch (e) {
       return SignInSignUpResult(message: e.toString().split(',')[1].trim());
@@ -44,7 +46,7 @@ class AuthServices {
     }
   }
 
-  static Stream<FirebaseUser> get userStream => _auth.onAuthStateChanged;
+  static Stream<User> get userStream => _auth.authStateChanges();
 }
 
 class SignInSignUpResult {

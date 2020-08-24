@@ -1,12 +1,14 @@
 import 'package:bwaflutix/bloc/blocs.dart';
 import 'package:bwaflutix/services/services.dart';
 import 'package:bwaflutix/ui/pages/pages.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(StreamProvider.value(
     value: AuthServices.userStream,
     child: MultiBlocProvider(
