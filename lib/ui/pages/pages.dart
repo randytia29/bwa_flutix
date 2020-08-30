@@ -7,7 +7,7 @@ import 'package:bwaflutix/services/services.dart';
 import 'package:bwaflutix/shared/shared.dart';
 import 'package:bwaflutix/ui/widgets/widgets.dart';
 import 'package:email_validator/email_validator.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

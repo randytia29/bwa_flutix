@@ -47,7 +47,7 @@ class PageBloc extends Bloc<PageEvent, PageState> {
     } else if (event is GoToWalletPage) {
       yield OnWalletPage(event.pageEvent);
     } else if (event is GoToEditProfilePage) {
-      yield OnEditProfilePage(event.userFlutix);
+      yield OnEditProfilePage(event.user);
     }
   }
 }

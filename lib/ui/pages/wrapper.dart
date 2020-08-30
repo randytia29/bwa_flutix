@@ -3,7 +3,7 @@ part of 'pages.dart';
 class Wrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    User user = Provider.of<User>(context);
+    auth.User user = Provider.of<auth.User>(context);
     if (user == null) {
       if (!(prevPageEvent is GoToSplashPage)) {
         prevPageEvent = GoToSplashPage();
@@ -11,7 +11,7 @@ class Wrapper extends StatelessWidget {
       }
     } else {
       if (!(prevPageEvent is GoToMainPage)) {
-        context.bloc<UserFlutixBloc>().add(LoadUserFlutix(user.uid));
+        context.bloc<UserBloc>().add(LoadUser(user.uid));
         context.bloc<TicketBloc>().add(GetTickets(user.uid));
         prevPageEvent = GoToMainPage();
         context.bloc<PageBloc>().add(prevPageEvent);
@@ -61,7 +61,7 @@ class Wrapper extends StatelessWidget {
                                                                         is OnEditProfilePage)
                                                                     ? EditProfilePage(
                                                                         pageState
-                                                                            .userFlutix)
+                                                                            .user)
                                                                     : (pageState
                                                                             is OnMainPage)
                                                                         ? MainPage(

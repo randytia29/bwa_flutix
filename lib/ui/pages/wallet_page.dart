@@ -21,10 +21,9 @@ class WalletPage extends StatelessWidget {
               SafeArea(
                 child: Container(
                   color: Color(0xFFF6F7F9),
-                  child: BlocBuilder<UserFlutixBloc, UserFlutixState>(
-                    builder: (_, userFlutixState) {
-                      UserFlutix userFlutix =
-                          (userFlutixState as UserFlutixLoaded).userFlutix;
+                  child: BlocBuilder<UserBloc, UserState>(
+                    builder: (_, userState) {
+                      User user = (userState as UserLoaded).user;
                       return ListView(children: [
                         SizedBox(
                           height: 20,
@@ -126,7 +125,7 @@ class WalletPage extends StatelessWidget {
                                               locale: 'id_ID',
                                               decimalDigits: 0,
                                               symbol: 'IDR ')
-                                          .format(userFlutix.balance),
+                                          .format(user.balance),
                                       style: whiteNumberFont.copyWith(
                                           fontSize: 28,
                                           fontWeight: FontWeight.w600),
@@ -152,7 +151,7 @@ class WalletPage extends StatelessWidget {
                                             Row(
                                               children: [
                                                 Text(
-                                                  "${userFlutix.name} ",
+                                                  "${user.name} ",
                                                   style: whiteTextFont.copyWith(
                                                       fontSize: 12),
                                                 ),
@@ -193,7 +192,7 @@ class WalletPage extends StatelessWidget {
                                             Row(
                                               children: [
                                                 Text(
-                                                  "${userFlutix.id.substring(0, 10).toUpperCase()} ",
+                                                  "${user.id.substring(0, 10).toUpperCase()} ",
                                                   style: whiteNumberFont
                                                       .copyWith(fontSize: 12),
                                                 ),
@@ -232,8 +231,8 @@ class WalletPage extends StatelessWidget {
                           ),
                         ),
                         FutureBuilder(
-                          future: FlutixTransactionServices.getTransaction(
-                              userFlutix.id),
+                          future:
+                              FlutixTransactionServices.getTransaction(user.id),
                           builder: (_, snapshot) {
                             if (snapshot.hasData) {
                               return generateTransactionList(

@@ -1,6 +1,6 @@
 part of 'models.dart';
 
-class UserFlutix extends Equatable {
+class User extends Equatable {
   final String id;
   final String email;
   final String name;
@@ -9,15 +9,15 @@ class UserFlutix extends Equatable {
   final String selectedLanguage;
   final int balance;
 
-  UserFlutix(this.id, this.email,
+  User(this.id, this.email,
       {this.name,
       this.profilePicture,
       this.selectedGenres,
       this.selectedLanguage,
       this.balance});
 
-  UserFlutix copyWith({String name, String profilePicture, int balance}) =>
-      UserFlutix(this.id, this.email,
+  User copyWith({String name, String profilePicture, int balance}) =>
+      User(this.id, this.email,
           name: name ?? this.name,
           profilePicture: profilePicture ?? this.profilePicture,
           balance: balance ?? this.balance,

@@ -1,9 +1,9 @@
 part of 'pages.dart';
 
 class EditProfilePage extends StatefulWidget {
-  final UserFlutix userFlutix;
+  final User user;
 
-  EditProfilePage(this.userFlutix);
+  EditProfilePage(this.user);
 
   @override
   _EditProfilePageState createState() => _EditProfilePageState();
@@ -20,8 +20,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
   @override
   void initState() {
     super.initState();
-    profilePath = widget.userFlutix.profilePicture;
-    nameController = TextEditingController(text: widget.userFlutix.name);
+    profilePath = widget.user.profilePicture;
+    nameController = TextEditingController(text: widget.user.name);
   }
 
   @override
@@ -102,14 +102,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                       profilePath = '';
                                     }
                                     setState(() {
-                                      isDataEdited =
-                                          (nameController.text.trim() !=
-                                                      widget.userFlutix.name ||
-                                                  profilePath !=
-                                                      widget.userFlutix
-                                                          .profilePicture)
-                                              ? true
-                                              : false;
+                                      isDataEdited = (nameController.text
+                                                      .trim() !=
+                                                  widget.user.name ||
+                                              profilePath !=
+                                                  widget.user.profilePicture)
+                                          ? true
+                                          : false;
                                     });
                                   },
                                   child: Container(
@@ -133,8 +132,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           child: TextField(
                             style:
                                 whiteNumberFont.copyWith(color: accentColor3),
-                            controller: TextEditingController(
-                                text: widget.userFlutix.id),
+                            controller:
+                                TextEditingController(text: widget.user.id),
                             decoration: InputDecoration(
                                 labelText: "User ID",
                                 border: OutlineInputBorder(
@@ -147,8 +146,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         AbsorbPointer(
                           child: TextField(
                             style: greyTextFont,
-                            controller: TextEditingController(
-                                text: widget.userFlutix.email),
+                            controller:
+                                TextEditingController(text: widget.user.email),
                             decoration: InputDecoration(
                                 labelText: "Email Address",
                                 border: OutlineInputBorder(
@@ -161,12 +160,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         TextField(
                           onChanged: (text) {
                             setState(() {
-                              isDataEdited =
-                                  (text.trim() != widget.userFlutix.name ||
-                                          profilePath !=
-                                              widget.userFlutix.profilePicture)
-                                      ? true
-                                      : false;
+                              isDataEdited = (text.trim() != widget.user.name ||
+                                      profilePath != widget.user.profilePicture)
+                                  ? true
+                                  : false;
                             });
                           },
                           style: blackTextFont,
@@ -221,7 +218,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                 ? null
                                 : () async {
                                     await AuthServices.resetPassword(
-                                        widget.userFlutix.email);
+                                        widget.user.email);
                                     Flushbar(
                                       duration: Duration(milliseconds: 2000),
                                       flushbarPosition: FlushbarPosition.TOP,
@@ -267,13 +264,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                             });
 
                                             if (profileImageFile != null) {
-                                              if (widget.userFlutix
-                                                      .profilePicture ==
+                                              if (widget.user.profilePicture ==
                                                   '') {
                                                 photoDelete = '';
                                               } else {
                                                 photoDelete = widget
-                                                    .userFlutix.profilePicture
+                                                    .user.profilePicture
                                                     .split('/o/')[1]
                                                     .split('?')[0]
                                                     .trim();
@@ -285,7 +281,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                                 await deleteImage(photoDelete);
                                               }
                                             }
-                                            context.bloc<UserFlutixBloc>().add(
+                                            context.bloc<UserBloc>().add(
                                                 UpdateData(
                                                     name: nameController.text,
                                                     profileImage: profilePath));

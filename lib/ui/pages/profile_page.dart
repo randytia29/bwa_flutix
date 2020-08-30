@@ -22,10 +22,10 @@ class _ProfilePageState extends State<ProfilePage> {
               SafeArea(
                 child: Container(
                   color: Color(0xFFF6F7F9),
-                  child: BlocBuilder<UserFlutixBloc, UserFlutixState>(
-                    builder: (_, userFlutixState) {
-                      if (userFlutixState is UserFlutixLoaded) {
-                        UserFlutix userFlutix = userFlutixState.userFlutix;
+                  child: BlocBuilder<UserBloc, UserState>(
+                    builder: (_, userState) {
+                      if (userState is UserLoaded) {
+                        User user = userState.user;
                         return ListView(
                           children: [
                             Align(
@@ -62,11 +62,10 @@ class _ProfilePageState extends State<ProfilePage> {
                                           decoration: BoxDecoration(
                                               shape: BoxShape.circle,
                                               image: DecorationImage(
-                                                  image: (userFlutix
-                                                              .profilePicture !=
+                                                  image: (user.profilePicture !=
                                                           "")
-                                                      ? NetworkImage(userFlutix
-                                                          .profilePicture)
+                                                      ? NetworkImage(
+                                                          user.profilePicture)
                                                       : AssetImage(
                                                           "assets/user_pic.png"),
                                                   fit: BoxFit.cover)),
@@ -78,14 +77,14 @@ class _ProfilePageState extends State<ProfilePage> {
                                     height: 10,
                                   ),
                                   Text(
-                                    userFlutix.name,
+                                    user.name,
                                     style: blackTextFont.copyWith(fontSize: 18),
                                   ),
                                   SizedBox(
                                     height: 8,
                                   ),
                                   Text(
-                                    userFlutix.email,
+                                    user.email,
                                     style: greyTextFont.copyWith(fontSize: 16),
                                   )
                                 ],
@@ -100,7 +99,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                     onTap: () {
                                       context
                                           .bloc<PageBloc>()
-                                          .add(GoToEditProfilePage(userFlutix));
+                                          .add(GoToEditProfilePage(user));
                                     },
                                     child: Row(
                                       children: [
@@ -242,9 +241,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   GestureDetector(
                                     onTap: () async {
                                       await AuthServices.signOut();
-                                      context
-                                          .bloc<UserFlutixBloc>()
-                                          .add(SignOut());
+                                      context.bloc<UserBloc>().add(SignOut());
                                     },
                                     child: Row(
                                       children: [

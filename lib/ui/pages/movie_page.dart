@@ -13,14 +13,14 @@ class MoviePage extends StatelessWidget {
                   bottomLeft: Radius.circular(20),
                   bottomRight: Radius.circular(20))),
           padding: EdgeInsets.fromLTRB(defaultMargin, 20, defaultMargin, 30),
-          child: BlocBuilder<UserFlutixBloc, UserFlutixState>(
-            builder: (_, userFlutixState) {
-              if (userFlutixState is UserFlutixLoaded) {
+          child: BlocBuilder<UserBloc, UserState>(
+            builder: (_, userState) {
+              if (userState is UserLoaded) {
                 if (imageFileToUpload != null) {
                   uploadImage(imageFileToUpload).then((downloadURL) {
                     imageFileToUpload = null;
                     context
-                        .bloc<UserFlutixBloc>()
+                        .bloc<UserBloc>()
                         .add(UpdateData(profileImage: downloadURL));
                   });
                 }
@@ -48,12 +48,11 @@ class MoviePage extends StatelessWidget {
                               decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   image: DecorationImage(
-                                      image: (userFlutixState
-                                                  .userFlutix.profilePicture ==
+                                      image: (userState.user.profilePicture ==
                                               '')
                                           ? AssetImage('assets/user_pic.png')
-                                          : NetworkImage(userFlutixState
-                                              .userFlutix.profilePicture),
+                                          : NetworkImage(
+                                              userState.user.profilePicture),
                                       fit: BoxFit.cover)),
                             )
                           ],
@@ -71,7 +70,7 @@ class MoviePage extends StatelessWidget {
                               2 * defaultMargin -
                               78,
                           child: Text(
-                            userFlutixState.userFlutix.name,
+                            userState.user.name,
                             style: whiteTextFont.copyWith(fontSize: 18),
                             maxLines: 1,
                             overflow: TextOverflow.clip,
@@ -88,7 +87,7 @@ class MoviePage extends StatelessWidget {
                                     locale: 'id_ID',
                                     decimalDigits: 0,
                                     symbol: 'IDR ')
-                                .format(userFlutixState.userFlutix.balance),
+                                .format(userState.user.balance),
                             style: yellowNumberFont.copyWith(
                                 fontSize: 14, fontWeight: FontWeight.w400),
                           ),
@@ -157,17 +156,17 @@ class MoviePage extends StatelessWidget {
                 fontSize: 18, fontWeight: FontWeight.bold),
           ),
         ),
-        BlocBuilder<UserFlutixBloc, UserFlutixState>(
-          builder: (_, userFlutixState) {
-            if (userFlutixState is UserFlutixLoaded) {
+        BlocBuilder<UserBloc, UserState>(
+          builder: (_, userState) {
+            if (userState is UserLoaded) {
               return Container(
                 margin: EdgeInsets.symmetric(horizontal: defaultMargin),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: List.generate(
-                      userFlutixState.userFlutix.selectedGenres.length,
-                      (index) => BrowseButton(
-                          userFlutixState.userFlutix.selectedGenres[index])),
+                      userState.user.selectedGenres.length,
+                      (index) =>
+                          BrowseButton(userState.user.selectedGenres[index])),
                 ),
               );
             } else {
