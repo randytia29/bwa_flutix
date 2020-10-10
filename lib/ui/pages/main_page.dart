@@ -101,11 +101,7 @@ class _MainPageState extends State<MainPage> {
               },
               items: [
                 BottomNavigationBarItem(
-                    title: Text(
-                      'New Movie',
-                      style: GoogleFonts.raleway(
-                          fontSize: 13, fontWeight: FontWeight.w600),
-                    ),
+                    label: 'New Movie',
                     icon: Container(
                       margin: EdgeInsets.only(bottom: 6),
                       height: 20,
@@ -114,11 +110,7 @@ class _MainPageState extends State<MainPage> {
                           : 'assets/ic_movies_grey.png'),
                     )),
                 BottomNavigationBarItem(
-                    title: Text(
-                      'My Tickets',
-                      style: GoogleFonts.raleway(
-                          fontSize: 13, fontWeight: FontWeight.w600),
-                    ),
+                    label: 'My Tickets',
                     icon: Container(
                       margin: EdgeInsets.only(bottom: 6),
                       height: 20,
