@@ -17,7 +17,7 @@ class _SelectSeatPageState extends State<SelectSeatPage> {
     return WillPopScope(
         onWillPop: () async {
           context
-              .bloc<PageBloc>()
+              .read<PageBloc>()
               .add(GoToSelectSchedulePage(widget.ticket.movieDetail));
           return;
         },
@@ -46,7 +46,7 @@ class _SelectSeatPageState extends State<SelectSeatPage> {
                           icon: Icon(Icons.arrow_back,
                               size: 24, color: Colors.black),
                           onPressed: () {
-                            context.bloc<PageBloc>().add(GoToSelectSchedulePage(
+                            context.read<PageBloc>().add(GoToSelectSchedulePage(
                                 widget.ticket.movieDetail));
                           },
                         ),
@@ -110,7 +110,7 @@ class _SelectSeatPageState extends State<SelectSeatPage> {
                       ),
                       onPressed: selectedSeats.length > 0
                           ? () {
-                              context.bloc<PageBloc>().add(GoToCheckoutPage(
+                              context.read<PageBloc>().add(GoToCheckoutPage(
                                   widget.ticket
                                       .copyWith(seats: selectedSeats)));
                             }

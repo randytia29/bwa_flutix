@@ -25,11 +25,11 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     context
-        .bloc<ThemeBloc>()
+        .watch<ThemeBloc>()
         .add(ChangeTheme(ThemeData().copyWith(primaryColor: accentColor1)));
     return WillPopScope(
         onWillPop: () async {
-          context.bloc<PageBloc>().add(GoToSplashPage());
+          context.read<PageBloc>().add(GoToSplashPage());
           return;
         },
         child: Scaffold(
@@ -49,7 +49,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             alignment: Alignment.centerLeft,
                             child: GestureDetector(
                               onTap: () {
-                                context.bloc<PageBloc>().add(GoToSplashPage());
+                                context.read<PageBloc>().add(GoToSplashPage());
                               },
                               child: Icon(
                                 Icons.arrow_back,
@@ -214,7 +214,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           widget.registrationData.password =
                               passwordController.text;
                           context
-                              .bloc<PageBloc>()
+                              .read<PageBloc>()
                               .add(GoToPreferencePage(widget.registrationData));
                         }
                       },

@@ -9,7 +9,7 @@ class WalletPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return WillPopScope(
         onWillPop: () async {
-          context.bloc<PageBloc>().add(pageEvent);
+          context.read<PageBloc>().add(pageEvent);
           return;
         },
         child: Scaffold(
@@ -38,7 +38,7 @@ class WalletPage extends StatelessWidget {
                                 icon: Icon(Icons.arrow_back,
                                     size: 24, color: Colors.black),
                                 onPressed: () {
-                                  context.bloc<PageBloc>().add(pageEvent);
+                                  context.read<PageBloc>().add(pageEvent);
                                 },
                               ),
                             ),
@@ -268,7 +268,7 @@ class WalletPage extends StatelessWidget {
                     color: mainColor,
                     onPressed: () {
                       context
-                          .bloc<PageBloc>()
+                          .read<PageBloc>()
                           .add(GoToTopUpPage(GoToWalletPage(pageEvent)));
                     },
                     child: Text(

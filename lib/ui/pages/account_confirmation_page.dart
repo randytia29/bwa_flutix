@@ -18,7 +18,7 @@ class _AccountConfirmationPageState extends State<AccountConfirmationPage> {
     return WillPopScope(
       onWillPop: () async {
         context
-            .bloc<PageBloc>()
+            .read<PageBloc>()
             .add(GoToPreferencePage(widget.registrationData));
         return;
       },
@@ -39,7 +39,7 @@ class _AccountConfirmationPageState extends State<AccountConfirmationPage> {
                           alignment: Alignment.centerLeft,
                           child: GestureDetector(
                             onTap: () {
-                              context.bloc<PageBloc>().add(
+                              context.read<PageBloc>().add(
                                   GoToPreferencePage(widget.registrationData));
                             },
                             child: Icon(

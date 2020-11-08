@@ -10,7 +10,7 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return WillPopScope(
         onWillPop: () async {
-          context.bloc<PageBloc>().add(GoToMainPage());
+          context.read<PageBloc>().add(GoToMainPage());
           return;
         },
         child: Scaffold(
@@ -38,7 +38,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   icon: Icon(Icons.arrow_back),
                                   onPressed: () async {
                                     context
-                                        .bloc<PageBloc>()
+                                        .read<PageBloc>()
                                         .add(GoToMainPage());
                                   },
                                 ),
@@ -98,7 +98,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   GestureDetector(
                                     onTap: () {
                                       context
-                                          .bloc<PageBloc>()
+                                          .read<PageBloc>()
                                           .add(GoToEditProfilePage(user));
                                     },
                                     child: Row(
@@ -130,7 +130,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   ),
                                   GestureDetector(
                                     onTap: () async {
-                                      context.bloc<PageBloc>().add(
+                                      context.read<PageBloc>().add(
                                           GoToWalletPage(GoToProfilePage()));
                                     },
                                     child: Row(
@@ -241,7 +241,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   GestureDetector(
                                     onTap: () async {
                                       await AuthServices.signOut();
-                                      context.bloc<UserBloc>().add(SignOut());
+                                      context.read<UserBloc>().add(SignOut());
                                     },
                                     child: Row(
                                       children: [

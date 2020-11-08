@@ -15,13 +15,13 @@ class _TopUpPageState extends State<TopUpPage> {
 
   @override
   Widget build(BuildContext context) {
-    context.bloc<ThemeBloc>().add(
+    context.watch<ThemeBloc>().add(
         ChangeTheme(ThemeData().copyWith(primaryColor: Color(0xFFE4E4E4))));
     double cardWidth =
         (MediaQuery.of(context).size.width - 2 * defaultMargin - 40) / 3;
     return WillPopScope(
         onWillPop: () async {
-          context.bloc<PageBloc>().add(widget.pageEvent);
+          context.read<PageBloc>().add(widget.pageEvent);
           return;
         },
         child: Scaffold(
@@ -47,7 +47,7 @@ class _TopUpPageState extends State<TopUpPage> {
                           icon: Icon(Icons.arrow_back,
                               size: 24, color: Colors.black),
                           onPressed: () {
-                            context.bloc<PageBloc>().add(widget.pageEvent);
+                            context.read<PageBloc>().add(widget.pageEvent);
                           },
                         ),
                       ),
@@ -164,7 +164,7 @@ class _TopUpPageState extends State<TopUpPage> {
                               borderRadius: BorderRadius.circular(8)),
                           onPressed: (selectedAmount > 0)
                               ? () {
-                                  context.bloc<PageBloc>().add(GoToSuccessPage(
+                                  context.read<PageBloc>().add(GoToSuccessPage(
                                       null,
                                       FlutixTransaction(
                                           userID:

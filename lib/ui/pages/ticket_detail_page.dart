@@ -9,7 +9,7 @@ class TicketDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return WillPopScope(
         onWillPop: () async {
-          context.bloc<PageBloc>().add(GoToMainPage(
+          context.read<PageBloc>().add(GoToMainPage(
               bottomNavBarIndex: 1,
               isExpired: ticket.time.isBefore(DateTime.now())));
           return;
@@ -45,7 +45,7 @@ class TicketDetailPage extends StatelessWidget {
                           child: IconButton(
                             icon: Icon(Icons.arrow_back),
                             onPressed: () async {
-                              context.bloc<PageBloc>().add(GoToMainPage(
+                              context.read<PageBloc>().add(GoToMainPage(
                                   bottomNavBarIndex: 1,
                                   isExpired:
                                       ticket.time.isBefore(DateTime.now())));

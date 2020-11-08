@@ -27,11 +27,11 @@ class _EditProfilePageState extends State<EditProfilePage> {
   @override
   Widget build(BuildContext context) {
     context
-        .bloc<ThemeBloc>()
+        .watch<ThemeBloc>()
         .add(ChangeTheme(ThemeData().copyWith(primaryColor: accentColor2)));
     return WillPopScope(
       onWillPop: () async {
-        context.bloc<PageBloc>().add(GoToProfilePage());
+        context.read<PageBloc>().add(GoToProfilePage());
         return;
       },
       child: Scaffold(
@@ -60,7 +60,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         IconButton(
                           icon: Icon(Icons.arrow_back),
                           onPressed: () async {
-                            context.bloc<PageBloc>().add(GoToProfilePage());
+                            context.read<PageBloc>().add(GoToProfilePage());
                           },
                         )
                       ],
@@ -281,12 +281,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                                 await deleteImage(photoDelete);
                                               }
                                             }
-                                            context.bloc<UserBloc>().add(
+                                            context.read<UserBloc>().add(
                                                 UpdateData(
                                                     name: nameController.text,
                                                     profileImage: profilePath));
                                             context
-                                                .bloc<PageBloc>()
+                                                .read<PageBloc>()
                                                 .add(GoToProfilePage());
                                           }
                                         : null),

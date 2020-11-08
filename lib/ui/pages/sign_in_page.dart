@@ -15,11 +15,11 @@ class _SignInPageState extends State<SignInPage> {
   @override
   Widget build(BuildContext context) {
     context
-        .bloc<ThemeBloc>()
+        .watch<ThemeBloc>()
         .add(ChangeTheme(ThemeData().copyWith(primaryColor: accentColor2)));
     return WillPopScope(
       onWillPop: () async {
-        context.bloc<PageBloc>().add(GoToSplashPage());
+        context.read<PageBloc>().add(GoToSplashPage());
         return;
       },
       child: Scaffold(
@@ -164,7 +164,7 @@ class _SignInPageState extends State<SignInPage> {
                       GestureDetector(
                         onTap: () {
                           context
-                              .bloc<PageBloc>()
+                              .read<PageBloc>()
                               .add(GoToRegistrationPage(RegistrationData()));
                         },
                         child: Text(

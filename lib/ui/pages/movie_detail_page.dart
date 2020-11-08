@@ -11,7 +11,7 @@ class MovieDetailPage extends StatelessWidget {
     List<Credit> credits;
     return WillPopScope(
       onWillPop: () async {
-        context.bloc<PageBloc>().add(GoToMainPage());
+        context.read<PageBloc>().add(GoToMainPage());
         return;
       },
       child: Scaffold(
@@ -72,7 +72,7 @@ class MovieDetailPage extends StatelessWidget {
                                               Icon(Icons.arrow_back, size: 24),
                                           onPressed: () {
                                             context
-                                                .bloc<PageBloc>()
+                                                .read<PageBloc>()
                                                 .add(GoToMainPage());
                                           },
                                         ),
@@ -168,7 +168,7 @@ class MovieDetailPage extends StatelessWidget {
                                         borderRadius: BorderRadius.circular(8)),
                                     color: mainColor,
                                     onPressed: () {
-                                      context.bloc<PageBloc>().add(
+                                      context.read<PageBloc>().add(
                                           GoToSelectSchedulePage(movieDetail));
                                     },
                                     child: Text(

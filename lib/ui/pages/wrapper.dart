@@ -7,14 +7,14 @@ class Wrapper extends StatelessWidget {
     if (user == null) {
       if (!(prevPageEvent is GoToSplashPage)) {
         prevPageEvent = GoToSplashPage();
-        context.bloc<PageBloc>().add(prevPageEvent);
+        context.watch<PageBloc>().add(prevPageEvent);
       }
     } else {
       if (!(prevPageEvent is GoToMainPage)) {
-        context.bloc<UserBloc>().add(LoadUser(user.uid));
-        context.bloc<TicketBloc>().add(GetTickets(user.uid));
+        context.watch<UserBloc>().add(LoadUser(user.uid));
+        context.watch<TicketBloc>().add(GetTickets(user.uid));
         prevPageEvent = GoToMainPage();
-        context.bloc<PageBloc>().add(prevPageEvent);
+        context.watch<PageBloc>().add(prevPageEvent);
       }
     }
     return BlocBuilder<PageBloc, PageState>(

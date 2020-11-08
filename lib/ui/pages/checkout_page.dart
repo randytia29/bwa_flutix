@@ -15,7 +15,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
     int total = 26500 * widget.ticket.seats.length;
     return WillPopScope(
         onWillPop: () async {
-          context.bloc<PageBloc>().add(GoToSelectSeatPage(widget.ticket));
+          context.read<PageBloc>().add(GoToSelectSeatPage(widget.ticket));
           return;
         },
         child: Scaffold(
@@ -46,7 +46,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                   size: 24, color: Colors.black),
                               onPressed: () {
                                 context
-                                    .bloc<PageBloc>()
+                                    .read<PageBloc>()
                                     .add(GoToSelectSeatPage(widget.ticket));
                               },
                             ),
@@ -388,12 +388,12 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                   amount: -total,
                                   picture:
                                       widget.ticket.movieDetail.posterPath);
-                              context.bloc<PageBloc>().add(GoToSuccessPage(
+                              context.read<PageBloc>().add(GoToSuccessPage(
                                   widget.ticket.copyWith(totalPrice: total),
                                   transaction));
                             } else {
                               context
-                                  .bloc<PageBloc>()
+                                  .read<PageBloc>()
                                   .add(GoToTopUpPage(GoToMainPage()));
                             }
                           },
