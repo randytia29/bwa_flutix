@@ -93,13 +93,12 @@ class OnCheckoutPage extends PageState {
 }
 
 class OnSuccessPage extends PageState {
-  final Ticket ticket;
-  final FlutixTransaction transaction;
+  final bool isTopUp;
 
-  OnSuccessPage(this.ticket, this.transaction);
+  OnSuccessPage(this.isTopUp);
 
   @override
-  List<Object> get props => [ticket, transaction];
+  List<Object> get props => [isTopUp];
 }
 
 class OnTicketDetailPage extends PageState {

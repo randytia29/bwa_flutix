@@ -1,10 +1,9 @@
 part of 'pages.dart';
 
 class SuccessPage extends StatelessWidget {
-  final Ticket ticket;
-  final FlutixTransaction transaction;
+  final bool isTopUp;
 
-  SuccessPage(this.ticket, this.transaction);
+  SuccessPage(this.isTopUp);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +21,7 @@ class SuccessPage extends StatelessWidget {
               height: 150,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage((ticket == null)
+                  image: AssetImage(isTopUp
                       ? "assets/top_up_done.png"
                       : "assets/ticket_done.png"),
                 ),
@@ -33,14 +32,14 @@ class SuccessPage extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    (ticket == null) ? "Emmm Yummy!" : "Happy Watching",
+                    isTopUp ? "Emmm Yummy!" : "Happy Watching",
                     style: blackTextFont.copyWith(fontSize: 20),
                   ),
                   SizedBox(
                     height: 17,
                   ),
                   Text(
-                    (ticket == null)
+                    isTopUp
                         ? "You have succesfully\ntop up the wallet"
                         : "You have succesfully\nbought the ticket",
                     style: greyTextFont.copyWith(
@@ -58,12 +57,12 @@ class SuccessPage extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8)),
                 child: Text(
-                  (ticket == null) ? "My Wallet" : "My Tickets",
+                  isTopUp ? "My Wallet" : "My Tickets",
                   style: whiteTextFont.copyWith(fontSize: 16),
                 ),
                 color: mainColor,
                 onPressed: () {
-                  context.read<PageBloc>().add((ticket == null)
+                  context.read<PageBloc>().add(isTopUp
                       ? GoToWalletPage(GoToMainPage())
                       : GoToMainPage(bottomNavBarIndex: 1));
                 },
@@ -95,16 +94,5 @@ class SuccessPage extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  Future<void> processingTicketOrder(BuildContext context) async {
-    context.read<UserBloc>().add(Purchase(ticket.totalPrice));
-    context.read<TicketBloc>().add(BuyTicket(ticket, transaction.userID));
-    await FlutixTransactionServices.saveTransaction(transaction);
-  }
-
-  Future<void> processingTopUp(BuildContext context) async {
-    context.read<UserBloc>().add(TopUp(transaction.amount));
-    await FlutixTransactionServices.saveTransaction(transaction);
   }
 }

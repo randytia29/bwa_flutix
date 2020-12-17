@@ -165,20 +165,8 @@ class _TopUpPageState extends State<TopUpPage> {
                           onPressed: (selectedAmount > 0)
                               ? () async {
                                   context.read<PageBloc>().add(
-                                        GoToSuccessPage(
-                                          null,
-                                          FlutixTransaction(
-                                              userID: (userState as UserLoaded)
-                                                  .user
-                                                  .id,
-                                              title: "Top Up Wallet",
-                                              amount: selectedAmount,
-                                              subtitle:
-                                                  "${DateTime.now().dayName}, ${DateTime.now().day} ${DateTime.now().monthName} ${DateTime.now().year}",
-                                              time: DateTime.now()),
-                                        ),
+                                        GoToSuccessPage(true),
                                       );
-
                                   context
                                       .read<UserBloc>()
                                       .add(TopUp(selectedAmount));

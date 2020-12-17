@@ -380,24 +380,22 @@ class _CheckoutPageState extends State<CheckoutPage> {
                               : mainColor,
                           onPressed: () async {
                             if (user.balance >= total) {
-                              FlutixTransaction transaction = FlutixTransaction(
-                                  userID: user.id,
-                                  title: widget.ticket.movieDetail.title,
-                                  subtitle: widget.ticket.theater.name,
-                                  time: DateTime.now(),
-                                  amount: -total,
-                                  picture:
-                                      widget.ticket.movieDetail.posterPath);
-                              context.read<PageBloc>().add(GoToSuccessPage(
-                                  widget.ticket.copyWith(totalPrice: total),
-                                  transaction));
-
+                              context
+                                  .read<PageBloc>()
+                                  .add(GoToSuccessPage(false));
                               context.read<UserBloc>().add(Purchase(total));
                               context.read<TicketBloc>().add(BuyTicket(
                                   widget.ticket.copyWith(totalPrice: total),
-                                  transaction.userID));
+                                  user.id));
                               await FlutixTransactionServices.saveTransaction(
-                                  transaction);
+                                  FlutixTransaction(
+                                      userID: user.id,
+                                      title: widget.ticket.movieDetail.title,
+                                      subtitle: widget.ticket.theater.name,
+                                      time: DateTime.now(),
+                                      amount: -total,
+                                      picture: widget
+                                          .ticket.movieDetail.posterPath));
                             } else {
                               context
                                   .read<PageBloc>()

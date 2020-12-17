@@ -88,13 +88,12 @@ class GoToCheckoutPage extends PageEvent {
 }
 
 class GoToSuccessPage extends PageEvent {
-  final Ticket ticket;
-  final FlutixTransaction transaction;
+  final bool isTopUp;
 
-  GoToSuccessPage(this.ticket, this.transaction);
+  GoToSuccessPage(this.isTopUp);
 
   @override
-  List<Object> get props => [ticket, transaction];
+  List<Object> get props => [isTopUp];
 }
 
 class GoToTicketDetailPage extends PageEvent {
