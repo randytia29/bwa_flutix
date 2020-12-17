@@ -378,7 +378,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                           color: (user.balance >= total)
                               ? Color(0xFF3E9D9D)
                               : mainColor,
-                          onPressed: () {
+                          onPressed: () async {
                             if (user.balance >= total) {
                               FlutixTransaction transaction = FlutixTransaction(
                                   userID: user.id,
@@ -391,6 +391,13 @@ class _CheckoutPageState extends State<CheckoutPage> {
                               context.read<PageBloc>().add(GoToSuccessPage(
                                   widget.ticket.copyWith(totalPrice: total),
                                   transaction));
+
+                              context.read<UserBloc>().add(Purchase(total));
+                              context.read<TicketBloc>().add(BuyTicket(
+                                  widget.ticket.copyWith(totalPrice: total),
+                                  transaction.userID));
+                              await FlutixTransactionServices.saveTransaction(
+                                  transaction);
                             } else {
                               context
                                   .read<PageBloc>()

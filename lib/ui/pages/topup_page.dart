@@ -163,17 +163,34 @@ class _TopUpPageState extends State<TopUpPage> {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8)),
                           onPressed: (selectedAmount > 0)
-                              ? () {
-                                  context.read<PageBloc>().add(GoToSuccessPage(
-                                      null,
-                                      FlutixTransaction(
+                              ? () async {
+                                  context.read<PageBloc>().add(
+                                        GoToSuccessPage(
+                                          null,
+                                          FlutixTransaction(
+                                              userID: (userState as UserLoaded)
+                                                  .user
+                                                  .id,
+                                              title: "Top Up Wallet",
+                                              amount: selectedAmount,
+                                              subtitle:
+                                                  "${DateTime.now().dayName}, ${DateTime.now().day} ${DateTime.now().monthName} ${DateTime.now().year}",
+                                              time: DateTime.now()),
+                                        ),
+                                      );
+
+                                  context
+                                      .read<UserBloc>()
+                                      .add(TopUp(selectedAmount));
+                                  await FlutixTransactionServices
+                                      .saveTransaction(FlutixTransaction(
                                           userID:
                                               (userState as UserLoaded).user.id,
                                           title: "Top Up Wallet",
                                           amount: selectedAmount,
                                           subtitle:
                                               "${DateTime.now().dayName}, ${DateTime.now().day} ${DateTime.now().monthName} ${DateTime.now().year}",
-                                          time: DateTime.now())));
+                                          time: DateTime.now()));
                                 }
                               : null,
                           disabledColor: Color(0xFFE4E4E4),
