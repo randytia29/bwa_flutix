@@ -179,10 +179,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         SizedBox(
                           width: 250,
                           height: 45,
-                          child: RaisedButton(
-                            elevation: 0,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8)),
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.red[400],
+                                onSurface: Color(0xFFE4E4E4),
+                                elevation: 0,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8))),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -212,8 +215,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                 )
                               ],
                             ),
-                            disabledColor: Color(0xFFE4E4E4),
-                            color: Colors.red[400],
                             onPressed: (isUpdating)
                                 ? null
                                 : () async {
@@ -243,10 +244,14 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             : SizedBox(
                                 width: 250,
                                 height: 45,
-                                child: RaisedButton(
-                                    elevation: 0,
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(8)),
+                                child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                        primary: Color(0xFF3E9D9D),
+                                        onSurface: Color(0xFFE4E4E4),
+                                        elevation: 0,
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(8))),
                                     child: Text(
                                       "Update My Profile",
                                       style: whiteTextFont.copyWith(
@@ -255,8 +260,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                               ? Colors.white
                                               : Color(0xFFBEBEBE)),
                                     ),
-                                    disabledColor: Color(0xFFE4E4E4),
-                                    color: Color(0xFF3E9D9D),
                                     onPressed: (isDataEdited)
                                         ? () async {
                                             setState(() {

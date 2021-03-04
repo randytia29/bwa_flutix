@@ -365,19 +365,20 @@ class _CheckoutPageState extends State<CheckoutPage> {
                             defaultMargin, 36, defaultMargin, 50),
                         width: 250,
                         height: 46,
-                        child: RaisedButton(
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              primary: (user.balance >= total)
+                                  ? Color(0xFF3E9D9D)
+                                  : mainColor,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8)),
+                              elevation: 0),
                           child: Text(
                             (user.balance >= total)
                                 ? 'Checkout Now'
                                 : 'Top Up My Wallet',
                             style: whiteTextFont.copyWith(fontSize: 16),
                           ),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8)),
-                          elevation: 0,
-                          color: (user.balance >= total)
-                              ? Color(0xFF3E9D9D)
-                              : mainColor,
                           onPressed: () async {
                             if (user.balance >= total) {
                               context

@@ -163,10 +163,12 @@ class MovieDetailPage extends StatelessWidget {
                                 Container(
                                   margin: EdgeInsets.symmetric(horizontal: 55),
                                   height: 46,
-                                  child: RaisedButton(
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(8)),
-                                    color: mainColor,
+                                  child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                        primary: mainColor,
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(8))),
                                     onPressed: () {
                                       context.read<PageBloc>().add(
                                           GoToSelectSchedulePage(movieDetail));

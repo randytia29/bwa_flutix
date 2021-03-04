@@ -52,15 +52,16 @@ class SuccessPage extends StatelessWidget {
             Container(
               height: 45,
               width: 250,
-              child: RaisedButton(
-                elevation: 0,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8)),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    primary: mainColor,
+                    elevation: 0,
+                    textStyle: whiteTextFont.copyWith(fontSize: 16),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8))),
                 child: Text(
                   isTopUp ? "My Wallet" : "My Tickets",
-                  style: whiteTextFont.copyWith(fontSize: 16),
                 ),
-                color: mainColor,
                 onPressed: () {
                   context.read<PageBloc>().add(isTopUp
                       ? GoToWalletPage(GoToMainPage())

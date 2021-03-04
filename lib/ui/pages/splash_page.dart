@@ -33,12 +33,13 @@ class SplashPage extends StatelessWidget {
               width: 250,
               height: 46,
               margin: EdgeInsets.only(top: 70, bottom: 19),
-              child: RaisedButton(
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    primary: mainColor,
+                    textStyle: whiteTextFont.copyWith(fontSize: 16)),
                 child: Text(
                   'Get Started',
-                  style: whiteTextFont.copyWith(fontSize: 16),
                 ),
-                color: mainColor,
                 onPressed: () {
                   context
                       .read<PageBloc>()

@@ -158,10 +158,13 @@ class _TopUpPageState extends State<TopUpPage> {
                       width: 250,
                       height: 46,
                       child: BlocBuilder<UserBloc, UserState>(
-                        builder: (_, userState) => RaisedButton(
-                          elevation: 0,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8)),
+                        builder: (_, userState) => ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              primary: Color(0xFF3E9D9D),
+                              onSurface: Color(0xFFE4E4E4),
+                              elevation: 0,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8))),
                           onPressed: (selectedAmount > 0)
                               ? () async {
                                   context.read<PageBloc>().add(
@@ -181,8 +184,6 @@ class _TopUpPageState extends State<TopUpPage> {
                                           time: DateTime.now()));
                                 }
                               : null,
-                          disabledColor: Color(0xFFE4E4E4),
-                          color: Color(0xFF3E9D9D),
                           child: Text(
                             "Top Up My Wallet",
                             style: whiteTextFont.copyWith(

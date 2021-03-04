@@ -261,11 +261,12 @@ class WalletPage extends StatelessWidget {
                   width: 250,
                   height: 46,
                   margin: EdgeInsets.only(bottom: 30),
-                  child: RaisedButton(
-                    elevation: 0,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8)),
-                    color: mainColor,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        primary: mainColor,
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8))),
                     onPressed: () {
                       context
                           .read<PageBloc>()

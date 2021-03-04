@@ -93,10 +93,11 @@ class _AccountConfirmationPageState extends State<AccountConfirmationPage> {
                       : SizedBox(
                           width: 250,
                           height: 45,
-                          child: RaisedButton(
-                            color: Color(0xFF3E9D9D),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8)),
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                primary: Color(0xFF3E9D9D),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8))),
                             child: Text(
                               "Create My Account",
                               style: whiteTextFont.copyWith(fontSize: 16),
