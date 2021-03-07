@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:another_flushbar/flushbar.dart';
 import 'package:bwaflutix/bloc/blocs.dart';
 import 'package:bwaflutix/extensions/extensions.dart';
 import 'package:bwaflutix/models/models.dart';
@@ -8,7 +9,6 @@ import 'package:bwaflutix/shared/shared.dart';
 import 'package:bwaflutix/ui/widgets/widgets.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
-import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';

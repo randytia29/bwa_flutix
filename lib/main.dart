@@ -11,6 +11,7 @@ Future<void> main() async {
   await Firebase.initializeApp();
   runApp(StreamProvider.value(
     value: AuthServices.userStream,
+    initialData: null,
     child: MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => PageBloc()),
