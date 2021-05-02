@@ -31,15 +31,15 @@ dependencies:
   firebase_auth: ^1.0.0
   firebase_core: ^1.0.0
   firebase_storage: ^8.0.0
-  flutter_bloc: ^7.0.0-nullsafety.3
+  flutter_bloc: ^7.0.0
   flutter_spinkit: ^5.0.0
   google_fonts: ^2.0.0
   http: ^0.13.0
   image_picker: ^0.7.2
   intl: ^0.17.0
-  material_design_icons_flutter: ^4.0.5855
+  material_design_icons_flutter: ^4.0.5955
   provider: ^5.0.0-nullsafety.5
-  qr_flutter: ^3.2.0
+  qr_flutter: ^4.0.0
   random_string: ^2.2.0-nullsafety
 
 dev_dependencies:
