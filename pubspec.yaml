@@ -23,7 +23,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  another_flushbar: ^1.10.12
+  another_flushbar: ^1.10.20
   cloud_firestore: ^1.0.0
   cupertino_icons: ^1.0.2
   email_validator: ^2.0.0-nullsafety
