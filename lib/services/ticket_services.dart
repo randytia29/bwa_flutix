@@ -20,20 +20,21 @@ class TicketServices {
 
   static Future<List<Ticket>> getTickets(String userId) async {
     QuerySnapshot snapshot = await ticketCollection.get();
+
     var documents =
-        snapshot.docs.where((document) => document.data()['userID'] == userId);
+        snapshot.docs.where((document) => document['userID'] == userId);
     List<Ticket> tickets = [];
     for (var document in documents) {
-      MovieDetail movieDetail = await MovieServices.getDetails(null,
-          movieID: document.data()['movieID']);
+      MovieDetail movieDetail =
+          await MovieServices.getDetails(null, movieID: document['movieID']);
       tickets.add(Ticket(
           movieDetail,
-          Theater(document.data()['theaterName']),
-          DateTime.fromMillisecondsSinceEpoch(document.data()['time']),
-          document.data()['bookingCode'],
-          document.data()['seats'].toString().split(','),
-          document.data()['name'],
-          document.data()['totalPrice']));
+          Theater(document['theaterName']),
+          DateTime.fromMillisecondsSinceEpoch(document['time']),
+          document['bookingCode'],
+          document['seats'].toString().split(','),
+          document['name'],
+          document['totalPrice']));
     }
     return tickets;
   }

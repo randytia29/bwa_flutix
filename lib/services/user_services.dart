@@ -17,13 +17,13 @@ class UserServices {
 
   static Future<User> getUser(String id) async {
     DocumentSnapshot snapshot = await _userCollection.doc(id).get();
-    return User(id, snapshot.data()['email'],
-        balance: snapshot.data()['balance'],
-        profilePicture: snapshot.data()['profilePicture'],
-        selectedGenres: (snapshot.data()['selectedGenres'] as List)
+    return User(id, snapshot['email'],
+        balance: snapshot['balance'],
+        profilePicture: snapshot['profilePicture'],
+        selectedGenres: (snapshot['selectedGenres'] as List)
             .map((e) => e.toString())
             .toList(),
-        selectedLanguage: snapshot.data()['selectedLanguage'],
-        name: snapshot.data()['name']);
+        selectedLanguage: snapshot['selectedLanguage'],
+        name: snapshot['name']);
   }
 }

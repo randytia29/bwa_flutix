@@ -18,16 +18,20 @@ class FlutixTransactionServices {
 
   static Future<List<FlutixTransaction>> getTransaction(String userID) async {
     QuerySnapshot snapshot = await transactionCollection.get();
+
     var documents =
-        snapshot.docs.where((document) => document.data()['userID'] == userID);
-    return documents
+        snapshot.docs.where((document) => document['userID'] == userID);
+
+    final flutixTransactions = documents
         .map((e) => FlutixTransaction(
-            userID: e.data()['userID'],
-            title: e.data()['title'],
-            subtitle: e.data()['subtitle'],
-            amount: e.data()['amount'],
-            time: DateTime.fromMillisecondsSinceEpoch(e.data()['time']),
-            picture: e.data()['picture']))
+            userID: e['userID'],
+            title: e['title'],
+            subtitle: e['subtitle'],
+            amount: e['amount'],
+            time: DateTime.fromMillisecondsSinceEpoch(e['time']),
+            picture: e['picture']))
         .toList();
+
+    return flutixTransactions;
   }
 }
