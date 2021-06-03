@@ -190,7 +190,9 @@ class TicketDetailPage extends StatelessWidget {
                               SizedBox(
                                 height: 20,
                               ),
-                              GarisPutus(),
+                              DottedLine(
+                                dashLength: 7,
+                              ),
                               SizedBox(
                                 height: 20,
                               ),

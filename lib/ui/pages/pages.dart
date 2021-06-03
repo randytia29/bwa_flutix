@@ -7,6 +7,7 @@ import 'package:bwaflutix/models/models.dart';
 import 'package:bwaflutix/services/services.dart';
 import 'package:bwaflutix/shared/shared.dart';
 import 'package:bwaflutix/ui/widgets/widgets.dart';
+import 'package:dotted_line/dotted_line.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:flutter/material.dart';
