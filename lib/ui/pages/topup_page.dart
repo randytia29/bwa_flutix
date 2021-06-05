@@ -20,189 +20,177 @@ class _TopUpPageState extends State<TopUpPage> {
     double cardWidth =
         (MediaQuery.of(context).size.width - 2 * defaultMargin - 40) / 3;
     return WillPopScope(
-        onWillPop: () async {
-          context.read<PageBloc>().add(widget.pageEvent);
-          return;
-        },
-        child: Scaffold(
-          body: Stack(
+      onWillPop: () async {
+        context.read<PageBloc>().add(widget.pageEvent);
+        return;
+      },
+      child: Scaffold(
+        body: SafeArea(
+          child: ListView(
             children: [
-              Container(
-                color: accentColor1,
-              ),
-              SafeArea(
-                child: Container(
-                  color: Color(0xFFF6F7F9),
-                ),
-              ),
-              ListView(
+              Stack(
                 children: [
-                  Stack(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(top: 20, left: defaultMargin),
-                        height: 24,
-                        child: IconButton(
-                          color: Colors.white,
-                          icon: Icon(Icons.arrow_back,
-                              size: 24, color: Colors.black),
-                          onPressed: () {
-                            context.read<PageBloc>().add(widget.pageEvent);
-                          },
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.topCenter,
-                        child: Container(
-                          margin: EdgeInsets.only(top: 20),
-                          child: Text(
-                            "Top Up",
-                            style: blackTextFont.copyWith(fontSize: 20),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                  SizedBox(
-                    height: 50,
-                  ),
                   Container(
-                    margin: EdgeInsets.fromLTRB(
-                        defaultMargin, 0, defaultMargin, 20),
-                    child: TextField(
-                      onChanged: (text) {
-                        String temp = '';
-                        for (int i = 0; i < text.length; i++) {
-                          temp += text.isDigit(i) ? text[i] : '';
-                        }
-                        setState(() {
-                          selectedAmount = int.tryParse(temp) ?? 0;
-                        });
-                        amountController.text = NumberFormat.currency(
-                          locale: 'id_ID',
-                          symbol: 'IDR ',
-                          decimalDigits: 0,
-                        ).format(selectedAmount);
-                        amountController.selection = TextSelection.fromPosition(
-                            TextPosition(offset: amountController.text.length));
+                    margin: EdgeInsets.only(top: 20, left: defaultMargin),
+                    height: 24,
+                    child: IconButton(
+                      color: Colors.white,
+                      icon:
+                          Icon(Icons.arrow_back, size: 24, color: Colors.black),
+                      onPressed: () {
+                        context.read<PageBloc>().add(widget.pageEvent);
                       },
-                      controller: amountController,
-                      decoration: InputDecoration(
-                          labelText: "Amount",
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(6))),
                     ),
                   ),
-                  Container(
-                    margin: EdgeInsets.symmetric(horizontal: defaultMargin),
-                    child: Text(
-                      "Choose by Template",
-                      style: blackTextFont.copyWith(fontSize: 20),
+                  Align(
+                    alignment: Alignment.topCenter,
+                    child: Container(
+                      margin: EdgeInsets.only(top: 20),
+                      child: Text(
+                        "Top Up",
+                        style: blackTextFont.copyWith(fontSize: 20),
+                        textAlign: TextAlign.center,
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: defaultMargin),
-                    child: Wrap(
-                      spacing: 20,
-                      runSpacing: 14,
-                      children: [
-                        makeMoneyCard(
-                          width: cardWidth,
-                          amount: 50000,
-                        ),
-                        makeMoneyCard(
-                          width: cardWidth,
-                          amount: 100000,
-                        ),
-                        makeMoneyCard(
-                          width: cardWidth,
-                          amount: 150000,
-                        ),
-                        makeMoneyCard(
-                          width: cardWidth,
-                          amount: 200000,
-                        ),
-                        makeMoneyCard(
-                          width: cardWidth,
-                          amount: 250000,
-                        ),
-                        makeMoneyCard(
-                          width: cardWidth,
-                          amount: 500000,
-                        ),
-                        makeMoneyCard(
-                          width: cardWidth,
-                          amount: 1000000,
-                        ),
-                        makeMoneyCard(
-                          width: cardWidth,
-                          amount: 2500000,
-                        ),
-                        makeMoneyCard(
-                          width: cardWidth,
-                          amount: 5000000,
-                        )
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 100,
-                  ),
-                  Container(
-                      margin: EdgeInsets.symmetric(horizontal: 55),
-                      width: 250,
-                      height: 46,
-                      child: BlocBuilder<UserBloc, UserState>(
-                        builder: (_, userState) => ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              primary: Color(0xFF3E9D9D),
-                              onSurface: Color(0xFFE4E4E4),
-                              elevation: 0,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8))),
-                          onPressed: (selectedAmount > 0)
-                              ? () async {
-                                  context.read<PageBloc>().add(
-                                        GoToSuccessPage(true),
-                                      );
-                                  context
-                                      .read<UserBloc>()
-                                      .add(TopUp(selectedAmount));
-                                  await FlutixTransactionServices
-                                      .saveTransaction(FlutixTransaction(
-                                          userID:
-                                              (userState as UserLoaded).user.id,
-                                          title: "Top Up Wallet",
-                                          amount: selectedAmount,
-                                          subtitle:
-                                              "${DateTime.now().dayName}, ${DateTime.now().day} ${DateTime.now().monthName} ${DateTime.now().year}",
-                                          time: DateTime.now()));
-                                }
-                              : null,
-                          child: Text(
-                            "Top Up My Wallet",
-                            style: whiteTextFont.copyWith(
-                              fontSize: 16,
-                              color: selectedAmount > 0
-                                  ? Colors.white
-                                  : Color(0xFFBEBEBE),
-                            ),
-                          ),
-                        ),
-                      )),
-                  SizedBox(
-                    height: 100,
                   )
                 ],
+              ),
+              SizedBox(
+                height: 50,
+              ),
+              Container(
+                margin:
+                    EdgeInsets.fromLTRB(defaultMargin, 0, defaultMargin, 20),
+                child: TextField(
+                  onChanged: (text) {
+                    String temp = '';
+                    for (int i = 0; i < text.length; i++) {
+                      temp += text.isDigit(i) ? text[i] : '';
+                    }
+                    setState(() {
+                      selectedAmount = int.tryParse(temp) ?? 0;
+                    });
+                    amountController.text = NumberFormat.currency(
+                      locale: 'id_ID',
+                      symbol: 'IDR ',
+                      decimalDigits: 0,
+                    ).format(selectedAmount);
+                    amountController.selection = TextSelection.fromPosition(
+                        TextPosition(offset: amountController.text.length));
+                  },
+                  controller: amountController,
+                  decoration: InputDecoration(
+                      labelText: "Amount",
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(6))),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: defaultMargin),
+                child: Text(
+                  "Choose by Template",
+                  style: blackTextFont.copyWith(fontSize: 20),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: defaultMargin),
+                child: Wrap(
+                  spacing: 20,
+                  runSpacing: 14,
+                  children: [
+                    makeMoneyCard(
+                      width: cardWidth,
+                      amount: 50000,
+                    ),
+                    makeMoneyCard(
+                      width: cardWidth,
+                      amount: 100000,
+                    ),
+                    makeMoneyCard(
+                      width: cardWidth,
+                      amount: 150000,
+                    ),
+                    makeMoneyCard(
+                      width: cardWidth,
+                      amount: 200000,
+                    ),
+                    makeMoneyCard(
+                      width: cardWidth,
+                      amount: 250000,
+                    ),
+                    makeMoneyCard(
+                      width: cardWidth,
+                      amount: 500000,
+                    ),
+                    makeMoneyCard(
+                      width: cardWidth,
+                      amount: 1000000,
+                    ),
+                    makeMoneyCard(
+                      width: cardWidth,
+                      amount: 2500000,
+                    ),
+                    makeMoneyCard(
+                      width: cardWidth,
+                      amount: 5000000,
+                    )
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 100,
+              ),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 55),
+                width: 250,
+                height: 46,
+                child: BlocBuilder<UserBloc, UserState>(
+                  builder: (_, userState) => ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        primary: Color(0xFF3E9D9D),
+                        onSurface: Color(0xFFE4E4E4),
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8))),
+                    onPressed: (selectedAmount > 0)
+                        ? () async {
+                            context.read<PageBloc>().add(
+                                  GoToSuccessPage(true),
+                                );
+                            context.read<UserBloc>().add(TopUp(selectedAmount));
+                            await FlutixTransactionServices.saveTransaction(
+                                FlutixTransaction(
+                                    userID: (userState as UserLoaded).user.id,
+                                    title: "Top Up Wallet",
+                                    amount: selectedAmount,
+                                    subtitle:
+                                        "${DateTime.now().dayName}, ${DateTime.now().day} ${DateTime.now().monthName} ${DateTime.now().year}",
+                                    time: DateTime.now()));
+                          }
+                        : null,
+                    child: Text(
+                      "Top Up My Wallet",
+                      style: whiteTextFont.copyWith(
+                        fontSize: 16,
+                        color: selectedAmount > 0
+                            ? Colors.white
+                            : Color(0xFFBEBEBE),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 100,
               )
             ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 
   MoneyCard makeMoneyCard({int amount, double width}) {

@@ -15,116 +15,105 @@ class _SelectSeatPageState extends State<SelectSeatPage> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-        onWillPop: () async {
-          context
-              .read<PageBloc>()
-              .add(GoToSelectSchedulePage(widget.ticket.movieDetail));
-          return;
-        },
-        child: Scaffold(
-          body: Stack(
+      onWillPop: () async {
+        context
+            .read<PageBloc>()
+            .add(GoToSelectSchedulePage(widget.ticket.movieDetail));
+        return;
+      },
+      child: Scaffold(
+        body: SafeArea(
+          child: ListView(
             children: [
-              Container(
-                color: accentColor1,
-              ),
-              SafeArea(
-                child: Container(
-                  color: Colors.white,
-                ),
-              ),
-              ListView(
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(top: 16, left: defaultMargin),
-                        height: 24,
-                        child: IconButton(
-                          color: Colors.white,
-                          icon: Icon(Icons.arrow_back,
-                              size: 24, color: Colors.black),
-                          onPressed: () {
-                            context.read<PageBloc>().add(GoToSelectSchedulePage(
-                                widget.ticket.movieDetail));
-                          },
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            top: 20, right: defaultMargin),
-                        child: Row(
-                          children: [
-                            Container(
-                              margin: EdgeInsets.only(right: 16),
-                              width: MediaQuery.of(context).size.width / 2,
-                              child: Text(
-                                widget.ticket.movieDetail.title,
-                                style: blackTextFont.copyWith(fontSize: 20),
-                                maxLines: 2,
-                                overflow: TextOverflow.clip,
-                                textAlign: TextAlign.end,
-                              ),
-                            ),
-                            Container(
-                              width: 60,
-                              height: 60,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8),
-                                  image: DecorationImage(
-                                      image: NetworkImage(imageBaseUrl +
-                                          'w154' +
-                                          widget.ticket.movieDetail.posterPath),
-                                      fit: BoxFit.cover)),
-                            )
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
                   Container(
-                    margin: EdgeInsets.only(top: 30),
-                    width: 277,
-                    height: 84,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage('assets/screen.png'))),
-                  ),
-                  generateSeats(),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  Align(
-                    alignment: Alignment.topCenter,
-                    child: FloatingActionButton(
-                      elevation: 0,
-                      backgroundColor: selectedSeats.length > 0
-                          ? mainColor
-                          : Color(0xFFE4E4E4),
-                      child: Icon(
-                        Icons.arrow_forward,
-                        color: selectedSeats.length > 0
-                            ? Colors.white
-                            : Color(0xFFBEBEBE),
-                      ),
-                      onPressed: selectedSeats.length > 0
-                          ? () {
-                              context.read<PageBloc>().add(GoToCheckoutPage(
-                                  widget.ticket
-                                      .copyWith(seats: selectedSeats)));
-                            }
-                          : null,
+                    margin: EdgeInsets.only(top: 16, left: defaultMargin),
+                    height: 24,
+                    child: IconButton(
+                      color: Colors.white,
+                      icon:
+                          Icon(Icons.arrow_back, size: 24, color: Colors.black),
+                      onPressed: () {
+                        context.read<PageBloc>().add(
+                            GoToSelectSchedulePage(widget.ticket.movieDetail));
+                      },
                     ),
                   ),
-                  SizedBox(
-                    height: 50,
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(top: 20, right: defaultMargin),
+                    child: Row(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(right: 16),
+                          width: MediaQuery.of(context).size.width / 2,
+                          child: Text(
+                            widget.ticket.movieDetail.title,
+                            style: blackTextFont.copyWith(fontSize: 20),
+                            maxLines: 2,
+                            overflow: TextOverflow.clip,
+                            textAlign: TextAlign.end,
+                          ),
+                        ),
+                        Container(
+                          width: 60,
+                          height: 60,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              image: DecorationImage(
+                                  image: NetworkImage(imageBaseUrl +
+                                      'w154' +
+                                      widget.ticket.movieDetail.posterPath),
+                                  fit: BoxFit.cover)),
+                        )
+                      ],
+                    ),
                   )
                 ],
+              ),
+              Container(
+                margin: EdgeInsets.only(top: 30),
+                width: 277,
+                height: 84,
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage('assets/screen.png'))),
+              ),
+              generateSeats(),
+              SizedBox(
+                height: 30,
+              ),
+              Align(
+                alignment: Alignment.topCenter,
+                child: FloatingActionButton(
+                  elevation: 0,
+                  backgroundColor:
+                      selectedSeats.length > 0 ? mainColor : Color(0xFFE4E4E4),
+                  child: Icon(
+                    Icons.arrow_forward,
+                    color: selectedSeats.length > 0
+                        ? Colors.white
+                        : Color(0xFFBEBEBE),
+                  ),
+                  onPressed: selectedSeats.length > 0
+                      ? () {
+                          context.read<PageBloc>().add(GoToCheckoutPage(
+                              widget.ticket.copyWith(seats: selectedSeats)));
+                        }
+                      : null,
+                ),
+              ),
+              SizedBox(
+                height: 50,
               )
             ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 
   Column generateSeats() {
