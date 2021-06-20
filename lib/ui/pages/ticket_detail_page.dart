@@ -91,6 +91,8 @@ class TicketDetailPage extends StatelessWidget {
                           RatingStars(
                             voteAverage: ticket.movieDetail.voteAverage,
                             color: Colors.grey,
+                            starSize: 40.sp,
+                            fontSize: 24.sp,
                           ),
                           SizedBox(
                             height: 16,

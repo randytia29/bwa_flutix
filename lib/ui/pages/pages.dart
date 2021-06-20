@@ -19,6 +19,7 @@ import 'package:path/path.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:random_string/random_string.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 part 'account_confirmation_page.dart';
 part 'checkout_page.dart';

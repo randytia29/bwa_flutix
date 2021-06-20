@@ -9,8 +9,8 @@ class RatingStars extends StatelessWidget {
 
   RatingStars(
       {this.voteAverage = 0,
-      this.starSize = 20,
-      this.fontSize = 12,
+      @required this.starSize,
+      @required this.fontSize,
       this.color,
       this.alignment = MainAxisAlignment.start});
 

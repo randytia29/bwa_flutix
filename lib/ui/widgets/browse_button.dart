@@ -12,8 +12,8 @@ class BrowseButton extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Container(
-            width: 50,
-            height: 50,
+            width: 100.h,
+            height: 100.h,
             decoration: BoxDecoration(
                 color: Color(0xFFEBFFF6),
                 borderRadius: BorderRadius.circular(8),
@@ -32,7 +32,7 @@ class BrowseButton extends StatelessWidget {
                     fit: BoxFit.cover)),
           ),
           SizedBox(
-            height: 3,
+            height: 6.h,
           ),
           Text(
             genre.contains('Horror')
@@ -43,7 +43,9 @@ class BrowseButton extends StatelessWidget {
                         ? 'Action'
                         : genre.contains('Drama')
                             ? 'Drama'
-                            : genre.contains('War') ? 'War' : 'Crime',
+                            : genre.contains('War')
+                                ? 'War'
+                                : 'Crime',
             style: blackTextFont,
           )
         ],

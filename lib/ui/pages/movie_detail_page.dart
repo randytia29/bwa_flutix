@@ -101,6 +101,8 @@ class MovieDetailPage extends StatelessWidget {
                                     voteAverage: movieDetail.voteAverage,
                                     color: accentColor3,
                                     alignment: MainAxisAlignment.center,
+                                    starSize: 40.sp,
+                                    fontSize: 24.sp,
                                   )
                                 ],
                               ),

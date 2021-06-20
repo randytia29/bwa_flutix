@@ -6,6 +6,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 Future<void> main() async {
@@ -26,10 +27,13 @@ Future<void> main() async {
         BlocProvider(create: (_) => TicketBloc())
       ],
       child: BlocBuilder<ThemeBloc, ThemeState>(
-        builder: (_, themeState) => MaterialApp(
-          theme: themeState.themeData,
-          debugShowCheckedModeBanner: false,
-          home: Wrapper(),
+        builder: (_, themeState) => ScreenUtilInit(
+          designSize: samsungJ6,
+          builder: () => MaterialApp(
+            theme: themeState.themeData,
+            debugShowCheckedModeBanner: false,
+            home: Wrapper(),
+          ),
         ),
       ),
     ),

@@ -15,16 +15,17 @@ class MovieCard extends StatelessWidget {
         }
       },
       child: Container(
-        height: 140,
-        width: 210,
+        height: 280.h,
+        width: 420.w,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-            image: DecorationImage(
-                image: NetworkImage(imageBaseUrl + 'w780' + movie.backdropPath),
-                fit: BoxFit.cover)),
+          borderRadius: BorderRadius.circular(15),
+          image: DecorationImage(
+              image: NetworkImage(imageBaseUrl + 'w780' + movie.backdropPath),
+              fit: BoxFit.fill),
+        ),
         child: Container(
-          height: 140,
-          width: 210,
+          height: 280.h,
+          width: 420.w,
           padding: EdgeInsets.all(16),
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
@@ -47,6 +48,8 @@ class MovieCard extends StatelessWidget {
               ),
               RatingStars(
                 voteAverage: movie.voteAverage,
+                starSize: 40.sp,
+                fontSize: 24.sp,
               )
             ],
           ),

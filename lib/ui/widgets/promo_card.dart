@@ -10,7 +10,7 @@ class PromoCard extends StatelessWidget {
     return Stack(
       children: <Widget>[
         Container(
-          height: 80,
+          height: 160.h,
           padding: EdgeInsets.symmetric(horizontal: 16),
           decoration: BoxDecoration(
               color: mainColor, borderRadius: BorderRadius.circular(15)),
@@ -28,7 +28,7 @@ class PromoCard extends StatelessWidget {
                   Text(
                     promo.subtitle,
                     style: whiteTextFont.copyWith(
-                        fontSize: 11, fontWeight: FontWeight.w300),
+                        fontSize: 22.sp, fontWeight: FontWeight.w300),
                   )
                 ],
               ),
@@ -37,12 +37,12 @@ class PromoCard extends StatelessWidget {
                   Text(
                     'OFF ',
                     style: yellowNumberFont.copyWith(
-                        fontSize: 18, fontWeight: FontWeight.w300),
+                        fontSize: 36.sp, fontWeight: FontWeight.w300),
                   ),
                   Text(
                     '${promo.discount}%',
                     style: yellowNumberFont.copyWith(
-                        fontSize: 18, fontWeight: FontWeight.w600),
+                        fontSize: 36.sp, fontWeight: FontWeight.w600),
                   ),
                 ],
               )
@@ -59,7 +59,7 @@ class PromoCard extends StatelessWidget {
           },
           blendMode: BlendMode.dstIn,
           child: SizedBox(
-            height: 80,
+            height: 160.h,
             width: 117,
             child: ClipRRect(
                 borderRadius: BorderRadius.only(
@@ -82,7 +82,7 @@ class PromoCard extends StatelessWidget {
             },
             blendMode: BlendMode.dstIn,
             child: SizedBox(
-              height: 45,
+              height: 90.h,
               width: 134,
               child: ClipRRect(
                   borderRadius:
@@ -105,7 +105,7 @@ class PromoCard extends StatelessWidget {
             },
             blendMode: BlendMode.dstIn,
             child: SizedBox(
-              height: 25,
+              height: 50.h,
               width: 74,
               child: ClipRRect(
                   borderRadius:
