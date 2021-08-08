@@ -88,6 +88,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                   if (profileImageFile != null) {
                                     profilePath =
                                         basename(profileImageFile.path);
+                                  } else {
+                                    profilePath = '';
                                   }
                                 } else {
                                   profileImageFile = null;

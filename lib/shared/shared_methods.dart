@@ -1,11 +1,14 @@
 part of 'shared.dart';
 
 Future<File> getImage() async {
-  ImagePicker _picker = ImagePicker();
-  XFile xFile = await _picker.pickImage(source: ImageSource.gallery);
-  // xFile.path;
-  // PickedFile pickedFile = await _picker.getImage(source: ImageSource.gallery);
-  return File(xFile.path);
+  try {
+    ImagePicker _picker = ImagePicker();
+    XFile xFile = await _picker.pickImage(source: ImageSource.gallery);
+    return File(xFile.path);
+  } catch (e) {
+    print('getImage catch: $e');
+    return null;
+  }
 }
 
 Future<String> uploadImage(File image) async {
