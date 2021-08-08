@@ -2,8 +2,10 @@ part of 'shared.dart';
 
 Future<File> getImage() async {
   ImagePicker _picker = ImagePicker();
-  PickedFile pickedFile = await _picker.getImage(source: ImageSource.gallery);
-  return File(pickedFile.path);
+  XFile xFile = await _picker.pickImage(source: ImageSource.gallery);
+  // xFile.path;
+  // PickedFile pickedFile = await _picker.getImage(source: ImageSource.gallery);
+  return File(xFile.path);
 }
 
 Future<String> uploadImage(File image) async {
