@@ -385,10 +385,10 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                   picture:
                                       widget.ticket.movieDetail.posterPath));
 
-                          await NotificationService.setScheduleMovie(
-                              2, 'Movie Coming', 'Hurry up');
-                          // await NotificationService.setTicketBought(
-                          //     1, 'Ticket Bought', 'Congratulation');
+                          // await NotificationService.setScheduleMovie(
+                          //     2, 'Movie Coming', 'Hurry up');
+                          await NotificationService.setTicketBought(
+                              1, 'Ticket Bought', 'Congratulation');
                         } else {
                           context
                               .read<PageBloc>()
