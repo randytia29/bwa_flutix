@@ -11,6 +11,7 @@ import 'package:bwaflutix/ui/widgets/widgets.dart';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';

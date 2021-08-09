@@ -19,6 +19,19 @@ class _MainPageState extends State<MainPage> {
     super.initState();
     bottomNavBarIndex = widget.bottomNavBarIndex;
     pageController = PageController(initialPage: bottomNavBarIndex);
+
+    FirebaseMessaging.instance.getInitialMessage();
+
+    FirebaseMessaging.onMessage.listen((message) {
+      RemoteNotification notification = message.notification;
+      if (notification != null) {
+        print(notification.title);
+        print(notification.body);
+
+        NotificationService.showNotificationNow(
+            notification.hashCode, notification.title, notification.body);
+      }
+    });
   }
 
   @override

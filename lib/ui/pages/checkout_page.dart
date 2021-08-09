@@ -391,7 +391,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                               'Hurry up',
                               widget.ticket.time);
 
-                          await NotificationService.setTicketBought(
+                          await NotificationService.showNotificationNow(
                               1, 'Ticket Bought', 'Congratulation');
                         } else {
                           context
