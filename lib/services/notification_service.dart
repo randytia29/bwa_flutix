@@ -28,8 +28,11 @@ class NotificationService {
 
   static NotificationDetails _setupNotificationDetails() {
     final notificationDetailsAndroid = AndroidNotificationDetails(
-        'movie_notif', 'movie_notif', 'Channel for Movie Notification',
+        'channel id', 'channel name', 'channel description',
         icon: 'flutix_logo',
+        sound: RawResourceAndroidNotificationSound('kamen_rider_birth'),
+        priority: Priority.high,
+        importance: Importance.max,
         largeIcon: DrawableResourceAndroidBitmap('flutix_logo'));
 
     final notificationDetailsIOS = IOSNotificationDetails(
