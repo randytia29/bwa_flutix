@@ -39,10 +39,11 @@ class NotificationService {
         android: notificationDetailsAndroid, iOS: notificationDetailsIOS);
   }
 
-  static Future<void> setScheduleMovie(int id, String title, String body,
+  static Future<void> setScheduleMovie(
+      int id, String title, String body, DateTime time,
       {String payload = ''}) async {
-    final scheduleNotificationDateTime =
-        tz.TZDateTime.now(tz.local).add(Duration(seconds: 10));
+    tz.TZDateTime scheduleNotificationDateTime =
+        tz.TZDateTime.from(time, tz.local).subtract(Duration(minutes: 30));
 
     await flutterLocalNotificationsPlugin.zonedSchedule(id, title, body,
         scheduleNotificationDateTime, _setupNotificationDetails(),
