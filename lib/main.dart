@@ -3,6 +3,7 @@ import 'package:bwaflutix/services/services.dart';
 import 'package:bwaflutix/shared/shared.dart';
 import 'package:bwaflutix/ui/pages/pages.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,6 +13,18 @@ import 'package:provider/provider.dart';
 
 final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
+Future<void> backgroundHandler(RemoteMessage message) async {
+  RemoteNotification notification = message.notification;
+
+  if (notification != null) {
+    print(notification.title);
+    print(notification.body);
+
+    await NotificationService.showNotificationNow(
+        notification.hashCode, notification.title, notification.body);
+  }
+}
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -20,6 +33,8 @@ Future<void> main() async {
 
   await NotificationService.notificationInitialize();
   NotificationService.timezoneInitialize();
+
+  FirebaseMessaging.onBackgroundMessage(backgroundHandler);
 
   runApp(StreamProvider.value(
     value: AuthServices.userStream,

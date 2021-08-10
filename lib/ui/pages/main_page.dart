@@ -22,13 +22,13 @@ class _MainPageState extends State<MainPage> {
 
     FirebaseMessaging.instance.getInitialMessage();
 
-    FirebaseMessaging.onMessage.listen((message) {
+    FirebaseMessaging.onMessage.listen((message) async {
       RemoteNotification notification = message.notification;
       if (notification != null) {
         print(notification.title);
         print(notification.body);
 
-        NotificationService.showNotificationNow(
+        await NotificationService.showNotificationNow(
             notification.hashCode, notification.title, notification.body);
       }
     });
