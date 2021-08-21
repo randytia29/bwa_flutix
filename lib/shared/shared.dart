@@ -11,3 +11,4 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 part 'shared_methods.dart';
 part 'shared_value.dart';
 part 'theme.dart';
+part 'page_transition.dart';

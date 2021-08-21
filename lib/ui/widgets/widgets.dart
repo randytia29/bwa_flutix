@@ -1,8 +1,8 @@
 import 'package:bwaflutix/bloc/blocs.dart';
 import 'package:bwaflutix/extensions/extensions.dart';
 import 'package:bwaflutix/models/models.dart';
-import 'package:bwaflutix/services/services.dart';
 import 'package:bwaflutix/shared/shared.dart';
+import 'package:bwaflutix/ui/pages/pages.dart';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

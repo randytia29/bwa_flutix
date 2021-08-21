@@ -26,100 +26,90 @@ class _SelectSchedulePageState extends State<SelectSchedulePage> {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
-        context.read<PageBloc>().add(GoToMovieDetailPage(widget.movieDetail));
-        return;
-      },
-      child: Scaffold(
-        body: SafeArea(
-          child: ListView(
-            children: <Widget>[
-              Align(
-                alignment: Alignment.topLeft,
-                child: Container(
-                  margin: EdgeInsets.only(top: 16, left: defaultMargin),
-                  height: 24,
-                  child: IconButton(
-                    color: Colors.white,
-                    icon: Icon(Icons.arrow_back, size: 24, color: Colors.black),
-                    onPressed: () {
-                      context
-                          .read<PageBloc>()
-                          .add(GoToMovieDetailPage(widget.movieDetail));
+    return Scaffold(
+      body: SafeArea(
+        child: ListView(
+          children: <Widget>[
+            Align(
+              alignment: Alignment.topLeft,
+              child: Container(
+                margin: EdgeInsets.only(top: 16, left: defaultMargin),
+                height: 24,
+                child: IconButton(
+                  color: Colors.white,
+                  icon: Icon(Icons.arrow_back, size: 24, color: Colors.black),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.fromLTRB(defaultMargin, 20, defaultMargin, 16),
+              child: Text(
+                'Choose Date',
+                style: blackTextFont.copyWith(fontSize: 20),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(bottom: 24),
+              height: 90,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: dates.length,
+                itemBuilder: (_, index) => Container(
+                  margin: EdgeInsets.only(
+                      left: index == 0 ? defaultMargin : 0,
+                      right: index == dates.length - 1 ? defaultMargin : 16),
+                  child: DateCard(
+                    dates[index],
+                    isSelected: selectedDate == dates[index],
+                    onTap: () {
+                      setState(() {
+                        selectedDate = dates[index];
+                      });
                     },
                   ),
                 ),
               ),
-              Container(
-                margin:
-                    EdgeInsets.fromLTRB(defaultMargin, 20, defaultMargin, 16),
-                child: Text(
-                  'Choose Date',
-                  style: blackTextFont.copyWith(fontSize: 20),
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.only(bottom: 24),
-                height: 90,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: dates.length,
-                  itemBuilder: (_, index) => Container(
-                    margin: EdgeInsets.only(
-                        left: index == 0 ? defaultMargin : 0,
-                        right: index == dates.length - 1 ? defaultMargin : 16),
-                    child: DateCard(
-                      dates[index],
-                      isSelected: selectedDate == dates[index],
-                      onTap: () {
-                        setState(() {
-                          selectedDate = dates[index];
-                        });
-                      },
-                    ),
+            ),
+            generateTimeTable(),
+            SizedBox(
+              height: 10,
+            ),
+            Align(
+              alignment: Alignment.topCenter,
+              child: BlocBuilder<UserBloc, UserState>(
+                builder: (_, userState) => FloatingActionButton(
+                  elevation: 0,
+                  backgroundColor: isValid ? mainColor : Color(0xFFE4E4E4),
+                  child: Icon(
+                    Icons.arrow_forward,
+                    color: isValid ? Colors.white : Color(0xFFBEBEBE),
                   ),
+                  onPressed: () {
+                    if (isValid) {
+                      Navigator.of(context).push(
+                        routeTransition(
+                          SelectSeatPage(
+                            Ticket(
+                                widget.movieDetail,
+                                selectedTheater,
+                                DateTime(selectedDate.year, selectedDate.month,
+                                    selectedDate.day, selectedTime),
+                                randomAlphaNumeric(12).toUpperCase(),
+                                null,
+                                (userState as UserLoaded).user.name,
+                                null),
+                          ),
+                        ),
+                      );
+                    }
+                  },
                 ),
               ),
-              generateTimeTable(),
-              SizedBox(
-                height: 10,
-              ),
-              Align(
-                alignment: Alignment.topCenter,
-                child: BlocBuilder<UserBloc, UserState>(
-                  builder: (_, userState) => FloatingActionButton(
-                    elevation: 0,
-                    backgroundColor: isValid ? mainColor : Color(0xFFE4E4E4),
-                    child: Icon(
-                      Icons.arrow_forward,
-                      color: isValid ? Colors.white : Color(0xFFBEBEBE),
-                    ),
-                    onPressed: () {
-                      if (isValid) {
-                        context.read<PageBloc>().add(
-                              GoToSelectSeatPage(
-                                Ticket(
-                                    widget.movieDetail,
-                                    selectedTheater,
-                                    DateTime(
-                                        selectedDate.year,
-                                        selectedDate.month,
-                                        selectedDate.day,
-                                        selectedTime),
-                                    randomAlphaNumeric(12).toUpperCase(),
-                                    null,
-                                    (userState as UserLoaded).user.name,
-                                    null),
-                              ),
-                            );
-                      }
-                    },
-                  ),
-                ),
-              )
-            ],
-          ),
+            )
+          ],
         ),
       ),
     );

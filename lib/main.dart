@@ -9,7 +9,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
 
 final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
@@ -36,25 +35,26 @@ Future<void> main() async {
 
   FirebaseMessaging.onBackgroundMessage(backgroundHandler);
 
-  runApp(StreamProvider.value(
-    value: AuthServices.userStream,
-    initialData: null,
-    child: MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (_) => PageBloc()),
-        BlocProvider(create: (_) => UserBloc()),
-        BlocProvider(create: (_) => ThemeBloc()),
-        BlocProvider(create: (_) => MovieBloc()..add(FetchMovies())),
-        BlocProvider(create: (_) => TicketBloc())
-      ],
-      child: BlocBuilder<ThemeBloc, ThemeState>(
-        builder: (_, themeState) => ScreenUtilInit(
-          designSize: samsungJ6,
-          builder: () => MaterialApp(
-            theme: themeState.themeData,
-            debugShowCheckedModeBanner: false,
-            home: Wrapper(),
-          ),
+  await SharedPref.init();
+
+  runApp(MultiBlocProvider(
+    providers: [
+      BlocProvider(create: (_) => PageBloc()),
+      BlocProvider(create: (_) => UserBloc()),
+      BlocProvider(create: (_) => ThemeBloc()),
+      BlocProvider(create: (_) => MovieBloc()..add(FetchMovies())),
+      BlocProvider(create: (_) => TicketBloc()),
+      BlocProvider(
+        create: (_) => AuthenticationBloc()..add(CheckIsAuthenticated()),
+      )
+    ],
+    child: BlocBuilder<ThemeBloc, ThemeState>(
+      builder: (_, themeState) => ScreenUtilInit(
+        designSize: samsungJ6,
+        builder: () => MaterialApp(
+          theme: themeState.themeData,
+          debugShowCheckedModeBanner: false,
+          home: SplashPage(),
         ),
       ),
     ),

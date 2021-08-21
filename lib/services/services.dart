@@ -10,6 +10,7 @@ import 'package:http/http.dart' as http;
 import 'package:bwaflutix/extensions/extensions.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz;
+import 'package:shared_preferences/shared_preferences.dart';
 
 part 'auth_services.dart';
 part 'flutix_transaction_services.dart';
@@ -17,3 +18,4 @@ part 'movie_services.dart';
 part 'ticket_services.dart';
 part 'user_services.dart';
 part 'notification_service.dart';
+part 'shared_pref.dart';

@@ -30,7 +30,8 @@ class MoviePage extends StatelessWidget {
                     children: <Widget>[
                       GestureDetector(
                         onTap: () async {
-                          context.read<PageBloc>().add(GoToProfilePage());
+                          Navigator.of(context)
+                              .push(routeTransition(ProfilePage()));
                         },
                         child: Container(
                           padding: EdgeInsets.all(5),
@@ -80,9 +81,8 @@ class MoviePage extends StatelessWidget {
                           ),
                           GestureDetector(
                             onTap: () {
-                              context
-                                  .read<PageBloc>()
-                                  .add(GoToWalletPage(GoToMainPage()));
+                              Navigator.of(context)
+                                  .push(routeTransition(WalletPage()));
                             },
                             child: Text(
                               NumberFormat.currency(

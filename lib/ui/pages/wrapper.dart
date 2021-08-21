@@ -47,28 +47,19 @@ class Wrapper extends StatelessWidget {
                                                             is OnProfilePage)
                                                         ? ProfilePage()
                                                         : (pageState
-                                                                is OnTopUpPage)
-                                                            ? TopUpPage(
-                                                                pageState
-                                                                    .pageEvent)
+                                                                is OnEditProfilePage)
+                                                            ? EditProfilePage(
+                                                                pageState.user)
                                                             : (pageState
-                                                                    is OnWalletPage)
-                                                                ? WalletPage(
-                                                                    pageState
-                                                                        .pageEvent)
-                                                                : (pageState
-                                                                        is OnEditProfilePage)
-                                                                    ? EditProfilePage(
+                                                                    is OnMainPage)
+                                                                ? MainPage(
+                                                                    bottomNavBarIndex:
                                                                         pageState
-                                                                            .user)
-                                                                    : (pageState
-                                                                            is OnMainPage)
-                                                                        ? MainPage(
-                                                                            bottomNavBarIndex:
-                                                                                pageState.bottomNavBarIndex,
-                                                                            isExpired:
-                                                                                pageState.isExpired,
-                                                                          )
-                                                                        : Container());
+                                                                            .bottomNavBarIndex,
+                                                                    isExpired:
+                                                                        pageState
+                                                                            .isExpired,
+                                                                  )
+                                                                : Container());
   }
 }

@@ -76,7 +76,7 @@ class _MainPageState extends State<MainPage> {
                     ),
                   ),
                   onPressed: () {
-                    context.read<PageBloc>().add(GoToTopUpPage(GoToMainPage()));
+                    Navigator.of(context).push(routeTransition(TopUpPage()));
                   }),
             ),
           )

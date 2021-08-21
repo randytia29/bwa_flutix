@@ -19,6 +19,8 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       User user = await UserServices.getUser(event.id);
       yield UserLoaded(user);
     } else if (event is SignOut) {
+      await SharedPref.clearUserId();
+      await AuthServices.signOut();
       yield UserInitial();
     } else if (event is UpdateData) {
       User updateUser = (state as UserLoaded)

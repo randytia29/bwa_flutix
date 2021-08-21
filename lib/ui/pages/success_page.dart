@@ -62,11 +62,19 @@ class SuccessPage extends StatelessWidget {
                 child: Text(
                   isTopUp ? "My Wallet" : "My Tickets",
                 ),
-                onPressed: () {
-                  context.read<PageBloc>().add(isTopUp
-                      ? GoToWalletPage(GoToMainPage())
-                      : GoToMainPage(bottomNavBarIndex: 1));
-                },
+                onPressed: isTopUp
+                    ? () {
+                        Navigator.of(context)
+                          ..popUntil((route) => route.isFirst)
+                          ..push(routeTransition(WalletPage()));
+                      }
+                    : () {
+                        Navigator.of(context)
+                          ..popUntil((route) => route.isFirst)
+                          ..pushReplacement(routeTransition(MainPage(
+                            bottomNavBarIndex: 1,
+                          )));
+                      },
               ),
             ),
             Container(
@@ -81,7 +89,9 @@ class SuccessPage extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      context.read<PageBloc>().add(GoToMainPage());
+                      Navigator.of(context)
+                        ..popUntil((route) => route.isFirst)
+                        ..pushReplacement(routeTransition(MainPage()));
                     },
                     child: Text(
                       "Back to Home",

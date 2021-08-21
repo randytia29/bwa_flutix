@@ -36,9 +36,8 @@ class NowPlayingMovie extends StatelessWidget {
                     child: MovieCard(
                       movies[index],
                       onTap: () {
-                        context
-                            .read<PageBloc>()
-                            .add(GoToMovieDetailPage(movies[index]));
+                        Navigator.of(context).push(
+                            routeTransition(MovieDetailPage(movies[index])));
                       },
                     ),
                   ),

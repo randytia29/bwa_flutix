@@ -18,7 +18,8 @@ class ProfileMenu extends StatelessWidget {
             assetName: 'assets/edit_profile.png',
             title: 'Edit Profile',
             onTap: () {
-              context.read<PageBloc>().add(GoToEditProfilePage(user));
+              Navigator.of(context)
+                  .push(routeTransition(EditProfilePage(user)));
             },
           ),
           SizedBox(
@@ -28,7 +29,7 @@ class ProfileMenu extends StatelessWidget {
             assetName: 'assets/my_wallet.png',
             title: 'My Wallet',
             onTap: () {
-              context.read<PageBloc>().add(GoToWalletPage(GoToProfilePage()));
+              Navigator.of(context).push(routeTransition(WalletPage()));
             },
           ),
           SizedBox(
@@ -62,8 +63,10 @@ class ProfileMenu extends StatelessWidget {
             assetName: 'assets/sign_out.png',
             title: 'Sign Out',
             onTap: () async {
-              await AuthServices.signOut();
               context.read<UserBloc>().add(SignOut());
+              Navigator.of(context)
+                ..popUntil((route) => route.isFirst)
+                ..pushReplacement(routeTransition(SplashPage()));
             },
           )
         ],

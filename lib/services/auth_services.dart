@@ -43,8 +43,6 @@ class AuthServices {
       return ResetPasswordResult(message: e.toString().split(']')[1].trim());
     }
   }
-
-  static Stream<auth.User> get userStream => _auth.authStateChanges();
 }
 
 class SignInSignUpResult {
