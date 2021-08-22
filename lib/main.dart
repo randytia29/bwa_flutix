@@ -39,7 +39,6 @@ Future<void> main() async {
 
   runApp(MultiBlocProvider(
     providers: [
-      BlocProvider(create: (_) => PageBloc()),
       BlocProvider(create: (_) => UserBloc()),
       BlocProvider(create: (_) => ThemeBloc()),
       BlocProvider(create: (_) => MovieBloc()..add(FetchMovies())),
