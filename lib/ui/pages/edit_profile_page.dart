@@ -207,13 +207,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           : () async {
                               await AuthServices.resetPassword(
                                   widget.user.email!);
-                              Flushbar(
-                                duration: Duration(milliseconds: 2000),
-                                flushbarPosition: FlushbarPosition.TOP,
-                                backgroundColor: Color(0xFFFF5C83),
-                                message:
-                                    "The link to change your password has been sent to your email",
-                              )..show(context);
+
+                              flutixSnackbar(context,
+                                  'The link to change your password has been sent to your email');
                             },
                     ),
                   ),

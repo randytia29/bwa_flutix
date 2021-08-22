@@ -79,12 +79,7 @@ class _PreferencePageState extends State<PreferencePage> {
                     child: Icon(Icons.arrow_forward),
                     onPressed: () {
                       if (selectedGenres.length != 4) {
-                        Flushbar(
-                          duration: Duration(milliseconds: 1500),
-                          flushbarPosition: FlushbarPosition.TOP,
-                          backgroundColor: Color(0xFFFF5C83),
-                          message: 'Please select 4 genres',
-                        )..show(context);
+                        flutixSnackbar(context, 'Please select 4 genres');
                       } else {
                         widget.registrationData.selectedGenres = selectedGenres;
                         widget.registrationData.selectedLang = selectedLanguage;

@@ -111,12 +111,7 @@ class _AccountConfirmationPageState extends State<AccountConfirmationPage> {
                               setState(() {
                                 isSigningUp = false;
                               });
-                              Flushbar(
-                                duration: Duration(milliseconds: 1500),
-                                flushbarPosition: FlushbarPosition.TOP,
-                                backgroundColor: Color(0xFFFF5C83),
-                                message: result.message,
-                              )..show(context);
+                              flutixSnackbar(context, result.message);
                             } else {
                               context
                                   .read<UserBloc>()

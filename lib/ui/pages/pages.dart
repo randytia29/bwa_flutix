@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'dart:math';
 
-import 'package:another_flushbar/flushbar.dart';
 import 'package:bwaflutix/bloc/blocs.dart';
 import 'package:bwaflutix/extensions/extensions.dart';
 import 'package:bwaflutix/models/models.dart';

@@ -6,6 +6,7 @@ Color mainColor = Color(0xFF503E9D);
 Color accentColor1 = Color(0xFF2C1F63);
 Color accentColor2 = Color(0xFFFBD460);
 Color accentColor3 = Color(0xFFADADAD);
+Color colorSnackbar = Color(0xFFFF5C83);
 
 TextStyle blackTextFont = GoogleFonts.raleway().copyWith(
     color: Colors.black, fontWeight: FontWeight.w500, fontSize: 28.sp);
@@ -20,3 +21,12 @@ TextStyle whiteNumberFont =
     GoogleFonts.openSans().copyWith(color: Colors.white);
 TextStyle yellowNumberFont =
     GoogleFonts.openSans().copyWith(color: accentColor2);
+
+Flushbar<dynamic> flutixSnackbar(BuildContext context, String? message) {
+  return Flushbar(
+    duration: Duration(milliseconds: 1500),
+    flushbarPosition: FlushbarPosition.TOP,
+    backgroundColor: colorSnackbar,
+    message: message,
+  )..show(context);
+}

@@ -87,14 +87,11 @@ class _SignInPageState extends State<SignInPage> {
                         ResetPasswordResult resetPassword =
                             await AuthServices.resetPassword(
                                 emailController.text);
-                        Flushbar(
-                            duration: Duration(milliseconds: 2000),
-                            flushbarPosition: FlushbarPosition.TOP,
-                            backgroundColor: Color(0xFFFF5C83),
-                            message: isEmailValid
+                        flutixSnackbar(
+                            context,
+                            isEmailValid
                                 ? 'The link to change your password has been sent to your email'
-                                : resetPassword.message)
-                          ..show(context);
+                                : resetPassword.message);
                       },
                       child: Text(
                         'Get Now',
@@ -136,12 +133,7 @@ class _SignInPageState extends State<SignInPage> {
                                       setState(() {
                                         isSigningIn = false;
                                       });
-                                      Flushbar(
-                                        duration: Duration(milliseconds: 2000),
-                                        flushbarPosition: FlushbarPosition.TOP,
-                                        backgroundColor: Color(0xFFFF5C83),
-                                        message: result.message,
-                                      )..show(context);
+                                      flutixSnackbar(context, result.message);
                                     } else {
                                       context
                                           .read<UserBloc>()

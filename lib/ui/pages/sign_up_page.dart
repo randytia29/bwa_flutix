@@ -172,34 +172,16 @@ class _SignUpPageState extends State<SignUpPage> {
                         emailController.text.trim() != '' &&
                         passwordController.text.trim() != '' &&
                         confirmPasswordController.text.trim() != '')) {
-                      Flushbar(
-                        duration: Duration(milliseconds: 1500),
-                        flushbarPosition: FlushbarPosition.TOP,
-                        backgroundColor: Color(0xFFFF5C83),
-                        message: 'Please fill all the fields',
-                      )..show(context);
+                      flutixSnackbar(context, 'Please fill all the fields');
                     } else if (passwordController.text !=
                         confirmPasswordController.text) {
-                      Flushbar(
-                        duration: Duration(milliseconds: 1500),
-                        flushbarPosition: FlushbarPosition.TOP,
-                        backgroundColor: Color(0xFFFF5C83),
-                        message: 'Mismatch password and confirmed password',
-                      )..show(context);
+                      flutixSnackbar(
+                          context, 'Mismatch password and confirmed password');
                     } else if (passwordController.text.length < 6) {
-                      Flushbar(
-                        duration: Duration(milliseconds: 1500),
-                        flushbarPosition: FlushbarPosition.TOP,
-                        backgroundColor: Color(0xFFFF5C83),
-                        message: "Password's length min 6 characters",
-                      )..show(context);
+                      flutixSnackbar(
+                          context, "Password's length min 6 characters");
                     } else if (!EmailValidator.validate(emailController.text)) {
-                      Flushbar(
-                        duration: Duration(milliseconds: 1500),
-                        flushbarPosition: FlushbarPosition.TOP,
-                        backgroundColor: Color(0xFFFF5C83),
-                        message: 'Wrong formatted email address',
-                      )..show(context);
+                      flutixSnackbar(context, 'Wrong formatted email address');
                     } else {
                       widget.registrationData.name = nameController.text;
                       widget.registrationData.email = emailController.text;
