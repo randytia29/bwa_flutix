@@ -145,13 +145,13 @@ class _SignInPageState extends State<SignInPage> {
                                     } else {
                                       context
                                           .read<UserBloc>()
-                                          .add(LoadUser(result.user.id));
+                                          .add(LoadUser(result.user!.id));
                                       context
                                           .read<TicketBloc>()
-                                          .add(GetTickets(result.user.id));
+                                          .add(GetTickets(result.user!.id));
 
                                       await SharedPref.setUserId(
-                                          result.user.id);
+                                          result.user!.id);
 
                                       Navigator.of(context)
                                         ..popUntil((route) => route.isFirst)

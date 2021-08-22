@@ -3,7 +3,7 @@ part of 'services.dart';
 class SharedPref {
   static const String _USER_ID = 'userId';
 
-  static SharedPreferences _preferences;
+  static late SharedPreferences _preferences;
 
   static Future<void> init() async {
     _preferences = await SharedPreferences.getInstance();
@@ -15,8 +15,8 @@ class SharedPref {
     return userIdSaved;
   }
 
-  static String getUserId() {
-    String userId = _preferences.getString(_USER_ID);
+  static String? getUserId() {
+    String? userId = _preferences.getString(_USER_ID);
 
     return userId;
   }

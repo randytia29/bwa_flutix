@@ -11,19 +11,19 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  int bottomNavBarIndex;
-  PageController pageController;
+  int? bottomNavBarIndex;
+  PageController? pageController;
 
   @override
   void initState() {
     super.initState();
     bottomNavBarIndex = widget.bottomNavBarIndex;
-    pageController = PageController(initialPage: bottomNavBarIndex);
+    pageController = PageController(initialPage: bottomNavBarIndex!);
 
     FirebaseMessaging.instance.getInitialMessage();
 
     FirebaseMessaging.onMessage.listen((message) async {
-      RemoteNotification notification = message.notification;
+      RemoteNotification? notification = message.notification;
       if (notification != null) {
         print(notification.title);
         print(notification.body);
@@ -101,11 +101,11 @@ class _MainPageState extends State<MainPage> {
               backgroundColor: Colors.transparent,
               selectedItemColor: mainColor,
               unselectedItemColor: Color(0xFFE5E5E5),
-              currentIndex: bottomNavBarIndex,
+              currentIndex: bottomNavBarIndex!,
               onTap: (index) {
                 setState(() {
                   bottomNavBarIndex = index;
-                  pageController.jumpToPage(index);
+                  pageController!.jumpToPage(index);
                 });
               },
               items: [

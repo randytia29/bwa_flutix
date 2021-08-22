@@ -1,7 +1,7 @@
 part of 'pages.dart';
 
 class SelectSchedulePage extends StatefulWidget {
-  final MovieDetail movieDetail;
+  final MovieDetail? movieDetail;
 
   SelectSchedulePage(this.movieDetail);
 
@@ -10,10 +10,10 @@ class SelectSchedulePage extends StatefulWidget {
 }
 
 class _SelectSchedulePageState extends State<SelectSchedulePage> {
-  List<DateTime> dates;
-  DateTime selectedDate;
-  int selectedTime;
-  Theater selectedTheater;
+  late List<DateTime> dates;
+  DateTime? selectedDate;
+  int? selectedTime;
+  Theater? selectedTheater;
   bool isValid = false;
 
   @override
@@ -95,8 +95,11 @@ class _SelectSchedulePageState extends State<SelectSchedulePage> {
                             Ticket(
                                 widget.movieDetail,
                                 selectedTheater,
-                                DateTime(selectedDate.year, selectedDate.month,
-                                    selectedDate.day, selectedTime),
+                                DateTime(
+                                    selectedDate!.year,
+                                    selectedDate!.month,
+                                    selectedDate!.day,
+                                    selectedTime!),
                                 randomAlphaNumeric(12).toUpperCase(),
                                 null,
                                 (userState as UserLoaded).user.name,
@@ -122,7 +125,7 @@ class _SelectSchedulePageState extends State<SelectSchedulePage> {
       widgets.add(Container(
         margin: EdgeInsets.fromLTRB(defaultMargin, 0, defaultMargin, 16),
         child: Text(
-          theater.name,
+          theater.name!,
           style: blackTextFont.copyWith(fontSize: 20),
         ),
       ));
@@ -142,13 +145,13 @@ class _SelectSchedulePageState extends State<SelectSchedulePage> {
               isSelected:
                   selectedTheater == theater && selectedTime == schedule[index],
               isEnabled: schedule[index] > DateTime.now().hour ||
-                  selectedDate.day != DateTime.now().day,
+                  selectedDate!.day != DateTime.now().day,
               onTap: () {
                 setState(() {
                   selectedTheater = theater;
                   selectedTime = schedule[index];
                   isValid =
-                      (selectedTime <= DateTime.now().hour) ? false : true;
+                      (selectedTime! <= DateTime.now().hour) ? false : true;
                 });
               },
             ),

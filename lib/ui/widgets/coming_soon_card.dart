@@ -2,7 +2,7 @@ part of 'widgets.dart';
 
 class ComingSoonCard extends StatelessWidget {
   final Movie movie;
-  final Function onTap;
+  final Function? onTap;
 
   ComingSoonCard(this.movie, {this.onTap});
 
@@ -14,7 +14,7 @@ class ComingSoonCard extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         image: DecorationImage(
-            image: NetworkImage(imageBaseUrl + 'w780' + movie.posterPath),
+            image: NetworkImage(imageBaseUrl + 'w780' + movie.posterPath!),
             fit: BoxFit.fill),
       ),
     );

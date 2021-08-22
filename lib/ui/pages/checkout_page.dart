@@ -12,7 +12,7 @@ class CheckoutPage extends StatefulWidget {
 class _CheckoutPageState extends State<CheckoutPage> {
   @override
   Widget build(BuildContext context) {
-    int total = 26500 * widget.ticket.seats.length;
+    int total = 26500 * widget.ticket.seats!.length;
     return Scaffold(
       body: SafeArea(
         child: BlocBuilder<UserBloc, UserState>(
@@ -58,7 +58,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                           image: DecorationImage(
                               image: NetworkImage(imageBaseUrl +
                                   'w342' +
-                                  widget.ticket.movieDetail.posterPath),
+                                  widget.ticket.movieDetail!.posterPath!),
                               fit: BoxFit.cover)),
                     ),
                     Column(
@@ -70,7 +70,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                               70 -
                               20,
                           child: Text(
-                            widget.ticket.movieDetail.title,
+                            widget.ticket.movieDetail!.title!,
                             style: blackTextFont.copyWith(fontSize: 18),
                             maxLines: 2,
                             overflow: TextOverflow.clip,
@@ -83,7 +83,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                               70 -
                               20,
                           child: Text(
-                            widget.ticket.movieDetail.genresAndLanguage,
+                            widget.ticket.movieDetail!.genresAndLanguage,
                             style: greyTextFont.copyWith(
                                 fontSize: 12, fontWeight: FontWeight.w400),
                             maxLines: 2,
@@ -91,7 +91,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                           ),
                         ),
                         RatingStars(
-                          voteAverage: widget.ticket.movieDetail.voteAverage,
+                          voteAverage: widget.ticket.movieDetail!.voteAverage,
                           color: accentColor3,
                           starSize: 40.sp,
                           fontSize: 24.sp,
@@ -120,7 +120,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                             fontSize: 16, fontWeight: FontWeight.w400),
                       ),
                       Text(
-                        widget.ticket.bookingCode,
+                        widget.ticket.bookingCode!,
                         style: whiteNumberFont.copyWith(
                             color: Colors.black,
                             fontSize: 16,
@@ -147,7 +147,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       SizedBox(
                         width: MediaQuery.of(context).size.width * 0.55,
                         child: Text(
-                          widget.ticket.theater.name,
+                          widget.ticket.theater!.name!,
                           style: blackTextFont.copyWith(
                               fontSize: 16, fontWeight: FontWeight.w400),
                           textAlign: TextAlign.end,
@@ -229,7 +229,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       SizedBox(
                         width: MediaQuery.of(context).size.width * 0.55,
                         child: Text(
-                          'IDR 25.000 x ${widget.ticket.seats.length}',
+                          'IDR 25.000 x ${widget.ticket.seats!.length}',
                           style: whiteNumberFont.copyWith(
                               color: Colors.black,
                               fontSize: 16,
@@ -258,7 +258,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       SizedBox(
                         width: MediaQuery.of(context).size.width * 0.55,
                         child: Text(
-                          'IDR 1.500 x ${widget.ticket.seats.length}',
+                          'IDR 1.500 x ${widget.ticket.seats!.length}',
                           style: whiteNumberFont.copyWith(
                               color: Colors.black,
                               fontSize: 16,
@@ -331,7 +331,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                   symbol: 'IDR ')
                               .format(user.balance),
                           style: whiteNumberFont.copyWith(
-                              color: (user.balance >= total)
+                              color: (user.balance! >= total)
                                   ? Color(0xFF3E9D9D)
                                   : Color(0xFFFF5C83),
                               fontSize: 16,
@@ -349,20 +349,20 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   height: 46,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        primary: (user.balance >= total)
+                        primary: (user.balance! >= total)
                             ? Color(0xFF3E9D9D)
                             : mainColor,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8)),
                         elevation: 0),
                     child: Text(
-                      (user.balance >= total)
+                      (user.balance! >= total)
                           ? 'Checkout Now'
                           : 'Top Up My Wallet',
                       style: whiteTextFont.copyWith(fontSize: 16),
                     ),
                     onPressed: () async {
-                      if (user.balance >= total) {
+                      if (user.balance! >= total) {
                         context.read<UserBloc>().add(Purchase(total));
                         context.read<TicketBloc>().add(BuyTicket(
                             widget.ticket.copyWith(totalPrice: total),
@@ -371,11 +371,12 @@ class _CheckoutPageState extends State<CheckoutPage> {
                         await FlutixTransactionServices.saveTransaction(
                             FlutixTransaction(
                                 userID: user.id,
-                                title: widget.ticket.movieDetail.title,
-                                subtitle: widget.ticket.theater.name,
+                                title: widget.ticket.movieDetail!.title,
+                                subtitle: widget.ticket.theater!.name,
                                 time: DateTime.now(),
                                 amount: -total,
-                                picture: widget.ticket.movieDetail.posterPath));
+                                picture:
+                                    widget.ticket.movieDetail!.posterPath));
 
                         await NotificationService.setScheduleMovie(
                             Random().nextInt(100) + 1,

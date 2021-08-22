@@ -7,19 +7,19 @@ class MovieDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    MovieDetail movieDetail;
-    List<Credit> credits;
+    MovieDetail? movieDetail;
+    List<Credit>? credits;
     return Scaffold(
       body: FutureBuilder(
         future: MovieServices.getDetails(movie),
         builder: (_, snapshot) {
           if (snapshot.hasData) {
-            movieDetail = snapshot.data;
+            movieDetail = snapshot.data as MovieDetail;
             return FutureBuilder(
               future: MovieServices.getCredits(movie.id),
               builder: (_, snapshot) {
                 if (snapshot.hasData) {
-                  credits = snapshot.data;
+                  credits = snapshot.data as List<Credit>;
                   return SafeArea(
                     child: Container(
                       child: ListView(
@@ -32,7 +32,7 @@ class MovieDetailPage extends StatelessWidget {
                                     image: DecorationImage(
                                         image: NetworkImage(imageBaseUrl +
                                             'w780' +
-                                            movieDetail.backdropPath),
+                                            movieDetail!.backdropPath!),
                                         fit: BoxFit.cover)),
                               ),
                               Align(
@@ -75,7 +75,7 @@ class MovieDetailPage extends StatelessWidget {
                             child: Column(
                               children: <Widget>[
                                 Text(
-                                  movieDetail.title,
+                                  movieDetail!.title!,
                                   textAlign: TextAlign.center,
                                   style: blackTextFont.copyWith(fontSize: 24),
                                 ),
@@ -83,7 +83,7 @@ class MovieDetailPage extends StatelessWidget {
                                   height: 6,
                                 ),
                                 Text(
-                                  movieDetail.genresAndLanguage,
+                                  movieDetail!.genresAndLanguage,
                                   style: blackTextFont.copyWith(fontSize: 12),
                                   textAlign: TextAlign.center,
                                 ),
@@ -91,7 +91,7 @@ class MovieDetailPage extends StatelessWidget {
                                   height: 6,
                                 ),
                                 RatingStars(
-                                  voteAverage: movieDetail.voteAverage,
+                                  voteAverage: movieDetail!.voteAverage,
                                   color: accentColor3,
                                   alignment: MainAxisAlignment.center,
                                   starSize: 40.sp,
@@ -111,19 +111,19 @@ class MovieDetailPage extends StatelessWidget {
                             height: 110,
                             child: ListView.builder(
                               scrollDirection: Axis.horizontal,
-                              itemCount: credits.length,
+                              itemCount: credits!.length,
                               itemBuilder: (_, index) =>
-                                  (credits[index].profilePath != null)
+                                  (credits![index].profilePath != null)
                                       ? Container(
                                           margin: EdgeInsets.only(
                                               left: (index == 0)
                                                   ? defaultMargin
                                                   : 0,
                                               right:
-                                                  (index == credits.length - 1)
+                                                  (index == credits!.length - 1)
                                                       ? defaultMargin
                                                       : 12),
-                                          child: CreditCard(credits[index]),
+                                          child: CreditCard(credits![index]),
                                         )
                                       : Container(),
                             ),
@@ -139,7 +139,7 @@ class MovieDetailPage extends StatelessWidget {
                             margin: EdgeInsets.fromLTRB(
                                 defaultMargin, 0, defaultMargin, 30),
                             child: Text(
-                              movieDetail.overview,
+                              movieDetail!.overview!,
                               textAlign: TextAlign.justify,
                             ),
                           ),

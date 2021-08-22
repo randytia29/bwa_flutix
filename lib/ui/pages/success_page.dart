@@ -8,9 +8,7 @@ class SuccessPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () {
-        return;
-      },
+      onWillPop: () async => false,
       child: Scaffold(
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,

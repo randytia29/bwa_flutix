@@ -2,7 +2,7 @@ part of 'widgets.dart';
 
 class ComingSoonMovie extends StatelessWidget {
   const ComingSoonMovie({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -23,7 +23,7 @@ class ComingSoonMovie extends StatelessWidget {
           child: BlocBuilder<MovieBloc, MovieState>(
             builder: (_, movieState) {
               if (movieState is MovieLoaded) {
-                List<Movie> movies = movieState.movies.sublist(10);
+                List<Movie> movies = movieState.movies!.sublist(10);
                 return ListView.builder(
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,

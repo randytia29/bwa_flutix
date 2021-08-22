@@ -56,7 +56,7 @@ class NotificationService {
         payload: payload);
   }
 
-  static Future<void> showNotificationNow(int id, String title, String body,
+  static Future<void> showNotificationNow(int id, String? title, String? body,
       {String payload = ''}) async {
     await flutterLocalNotificationsPlugin
         .show(id, title, body, _setupNotificationDetails(), payload: payload);

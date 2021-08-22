@@ -57,9 +57,11 @@ class _AccountConfirmationPageState extends State<AccountConfirmationPage> {
                   decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       image: DecorationImage(
-                          image: (widget.registrationData.profileImage == null)
-                              ? AssetImage("assets/user_pic.png")
-                              : FileImage(widget.registrationData.profileImage),
+                          image: ((widget.registrationData.profileImage == null)
+                                  ? AssetImage("assets/user_pic.png")
+                                  : FileImage(
+                                      widget.registrationData.profileImage!))
+                              as ImageProvider<Object>,
                           fit: BoxFit.cover)),
                 ),
                 Text(
@@ -118,12 +120,12 @@ class _AccountConfirmationPageState extends State<AccountConfirmationPage> {
                             } else {
                               context
                                   .read<UserBloc>()
-                                  .add(LoadUser(result.user.id));
+                                  .add(LoadUser(result.user!.id));
                               context
                                   .read<TicketBloc>()
-                                  .add(GetTickets(result.user.id));
+                                  .add(GetTickets(result.user!.id));
 
-                              await SharedPref.setUserId(result.user.id);
+                              await SharedPref.setUserId(result.user!.id);
 
                               Navigator.of(context)
                                 ..popUntil((route) => route.isFirst)

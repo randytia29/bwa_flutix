@@ -17,10 +17,10 @@ class TransactionCard extends StatelessWidget {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
               image: DecorationImage(
-                  image: (transaction.picture != null)
+                  image: ((transaction.picture != null)
                       ? NetworkImage(
-                          imageBaseUrl + "w500" + transaction.picture)
-                      : AssetImage("assets/bg_topup.png"),
+                          imageBaseUrl + "w500" + transaction.picture!)
+                      : AssetImage("assets/bg_topup.png")) as ImageProvider,
                   fit: BoxFit.cover)),
         ),
         Column(
@@ -28,7 +28,7 @@ class TransactionCard extends StatelessWidget {
             SizedBox(
               width: width - 86,
               child: Text(
-                transaction.title,
+                transaction.title!,
                 style: blackTextFont.copyWith(fontSize: 18),
                 maxLines: 2,
                 overflow: TextOverflow.clip,
@@ -41,13 +41,13 @@ class TransactionCard extends StatelessWidget {
                 child: Text(
                   NumberFormat.currency(
                           locale: 'id_ID', decimalDigits: 0, symbol: 'IDR ')
-                      .format((transaction.amount < 0)
-                          ? -transaction.amount
+                      .format((transaction.amount! < 0)
+                          ? -transaction.amount!
                           : transaction.amount),
                   style: whiteNumberFont.copyWith(
                       fontWeight: FontWeight.w400,
                       fontSize: 12,
-                      color: (transaction.amount < 0)
+                      color: (transaction.amount! < 0)
                           ? Color(0xFFFF5C83)
                           : Color(0xFF3E9D9D)),
                 ),
@@ -56,7 +56,7 @@ class TransactionCard extends StatelessWidget {
             SizedBox(
               width: width - 86,
               child: Text(
-                transaction.subtitle,
+                transaction.subtitle!,
                 style: greyTextFont.copyWith(
                     fontSize: 12, fontWeight: FontWeight.w400),
               ),

@@ -4,13 +4,13 @@ class RatingStars extends StatelessWidget {
   final double voteAverage;
   final double starSize;
   final double fontSize;
-  final Color color;
+  final Color? color;
   final MainAxisAlignment alignment;
 
   RatingStars(
       {this.voteAverage = 0,
-      @required this.starSize,
-      @required this.fontSize,
+      required this.starSize,
+      required this.fontSize,
       this.color,
       this.alignment = MainAxisAlignment.start});
 

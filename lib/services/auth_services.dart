@@ -8,7 +8,7 @@ class AuthServices {
     try {
       auth.UserCredential result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
-      User user = result.user.convertToUser(
+      User user = result.user!.convertToUser(
           name: name,
           selectedGenres: selectedGenres,
           selectedLanguage: selectedLanguage);
@@ -24,7 +24,7 @@ class AuthServices {
     try {
       auth.UserCredential result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
-      User user = await result.user.fromFireStore();
+      User user = await result.user!.fromFireStore();
       return SignInSignUpResult(user: user);
     } catch (e) {
       return SignInSignUpResult(message: e.toString().split(']')[1].trim());
@@ -46,14 +46,14 @@ class AuthServices {
 }
 
 class SignInSignUpResult {
-  final User user;
-  final String message;
+  final User? user;
+  final String? message;
 
   SignInSignUpResult({this.user, this.message});
 }
 
 class ResetPasswordResult {
-  final String message;
+  final String? message;
 
   ResetPasswordResult({this.message});
 }

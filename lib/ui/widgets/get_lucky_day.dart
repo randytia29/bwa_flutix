@@ -2,7 +2,7 @@ part of 'widgets.dart';
 
 class GetLuckyDay extends StatelessWidget {
   const GetLuckyDay({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override

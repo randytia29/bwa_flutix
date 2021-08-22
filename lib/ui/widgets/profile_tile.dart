@@ -2,10 +2,10 @@ part of 'widgets.dart';
 
 class ProfileTile extends StatelessWidget {
   const ProfileTile({
-    Key key,
-    @required this.assetName,
-    @required this.title,
-    @required this.onTap,
+    Key? key,
+    required this.assetName,
+    required this.title,
+    required this.onTap,
   }) : super(key: key);
 
   final String assetName;

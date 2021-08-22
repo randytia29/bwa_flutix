@@ -6,7 +6,7 @@ class RegistrationData {
   String password;
   List<String> selectedGenres;
   String selectedLang;
-  File profileImage;
+  File? profileImage;
 
   RegistrationData(
       {this.name = '',

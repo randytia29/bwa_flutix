@@ -10,10 +10,10 @@ class MovieInitial extends MovieState {
 }
 
 class MovieLoaded extends MovieState {
-  final List<Movie> movies;
+  final List<Movie>? movies;
 
   MovieLoaded({this.movies});
 
   @override
-  List<Object> get props => [movies];
+  List<Object?> get props => [movies];
 }

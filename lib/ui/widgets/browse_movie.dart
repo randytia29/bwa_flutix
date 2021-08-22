@@ -2,7 +2,7 @@ part of 'widgets.dart';
 
 class BrowseMovie extends StatelessWidget {
   const BrowseMovie({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -26,9 +26,9 @@ class BrowseMovie extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: List.generate(
-                      userState.user.selectedGenres.length,
+                      userState.user.selectedGenres!.length,
                       (index) =>
-                          BrowseButton(userState.user.selectedGenres[index])),
+                          BrowseButton(userState.user.selectedGenres![index])),
                 ),
               );
             } else {

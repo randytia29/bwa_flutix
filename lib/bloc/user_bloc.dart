@@ -32,7 +32,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       if (state is UserLoaded) {
         try {
           User updatedUser = (state as UserLoaded).user.copyWith(
-              balance: (state as UserLoaded).user.balance + event.amount);
+              balance: (state as UserLoaded).user.balance! + event.amount!);
           await UserServices.updateUser(updatedUser);
           yield UserLoaded(updatedUser);
         } catch (e) {
@@ -43,7 +43,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       if (state is UserLoaded) {
         try {
           User updatedUser = (state as UserLoaded).user.copyWith(
-              balance: (state as UserLoaded).user.balance - event.amount);
+              balance: (state as UserLoaded).user.balance! - event.amount);
           await UserServices.updateUser(updatedUser);
           yield UserLoaded(updatedUser);
         } catch (e) {

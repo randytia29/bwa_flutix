@@ -73,11 +73,12 @@ class _SignUpPageState extends State<SignUpPage> {
                         decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             image: DecorationImage(
-                                image: (widget.registrationData.profileImage ==
-                                        null)
-                                    ? AssetImage('assets/user_pic.png')
-                                    : FileImage(
-                                        widget.registrationData.profileImage),
+                                image: ((widget.registrationData.profileImage ==
+                                            null)
+                                        ? AssetImage('assets/user_pic.png')
+                                        : FileImage(widget
+                                            .registrationData.profileImage!))
+                                    as ImageProvider<Object>,
                                 fit: BoxFit.cover)),
                       ),
                       Align(

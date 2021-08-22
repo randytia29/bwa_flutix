@@ -2,7 +2,7 @@ part of 'widgets.dart';
 
 class MovieCard extends StatelessWidget {
   final Movie movie;
-  final Function onTap;
+  final Function? onTap;
 
   MovieCard(this.movie, {this.onTap});
 
@@ -11,7 +11,7 @@ class MovieCard extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         if (onTap != null) {
-          onTap();
+          onTap!();
         }
       },
       child: Container(
@@ -20,7 +20,7 @@ class MovieCard extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
           image: DecorationImage(
-              image: NetworkImage(imageBaseUrl + 'w780' + movie.backdropPath),
+              image: NetworkImage(imageBaseUrl + 'w780' + movie.backdropPath!),
               fit: BoxFit.fill),
         ),
         child: Container(
@@ -41,7 +41,7 @@ class MovieCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                movie.title,
+                movie.title!,
                 style: whiteTextFont,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 2,

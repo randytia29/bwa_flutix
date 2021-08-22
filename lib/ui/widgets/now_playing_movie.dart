@@ -2,7 +2,7 @@ part of 'widgets.dart';
 
 class NowPlayingMovie extends StatelessWidget {
   const NowPlayingMovie({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -23,7 +23,7 @@ class NowPlayingMovie extends StatelessWidget {
           child: BlocBuilder<MovieBloc, MovieState>(
             builder: (_, movieState) {
               if (movieState is MovieLoaded) {
-                List<Movie> movies = movieState.movies.sublist(0, 10);
+                List<Movie> movies = movieState.movies!.sublist(0, 10);
                 return ListView.builder(
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,

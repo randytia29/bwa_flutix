@@ -48,11 +48,12 @@ class _ProfilePageState extends State<ProfilePage> {
                                   decoration: BoxDecoration(
                                       shape: BoxShape.circle,
                                       image: DecorationImage(
-                                          image: (user.profilePicture != "")
-                                              ? NetworkImage(
-                                                  user.profilePicture)
-                                              : AssetImage(
-                                                  "assets/user_pic.png"),
+                                          image: ((user.profilePicture != "")
+                                                  ? NetworkImage(
+                                                      user.profilePicture!)
+                                                  : AssetImage(
+                                                      "assets/user_pic.png"))
+                                              as ImageProvider<Object>,
                                           fit: BoxFit.cover)),
                                 ),
                               ),
@@ -62,14 +63,14 @@ class _ProfilePageState extends State<ProfilePage> {
                             height: 10,
                           ),
                           Text(
-                            user.name,
+                            user.name!,
                             style: blackTextFont.copyWith(fontSize: 18),
                           ),
                           SizedBox(
                             height: 8,
                           ),
                           Text(
-                            user.email,
+                            user.email!,
                             style: greyTextFont.copyWith(fontSize: 16),
                           )
                         ],

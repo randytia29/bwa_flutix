@@ -10,12 +10,12 @@ class EditProfilePage extends StatefulWidget {
 }
 
 class _EditProfilePageState extends State<EditProfilePage> {
-  String profilePath;
-  File profileImageFile;
+  String? profilePath;
+  File? profileImageFile;
   bool isDataEdited = false;
-  TextEditingController nameController;
+  TextEditingController? nameController;
   bool isUpdating = false;
-  String photoDelete;
+  String? photoDelete;
 
   @override
   void initState() {
@@ -68,10 +68,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               borderRadius: BorderRadius.circular(45),
                               image: DecorationImage(
                                   image: (profileImageFile != null)
-                                      ? FileImage(profileImageFile)
-                                      : (profilePath != '')
-                                          ? NetworkImage(profilePath)
-                                          : AssetImage("assets/user_pic.png"),
+                                      ? FileImage(profileImageFile!)
+                                      : ((profilePath != '')
+                                              ? NetworkImage(profilePath!)
+                                              : AssetImage(
+                                                  "assets/user_pic.png"))
+                                          as ImageProvider<Object>,
                                   fit: BoxFit.cover)),
                         ),
                         Align(
@@ -81,7 +83,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               if (profilePath == '') {
                                 profileImageFile = await getImage();
                                 if (profileImageFile != null) {
-                                  profilePath = basename(profileImageFile.path);
+                                  profilePath =
+                                      basename(profileImageFile!.path);
                                 } else {
                                   profilePath = '';
                                 }
@@ -90,7 +93,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                 profilePath = '';
                               }
                               setState(() {
-                                isDataEdited = (nameController.text.trim() !=
+                                isDataEdited = (nameController!.text.trim() !=
                                             widget.user.name ||
                                         profilePath !=
                                             widget.user.profilePicture)
@@ -203,7 +206,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           ? null
                           : () async {
                               await AuthServices.resetPassword(
-                                  widget.user.email);
+                                  widget.user.email!);
                               Flushbar(
                                 duration: Duration(milliseconds: 2000),
                                 flushbarPosition: FlushbarPosition.TOP,
@@ -254,20 +257,20 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                           photoDelete = '';
                                         } else {
                                           photoDelete = widget
-                                              .user.profilePicture
+                                              .user.profilePicture!
                                               .split('/o/')[1]
                                               .split('?')[0]
                                               .trim();
                                         }
-                                        profilePath =
-                                            await uploadImage(profileImageFile);
+                                        profilePath = await uploadImage(
+                                            profileImageFile!);
                                         profileImageFile = null;
                                         if (photoDelete != '') {
-                                          await deleteImage(photoDelete);
+                                          await deleteImage(photoDelete!);
                                         }
                                       }
                                       context.read<UserBloc>().add(UpdateData(
-                                          name: nameController.text,
+                                          name: nameController!.text,
                                           profileImage: profilePath));
 
                                       Navigator.of(context)

@@ -2,8 +2,8 @@ part of 'widgets.dart';
 
 class ProfileMenu extends StatelessWidget {
   const ProfileMenu({
-    Key key,
-    @required this.user,
+    Key? key,
+    required this.user,
   }) : super(key: key);
 
   final User user;

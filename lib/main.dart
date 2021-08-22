@@ -13,7 +13,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
 Future<void> backgroundHandler(RemoteMessage message) async {
-  RemoteNotification notification = message.notification;
+  RemoteNotification? notification = message.notification;
 
   if (notification != null) {
     print(notification.title);

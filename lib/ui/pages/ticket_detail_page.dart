@@ -50,7 +50,7 @@ class TicketDetailPage extends StatelessWidget {
                           image: DecorationImage(
                               image: NetworkImage(imageBaseUrl +
                                   "w780" +
-                                  ticket.movieDetail.backdropPath),
+                                  ticket.movieDetail!.backdropPath!),
                               fit: BoxFit.cover),
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(12),
@@ -61,7 +61,7 @@ class TicketDetailPage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          ticket.movieDetail.title,
+                          ticket.movieDetail!.title!,
                           style: blackTextFont.copyWith(fontSize: 18),
                           maxLines: 2,
                           overflow: TextOverflow.clip,
@@ -70,7 +70,7 @@ class TicketDetailPage extends StatelessWidget {
                           height: 6,
                         ),
                         Text(
-                          ticket.movieDetail.genresAndLanguage,
+                          ticket.movieDetail!.genresAndLanguage,
                           style: greyTextFont.copyWith(fontSize: 12),
                           maxLines: 2,
                           overflow: TextOverflow.clip,
@@ -79,7 +79,7 @@ class TicketDetailPage extends StatelessWidget {
                           height: 6,
                         ),
                         RatingStars(
-                          voteAverage: ticket.movieDetail.voteAverage,
+                          voteAverage: ticket.movieDetail!.voteAverage,
                           color: Colors.grey,
                           starSize: 40.sp,
                           fontSize: 24.sp,
@@ -100,7 +100,7 @@ class TicketDetailPage extends StatelessWidget {
                                       2 * defaultMargin -
                                       32) /
                                   2,
-                              child: Text(ticket.theater.name,
+                              child: Text(ticket.theater!.name!,
                                   style: blackTextFont.copyWith(fontSize: 16),
                                   textAlign: TextAlign.end),
                             )
@@ -158,7 +158,7 @@ class TicketDetailPage extends StatelessWidget {
                               style: greyTextFont.copyWith(fontSize: 16),
                             ),
                             Text(
-                              ticket.bookingCode,
+                              ticket.bookingCode!,
                               style: whiteNumberFont.copyWith(
                                   fontSize: 16, color: Colors.black),
                             )
@@ -193,7 +193,7 @@ class TicketDetailPage extends StatelessWidget {
                                           32) /
                                       2,
                                   child: Text(
-                                    ticket.name,
+                                    ticket.name!,
                                     style: whiteNumberFont.copyWith(
                                         color: Colors.black,
                                         fontSize: 16,
@@ -224,7 +224,7 @@ class TicketDetailPage extends StatelessWidget {
                               ],
                             ),
                             QrImage(
-                              data: ticket.bookingCode,
+                              data: ticket.bookingCode!,
                               version: 6,
                               foregroundColor: Colors.black,
                               errorCorrectionLevel: QrErrorCorrectLevel.M,

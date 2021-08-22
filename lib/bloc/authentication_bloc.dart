@@ -16,7 +16,7 @@ class AuthenticationBloc
     AuthenticationEvent event,
   ) async* {
     if (event is CheckIsAuthenticated) {
-      String userId = SharedPref.getUserId();
+      String? userId = SharedPref.getUserId();
 
       if (userId == null || userId.isEmpty) {
         yield Unauthenticated();

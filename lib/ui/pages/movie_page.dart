@@ -19,7 +19,7 @@ class MoviePage extends StatelessWidget {
               builder: (_, userState) {
                 if (userState is UserLoaded) {
                   if (imageFileToUpload != null) {
-                    uploadImage(imageFileToUpload).then((downloadURL) {
+                    uploadImage(imageFileToUpload!).then((downloadURL) {
                       imageFileToUpload = null;
                       context
                           .read<UserBloc>()
@@ -51,11 +51,14 @@ class MoviePage extends StatelessWidget {
                                 decoration: BoxDecoration(
                                     shape: BoxShape.circle,
                                     image: DecorationImage(
-                                        image: (userState.user.profilePicture ==
-                                                '')
-                                            ? AssetImage('assets/user_pic.png')
-                                            : NetworkImage(
-                                                userState.user.profilePicture),
+                                        image:
+                                            ((userState.user.profilePicture ==
+                                                        '')
+                                                    ? AssetImage(
+                                                        'assets/user_pic.png')
+                                                    : NetworkImage(userState
+                                                        .user.profilePicture!))
+                                                as ImageProvider<Object>,
                                         fit: BoxFit.cover)),
                               )
                             ],
@@ -73,7 +76,7 @@ class MoviePage extends StatelessWidget {
                                 2 * defaultMargin -
                                 78,
                             child: Text(
-                              userState.user.name,
+                              userState.user.name!,
                               style: whiteTextFont.copyWith(fontSize: 18),
                               maxLines: 1,
                               overflow: TextOverflow.clip,

@@ -1,10 +1,11 @@
 part of 'shared.dart';
 
-Future<File> getImage() async {
+Future<File?> getImage() async {
   try {
     ImagePicker _picker = ImagePicker();
-    XFile xFile = await _picker.pickImage(source: ImageSource.gallery);
-    return File(xFile.path);
+    XFile? xFile = await _picker.pickImage(source: ImageSource.gallery);
+
+    return File(xFile!.path);
   } catch (e) {
     print('getImage catch: $e');
     return null;

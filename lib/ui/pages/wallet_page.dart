@@ -219,7 +219,7 @@ class WalletPage extends StatelessWidget {
                       builder: (_, snapshot) {
                         if (snapshot.hasData) {
                           return generateTransactionList(
-                              snapshot.data,
+                              snapshot.data as List<FlutixTransaction>,
                               MediaQuery.of(context).size.width -
                                   2 * defaultMargin);
                         } else {

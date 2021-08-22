@@ -7,7 +7,7 @@ class TopUpPage extends StatefulWidget {
 
 class _TopUpPageState extends State<TopUpPage> {
   TextEditingController amountController = TextEditingController(text: 'IDR 0');
-  int selectedAmount = 0;
+  int? selectedAmount = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -144,7 +144,7 @@ class _TopUpPageState extends State<TopUpPage> {
                       elevation: 0,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8))),
-                  onPressed: (selectedAmount > 0)
+                  onPressed: (selectedAmount! > 0)
                       ? () async {
                           context.read<UserBloc>().add(TopUp(selectedAmount));
                           await FlutixTransactionServices.saveTransaction(
@@ -164,8 +164,9 @@ class _TopUpPageState extends State<TopUpPage> {
                     "Top Up My Wallet",
                     style: whiteTextFont.copyWith(
                       fontSize: 16,
-                      color:
-                          selectedAmount > 0 ? Colors.white : Color(0xFFBEBEBE),
+                      color: selectedAmount! > 0
+                          ? Colors.white
+                          : Color(0xFFBEBEBE),
                     ),
                   ),
                 ),
@@ -180,7 +181,7 @@ class _TopUpPageState extends State<TopUpPage> {
     );
   }
 
-  MoneyCard makeMoneyCard({int amount, double width}) {
+  MoneyCard makeMoneyCard({int? amount, double? width}) {
     return MoneyCard(
       amount: amount,
       width: width,

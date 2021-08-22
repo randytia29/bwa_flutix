@@ -1,10 +1,10 @@
 part of 'widgets.dart';
 
 class MoneyCard extends StatelessWidget {
-  final double width;
+  final double? width;
   final bool isSelected;
-  final int amount;
-  final Function onTap;
+  final int? amount;
+  final Function? onTap;
 
   MoneyCard(
       {this.width = 90, this.isSelected = false, this.amount = 0, this.onTap});
@@ -14,7 +14,7 @@ class MoneyCard extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         if (onTap != null) {
-          onTap();
+          onTap!();
         }
       },
       child: Container(
@@ -38,7 +38,8 @@ class MoneyCard extends StatelessWidget {
               height: 6,
             ),
             Text(
-              NumberFormat.currency(locale: 'id_ID', decimalDigits: 0,symbol: '')
+              NumberFormat.currency(
+                      locale: 'id_ID', decimalDigits: 0, symbol: '')
                   .format(amount),
               style: whiteNumberFont.copyWith(
                   fontSize: 16,

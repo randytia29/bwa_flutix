@@ -4,7 +4,7 @@ class Wrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     auth.User user = Provider.of<auth.User>(context);
-    if (user == null) {
+    if (user.uid.isEmpty || user.uid == '') {
       if (!(prevPageEvent is GoToSplashPage)) {
         prevPageEvent = GoToSplashPage();
         context.watch<PageBloc>().add(prevPageEvent);
