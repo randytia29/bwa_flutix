@@ -7,6 +7,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -36,6 +37,8 @@ Future<void> main() async {
   FirebaseMessaging.onBackgroundMessage(backgroundHandler);
 
   await SharedPref.init();
+
+  await dotenv.load();
 
   runApp(MultiBlocProvider(
     providers: [
