@@ -13,9 +13,14 @@ Future<File?> getImage() async {
 }
 
 Future<String> uploadImage(File image) async {
+  Uint8List? data =
+      await FlutterImageCompress.compressWithFile(image.path, quality: 50);
+
   String fileName = basename(image.path);
   Reference ref = FirebaseStorage.instance.ref().child(fileName);
-  UploadTask task = ref.putFile(image);
+
+  UploadTask task = ref.putData(data!);
+
   TaskSnapshot snapshot = await task.whenComplete(() => task);
   return await snapshot.ref.getDownloadURL();
 }
