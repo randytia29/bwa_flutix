@@ -6,7 +6,7 @@ Future<File?> getImage() async {
     XFile? xFile = await _picker.pickImage(source: ImageSource.gallery);
     File? file = await _cropImage(xFile!.path);
 
-    return file;
+    return file ?? File(xFile.path);
   } catch (e) {
     print('getImage catch: $e');
     return null;
@@ -21,8 +21,10 @@ Future<File?> _cropImage(String sourcePath) async {
       aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
       compressQuality: 50,
       androidUiSettings: AndroidUiSettings(
-          toolbarTitle: 'Photo Cropper',
-          statusBarColor: mainColor,
+          toolbarTitle: 'Crop Image',
+          toolbarColor: accentColor1,
+          toolbarWidgetColor: Colors.white,
+          statusBarColor: accentColor1,
           activeControlsWidgetColor: mainColor),
       iosUiSettings: IOSUiSettings(title: 'Photo Cropper'));
 
