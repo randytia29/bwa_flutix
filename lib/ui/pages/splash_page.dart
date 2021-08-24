@@ -41,22 +41,17 @@ class SplashPage extends StatelessWidget {
                     fontSize: 16, fontWeight: FontWeight.w300),
                 textAlign: TextAlign.center,
               ),
-              Container(
-                width: 250,
-                height: 46,
+              FlutixButton(
                 margin: EdgeInsets.only(top: 70, bottom: 19),
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      primary: mainColor,
-                      textStyle: whiteTextFont.copyWith(fontSize: 16)),
-                  child: Text(
-                    'Get Started',
-                  ),
-                  onPressed: () {
-                    Navigator.of(context)
-                        .push(routeTransition(SignUpPage(RegistrationData())));
-                  },
+                primaryColor: mainColor,
+                child: Text(
+                  'Get Started',
+                  style: whiteTextFont.copyWith(fontSize: 16),
                 ),
+                onPressed: () {
+                  Navigator.of(context)
+                      .push(routeTransition(SignUpPage(RegistrationData())));
+                },
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

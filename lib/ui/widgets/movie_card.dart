@@ -48,8 +48,6 @@ class MovieCard extends StatelessWidget {
               ),
               RatingStars(
                 voteAverage: movie.voteAverage,
-                starSize: 40.sp,
-                fontSize: 24.sp,
               )
             ],
           ),

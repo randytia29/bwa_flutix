@@ -47,33 +47,25 @@ class SuccessPage extends StatelessWidget {
                 ],
               ),
             ),
-            Container(
-              height: 45,
-              width: 250,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    primary: mainColor,
-                    elevation: 0,
-                    textStyle: whiteTextFont.copyWith(fontSize: 16),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8))),
-                child: Text(
-                  isTopUp ? "My Wallet" : "My Tickets",
-                ),
-                onPressed: isTopUp
-                    ? () {
-                        Navigator.of(context)
-                          ..popUntil((route) => route.isFirst)
-                          ..push(routeTransition(WalletPage()));
-                      }
-                    : () {
-                        Navigator.of(context)
-                          ..popUntil((route) => route.isFirst)
-                          ..pushReplacement(routeTransition(MainPage(
-                            bottomNavBarIndex: 1,
-                          )));
-                      },
+            FlutixButton(
+              primaryColor: mainColor,
+              child: Text(
+                isTopUp ? "My Wallet" : "My Tickets",
+                style: whiteTextFont.copyWith(fontSize: 16),
               ),
+              onPressed: isTopUp
+                  ? () {
+                      Navigator.of(context)
+                        ..popUntil((route) => route.isFirst)
+                        ..push(routeTransition(WalletPage()));
+                    }
+                  : () {
+                      Navigator.of(context)
+                        ..popUntil((route) => route.isFirst)
+                        ..pushReplacement(routeTransition(MainPage(
+                          bottomNavBarIndex: 1,
+                        )));
+                    },
             ),
             Container(
               margin: EdgeInsets.only(top: 20),

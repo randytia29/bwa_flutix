@@ -94,8 +94,6 @@ class MovieDetailPage extends StatelessWidget {
                                   voteAverage: movieDetail!.voteAverage,
                                   color: accentColor3,
                                   alignment: MainAxisAlignment.center,
-                                  starSize: 40.sp,
-                                  fontSize: 24.sp,
                                 )
                               ],
                             ),
@@ -143,23 +141,17 @@ class MovieDetailPage extends StatelessWidget {
                               textAlign: TextAlign.justify,
                             ),
                           ),
-                          Container(
+                          FlutixButton(
                             margin: EdgeInsets.symmetric(horizontal: 55),
-                            height: 46,
-                            child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  primary: mainColor,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(8))),
-                              onPressed: () {
-                                Navigator.of(context).push(routeTransition(
-                                    SelectSchedulePage(movieDetail)));
-                              },
-                              child: Text(
-                                'Continue to Book',
-                                style: whiteTextFont.copyWith(fontSize: 16),
-                              ),
+                            primaryColor: mainColor,
+                            child: Text(
+                              'Continue to Book',
+                              style: whiteTextFont.copyWith(fontSize: 16),
                             ),
+                            onPressed: () {
+                              Navigator.of(context).push(routeTransition(
+                                  SelectSchedulePage(movieDetail)));
+                            },
                           ),
                           SizedBox(
                             height: defaultMargin,

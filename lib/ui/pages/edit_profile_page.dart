@@ -163,16 +163,11 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   SizedBox(
                     height: 30,
                   ),
-                  SizedBox(
-                    width: 250,
-                    height: 45,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          primary: Colors.red[400],
-                          onSurface: Color(0xFFE4E4E4),
-                          elevation: 0,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8))),
+                  FlutixButton(
+                    primaryColor: Colors.red[400],
+                    onSurfaceColor: Colors.red[400],
+                    child: SizedBox(
+                      width: 250,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -185,7 +180,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             width: 5,
                           ),
                           Text(
-                            "Change Password",
+                            'Change Password',
                             style: whiteTextFont.copyWith(
                                 fontSize: 16,
                                 color: (isUpdating)
@@ -202,16 +197,16 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           )
                         ],
                       ),
-                      onPressed: (isUpdating)
-                          ? null
-                          : () async {
-                              await AuthServices.resetPassword(
-                                  widget.user.email!);
-
-                              flutixSnackbar(context,
-                                  'The link to change your password has been sent to your email');
-                            },
                     ),
+                    onPressed: (isUpdating)
+                        ? null
+                        : () async {
+                            await AuthServices.resetPassword(
+                                widget.user.email!);
+
+                            flutixSnackbar(context,
+                                'The link to change your password has been sent to your email');
+                          },
                   ),
                   SizedBox(
                     height: 16,
@@ -224,57 +219,49 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             color: Color(0xFF3E9D9D),
                           ),
                         )
-                      : SizedBox(
-                          width: 250,
-                          height: 45,
-                          child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  primary: Color(0xFF3E9D9D),
-                                  onSurface: Color(0xFFE4E4E4),
-                                  elevation: 0,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(8))),
-                              child: Text(
-                                "Update My Profile",
-                                style: whiteTextFont.copyWith(
-                                    fontSize: 16,
-                                    color: (isDataEdited)
-                                        ? Colors.white
-                                        : Color(0xFFBEBEBE)),
-                              ),
-                              onPressed: (isDataEdited)
-                                  ? () async {
-                                      setState(() {
-                                        isUpdating = true;
-                                      });
+                      : FlutixButton(
+                          primaryColor: Color(0xFF3E9D9D),
+                          onSurfaceColor: Color(0xFF3E9D9D),
+                          child: Text(
+                            'Update My Profile',
+                            style: whiteTextFont.copyWith(
+                                fontSize: 16,
+                                color: (isDataEdited)
+                                    ? Colors.white
+                                    : Color(0xFFBEBEBE)),
+                          ),
+                          onPressed: (isDataEdited)
+                              ? () async {
+                                  setState(() {
+                                    isUpdating = true;
+                                  });
 
-                                      if (profileImageFile != null) {
-                                        if (widget.user.profilePicture == '') {
-                                          photoDelete = '';
-                                        } else {
-                                          photoDelete = widget
-                                              .user.profilePicture!
-                                              .split('/o/')[1]
-                                              .split('?')[0]
-                                              .trim();
-                                        }
-                                        profilePath = await uploadImage(
-                                            profileImageFile!);
-                                        profileImageFile = null;
-                                        if (photoDelete != '') {
-                                          await deleteImage(photoDelete!);
-                                        }
-                                      }
-                                      context.read<UserBloc>().add(UpdateData(
-                                          name: nameController!.text,
-                                          profileImage: profilePath));
-
-                                      Navigator.of(context)
-                                        ..popUntil((route) => route.isFirst)
-                                        ..push(routeTransition(ProfilePage()));
+                                  if (profileImageFile != null) {
+                                    if (widget.user.profilePicture == '') {
+                                      photoDelete = '';
+                                    } else {
+                                      photoDelete = widget.user.profilePicture!
+                                          .split('/o/')[1]
+                                          .split('?')[0]
+                                          .trim();
                                     }
-                                  : null),
-                        )
+                                    profilePath =
+                                        await uploadImage(profileImageFile!);
+                                    profileImageFile = null;
+                                    if (photoDelete != '') {
+                                      await deleteImage(photoDelete!);
+                                    }
+                                  }
+                                  context.read<UserBloc>().add(UpdateData(
+                                      name: nameController!.text,
+                                      profileImage: profilePath));
+
+                                  Navigator.of(context)
+                                    ..popUntil((route) => route.isFirst)
+                                    ..push(routeTransition(ProfilePage()));
+                                }
+                              : null,
+                        ),
                 ],
               )
             ],

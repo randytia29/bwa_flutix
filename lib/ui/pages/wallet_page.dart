@@ -239,27 +239,18 @@ class WalletPage extends StatelessWidget {
             ),
           ),
           Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              width: 250,
-              height: 46,
-              margin: EdgeInsets.only(bottom: 30),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    primary: mainColor,
-                    elevation: 0,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8))),
+              alignment: Alignment.bottomCenter,
+              child: FlutixButton(
+                margin: EdgeInsets.only(bottom: 30),
+                primaryColor: mainColor,
+                child: Text(
+                  'Top Up My Wallet',
+                  style: whiteTextFont.copyWith(fontSize: 16),
+                ),
                 onPressed: () {
                   Navigator.of(context).push(routeTransition(TopUpPage()));
                 },
-                child: Text(
-                  "Top Up My Wallet",
-                  style: whiteTextFont.copyWith(fontSize: 16),
-                ),
-              ),
-            ),
-          )
+              ))
         ],
       ),
     );

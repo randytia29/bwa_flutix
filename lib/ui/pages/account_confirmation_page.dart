@@ -82,52 +82,44 @@ class _AccountConfirmationPageState extends State<AccountConfirmationPage> {
                         color: Color(0xFF3E9D9D),
                         size: 45,
                       )
-                    : SizedBox(
-                        width: 250,
-                        height: 45,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              primary: Color(0xFF3E9D9D),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8))),
-                          child: Text(
-                            "Create My Account",
-                            style: whiteTextFont.copyWith(fontSize: 16),
-                          ),
-                          onPressed: () async {
-                            setState(() {
-                              isSigningUp = true;
-                            });
-                            imageFileToUpload =
-                                widget.registrationData.profileImage;
-                            SignInSignUpResult result =
-                                await AuthServices.signUp(
-                                    widget.registrationData.email,
-                                    widget.registrationData.password,
-                                    widget.registrationData.name,
-                                    widget.registrationData.selectedGenres,
-                                    widget.registrationData.selectedLang);
-                            if (result.user == null) {
-                              setState(() {
-                                isSigningUp = false;
-                              });
-                              flutixSnackbar(context, result.message);
-                            } else {
-                              context
-                                  .read<UserBloc>()
-                                  .add(LoadUser(result.user!.id));
-                              context
-                                  .read<TicketBloc>()
-                                  .add(GetTickets(result.user!.id));
-
-                              await SharedPref.setUserId(result.user!.id);
-
-                              Navigator.of(context)
-                                ..popUntil((route) => route.isFirst)
-                                ..pushReplacement(routeTransition(MainPage()));
-                            }
-                          },
+                    : FlutixButton(
+                        primaryColor: Color(0xFF3E9D9D),
+                        child: Text(
+                          'Create My Account',
+                          style: whiteTextFont.copyWith(fontSize: 16),
                         ),
+                        onPressed: () async {
+                          setState(() {
+                            isSigningUp = true;
+                          });
+                          imageFileToUpload =
+                              widget.registrationData.profileImage;
+                          SignInSignUpResult result = await AuthServices.signUp(
+                              widget.registrationData.email,
+                              widget.registrationData.password,
+                              widget.registrationData.name,
+                              widget.registrationData.selectedGenres,
+                              widget.registrationData.selectedLang);
+                          if (result.user == null) {
+                            setState(() {
+                              isSigningUp = false;
+                            });
+                            flutixSnackbar(context, result.message);
+                          } else {
+                            context
+                                .read<UserBloc>()
+                                .add(LoadUser(result.user!.id));
+                            context
+                                .read<TicketBloc>()
+                                .add(GetTickets(result.user!.id));
+
+                            await SharedPref.setUserId(result.user!.id);
+
+                            Navigator.of(context)
+                              ..popUntil((route) => route.isFirst)
+                              ..pushReplacement(routeTransition(MainPage()));
+                          }
+                        },
                       )
               ],
             )

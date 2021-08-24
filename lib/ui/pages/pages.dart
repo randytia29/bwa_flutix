@@ -7,7 +7,6 @@ import 'package:bwaflutix/models/models.dart';
 import 'package:bwaflutix/services/services.dart';
 import 'package:bwaflutix/shared/shared.dart';
 import 'package:bwaflutix/ui/widgets/widgets.dart';
-import 'package:dotted_line/dotted_line.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -17,9 +16,9 @@ import 'package:intl/intl.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:path/path.dart';
 import 'package:provider/provider.dart';
-import 'package:qr_flutter/qr_flutter.dart';
 import 'package:random_string/random_string.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:screenshot/screenshot.dart';
 
 part 'account_confirmation_page.dart';
 part 'checkout_page.dart';

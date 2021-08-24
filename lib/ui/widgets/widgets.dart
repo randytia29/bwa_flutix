@@ -11,6 +11,7 @@ import 'package:intl/intl.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 part 'browse_button.dart';
 part 'coming_soon_card.dart';
@@ -28,3 +29,8 @@ part 'now_playing_movie.dart';
 part 'browse_movie.dart';
 part 'coming_soon_movie.dart';
 part 'get_lucky_day.dart';
+part 'ticket_detail_card.dart';
+part 'ticket_detail_backdrop.dart';
+part 'ticket_detail_info.dart';
+part 'ticket_detail_user.dart';
+part 'flutix_button.dart';

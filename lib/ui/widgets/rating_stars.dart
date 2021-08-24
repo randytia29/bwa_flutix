@@ -2,15 +2,11 @@ part of 'widgets.dart';
 
 class RatingStars extends StatelessWidget {
   final double voteAverage;
-  final double starSize;
-  final double fontSize;
   final Color? color;
   final MainAxisAlignment alignment;
 
   RatingStars(
       {this.voteAverage = 0,
-      required this.starSize,
-      required this.fontSize,
       this.color,
       this.alignment = MainAxisAlignment.start});
 
@@ -22,7 +18,7 @@ class RatingStars extends StatelessWidget {
         (index) => Icon(
               index < n ? MdiIcons.star : MdiIcons.starOutline,
               color: accentColor2,
-              size: starSize,
+              size: 40.sp,
             ));
     widgets.add(SizedBox(
       width: 3,
@@ -31,7 +27,7 @@ class RatingStars extends StatelessWidget {
       '$voteAverage/10',
       style: whiteNumberFont.copyWith(
           color: color ?? Colors.white,
-          fontSize: fontSize,
+          fontSize: 24.sp,
           fontWeight: FontWeight.w300),
     ));
     return Row(

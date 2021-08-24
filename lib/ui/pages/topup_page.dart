@@ -132,44 +132,36 @@ class _TopUpPageState extends State<TopUpPage> {
             SizedBox(
               height: 100,
             ),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 55),
-              width: 250,
-              height: 46,
-              child: BlocBuilder<UserBloc, UserState>(
-                builder: (_, userState) => ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      primary: Color(0xFF3E9D9D),
-                      onSurface: Color(0xFFE4E4E4),
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8))),
-                  onPressed: (selectedAmount! > 0)
-                      ? () async {
-                          context.read<UserBloc>().add(TopUp(selectedAmount));
-                          await FlutixTransactionServices.saveTransaction(
-                              FlutixTransaction(
-                                  userID: (userState as UserLoaded).user.id,
-                                  title: "Top Up Wallet",
-                                  amount: selectedAmount,
-                                  subtitle:
-                                      "${DateTime.now().dayName}, ${DateTime.now().day} ${DateTime.now().monthName} ${DateTime.now().year}",
-                                  time: DateTime.now()));
-
-                          Navigator.of(context)
-                              .push(routeTransition(SuccessPage(true)));
-                        }
-                      : null,
-                  child: Text(
-                    "Top Up My Wallet",
-                    style: whiteTextFont.copyWith(
-                      fontSize: 16,
-                      color: selectedAmount! > 0
-                          ? Colors.white
-                          : Color(0xFFBEBEBE),
-                    ),
+            BlocListener<UserBloc, UserState>(
+              listener: (context, userState) async {
+                await FlutixTransactionServices.saveTransaction(FlutixTransaction(
+                    userID: (userState as UserLoaded).user.id,
+                    title: 'Top Up Wallet',
+                    amount: selectedAmount,
+                    subtitle:
+                        '${DateTime.now().dayName}, ${DateTime.now().day} ${DateTime.now().monthName} ${DateTime.now().year}',
+                    time: DateTime.now()));
+              },
+              child: FlutixButton(
+                margin: EdgeInsets.symmetric(horizontal: 55),
+                primaryColor: Color(0xFF3E9D9D),
+                onSurfaceColor: Color(0xFF3E9D9D),
+                child: Text(
+                  'Top Up My Wallet',
+                  style: whiteTextFont.copyWith(
+                    fontSize: 16,
+                    color:
+                        selectedAmount! > 0 ? Colors.white : Color(0xFFBEBEBE),
                   ),
                 ),
+                onPressed: (selectedAmount! > 0)
+                    ? () {
+                        context.read<UserBloc>().add(TopUp(selectedAmount));
+
+                        Navigator.of(context)
+                            .push(routeTransition(SuccessPage(true)));
+                      }
+                    : null,
               ),
             ),
             SizedBox(

@@ -93,8 +93,6 @@ class _CheckoutPageState extends State<CheckoutPage> {
                         RatingStars(
                           voteAverage: widget.ticket.movieDetail!.voteAverage,
                           color: accentColor3,
-                          starSize: 40.sp,
-                          fontSize: 24.sp,
                         )
                       ],
                     )
@@ -342,60 +340,49 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     ],
                   ),
                 ),
-                Container(
+                FlutixButton(
                   margin:
                       EdgeInsets.fromLTRB(defaultMargin, 36, defaultMargin, 50),
-                  width: 250,
-                  height: 46,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        primary: (user.balance! >= total)
-                            ? Color(0xFF3E9D9D)
-                            : mainColor,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8)),
-                        elevation: 0),
-                    child: Text(
-                      (user.balance! >= total)
-                          ? 'Checkout Now'
-                          : 'Top Up My Wallet',
-                      style: whiteTextFont.copyWith(fontSize: 16),
-                    ),
-                    onPressed: () async {
-                      if (user.balance! >= total) {
-                        context.read<UserBloc>().add(Purchase(total));
-                        context.read<TicketBloc>().add(BuyTicket(
-                            widget.ticket.copyWith(totalPrice: total),
-                            user.id));
-
-                        await FlutixTransactionServices.saveTransaction(
-                            FlutixTransaction(
-                                userID: user.id,
-                                title: widget.ticket.movieDetail!.title,
-                                subtitle: widget.ticket.theater!.name,
-                                time: DateTime.now(),
-                                amount: -total,
-                                picture:
-                                    widget.ticket.movieDetail!.posterPath));
-
-                        await NotificationService.setScheduleMovie(
-                            Random().nextInt(100) + 1,
-                            'Movie Coming',
-                            'Hurry up',
-                            widget.ticket.time);
-
-                        await NotificationService.showNotificationNow(
-                            1, 'Ticket Bought', 'Congratulation');
-
-                        Navigator.of(context)
-                            .push(routeTransition(SuccessPage(false)));
-                      } else {
-                        Navigator.of(context)
-                          ..popUntil((route) => route.isFirst)
-                          ..push(routeTransition(TopUpPage()));
-                      }
-                    },
+                  primaryColor:
+                      (user.balance! >= total) ? Color(0xFF3E9D9D) : mainColor,
+                  child: Text(
+                    (user.balance! >= total)
+                        ? 'Checkout Now'
+                        : 'Top Up My Wallet',
+                    style: whiteTextFont.copyWith(fontSize: 16),
                   ),
+                  onPressed: () async {
+                    if (user.balance! >= total) {
+                      context.read<UserBloc>().add(Purchase(total));
+                      context.read<TicketBloc>().add(BuyTicket(
+                          widget.ticket.copyWith(totalPrice: total), user.id));
+
+                      await FlutixTransactionServices.saveTransaction(
+                          FlutixTransaction(
+                              userID: user.id,
+                              title: widget.ticket.movieDetail!.title,
+                              subtitle: widget.ticket.theater!.name,
+                              time: DateTime.now(),
+                              amount: -total,
+                              picture: widget.ticket.movieDetail!.posterPath));
+
+                      await NotificationService.setScheduleMovie(
+                          Random().nextInt(100) + 1,
+                          'Movie Coming',
+                          'Hurry up',
+                          widget.ticket.time);
+
+                      await NotificationService.showNotificationNow(
+                          1, 'Ticket Bought', 'Congratulation');
+
+                      Navigator.of(context)
+                          .push(routeTransition(SuccessPage(false)));
+                    } else {
+                      Navigator.of(context)
+                        ..popUntil((route) => route.isFirst)
+                        ..push(routeTransition(TopUpPage()));
+                    }
+                  },
                 )
               ],
             );
