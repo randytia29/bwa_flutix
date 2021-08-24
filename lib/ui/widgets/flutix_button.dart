@@ -4,7 +4,7 @@ class FlutixButton extends StatelessWidget {
   const FlutixButton({
     Key? key,
     this.primaryColor,
-    this.child,
+    required this.child,
     this.onPressed,
     this.margin,
     this.onSurfaceColor,
@@ -12,7 +12,7 @@ class FlutixButton extends StatelessWidget {
 
   final Color? primaryColor;
   final Color? onSurfaceColor;
-  final Widget? child;
+  final Widget child;
   final VoidCallback? onPressed;
   final EdgeInsetsGeometry? margin;
 

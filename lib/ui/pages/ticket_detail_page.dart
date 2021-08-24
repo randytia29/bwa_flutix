@@ -45,10 +45,45 @@ class _TicketDetailPageState extends State<TicketDetailPage> {
             Screenshot(
               controller: screenshotController,
               child: TicketDetailCard(ticket: widget.ticket),
+            ),
+            FlutixButton(
+              margin: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+              primaryColor: mainColor,
+              child: Text(
+                'Share',
+                style: whiteTextFont.copyWith(fontSize: 16),
+              ),
+              onPressed: () async {
+                Uint8List? imageBytes = await screenshotController.capture();
+
+                // await saveImage(imageBytes!);
+
+                await shareImage(imageBytes!);
+              },
             )
           ],
         ),
       ),
     );
+  }
+
+  Future<void> saveImage(Uint8List imageBytes) async {
+    await [Permission.storage].request();
+
+    String time = DateTime.now()
+        .toIso8601String()
+        .replaceAll('.', '-')
+        .replaceAll(':', '-');
+
+    await ImageGallerySaver.saveImage(imageBytes,
+        name: '${widget.ticket.movieDetail?.title}_$time');
+  }
+
+  Future<void> shareImage(Uint8List bytes) async {
+    Directory directory = await getApplicationDocumentsDirectory();
+    File imagePath = File('${directory.path}/flutix.jpg');
+    imagePath.writeAsBytesSync(bytes);
+
+    await Share.shareFiles([imagePath.path]);
   }
 }
