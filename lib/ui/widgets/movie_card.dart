@@ -2,17 +2,17 @@ part of 'widgets.dart';
 
 class MovieCard extends StatelessWidget {
   final Movie movie;
-  final Function? onTap;
 
-  MovieCard(this.movie, {this.onTap});
+  MovieCard(this.movie);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        if (onTap != null) {
-          onTap!();
-        }
+        Navigator.of(context).push(routeTransition(MovieDetailPage(movie)));
+        // if (onTap != null) {
+        //   onTap!();
+        // }
       },
       child: Container(
         height: 280.h,

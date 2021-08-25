@@ -3,7 +3,10 @@ part of 'widgets.dart';
 class NowPlayingMovie extends StatelessWidget {
   const NowPlayingMovie({
     Key? key,
+    this.controller,
   }) : super(key: key);
+
+  final ScrollController? controller;
 
   @override
   Widget build(BuildContext context) {
@@ -23,24 +26,31 @@ class NowPlayingMovie extends StatelessWidget {
           child: BlocBuilder<MovieBloc, MovieState>(
             builder: (_, movieState) {
               if (movieState is MovieLoaded) {
-                List<Movie> movies = movieState.movies!.sublist(0, 10);
                 return ListView.builder(
+                  controller: controller,
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
-                  itemCount: movies.length,
-                  itemBuilder: (_, index) => Container(
-                    margin: EdgeInsets.only(
-                        left: (index == 0) ? defaultMargin : 0,
-                        right:
-                            (index == movies.length - 1) ? defaultMargin : 16),
-                    child: MovieCard(
-                      movies[index],
-                      onTap: () {
-                        Navigator.of(context).push(
-                            routeTransition(MovieDetailPage(movies[index])));
-                      },
-                    ),
-                  ),
+                  itemCount: movieState.hasReachedMax!
+                      ? movieState.movies!.length
+                      : movieState.movies!.length + 1,
+                  itemBuilder: (_, index) => index < movieState.movies!.length
+                      ? Container(
+                          margin: EdgeInsets.only(
+                              left: (index == 0) ? defaultMargin : 0,
+                              right: (index == movieState.movies!.length - 1)
+                                  ? defaultMargin
+                                  : 16),
+                          child: MovieCard(
+                            movieState.movies![index],
+                          ),
+                        )
+                      : Padding(
+                          padding: const EdgeInsets.only(right: 24),
+                          child: SpinKitFadingCircle(
+                            color: mainColor,
+                            size: 50,
+                          ),
+                        ),
                 );
               } else {
                 return SpinKitFadingCircle(

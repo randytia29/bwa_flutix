@@ -1,8 +1,25 @@
 part of 'pages.dart';
 
-class MoviePage extends StatelessWidget {
+class MoviePage extends StatefulWidget {
+  @override
+  _MoviePageState createState() => _MoviePageState();
+}
+
+class _MoviePageState extends State<MoviePage> {
+  ScrollController controller = ScrollController();
+  late MovieBloc bloc;
+
+  void onScroll() {
+    double maxScroll = controller.position.maxScrollExtent;
+    double currentScroll = controller.position.pixels;
+    if (currentScroll == maxScroll) bloc.add(FetchMovies());
+  }
+
   @override
   Widget build(BuildContext context) {
+    bloc = BlocProvider.of<MovieBloc>(context);
+    controller.addListener(onScroll);
+
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -110,9 +127,11 @@ class MoviePage extends StatelessWidget {
               },
             ),
           ),
-          NowPlayingMovie(),
+          NowPlayingMovie(
+            controller: controller,
+          ),
           BrowseMovie(),
-          ComingSoonMovie(),
+          // ComingSoonMovie(),
           GetLuckyDay(),
           SizedBox(
             height: 200.h,
