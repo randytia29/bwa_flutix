@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:bwaflutix/models/models.dart';
-import 'package:bwaflutix/services/services.dart';
+import '../models/models.dart';
+import '../services/services.dart';
 import 'package:equatable/equatable.dart';
 
 part 'movie_event.dart';

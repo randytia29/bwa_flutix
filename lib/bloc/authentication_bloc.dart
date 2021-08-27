@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:bwaflutix/services/services.dart';
+import '../services/services.dart';
 import 'package:equatable/equatable.dart';
 
 part 'authentication_event.dart';

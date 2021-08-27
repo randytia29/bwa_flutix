@@ -2,12 +2,12 @@ import 'dart:io';
 import 'dart:math';
 import 'dart:typed_data';
 
-import 'package:bwaflutix/bloc/blocs.dart';
-import 'package:bwaflutix/extensions/extensions.dart';
-import 'package:bwaflutix/models/models.dart';
-import 'package:bwaflutix/services/services.dart';
-import 'package:bwaflutix/shared/shared.dart';
-import 'package:bwaflutix/ui/widgets/widgets.dart';
+import '../../bloc/blocs.dart';
+import '../../extensions/extensions.dart';
+import '../../models/models.dart';
+import '../../services/services.dart';
+import '../../shared/shared.dart';
+import '../widgets/widgets.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';

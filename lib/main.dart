@@ -1,7 +1,3 @@
-import 'package:bwaflutix/bloc/blocs.dart';
-import 'package:bwaflutix/services/services.dart';
-import 'package:bwaflutix/shared/shared.dart';
-import 'package:bwaflutix/ui/pages/pages.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +6,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'bloc/blocs.dart';
+import 'services/services.dart';
+import 'shared/shared.dart';
+import 'ui/pages/pages.dart';
 
 final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 

@@ -1,5 +1,5 @@
-import 'package:bwaflutix/models/models.dart';
-import 'package:bwaflutix/services/services.dart';
+import '../models/models.dart';
+import '../services/services.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 
 part 'date_time_extension.dart';
