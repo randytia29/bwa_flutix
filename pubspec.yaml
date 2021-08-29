@@ -25,7 +25,9 @@ dependencies:
     sdk: flutter
   another_flushbar: ^1.10.24
   cloud_firestore: ^2.5.1
+  connectivity: ^3.0.6
   cupertino_icons: ^1.0.3
+  dartz: ^0.10.0
   dotted_line: ^3.0.0
   email_validator: ^2.0.1
   equatable: ^2.0.3
@@ -57,6 +59,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  mockito: ^5.0.15
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
