@@ -9,10 +9,11 @@ class MovieCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).push(routeTransition(MovieDetailPage(movie)));
-        // if (onTap != null) {
-        //   onTap!();
-        // }
+        context
+            .read<MovieDetailBloc>()
+            .add(FetchMovieDetail(movieID: movie.id));
+
+        Navigator.of(context).push(routeTransition(MovieDetailPage()));
       },
       child: Container(
         height: 280.h,
@@ -20,7 +21,7 @@ class MovieCard extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
           image: DecorationImage(
-              image: NetworkImage(imageBaseUrl + 'w780' + movie.backdropPath!),
+              image: NetworkImage(imageBaseUrl + 'w780' + movie.backdropPath),
               fit: BoxFit.fill),
         ),
         child: Container(
@@ -41,7 +42,7 @@ class MovieCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                movie.title!,
+                movie.title,
                 style: whiteTextFont,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 2,

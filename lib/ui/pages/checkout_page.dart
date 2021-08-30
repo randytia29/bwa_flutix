@@ -58,7 +58,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                           image: DecorationImage(
                               image: NetworkImage(imageBaseUrl +
                                   'w342' +
-                                  widget.ticket.movieDetail!.posterPath!),
+                                  widget.ticket.movie!.posterPath),
                               fit: BoxFit.cover)),
                     ),
                     Column(
@@ -70,7 +70,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                               70 -
                               20,
                           child: Text(
-                            widget.ticket.movieDetail!.title!,
+                            widget.ticket.movie!.title,
                             style: blackTextFont.copyWith(fontSize: 18),
                             maxLines: 2,
                             overflow: TextOverflow.clip,
@@ -83,7 +83,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                               70 -
                               20,
                           child: Text(
-                            widget.ticket.movieDetail!.genresAndLanguage,
+                            widget.ticket.movie!.genresAndLanguage,
                             style: greyTextFont.copyWith(
                                 fontSize: 12, fontWeight: FontWeight.w400),
                             maxLines: 2,
@@ -91,7 +91,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                           ),
                         ),
                         RatingStars(
-                          voteAverage: widget.ticket.movieDetail!.voteAverage,
+                          voteAverage: widget.ticket.movie!.voteAverage,
                           color: accentColor3,
                         )
                       ],
@@ -360,11 +360,11 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       await FlutixTransactionServices.saveTransaction(
                           FlutixTransaction(
                               userID: user.id,
-                              title: widget.ticket.movieDetail!.title,
+                              title: widget.ticket.movie!.title,
                               subtitle: widget.ticket.theater!.name,
                               time: DateTime.now(),
                               amount: -total,
-                              picture: widget.ticket.movieDetail!.posterPath));
+                              picture: widget.ticket.movie!.posterPath));
 
                       await NotificationService.setScheduleMovie(
                           Random().nextInt(100) + 1,

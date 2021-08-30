@@ -23,7 +23,7 @@ class TicketDetailCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  ticket.movieDetail!.title!,
+                  ticket.movie!.title,
                   style: blackTextFont.copyWith(fontSize: 18),
                   maxLines: 2,
                   overflow: TextOverflow.clip,
@@ -32,7 +32,7 @@ class TicketDetailCard extends StatelessWidget {
                   height: 6,
                 ),
                 Text(
-                  ticket.movieDetail!.genresAndLanguage,
+                  ticket.movie!.genresAndLanguage,
                   style: greyTextFont.copyWith(fontSize: 12),
                   maxLines: 2,
                   overflow: TextOverflow.clip,
@@ -41,7 +41,7 @@ class TicketDetailCard extends StatelessWidget {
                   height: 6,
                 ),
                 RatingStars(
-                  voteAverage: ticket.movieDetail!.voteAverage,
+                  voteAverage: ticket.movie!.voteAverage,
                   color: Colors.grey,
                 ),
                 SizedBox(

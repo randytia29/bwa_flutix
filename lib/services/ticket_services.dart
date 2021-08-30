@@ -6,7 +6,7 @@ class TicketServices {
 
   static Future<void> saveTicket(String id, Ticket ticket) async {
     await ticketCollection.doc().set({
-      'movieID': ticket.movieDetail!.id ?? '',
+      'movieID': ticket.movie!.id,
       'userID': id,
       'theaterName': ticket.theater!.name ?? 0,
       'time': ticket.time.millisecondsSinceEpoch,
@@ -24,10 +24,9 @@ class TicketServices {
         snapshot.docs.where((document) => document['userID'] == userId);
     List<Ticket> tickets = [];
     for (var document in documents) {
-      MovieDetail movieDetail =
-          await MovieServices.getDetails(null, movieID: document['movieID']);
+      final movie = await MovieServices.getDetails(document['movieID']);
       tickets.add(Ticket(
-          movieDetail,
+          movie,
           Theater(document['theaterName']),
           DateTime.fromMillisecondsSinceEpoch(document['time']),
           document['bookingCode'],

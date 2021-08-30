@@ -1,22 +1,17 @@
 part of 'pages.dart';
 
 class MovieDetailPage extends StatelessWidget {
-  final Movie movie;
-
-  MovieDetailPage(this.movie);
-
   @override
   Widget build(BuildContext context) {
-    MovieDetail? movieDetail;
     List<Credit>? credits;
+
     return Scaffold(
-      body: FutureBuilder(
-        future: MovieServices.getDetails(movie),
-        builder: (_, snapshot) {
-          if (snapshot.hasData) {
-            movieDetail = snapshot.data as MovieDetail;
+      body: BlocBuilder<MovieDetailBloc, MovieDetailState>(
+        builder: (_, movieDetailState) {
+          if (movieDetailState is MovieDetailLoaded) {
+            final movie = movieDetailState.movie;
             return FutureBuilder(
-              future: MovieServices.getCredits(movie.id),
+              future: MovieServices.getCredits(movie?.id),
               builder: (_, snapshot) {
                 if (snapshot.hasData) {
                   credits = snapshot.data as List<Credit>;
@@ -32,7 +27,7 @@ class MovieDetailPage extends StatelessWidget {
                                     image: DecorationImage(
                                         image: NetworkImage(imageBaseUrl +
                                             'w780' +
-                                            movieDetail!.backdropPath!),
+                                            movie!.backdropPath),
                                         fit: BoxFit.cover)),
                               ),
                               Align(
@@ -75,7 +70,7 @@ class MovieDetailPage extends StatelessWidget {
                             child: Column(
                               children: <Widget>[
                                 Text(
-                                  movieDetail!.title!,
+                                  movie.title,
                                   textAlign: TextAlign.center,
                                   style: blackTextFont.copyWith(fontSize: 24),
                                 ),
@@ -83,7 +78,7 @@ class MovieDetailPage extends StatelessWidget {
                                   height: 6,
                                 ),
                                 Text(
-                                  movieDetail!.genresAndLanguage,
+                                  movie.genresAndLanguage,
                                   style: blackTextFont.copyWith(fontSize: 12),
                                   textAlign: TextAlign.center,
                                 ),
@@ -91,7 +86,7 @@ class MovieDetailPage extends StatelessWidget {
                                   height: 6,
                                 ),
                                 RatingStars(
-                                  voteAverage: movieDetail!.voteAverage,
+                                  voteAverage: movie.voteAverage,
                                   color: accentColor3,
                                   alignment: MainAxisAlignment.center,
                                 )
@@ -137,7 +132,7 @@ class MovieDetailPage extends StatelessWidget {
                             margin: EdgeInsets.fromLTRB(
                                 defaultMargin, 0, defaultMargin, 30),
                             child: Text(
-                              movieDetail!.overview!,
+                              movie.overview,
                               textAlign: TextAlign.justify,
                             ),
                           ),
@@ -149,8 +144,8 @@ class MovieDetailPage extends StatelessWidget {
                               style: whiteTextFont.copyWith(fontSize: 16),
                             ),
                             onPressed: () {
-                              Navigator.of(context).push(routeTransition(
-                                  SelectSchedulePage(movieDetail)));
+                              Navigator.of(context).push(
+                                  routeTransition(SelectSchedulePage(movie)));
                             },
                           ),
                           SizedBox(
@@ -165,9 +160,11 @@ class MovieDetailPage extends StatelessWidget {
                 }
               },
             );
-          } else {
-            return SizedBox();
           }
+          return SpinKitFadingCircle(
+            color: mainColor,
+            size: 50,
+          );
         },
       ),
     );

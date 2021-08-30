@@ -1,9 +1,9 @@
 part of 'pages.dart';
 
 class SelectSchedulePage extends StatefulWidget {
-  final MovieDetail? movieDetail;
+  final Movie? movie;
 
-  SelectSchedulePage(this.movieDetail);
+  SelectSchedulePage(this.movie);
 
   @override
   _SelectSchedulePageState createState() => _SelectSchedulePageState();
@@ -93,7 +93,7 @@ class _SelectSchedulePageState extends State<SelectSchedulePage> {
                         routeTransition(
                           SelectSeatPage(
                             Ticket(
-                                widget.movieDetail,
+                                widget.movie,
                                 selectedTheater,
                                 DateTime(
                                     selectedDate!.year,

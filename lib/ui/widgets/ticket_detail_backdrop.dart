@@ -15,7 +15,7 @@ class TicketDetailBackdrop extends StatelessWidget {
       decoration: BoxDecoration(
         image: DecorationImage(
             image: NetworkImage(
-                imageBaseUrl + "w780" + ticket.movieDetail!.backdropPath!),
+                imageBaseUrl + "w780" + ticket.movie!.backdropPath),
             fit: BoxFit.cover),
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(12), topRight: Radius.circular(12)),

@@ -41,7 +41,7 @@ class _SelectSeatPageState extends State<SelectSeatPage> {
                         margin: EdgeInsets.only(right: 16),
                         width: MediaQuery.of(context).size.width / 2,
                         child: Text(
-                          widget.ticket.movieDetail!.title!,
+                          widget.ticket.movie!.title,
                           style: blackTextFont.copyWith(fontSize: 20),
                           maxLines: 2,
                           overflow: TextOverflow.clip,
@@ -52,12 +52,13 @@ class _SelectSeatPageState extends State<SelectSeatPage> {
                         width: 60,
                         height: 60,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            image: DecorationImage(
-                                image: NetworkImage(imageBaseUrl +
-                                    'w154' +
-                                    widget.ticket.movieDetail!.posterPath!),
-                                fit: BoxFit.cover)),
+                          borderRadius: BorderRadius.circular(8),
+                          image: DecorationImage(
+                              image: NetworkImage(imageBaseUrl +
+                                  'w154' +
+                                  widget.ticket.movie!.posterPath),
+                              fit: BoxFit.cover),
+                        ),
                       )
                     ],
                   ),
