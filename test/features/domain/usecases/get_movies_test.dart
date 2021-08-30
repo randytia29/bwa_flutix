@@ -24,7 +24,8 @@ void main() {
         voteAverage: 5.0,
         overview: 'overview',
         posterPath: 'posterPath',
-        backdropPath: 'backdropPath')
+        backdropPath: 'backdropPath',
+        language: 'language')
   ];
 
   test('should get list of movies from the repository', () async {

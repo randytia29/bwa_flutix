@@ -19,7 +19,7 @@ void main() {
   final tMovieID = 1;
   final tCredits = [Credit(name: 'name', profilePath: 'profilePath')];
 
-  test('should get list of movies from the repository', () async {
+  test('should get list of credits from the repository', () async {
     when(mockMovieRepository!.getCredits(any))
         .thenAnswer((realInvocation) async => Right(tCredits));
 

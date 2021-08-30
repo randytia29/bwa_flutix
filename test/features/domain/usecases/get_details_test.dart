@@ -1,5 +1,4 @@
 import 'package:bwaflutix/features/domain/entities/movie.dart';
-import 'package:bwaflutix/features/domain/entities/movie_detail.dart';
 import 'package:bwaflutix/features/domain/repositories/movie_repository.dart';
 import 'package:bwaflutix/features/domain/usecases/get_details.dart';
 import 'package:dartz/dartz.dart';
@@ -17,32 +16,25 @@ void main() {
     usecase = GetDetails(mockMovieRepository);
   });
 
+  final tMovieID = 1;
   final tMovie = Movie(
-      id: 1,
-      title: 'title',
-      voteAverage: 5.0,
-      overview: 'overview',
-      posterPath: 'posterPath',
-      backdropPath: 'backdropPath');
-  final tMovieDetail = MovieDetail(
-      Movie(
-          id: 1,
-          title: 'title',
-          voteAverage: 5.0,
-          overview: 'overview',
-          posterPath: 'posterPath',
-          backdropPath: 'backdropPath'),
-      genres: ['genres'],
-      language: 'language');
+    id: 1,
+    title: 'title',
+    voteAverage: 5.0,
+    overview: 'overview',
+    posterPath: 'posterPath',
+    backdropPath: 'backdropPath',
+    language: 'language',
+  );
 
   test('should get movie detail from the repository', () async {
     when(mockMovieRepository!.getDetails(any))
-        .thenAnswer((realInvocation) async => Right(tMovieDetail));
+        .thenAnswer((realInvocation) async => Right(tMovie));
 
-    final result = await usecase(Params(movie: tMovie));
+    final result = await usecase(Params(movieID: tMovieID));
 
-    expect(result, Right(tMovieDetail));
-    verify(mockMovieRepository!.getDetails(tMovie));
+    expect(result, Right(tMovie));
+    verify(mockMovieRepository!.getDetails(tMovieID));
     verifyNoMoreInteractions(mockMovieRepository);
   });
 }
