@@ -16,8 +16,13 @@ class MovieDetailBloc extends Bloc<MovieDetailEvent, MovieDetailState> {
     MovieDetailEvent event,
   ) async* {
     if (event is FetchMovieDetail) {
+      yield MovieDetailLoading();
+
       final movie = await MovieServices.getDetails(event.movieID);
-      yield MovieDetailLoaded(movie);
+      final credits = await MovieServices.getCredits(event.movieID);
+      credits.removeWhere((element) => element.profilePath == null);
+
+      yield MovieDetailLoaded(movie, credits);
     }
   }
 }

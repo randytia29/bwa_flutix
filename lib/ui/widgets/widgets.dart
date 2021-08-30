@@ -35,3 +35,4 @@ part 'ticket_detail_card.dart';
 part 'ticket_detail_info.dart';
 part 'ticket_detail_user.dart';
 part 'transaction_card.dart';
+part 'credit_movie.dart';
