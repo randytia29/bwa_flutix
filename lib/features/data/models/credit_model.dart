@@ -7,4 +7,8 @@ class CreditModel extends Credit {
   factory CreditModel.fromJson(Map<String, dynamic> json) {
     return CreditModel(name: json['name'], profilePath: json['profile_path']);
   }
+
+  Map<String, dynamic> toJson() {
+    return {'name': name, 'profile_path': profilePath};
+  }
 }

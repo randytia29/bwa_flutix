@@ -30,4 +30,22 @@ void main() {
       expect(result, tMovieModel);
     });
   });
+
+  group('toJson', () {
+    test('should return a JSON Movie map', () async {
+      final result = tMovieModel.toJson();
+
+      final expectedMap = {
+        'id': 436969,
+        'title': 'The Suicide Squad',
+        'vote_average': 8,
+        'overview':
+            'Supervillains Harley Quinn, Bloodsport, Peacemaker and a collection of nutty cons at Belle Reve prison join the super-secret, super-shady Task Force X as they are dropped off at the remote, enemy-infused island of Corto Maltese.',
+        'poster_path': '/iXbWpCkIauBMStSTUT9v4GXvdgH.jpg',
+        'backdrop_path': '/jlGmlFOcfo8n5tURmhC7YVd4Iyy.jpg',
+        'original_language': 'en'
+      };
+      expect(result, expectedMap);
+    });
+  });
 }

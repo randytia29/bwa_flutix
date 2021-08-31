@@ -6,6 +6,10 @@ class Credit extends Equatable {
 
   Credit({this.name, this.profilePath});
 
+  factory Credit.fromJson(Map<String, dynamic> json) {
+    return Credit(name: json['name'], profilePath: json['profile_path']);
+  }
+
   @override
   List<Object?> get props => [name, profilePath];
 }

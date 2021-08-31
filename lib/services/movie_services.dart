@@ -41,9 +41,7 @@ class MovieServices {
     var response = await client.get(url);
     var data = json.decode(response.body);
     return ((data as Map<String, dynamic>)['cast'] as List)
-        .map((e) => Credit(
-            name: (e as Map<String, dynamic>)['name'],
-            profilePath: e['profile_path']))
+        .map((e) => Credit.fromJson(e))
         .take(8)
         .toList();
   }

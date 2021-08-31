@@ -23,4 +23,16 @@ void main() {
       expect(result, tCreditModel);
     });
   });
+
+  group('toJson', () {
+    test('should return a JSON Credit map', () async {
+      final result = tCreditModel.toJson();
+
+      final expectedMap = {
+        'name': 'Kostja Ullmann',
+        'profile_path': '/mQguH03eznJhsfwpZJZrnWCs5Su.jpg'
+      };
+      expect(result, expectedMap);
+    });
+  });
 }

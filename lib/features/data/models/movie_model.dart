@@ -56,4 +56,16 @@ class MovieModel extends Movie {
         language: json['original_language'],
         genres: json['genres']);
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'title': title,
+      'vote_average': voteAverage,
+      'overview': overview,
+      'poster_path': posterPath,
+      'backdrop_path': backdropPath,
+      'original_language': language
+    };
+  }
 }
