@@ -1,12 +1,13 @@
+import 'package:bwaflutix/features/domain/repositories/credit_repository.dart';
+
 import '../../../core/error/failure.dart';
 import '../../../core/usecases/usecase.dart';
 import '../entities/credit.dart';
-import '../repositories/movie_repository.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 
 class GetCredits implements Usecase<List<Credit>, Params> {
-  final MovieRepository? repository;
+  final CreditRepository? repository;
 
   GetCredits(this.repository);
 
