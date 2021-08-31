@@ -1,7 +1,8 @@
-import '../../../core/usecases/usecase.dart';
+import '../../../../core/error/failure.dart';
+import '../../../../core/usecases/usecase.dart';
+
 import 'package:equatable/equatable.dart';
 
-import '../../../core/error/failure.dart';
 import '../entities/movie.dart';
 import '../repositories/movie_repository.dart';
 import 'package:dartz/dartz.dart';

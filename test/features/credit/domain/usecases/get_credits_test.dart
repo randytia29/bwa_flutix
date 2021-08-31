@@ -1,6 +1,7 @@
-import 'package:bwaflutix/features/domain/entities/credit.dart';
-import 'package:bwaflutix/features/domain/repositories/credit_repository.dart';
-import 'package:bwaflutix/features/domain/usecases/get_credits.dart';
+import 'package:bwaflutix/features/credit/domain/entities/credit.dart';
+import 'package:bwaflutix/features/credit/domain/repositories/credit_repository.dart';
+import 'package:bwaflutix/features/credit/domain/usecases/get_credits.dart';
+
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';

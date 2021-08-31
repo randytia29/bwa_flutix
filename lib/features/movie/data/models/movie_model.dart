@@ -1,4 +1,4 @@
-import 'package:bwaflutix/features/domain/entities/movie.dart';
+import '../../domain/entities/movie.dart';
 
 class MovieModel extends Movie {
   MovieModel(

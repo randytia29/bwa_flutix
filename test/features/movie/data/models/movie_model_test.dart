@@ -1,10 +1,10 @@
 import 'dart:convert';
 
-import 'package:bwaflutix/features/data/models/movie_model.dart';
-import 'package:bwaflutix/features/domain/entities/movie.dart';
+import 'package:bwaflutix/features/movie/data/models/movie_model.dart';
+import 'package:bwaflutix/features/movie/domain/entities/movie.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../../fixtures/fixture_reader.dart';
+import '../../../../fixtures/fixture_reader.dart';
 
 void main() {
   final tMovieModel = MovieModel(

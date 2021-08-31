@@ -1,8 +1,9 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import '../services/services.dart';
 import 'package:equatable/equatable.dart';
+
+import '../services/services.dart';
 
 part 'authentication_event.dart';
 part 'authentication_state.dart';

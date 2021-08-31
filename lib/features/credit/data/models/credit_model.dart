@@ -1,4 +1,4 @@
-import 'package:bwaflutix/features/domain/entities/credit.dart';
+import '../../domain/entities/credit.dart';
 
 class CreditModel extends Credit {
   CreditModel({required String name, required String profilePath})

@@ -1,9 +1,10 @@
-import '../../../core/error/failure.dart';
-import '../../../core/usecases/usecase.dart';
-import '../entities/movie.dart';
-import '../repositories/movie_repository.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
+
+import '../../../../core/error/failure.dart';
+import '../../../../core/usecases/usecase.dart';
+import '../entities/movie.dart';
+import '../repositories/movie_repository.dart';
 
 class GetDetails implements Usecase<Movie, Params> {
   final MovieRepository? repository;

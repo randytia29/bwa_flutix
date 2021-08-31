@@ -1,10 +1,10 @@
 import 'dart:convert';
 
-import 'package:bwaflutix/features/data/models/credit_model.dart';
-import 'package:bwaflutix/features/domain/entities/credit.dart';
+import 'package:bwaflutix/features/credit/data/models/credit_model.dart';
+import 'package:bwaflutix/features/credit/domain/entities/credit.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../../fixtures/fixture_reader.dart';
+import '../../../../fixtures/fixture_reader.dart';
 
 void main() {
   final tCreditModel = CreditModel(

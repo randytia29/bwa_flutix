@@ -1,5 +1,5 @@
-import 'package:bwaflutix/core/error/failure.dart';
-import 'package:bwaflutix/features/domain/entities/credit.dart';
+import '../../../../core/error/failure.dart';
+import '../entities/credit.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class CreditRepository {

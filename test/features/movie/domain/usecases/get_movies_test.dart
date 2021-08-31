@@ -1,6 +1,6 @@
-import 'package:bwaflutix/features/domain/entities/movie.dart';
-import 'package:bwaflutix/features/domain/repositories/movie_repository.dart';
-import 'package:bwaflutix/features/domain/usecases/get_movies.dart';
+import 'package:bwaflutix/features/movie/domain/entities/movie.dart';
+import 'package:bwaflutix/features/movie/domain/repositories/movie_repository.dart';
+import 'package:bwaflutix/features/movie/domain/usecases/get_movies.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';

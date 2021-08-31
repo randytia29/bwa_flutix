@@ -1,4 +1,5 @@
-import '../../../core/error/failure.dart';
+import '../../../../core/error/failure.dart';
+
 import '../entities/movie.dart';
 import 'package:dartz/dartz.dart';
 
