@@ -12,7 +12,7 @@ class GetCredits implements Usecase<List<Credit>, Params> {
   GetCredits(this.repository);
 
   @override
-  Future<Either<Failure, List<Credit>>?> call(Params params) async {
+  Future<Either<Failure, List<Credit>?>?> call(Params params) async {
     return await repository?.getCredits(params.movieID);
   }
 }

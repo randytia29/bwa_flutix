@@ -12,7 +12,7 @@ class GetDetails implements Usecase<Movie, Params> {
   GetDetails(this.repository);
 
   @override
-  Future<Either<Failure, Movie>?> call(Params params) async {
+  Future<Either<Failure, Movie?>?> call(Params params) async {
     return await repository?.getDetails(params.movieID);
   }
 }
