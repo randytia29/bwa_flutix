@@ -1,6 +1,6 @@
 import 'package:bwaflutix/core/error/exceptions.dart';
 import 'package:bwaflutix/core/error/failure.dart';
-import 'package:bwaflutix/core/platform/network_info.dart';
+import 'package:bwaflutix/core/network/network_info.dart';
 import 'package:bwaflutix/features/credit/data/datasources/credit_local_data_source.dart';
 import 'package:bwaflutix/features/credit/data/datasources/credit_remote_data_source.dart';
 import 'package:bwaflutix/features/credit/data/models/credit_model.dart';
@@ -54,7 +54,7 @@ void main() {
     });
   }
 
-  group('getMovies', () {
+  group('getCredits', () {
     final tMovieID = 1;
     final tCreditModel = [
       CreditModel(

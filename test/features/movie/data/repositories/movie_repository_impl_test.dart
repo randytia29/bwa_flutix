@@ -1,6 +1,6 @@
 import 'package:bwaflutix/core/error/exceptions.dart';
 import 'package:bwaflutix/core/error/failure.dart';
-import 'package:bwaflutix/core/platform/network_info.dart';
+import 'package:bwaflutix/core/network/network_info.dart';
 import 'package:bwaflutix/features/movie/data/datasources/movie_local_data_source.dart';
 import 'package:bwaflutix/features/movie/data/datasources/movie_remote_data_source.dart';
 import 'package:bwaflutix/features/movie/data/models/movie_model.dart';

@@ -1,6 +1,7 @@
+import '../../../../core/network/network_info.dart';
+
 import '../../../../core/error/exceptions.dart';
 
-import '../../../../core/platform/network_info.dart';
 import '../datasources/movie_local_data_source.dart';
 import '../datasources/movie_remote_data_source.dart';
 import '../../domain/entities/movie.dart';

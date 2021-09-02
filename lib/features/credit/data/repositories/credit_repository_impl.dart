@@ -1,6 +1,7 @@
+import '../../../../core/network/network_info.dart';
+
 import '../../../../core/error/exceptions.dart';
 
-import '../../../../core/platform/network_info.dart';
 import '../datasources/credit_local_data_source.dart';
 import '../datasources/credit_remote_data_source.dart';
 import '../../domain/entities/credit.dart';
