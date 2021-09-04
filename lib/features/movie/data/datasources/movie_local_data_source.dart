@@ -1,15 +1,15 @@
 import 'dart:convert';
 
-import 'package:bwaflutix/core/error/exceptions.dart';
+import '../../../../core/error/exceptions.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/movie_model.dart';
 
 abstract class MovieLocalDataSource {
-  Future<MovieModel?>? getLastMovie();
+  Future<MovieModel>? getLastMovie();
   Future<void>? cacheMovie(MovieModel? movieToCache);
 
-  Future<List<MovieModel>?>? getLastMovies();
+  Future<List<MovieModel>>? getLastMovies();
   Future<void>? cacheMovies(List<MovieModel>? moviesToCache);
 }
 
@@ -35,7 +35,7 @@ class MovieLocalDataSourceImpl implements MovieLocalDataSource {
   }
 
   @override
-  Future<MovieModel?>? getLastMovie() {
+  Future<MovieModel>? getLastMovie() {
     final jsonString = sharedPreferences?.getString(CACHED_MOVIE);
     if (jsonString != null) {
       return Future.value(MovieModel.fromJson(json.decode(jsonString)));
@@ -45,7 +45,7 @@ class MovieLocalDataSourceImpl implements MovieLocalDataSource {
   }
 
   @override
-  Future<List<MovieModel>?>? getLastMovies() {
+  Future<List<MovieModel>>? getLastMovies() {
     final jsonString = sharedPreferences?.getString(CACHED_MOVIE_LIST);
     if (jsonString != null) {
       final response = json.decode(jsonString);
