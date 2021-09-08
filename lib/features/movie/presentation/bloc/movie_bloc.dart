@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:bwaflutix/features/movie/domain/usecases/get_movies.dart';
+import '../../domain/usecases/get_movies.dart';
 import '../../domain/entities/movie.dart';
 import 'package:equatable/equatable.dart';
 

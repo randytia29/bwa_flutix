@@ -12,6 +12,7 @@ import 'bloc/blocs.dart';
 import 'services/services.dart';
 import 'shared/shared.dart';
 import 'ui/pages/pages.dart';
+import 'injection_container.dart' as di;
 
 final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
@@ -29,7 +30,9 @@ Future<void> backgroundHandler(RemoteMessage message) async {
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await Firebase.initializeApp();
+
   SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(statusBarColor: accentColor1));
 
@@ -41,6 +44,8 @@ Future<void> main() async {
   await SharedPref.init();
 
   await dotenv.load();
+
+  // await di.init();
 
   runApp(MultiBlocProvider(
     providers: [

@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:bwaflutix/features/credit/domain/usecases/get_credits.dart';
+import '../../domain/usecases/get_credits.dart';
 import '../../domain/entities/credit.dart';
 import 'package:equatable/equatable.dart';
 
