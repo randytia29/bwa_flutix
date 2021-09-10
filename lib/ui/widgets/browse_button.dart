@@ -15,41 +15,38 @@ class BrowseButton extends StatelessWidget {
             width: 100.h,
             height: 100.h,
             decoration: BoxDecoration(
-                color: Color(0xFFEBFFF6),
-                borderRadius: BorderRadius.circular(8),
-                image: DecorationImage(
-                    image: AssetImage(genre.contains('Horror')
-                        ? 'assets/ic_horror.png'
-                        : genre.contains('Music')
-                            ? 'assets/ic_music.png'
-                            : genre.contains('Action')
-                                ? 'assets/ic_action.png'
-                                : genre.contains('Drama')
-                                    ? 'assets/ic_drama.png'
-                                    : genre.contains('War')
-                                        ? 'assets/ic_war.png'
-                                        : 'assets/ic_crime.png'),
-                    fit: BoxFit.cover)),
+              color: Color(0xFFEBFFF6),
+              borderRadius: BorderRadius.circular(8),
+              image: DecorationImage(
+                  image: AssetImage(_genreAsset(genre)), fit: BoxFit.cover),
+            ),
           ),
           SizedBox(
             height: 6.h,
           ),
           Text(
-            genre.contains('Horror')
-                ? 'Horror'
-                : genre.contains('Music')
-                    ? 'Music'
-                    : genre.contains('Action')
-                        ? 'Action'
-                        : genre.contains('Drama')
-                            ? 'Drama'
-                            : genre.contains('War')
-                                ? 'War'
-                                : 'Crime',
+            genre,
             style: blackTextFont,
           )
         ],
       ),
     );
+  }
+
+  String _genreAsset(String genre) {
+    switch (genre) {
+      case 'Horror':
+        return 'assets/ic_horror.png';
+      case 'Music':
+        return 'assets/ic_music.png';
+      case 'Action':
+        return 'assets/ic_action.png';
+      case 'Drama':
+        return 'assets/ic_drama.png';
+      case 'War':
+        return 'assets/ic_war.png';
+      default:
+        return 'assets/ic_crime.png';
+    }
   }
 }
