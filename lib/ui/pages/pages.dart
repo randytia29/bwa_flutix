@@ -2,7 +2,6 @@ import 'dart:io';
 import 'dart:math';
 import 'dart:typed_data';
 
-// import 'package:bwaflutix/bloc/movie_bloc.dart';
 import 'package:bwaflutix/features/movie/presentation/bloc/movie_bloc.dart';
 import 'package:bwaflutix/injection_container.dart';
 import 'package:bwaflutix/models/movie.dart';

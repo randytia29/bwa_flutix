@@ -9,8 +9,6 @@ class _MoviePageState extends State<MoviePage> {
   ScrollController controller = ScrollController();
   final movieBloc = sl<MovieBloc>();
 
-  // late MovieBloc bloc;
-
   void onScroll() {
     double maxScroll = controller.position.maxScrollExtent;
     double currentScroll = controller.position.pixels;
@@ -25,7 +23,6 @@ class _MoviePageState extends State<MoviePage> {
 
   @override
   Widget build(BuildContext context) {
-    // bloc = BlocProvider.of<MovieBloc>(context);
     controller.addListener(onScroll);
 
     return BlocProvider(
