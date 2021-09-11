@@ -31,18 +31,4 @@ class MovieServices {
 
     return Movie.fromJson(data);
   }
-
-  static Future<List<Credit>> getCredits(int? movieID,
-      {http.Client? client}) async {
-    Uri url =
-        Uri.https(baseUrl, '/3/movie/$movieID/credits', {'api_key': apiKey});
-
-    client ??= http.Client();
-    var response = await client.get(url);
-    var data = json.decode(response.body);
-    return ((data as Map<String, dynamic>)['cast'] as List)
-        .map((e) => Credit.fromJson(e))
-        .take(8)
-        .toList();
-  }
 }
