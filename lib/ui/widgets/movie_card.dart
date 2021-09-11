@@ -13,7 +13,9 @@ class MovieCard extends StatelessWidget {
             .read<MovieDetailBloc>()
             .add(FetchMovieDetail(movieID: movie.id));
 
-        Navigator.of(context).push(routeTransition(MovieDetailPage()));
+        Navigator.of(context).push(routeTransition(MovieDetailPage(
+          movieID: movie.id,
+        )));
       },
       child: Container(
         height: 280.h,

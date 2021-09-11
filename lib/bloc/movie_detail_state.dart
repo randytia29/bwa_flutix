@@ -16,10 +16,9 @@ class MovieDetailLoading extends MovieDetailState {
 
 class MovieDetailLoaded extends MovieDetailState {
   final Movie? movie;
-  final List<Credit>? credits;
 
-  MovieDetailLoaded(this.movie, this.credits);
+  MovieDetailLoaded(this.movie);
 
   @override
-  List<Object?> get props => [movie, credits];
+  List<Object?> get props => [movie];
 }

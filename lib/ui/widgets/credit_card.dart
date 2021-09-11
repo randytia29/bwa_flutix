@@ -19,7 +19,7 @@ class CreditCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(5),
               image: DecorationImage(
                   image:
-                      NetworkImage(imageBaseUrl + "w780" + credit.profilePath!),
+                      NetworkImage(imageBaseUrl + "w780" + credit.profilePath),
                   fit: BoxFit.cover),
             ),
           ),
@@ -30,7 +30,7 @@ class CreditCard extends StatelessWidget {
             width: 70,
             height: 24,
             child: Text(
-              credit.name!,
+              credit.name,
               style: TextStyle(fontSize: 10),
               textAlign: TextAlign.center,
             ),

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:bwaflutix/models/credit.dart';
 import 'package:bwaflutix/models/movie.dart';
 
 import '../main.dart';

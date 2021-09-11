@@ -1,4 +1,4 @@
-part of 'models.dart';
+import 'package:equatable/equatable.dart';
 
 class Credit extends Equatable {
   final String? name;

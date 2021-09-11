@@ -1,7 +1,8 @@
-// import 'package:bwaflutix/bloc/movie_bloc.dart';
+import 'package:bwaflutix/bloc/movie_detail_bloc.dart';
+import 'package:bwaflutix/features/credit/domain/entities/credit.dart';
+import 'package:bwaflutix/features/credit/presentation/bloc/credit_bloc.dart';
 import 'package:bwaflutix/features/movie/domain/entities/movie.dart';
 import 'package:bwaflutix/features/movie/presentation/bloc/movie_bloc.dart';
-// import 'package:bwaflutix/models/movie.dart';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

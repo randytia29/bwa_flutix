@@ -3,10 +3,7 @@ part of 'widgets.dart';
 class CreditMovie extends StatelessWidget {
   const CreditMovie({
     Key? key,
-    required this.credits,
   }) : super(key: key);
-
-  final List<Credit>? credits;
 
   @override
   Widget build(BuildContext context) {
@@ -21,22 +18,27 @@ class CreditMovie extends StatelessWidget {
             style: blackTextFont.copyWith(fontSize: 14),
           ),
         ),
-        SizedBox(
-          height: 110,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: credits!.length,
-            itemBuilder: (_, index) => (credits![index].profilePath != null)
-                ? Container(
+        BlocBuilder<CreditBloc, CreditState>(
+          builder: (context, state) {
+            if (state is CreditLoaded) {
+              final credits = state.credits;
+              return SizedBox(
+                height: 110,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: credits!.length,
+                  itemBuilder: (_, index) => Container(
                     margin: EdgeInsets.only(
                         left: (index == 0) ? defaultMargin : 0,
-                        right: (index == credits!.length - 1)
-                            ? defaultMargin
-                            : 12),
-                    child: CreditCard(credits![index]),
-                  )
-                : Container(),
-          ),
+                        right:
+                            (index == credits.length - 1) ? defaultMargin : 12),
+                    child: CreditCard(credits[index]),
+                  ),
+                ),
+              );
+            }
+            return Container();
+          },
         )
       ],
     );

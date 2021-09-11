@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:bwaflutix/models/movie.dart';
-import '../models/models.dart';
 import '../services/services.dart';
 import 'package:equatable/equatable.dart';
 
@@ -20,10 +19,8 @@ class MovieDetailBloc extends Bloc<MovieDetailEvent, MovieDetailState> {
       yield MovieDetailLoading();
 
       final movie = await MovieServices.getDetails(event.movieID);
-      final credits = await MovieServices.getCredits(event.movieID);
-      credits.removeWhere((element) => element.profilePath == null);
 
-      yield MovieDetailLoaded(movie, credits);
+      yield MovieDetailLoaded(movie);
     }
   }
 }
