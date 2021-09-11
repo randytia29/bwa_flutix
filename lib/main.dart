@@ -41,17 +41,14 @@ Future<void> main() async {
 
   FirebaseMessaging.onBackgroundMessage(backgroundHandler);
 
-  await SharedPref.init();
-
   await dotenv.load();
 
-  // await di.init();
+  await di.init();
 
   runApp(MultiBlocProvider(
     providers: [
       BlocProvider(create: (_) => UserBloc()),
       BlocProvider(create: (_) => ThemeBloc()),
-      BlocProvider(create: (_) => MovieBloc()..add(FetchMovies())),
       BlocProvider(create: (_) => TicketBloc()),
       BlocProvider(
         create: (_) => AuthenticationBloc()..add(CheckIsAuthenticated()),

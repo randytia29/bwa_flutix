@@ -1,4 +1,4 @@
-part of 'models.dart';
+import 'package:equatable/equatable.dart';
 
 class Movie extends Equatable {
   final int id;

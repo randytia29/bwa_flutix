@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import '../models/models.dart';
+import 'package:bwaflutix/models/movie.dart';
 import '../services/services.dart';
 import 'package:equatable/equatable.dart';
 

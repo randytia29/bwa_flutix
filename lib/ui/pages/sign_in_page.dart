@@ -142,8 +142,8 @@ class _SignInPageState extends State<SignInPage> {
                                           .read<TicketBloc>()
                                           .add(GetTickets(result.user!.id));
 
-                                      await SharedPref.setUserId(
-                                          result.user!.id);
+                                      await sl<SharedPref>()
+                                          .setUserId(result.user!.id);
 
                                       Navigator.of(context)
                                         ..popUntil((route) => route.isFirst)

@@ -1,28 +1,29 @@
-part of 'services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+class SharedPrefKey {
+  static const String USER_ID = 'userId';
+}
 
 class SharedPref {
-  static const String _USER_ID = 'userId';
+  final SharedPreferences? sharedPreferences;
 
-  static late SharedPreferences _preferences;
+  SharedPref({required this.sharedPreferences});
 
-  static Future<void> init() async {
-    _preferences = await SharedPreferences.getInstance();
-  }
-
-  static Future<bool> setUserId(String userId) async {
-    bool userIdSaved = await _preferences.setString(_USER_ID, userId);
+  Future<bool> setUserId(String userId) async {
+    bool userIdSaved =
+        await sharedPreferences!.setString(SharedPrefKey.USER_ID, userId);
 
     return userIdSaved;
   }
 
-  static String? getUserId() {
-    String? userId = _preferences.getString(_USER_ID);
+  String? getUserId() {
+    String? userId = sharedPreferences!.getString(SharedPrefKey.USER_ID);
 
     return userId;
   }
 
-  static Future<bool> clearUserId() async {
-    bool userIdRemoved = await _preferences.remove(_USER_ID);
+  Future<bool> clearUserId() async {
+    bool userIdRemoved = await sharedPreferences!.remove(SharedPrefKey.USER_ID);
 
     return userIdRemoved;
   }

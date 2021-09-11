@@ -1,3 +1,5 @@
+import 'package:bwaflutix/services/shared_pref.dart';
+
 import 'core/network/network_info.dart';
 import 'features/credit/data/datasources/credit_local_data_source.dart';
 import 'features/credit/data/datasources/credit_remote_data_source.dart';
@@ -21,6 +23,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 final sl = GetIt.instance;
 
 Future<void> init() async {
+  final sharedPreferences = await SharedPreferences.getInstance();
+
   //! Features
   // Bloc
   sl.registerFactory(() => MovieBloc(movies: sl()));
@@ -42,18 +46,18 @@ Future<void> init() async {
   sl.registerLazySingleton<MovieRemoteDataSource>(
       () => MovieRemoteDataSourceImpl(client: sl()));
   sl.registerLazySingleton<MovieLocalDataSource>(
-      () => MovieLocalDataSourceImpl(sharedPreferences: sl()));
+      () => MovieLocalDataSourceImpl(sharedPreferences: sharedPreferences));
   sl.registerLazySingleton<CreditRemoteDataSource>(
       () => CreditRemoteDataSourceImpl(client: sl()));
   sl.registerLazySingleton<CreditLocalDataSource>(
-      () => CreditLocalDataSourceImpl(sharedPreferences: sl()));
+      () => CreditLocalDataSourceImpl(sharedPreferences: sharedPreferences));
 
   //! Core
   sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));
+  sl.registerLazySingleton(
+      () => SharedPref(sharedPreferences: sharedPreferences));
 
   //! External
-  final sharedPreferences = await SharedPreferences.getInstance();
-  sl.registerLazySingleton(() => sharedPreferences);
   sl.registerLazySingleton(() => http.Client());
   sl.registerLazySingleton(() => InternetConnectionChecker());
 }

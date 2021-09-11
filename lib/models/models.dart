@@ -1,10 +1,10 @@
 import 'dart:io';
 
 import 'package:equatable/equatable.dart';
+import 'movie.dart';
 
 part 'credit.dart';
 part 'flutix_transaction.dart';
-part 'movie.dart';
 part 'promo.dart';
 part 'registration_data.dart';
 part 'theater.dart';

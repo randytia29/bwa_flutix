@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:bwaflutix/injection_container.dart';
+import 'package:bwaflutix/services/shared_pref.dart';
 import '../models/models.dart';
 import '../services/services.dart';
 import 'package:equatable/equatable.dart';
@@ -19,7 +21,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       User user = await UserServices.getUser(event.id);
       yield UserLoaded(user);
     } else if (event is SignOut) {
-      await SharedPref.clearUserId();
+      await sl<SharedPref>().clearUserId();
       await AuthServices.signOut();
       yield UserInitial();
     } else if (event is UpdateData) {

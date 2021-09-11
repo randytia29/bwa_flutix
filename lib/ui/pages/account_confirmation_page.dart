@@ -113,7 +113,7 @@ class _AccountConfirmationPageState extends State<AccountConfirmationPage> {
                                 .read<TicketBloc>()
                                 .add(GetTickets(result.user!.id));
 
-                            await SharedPref.setUserId(result.user!.id);
+                            await sl<SharedPref>().setUserId(result.user!.id);
 
                             Navigator.of(context)
                               ..popUntil((route) => route.isFirst)
