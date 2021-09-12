@@ -1,13 +1,9 @@
 import '../../../../core/network/network_info.dart';
 
-import '../../../../core/error/exceptions.dart';
-
 import '../datasources/credit_local_data_source.dart';
 import '../datasources/credit_remote_data_source.dart';
 import '../../domain/entities/credit.dart';
-import '../../../../core/error/failure.dart';
 import '../../domain/repositories/credit_repository.dart';
-import 'package:dartz/dartz.dart';
 
 class CreditRepositoryImpl implements CreditRepository {
   final CreditRemoteDataSource? remoteDataSource;
@@ -20,21 +16,21 @@ class CreditRepositoryImpl implements CreditRepository {
       required this.networkInfo});
 
   @override
-  Future<Either<Failure, List<Credit>?>>? getCredits(int? movieID) async {
+  Future<List<Credit>?>? getCredits(int? movieID) async {
     if ((await networkInfo?.isConnected)!) {
       try {
         final remoteMovie = await remoteDataSource?.getCredits(movieID);
         localDataSource?.cacheCredits(remoteMovie);
-        return Right(remoteMovie);
-      } on ServerException {
-        return Left(ServerFailure());
+        return remoteMovie;
+      } catch (e) {
+        print(e.toString());
       }
     } else {
       try {
         final localMovie = await localDataSource?.getLastCredits();
-        return Right(localMovie);
-      } on CacheException {
-        return Left(CacheFailure());
+        return localMovie;
+      } catch (e) {
+        print(e.toString());
       }
     }
   }

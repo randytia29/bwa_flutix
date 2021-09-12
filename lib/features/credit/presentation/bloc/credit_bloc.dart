@@ -23,16 +23,15 @@ class CreditBloc extends Bloc<CreditEvent, CreditState> {
     if (event is FetchCredit) {
       yield CreditLoading();
 
-      final failureOrCredits =
-          await getCredits!(Params(movieID: event.movieID));
-
-      yield failureOrCredits!
-          .fold((failure) => CreditFailToLoad(message: failure.toString()),
-              (credits) {
+      try {
+        final credits = await getCredits!(Params(movieID: event.movieID));
         credits?.removeWhere((element) =>
             element.profilePath.isEmpty || element.profilePath == '');
-        return CreditLoaded(credits: credits);
-      });
+
+        yield CreditLoaded(credits: credits);
+      } catch (e) {
+        yield CreditFailToLoad(message: e.toString());
+      }
     }
   }
 }

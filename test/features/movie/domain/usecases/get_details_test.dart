@@ -1,7 +1,6 @@
 import 'package:bwaflutix/features/movie/domain/entities/movie.dart';
 import 'package:bwaflutix/features/movie/domain/repositories/movie_repository.dart';
 import 'package:bwaflutix/features/movie/domain/usecases/get_details.dart';
-import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
@@ -29,11 +28,11 @@ void main() {
 
   test('should get movie detail from the repository', () async {
     when(mockMovieRepository!.getDetails(any))
-        .thenAnswer((realInvocation) async => Right(tMovie));
+        .thenAnswer((realInvocation) async => tMovie);
 
     final result = await usecase(Params(movieID: tMovieID));
 
-    expect(result, Right(tMovie));
+    expect(result, tMovie);
     verify(mockMovieRepository!.getDetails(tMovieID));
     verifyNoMoreInteractions(mockMovieRepository);
   });

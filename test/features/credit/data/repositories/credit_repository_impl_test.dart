@@ -1,12 +1,9 @@
-import 'package:bwaflutix/core/error/exceptions.dart';
-import 'package:bwaflutix/core/error/failure.dart';
 import 'package:bwaflutix/core/network/network_info.dart';
 import 'package:bwaflutix/features/credit/data/datasources/credit_local_data_source.dart';
 import 'package:bwaflutix/features/credit/data/datasources/credit_remote_data_source.dart';
 import 'package:bwaflutix/features/credit/data/models/credit_model.dart';
 import 'package:bwaflutix/features/credit/data/repositories/credit_repository_impl.dart';
 import 'package:bwaflutix/features/credit/domain/entities/credit.dart';
-import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
@@ -82,7 +79,7 @@ void main() {
         final result = await repository?.getCredits(tMovieID);
 
         verify(mockRemoteDataSource?.getCredits(tMovieID));
-        expect(result, equals(Right(tCredits)));
+        expect(result, equals(tCredits));
       });
 
       test(
@@ -97,19 +94,6 @@ void main() {
         verify(mockLocalDataSource?.cacheCredits(tCreditModel));
       });
 
-      test(
-          'should return server failur when the call to remote data source is unsuccessful',
-          () async {
-        when(mockRemoteDataSource?.getCredits(any))
-            .thenThrow(ServerException());
-
-        final result = await repository?.getCredits(tMovieID);
-
-        verify(mockRemoteDataSource?.getCredits(tMovieID));
-        verifyZeroInteractions(mockLocalDataSource);
-        expect(result, equals(Left(ServerFailure())));
-      });
-
       runTestOffline(() {
         test(
             'should return locally cached data when the cached data is present',
@@ -121,19 +105,7 @@ void main() {
 
           verifyZeroInteractions(mockRemoteDataSource);
           verify(mockLocalDataSource?.getLastCredits());
-          expect(result, equals(Right(tCredits)));
-        });
-
-        test('should return CacheFailure when there is no cached data present',
-            () async {
-          when(mockLocalDataSource?.getLastCredits())
-              .thenThrow(CacheException());
-
-          final result = await repository?.getCredits(tMovieID);
-
-          verifyZeroInteractions(mockRemoteDataSource);
-          verify(mockLocalDataSource?.getLastCredits());
-          expect(result, equals(Left(CacheFailure())));
+          expect(result, equals(tCredits));
         });
       });
     });

@@ -1,12 +1,9 @@
-import 'package:bwaflutix/core/error/exceptions.dart';
-import 'package:bwaflutix/core/error/failure.dart';
 import 'package:bwaflutix/core/network/network_info.dart';
 import 'package:bwaflutix/features/movie/data/datasources/movie_local_data_source.dart';
 import 'package:bwaflutix/features/movie/data/datasources/movie_remote_data_source.dart';
 import 'package:bwaflutix/features/movie/data/models/movie_model.dart';
 import 'package:bwaflutix/features/movie/data/repositories/movie_repository_impl.dart';
 import 'package:bwaflutix/features/movie/domain/entities/movie.dart';
-import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
@@ -86,7 +83,7 @@ void main() {
         final result = await repository?.getDetails(tMovieID);
 
         verify(mockRemoteDataSource?.getDetails(tMovieID));
-        expect(result, equals(Right(tMovie)));
+        expect(result, equals(tMovie));
       });
 
       test(
@@ -101,19 +98,6 @@ void main() {
         verify(mockLocalDataSource?.cacheMovie(tMovieModel));
       });
 
-      test(
-          'should return server failur when the call to remote data source is unsuccessful',
-          () async {
-        when(mockRemoteDataSource?.getDetails(any))
-            .thenThrow(ServerException());
-
-        final result = await repository?.getDetails(tMovieID);
-
-        verify(mockRemoteDataSource?.getDetails(tMovieID));
-        verifyZeroInteractions(mockLocalDataSource);
-        expect(result, equals(Left(ServerFailure())));
-      });
-
       runTestOffline(() {
         test(
             'should return locally cached data when the cached data is present',
@@ -125,18 +109,7 @@ void main() {
 
           verifyZeroInteractions(mockRemoteDataSource);
           verify(mockLocalDataSource?.getLastMovie());
-          expect(result, equals(Right(tMovie)));
-        });
-
-        test('should return CacheFailure when there is no cached data present',
-            () async {
-          when(mockLocalDataSource?.getLastMovie()).thenThrow(CacheException());
-
-          final result = await repository?.getDetails(tMovieID);
-
-          verifyZeroInteractions(mockRemoteDataSource);
-          verify(mockLocalDataSource?.getLastMovie());
-          expect(result, equals(Left(CacheFailure())));
+          expect(result, equals(tMovie));
         });
       });
     });
@@ -176,7 +149,7 @@ void main() {
         final result = await repository?.getMovies(tPage);
 
         verify(mockRemoteDataSource?.getMovies(tPage));
-        expect(result, equals(Right(tMovie)));
+        expect(result, equals(tMovie));
       });
 
       test(
@@ -191,18 +164,6 @@ void main() {
         verify(mockLocalDataSource?.cacheMovies(tMovieModel));
       });
 
-      test(
-          'should return server failur when the call to remote data source is unsuccessful',
-          () async {
-        when(mockRemoteDataSource?.getMovies(any)).thenThrow(ServerException());
-
-        final result = await repository?.getMovies(tPage);
-
-        verify(mockRemoteDataSource?.getMovies(tPage));
-        verifyZeroInteractions(mockLocalDataSource);
-        expect(result, equals(Left(ServerFailure())));
-      });
-
       runTestOffline(() {
         test(
             'should return locally cached data when the cached data is present',
@@ -214,19 +175,7 @@ void main() {
 
           verifyZeroInteractions(mockRemoteDataSource);
           verify(mockLocalDataSource?.getLastMovies());
-          expect(result, equals(Right(tMovie)));
-        });
-
-        test('should return CacheFailure when there is no cached data present',
-            () async {
-          when(mockLocalDataSource?.getLastMovies())
-              .thenThrow(CacheException());
-
-          final result = await repository?.getMovies(tPage);
-
-          verifyZeroInteractions(mockRemoteDataSource);
-          verify(mockLocalDataSource?.getLastMovies());
-          expect(result, equals(Left(CacheFailure())));
+          expect(result, equals(tMovie));
         });
       });
     });

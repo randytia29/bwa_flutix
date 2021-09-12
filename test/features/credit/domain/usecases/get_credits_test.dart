@@ -2,7 +2,6 @@ import 'package:bwaflutix/features/credit/domain/entities/credit.dart';
 import 'package:bwaflutix/features/credit/domain/repositories/credit_repository.dart';
 import 'package:bwaflutix/features/credit/domain/usecases/get_credits.dart';
 
-import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
@@ -22,11 +21,11 @@ void main() {
 
   test('should get list of credits from the repository', () async {
     when(mockCreditRepository!.getCredits(any))
-        .thenAnswer((realInvocation) async => Right(tCredits));
+        .thenAnswer((realInvocation) async => tCredits);
 
     final result = await usecase(Params(movieID: tMovieID));
 
-    expect(result, Right(tCredits));
+    expect(result, tCredits);
     verify(mockCreditRepository!.getCredits(tMovieID));
     verifyNoMoreInteractions(mockCreditRepository);
   });

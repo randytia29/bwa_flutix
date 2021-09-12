@@ -22,12 +22,13 @@ class MovieDetailBloc extends Bloc<MovieDetailEvent, MovieDetailState> {
   ) async* {
     if (event is FetchMovieDetail) {
       yield MovieDetailLoading();
+      try {
+        final movie = await getDetails!(Params(movieID: event.movieID));
 
-      final failureOrMovie = await getDetails!(Params(movieID: event.movieID));
-
-      yield failureOrMovie!.fold(
-          (failure) => MovieDetailFailToLoad(message: failure.toString()),
-          (movie) => MovieDetailLoaded(movie: movie));
+        yield MovieDetailLoaded(movie: movie);
+      } catch (e) {
+        yield MovieDetailFailToLoad(message: e.toString());
+      }
     }
   }
 }
