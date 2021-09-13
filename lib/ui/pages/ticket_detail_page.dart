@@ -76,7 +76,7 @@ class _TicketDetailPageState extends State<TicketDetailPage> {
         .replaceAll(':', '-');
 
     await ImageGallerySaver.saveImage(imageBytes,
-        name: '${widget.ticket.movie?.title}_$time');
+        name: '${widget.ticket.movieTitle}_$time');
   }
 
   Future<void> shareImage(Uint8List bytes) async {

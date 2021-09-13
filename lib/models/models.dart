@@ -1,7 +1,7 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
-import 'movie.dart';
 
 part 'flutix_transaction.dart';
 part 'promo.dart';

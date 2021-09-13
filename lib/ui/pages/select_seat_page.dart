@@ -41,7 +41,7 @@ class _SelectSeatPageState extends State<SelectSeatPage> {
                         margin: EdgeInsets.only(right: 16),
                         width: MediaQuery.of(context).size.width / 2,
                         child: Text(
-                          widget.ticket.movie!.title,
+                          widget.ticket.movieTitle!,
                           style: blackTextFont.copyWith(fontSize: 20),
                           maxLines: 2,
                           overflow: TextOverflow.clip,
@@ -56,7 +56,7 @@ class _SelectSeatPageState extends State<SelectSeatPage> {
                           image: DecorationImage(
                               image: NetworkImage(imageBaseUrl +
                                   'w154' +
-                                  widget.ticket.movie!.posterPath),
+                                  widget.ticket.moviePosterPath!),
                               fit: BoxFit.cover),
                         ),
                       )
@@ -92,7 +92,8 @@ class _SelectSeatPageState extends State<SelectSeatPage> {
                 onPressed: selectedSeats.length > 0
                     ? () {
                         Navigator.of(context).push(routeTransition(CheckoutPage(
-                            widget.ticket.copyWith(seats: selectedSeats))));
+                            widget.ticket.copyWith(
+                                seats: seatsInString(selectedSeats)))));
                       }
                     : null,
               ),

@@ -58,7 +58,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                           image: DecorationImage(
                               image: NetworkImage(imageBaseUrl +
                                   'w342' +
-                                  widget.ticket.movie!.posterPath),
+                                  widget.ticket.moviePosterPath!),
                               fit: BoxFit.cover)),
                     ),
                     Column(
@@ -70,7 +70,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                               70 -
                               20,
                           child: Text(
-                            widget.ticket.movie!.title,
+                            widget.ticket.movieTitle!,
                             style: blackTextFont.copyWith(fontSize: 18),
                             maxLines: 2,
                             overflow: TextOverflow.clip,
@@ -83,7 +83,9 @@ class _CheckoutPageState extends State<CheckoutPage> {
                               70 -
                               20,
                           child: Text(
-                            widget.ticket.movie!.genresAndLanguage,
+                            genresAndLanguage(widget.ticket.movieGenres!,
+                                widget.ticket.movieLanguage!),
+                            // widget.ticket.movie!.genresAndLanguage,
                             style: greyTextFont.copyWith(
                                 fontSize: 12, fontWeight: FontWeight.w400),
                             maxLines: 2,
@@ -91,7 +93,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                           ),
                         ),
                         RatingStars(
-                          voteAverage: widget.ticket.movie!.voteAverage,
+                          voteAverage: widget.ticket.movieVoteAverage!,
                           color: accentColor3,
                         )
                       ],
@@ -145,7 +147,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       SizedBox(
                         width: MediaQuery.of(context).size.width * 0.55,
                         child: Text(
-                          widget.ticket.theater!.name!,
+                          widget.ticket.theaterName!,
                           style: blackTextFont.copyWith(
                               fontSize: 16, fontWeight: FontWeight.w400),
                           textAlign: TextAlign.end,
@@ -198,7 +200,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       SizedBox(
                         width: MediaQuery.of(context).size.width * 0.55,
                         child: Text(
-                          widget.ticket.seatsInString,
+                          widget.ticket.seats!,
                           style: whiteNumberFont.copyWith(
                               color: Colors.black,
                               fontSize: 16,
@@ -354,17 +356,17 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   onPressed: () async {
                     if (user.balance! >= total) {
                       context.read<UserBloc>().add(Purchase(total));
-                      context.read<TicketBloc>().add(BuyTicket(
-                          widget.ticket.copyWith(totalPrice: total), user.id));
+                      context.read<TicketBloc>().add(
+                          BuyTicket(widget.ticket.copyWith(totalPrice: total)));
 
                       await FlutixTransactionServices.saveTransaction(
                           FlutixTransaction(
                               userID: user.id,
-                              title: widget.ticket.movie!.title,
-                              subtitle: widget.ticket.theater!.name,
+                              title: widget.ticket.movieTitle,
+                              subtitle: widget.ticket.theaterName,
                               time: DateTime.now(),
                               amount: -total,
-                              picture: widget.ticket.movie!.posterPath));
+                              picture: widget.ticket.moviePosterPath));
 
                       await NotificationService.setScheduleMovie(
                           Random().nextInt(100) + 1,

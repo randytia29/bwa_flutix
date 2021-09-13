@@ -16,7 +16,7 @@ class TicketBloc extends Bloc<TicketEvent, TicketState> {
     TicketEvent event,
   ) async* {
     if (event is BuyTicket) {
-      await TicketServices.saveTicket(event.userID, event.ticket);
+      await TicketServices.saveTicket(event.ticket);
       List<Ticket> tickets = state.tickets + [event.ticket];
       yield TicketState(tickets);
     } else if (event is GetTickets) {

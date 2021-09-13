@@ -80,36 +80,50 @@ class _SelectSchedulePageState extends State<SelectSchedulePage> {
             Align(
               alignment: Alignment.topCenter,
               child: BlocBuilder<UserBloc, UserState>(
-                builder: (_, userState) => FloatingActionButton(
-                  elevation: 0,
-                  backgroundColor: isValid ? mainColor : Color(0xFFE4E4E4),
-                  child: Icon(
-                    Icons.arrow_forward,
-                    color: isValid ? Colors.white : Color(0xFFBEBEBE),
-                  ),
-                  onPressed: () {
-                    if (isValid) {
-                      Navigator.of(context).push(
-                        routeTransition(
-                          SelectSeatPage(
-                            Ticket(
-                                widget.movie,
-                                selectedTheater,
-                                DateTime(
-                                    selectedDate!.year,
-                                    selectedDate!.month,
-                                    selectedDate!.day,
-                                    selectedTime!),
-                                randomAlphaNumeric(12).toUpperCase(),
-                                null,
-                                (userState as UserLoaded).user.name,
-                                null),
-                          ),
-                        ),
-                      );
-                    }
-                  },
-                ),
+                builder: (_, userState) {
+                  if (userState is UserLoaded) {
+                    final user = userState.user;
+                    return FloatingActionButton(
+                      elevation: 0,
+                      backgroundColor: isValid ? mainColor : Color(0xFFE4E4E4),
+                      child: Icon(
+                        Icons.arrow_forward,
+                        color: isValid ? Colors.white : Color(0xFFBEBEBE),
+                      ),
+                      onPressed: () {
+                        if (isValid) {
+                          Navigator.of(context).push(
+                            routeTransition(
+                              SelectSeatPage(
+                                Ticket(
+                                    widget.movie?.id,
+                                    widget.movie?.title,
+                                    widget.movie?.voteAverage,
+                                    widget.movie?.overview,
+                                    widget.movie?.posterPath,
+                                    widget.movie?.backdropPath,
+                                    widget.movie?.language,
+                                    widget.movie?.genres,
+                                    user.id,
+                                    selectedTheater?.name,
+                                    DateTime(
+                                        selectedDate!.year,
+                                        selectedDate!.month,
+                                        selectedDate!.day,
+                                        selectedTime!),
+                                    randomAlphaNumeric(12).toUpperCase(),
+                                    null,
+                                    user.name,
+                                    null),
+                              ),
+                            ),
+                          );
+                        }
+                      },
+                    );
+                  }
+                  return Container();
+                },
               ),
             )
           ],

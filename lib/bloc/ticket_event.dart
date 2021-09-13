@@ -15,10 +15,9 @@ class GetTickets extends TicketEvent {
 
 class BuyTicket extends TicketEvent {
   final Ticket ticket;
-  final String userID;
 
-  BuyTicket(this.ticket, this.userID);
+  BuyTicket(this.ticket);
 
   @override
-  List<Object> get props => [ticket, userID];
+  List<Object> get props => [ticket];
 }

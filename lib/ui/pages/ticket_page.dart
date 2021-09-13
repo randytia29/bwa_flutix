@@ -175,7 +175,7 @@ class TicketViewer extends StatelessWidget {
                     image: DecorationImage(
                         image: NetworkImage(imageBaseUrl +
                             "w500" +
-                            sortedTickets[index].movie!.posterPath),
+                            sortedTickets[index].moviePosterPath!),
                         fit: BoxFit.cover)),
               ),
               SizedBox(
@@ -185,7 +185,7 @@ class TicketViewer extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      sortedTickets[index].movie!.title,
+                      sortedTickets[index].movieTitle!,
                       style: blackTextFont.copyWith(fontSize: 18),
                       maxLines: 2,
                       overflow: TextOverflow.clip,
@@ -193,13 +193,15 @@ class TicketViewer extends StatelessWidget {
                     Container(
                       margin: EdgeInsets.symmetric(vertical: 6),
                       child: Text(
-                        sortedTickets[index].movie!.genresAndLanguage,
+                        genresAndLanguage(sortedTickets[index].movieGenres!,
+                            sortedTickets[index].movieLanguage!),
+                        // sortedTickets[index].movie!.genresAndLanguage,
                         style: greyTextFont.copyWith(
                             fontSize: 12, fontWeight: FontWeight.w400),
                       ),
                     ),
                     Text(
-                      sortedTickets[index].theater!.name!,
+                      sortedTickets[index].theaterName!,
                       style: greyTextFont.copyWith(
                           fontSize: 12, fontWeight: FontWeight.w400),
                       maxLines: 2,

@@ -23,7 +23,7 @@ class TicketDetailCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  ticket.movie!.title,
+                  ticket.movieTitle!,
                   style: blackTextFont.copyWith(fontSize: 18),
                   maxLines: 2,
                   overflow: TextOverflow.clip,
@@ -32,7 +32,8 @@ class TicketDetailCard extends StatelessWidget {
                   height: 6,
                 ),
                 Text(
-                  ticket.movie!.genresAndLanguage,
+                  genresAndLanguage(ticket.movieGenres!, ticket.movieLanguage!),
+                  // ticket.movie!.genresAndLanguage,
                   style: greyTextFont.copyWith(fontSize: 12),
                   maxLines: 2,
                   overflow: TextOverflow.clip,
@@ -41,7 +42,7 @@ class TicketDetailCard extends StatelessWidget {
                   height: 6,
                 ),
                 RatingStars(
-                  voteAverage: ticket.movie!.voteAverage,
+                  voteAverage: ticket.movieVoteAverage!,
                   color: Colors.grey,
                 ),
                 SizedBox(
@@ -49,7 +50,7 @@ class TicketDetailCard extends StatelessWidget {
                 ),
                 TicketDetailInfo(
                   title: 'Cinema',
-                  subtitle: ticket.theater!.name!,
+                  subtitle: ticket.theaterName!,
                   subtitleStyle: blackTextFont.copyWith(fontSize: 16),
                 ),
                 SizedBox(
@@ -66,7 +67,7 @@ class TicketDetailCard extends StatelessWidget {
                 ),
                 TicketDetailInfo(
                   title: 'Seat Number',
-                  subtitle: ticket.seatsInString,
+                  subtitle: ticket.seats!,
                   subtitleStyle: whiteNumberFont.copyWith(
                       fontSize: 16, color: Colors.black),
                 ),
