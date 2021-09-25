@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import '../models/models.dart';
 import '../services/services.dart';
@@ -9,19 +7,18 @@ part 'ticket_event.dart';
 part 'ticket_state.dart';
 
 class TicketBloc extends Bloc<TicketEvent, TicketState> {
-  TicketBloc() : super(TicketState([]));
-
-  @override
-  Stream<TicketState> mapEventToState(
-    TicketEvent event,
-  ) async* {
-    if (event is BuyTicket) {
+  TicketBloc() : super(TicketState([])) {
+    on<BuyTicket>((event, emit) async {
       await TicketServices.saveTicket(event.ticket);
       List<Ticket> tickets = state.tickets + [event.ticket];
-      yield TicketState(tickets);
-    } else if (event is GetTickets) {
+
+      emit(TicketState(tickets));
+    });
+
+    on<GetTickets>((event, emit) async {
       List<Ticket> tickets = await TicketServices.getTickets(event.userID);
-      yield TicketState(tickets);
-    }
+
+      emit(TicketState(tickets));
+    });
   }
 }

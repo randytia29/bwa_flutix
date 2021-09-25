@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:bwaflutix/injection_container.dart';
 import 'package:bwaflutix/services/shared_pref.dart';
@@ -10,20 +8,15 @@ part 'authentication_state.dart';
 
 class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
-  AuthenticationBloc() : super(AuthenticationInitial());
-
-  @override
-  Stream<AuthenticationState> mapEventToState(
-    AuthenticationEvent event,
-  ) async* {
-    if (event is CheckIsAuthenticated) {
+  AuthenticationBloc() : super(AuthenticationInitial()) {
+    on<CheckIsAuthenticated>((event, emit) {
       String? userId = sl<SharedPref>().getUserId();
 
       if (userId == null || userId.isEmpty) {
-        yield Unauthenticated();
+        emit(Unauthenticated());
       } else {
-        yield Authenticated(userId);
+        emit(Authenticated(userId));
       }
-    }
+    });
   }
 }
