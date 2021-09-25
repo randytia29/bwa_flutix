@@ -24,7 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
   another_flushbar: ^1.10.24
-  cloud_firestore: ^2.5.2
+  cloud_firestore: ^2.5.3
   cupertino_icons: ^1.0.3
   dotted_line: ^3.0.0
   email_validator: ^2.0.1
@@ -33,7 +33,7 @@ dependencies:
   firebase_core: ^1.6.0
   firebase_messaging: ^10.0.7
   firebase_storage: ^10.0.3
-  flutter_bloc: ^7.2.0
+  flutter_bloc: ^7.3.0
   flutter_dotenv: ^5.0.2
   flutter_image_compress: ^1.1.0
   flutter_local_notifications: ^8.2.0
@@ -43,23 +43,23 @@ dependencies:
   google_fonts: ^2.1.0
   http: ^0.13.3
   image_cropper: ^1.4.1
-  image_gallery_saver: ^1.6.9
-  image_picker: ^0.8.4
+  image_gallery_saver: ^1.7.0
+  image_picker: ^0.8.4+2
   internet_connection_checker: ^0.0.1+2
   intl: ^0.17.0
   material_design_icons_flutter: ^5.0.5955-rc.1
-  path_provider: ^2.0.3
+  path_provider: ^2.0.5
   permission_handler: ^8.1.6
   qr_flutter: ^4.0.0
   random_string: ^2.3.1
   screenshot: ^1.2.3
   share_plus: ^2.1.4
-  shared_preferences: ^2.0.7
+  shared_preferences: ^2.0.8
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  mockito: ^5.0.15
+  mockito: ^5.0.16
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

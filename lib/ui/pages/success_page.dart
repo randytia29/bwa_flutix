@@ -62,7 +62,8 @@ class SuccessPage extends StatelessWidget {
                   : () {
                       Navigator.of(context)
                         ..popUntil((route) => route.isFirst)
-                        ..pushReplacement(routeTransition(MainPage(
+                        ..pop()
+                        ..push(routeTransition(MainPage(
                           bottomNavBarIndex: 1,
                         )));
                     },
@@ -79,9 +80,7 @@ class SuccessPage extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.of(context)
-                        ..popUntil((route) => route.isFirst)
-                        ..pushReplacement(routeTransition(MainPage()));
+                      Navigator.of(context)..popUntil((route) => route.isFirst);
                     },
                     child: Text(
                       "Back to Home",

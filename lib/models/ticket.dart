@@ -71,6 +71,9 @@ class Ticket extends Equatable {
       );
 
   factory Ticket.fromJson(QueryDocumentSnapshot document) {
+    final rawGenres = List.from(document['movieGenres']);
+    final genres = rawGenres.map<String>((e) => e).toList();
+
     return Ticket(
         document['movieID'],
         document['movieTitle'],
@@ -79,7 +82,7 @@ class Ticket extends Equatable {
         document['moviePosterPath'],
         document['movieBackdropPath'],
         document['movieLanguage'],
-        document['movieGenres'],
+        genres,
         document['userID'],
         document['theaterName'],
         DateTime.fromMillisecondsSinceEpoch(document['time']),

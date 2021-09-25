@@ -368,11 +368,11 @@ class _CheckoutPageState extends State<CheckoutPage> {
                               amount: -total,
                               picture: widget.ticket.moviePosterPath));
 
-                      await NotificationService.setScheduleMovie(
-                          Random().nextInt(100) + 1,
-                          'Movie Coming',
-                          'Hurry up',
-                          widget.ticket.time);
+                      // await NotificationService.setScheduleMovie(
+                      //     Random().nextInt(100) + 1,
+                      //     'Movie Coming',
+                      //     'Hurry up',
+                      //     widget.ticket.time);
 
                       await NotificationService.showNotificationNow(
                           1, 'Ticket Bought', 'Congratulation');
