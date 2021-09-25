@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import '../../domain/usecases/get_credits.dart';
 import '../../domain/entities/credit.dart';
@@ -14,24 +12,18 @@ class CreditBloc extends Bloc<CreditEvent, CreditState> {
   CreditBloc({required GetCredits? credits})
       : assert(credits != null),
         getCredits = credits,
-        super(CreditInitial());
-
-  @override
-  Stream<CreditState> mapEventToState(
-    CreditEvent event,
-  ) async* {
-    if (event is FetchCredit) {
-      yield CreditLoading();
-
+        super(CreditInitial()) {
+    on<FetchCredit>((event, emit) async {
+      emit(CreditLoading());
       try {
         final credits = await getCredits!(Params(movieID: event.movieID));
         credits?.removeWhere((element) =>
             element.profilePath.isEmpty || element.profilePath == '');
 
-        yield CreditLoaded(credits: credits);
+        emit(CreditLoaded(credits: credits));
       } catch (e) {
-        yield CreditFailToLoad(message: e.toString());
+        emit(CreditFailToLoad(message: e.toString()));
       }
-    }
+    });
   }
 }

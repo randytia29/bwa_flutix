@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import '../../domain/usecases/get_details.dart';
 import '../../domain/entities/movie.dart';
@@ -14,21 +12,16 @@ class MovieDetailBloc extends Bloc<MovieDetailEvent, MovieDetailState> {
   MovieDetailBloc({required GetDetails? details})
       : assert(details != null),
         getDetails = details,
-        super(MovieDetailInitial());
-
-  @override
-  Stream<MovieDetailState> mapEventToState(
-    MovieDetailEvent event,
-  ) async* {
-    if (event is FetchMovieDetail) {
-      yield MovieDetailLoading();
+        super(MovieDetailInitial()) {
+    on<FetchMovieDetail>((event, emit) async {
+      emit(MovieDetailLoading());
       try {
         final movie = await getDetails!(Params(movieID: event.movieID));
 
-        yield MovieDetailLoaded(movie: movie);
+        emit(MovieDetailLoaded(movie: movie));
       } catch (e) {
-        yield MovieDetailFailToLoad(message: e.toString());
+        emit(MovieDetailFailToLoad(message: e.toString()));
       }
-    }
+    });
   }
 }
