@@ -1,16 +1,16 @@
+import 'package:bwaflutix/features/movie/domain/entities/movie_detail.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../../../core/usecases/usecase.dart';
-import '../entities/movie.dart';
 import '../repositories/movie_repository.dart';
 
-class GetDetails implements Usecase<Movie, Params> {
+class GetDetails implements Usecase<MovieDetail, Params> {
   final MovieRepository? repository;
 
   GetDetails(this.repository);
 
   @override
-  Future<Movie?> call(Params params) async {
+  Future<MovieDetail?> call(Params params) async {
     return await repository?.getDetails(params.movieID);
   }
 }

@@ -1,9 +1,11 @@
 import 'package:bwaflutix/core/network/network_info.dart';
 import 'package:bwaflutix/features/movie/data/datasources/movie_local_data_source.dart';
 import 'package:bwaflutix/features/movie/data/datasources/movie_remote_data_source.dart';
+import 'package:bwaflutix/features/movie/data/models/movie_detail_model.dart';
 import 'package:bwaflutix/features/movie/data/models/movie_model.dart';
 import 'package:bwaflutix/features/movie/data/repositories/movie_repository_impl.dart';
 import 'package:bwaflutix/features/movie/domain/entities/movie.dart';
+import 'package:bwaflutix/features/movie/domain/entities/movie_detail.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
@@ -53,7 +55,7 @@ void main() {
 
   group('getDetails', () {
     final tMovieID = 1;
-    final tMovieModel = MovieModel(
+    final tMovieModel = MovieDetailModel(
         id: 436969,
         title: 'The Suicide Squad',
         voteAverage: 8,
@@ -61,8 +63,9 @@ void main() {
             'Supervillains Harley Quinn, Bloodsport, Peacemaker and a collection of nutty cons at Belle Reve prison join the super-secret, super-shady Task Force X as they are dropped off at the remote, enemy-infused island of Corto Maltese.',
         posterPath: '/iXbWpCkIauBMStSTUT9v4GXvdgH.jpg',
         backdropPath: '/jlGmlFOcfo8n5tURmhC7YVd4Iyy.jpg',
-        language: 'en');
-    final Movie tMovie = tMovieModel;
+        language: 'en',
+        genres: ['Comedy', 'Crime']);
+    final MovieDetail tMovie = tMovieModel;
 
     test('should check if the device is online', () async {
       when(mockNetworkInfo?.isConnected)

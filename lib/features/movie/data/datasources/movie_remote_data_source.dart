@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:bwaflutix/features/movie/data/models/movie_detail_model.dart';
+
 import '../../../../core/error/exceptions.dart';
 import '../../../../shared/shared.dart';
 
@@ -8,7 +10,7 @@ import 'package:http/http.dart' as http;
 
 abstract class MovieRemoteDataSource {
   Future<List<MovieModel>>? getMovies(int? page);
-  Future<MovieModel>? getDetails(int? movieID);
+  Future<MovieDetailModel>? getDetails(int? movieID);
 }
 
 class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
@@ -17,7 +19,7 @@ class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
   MovieRemoteDataSourceImpl({required this.client});
 
   @override
-  Future<MovieModel>? getDetails(int? movieID) async {
+  Future<MovieDetailModel>? getDetails(int? movieID) async {
     final url = Uri.https(
         baseUrl, '/3/movie/$movieID', {'api_key': apiKey, 'language': 'en-US'});
 
@@ -26,7 +28,7 @@ class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
     if (response?.statusCode == 200) {
       final data = json.decode(response!.body);
 
-      return MovieModel.fromJson(data);
+      return MovieDetailModel.fromJson(data);
     } else {
       throw ServerException();
     }

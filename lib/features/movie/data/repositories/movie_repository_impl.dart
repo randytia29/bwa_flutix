@@ -1,3 +1,5 @@
+import 'package:bwaflutix/features/movie/domain/entities/movie_detail.dart';
+
 import '../../../../core/network/network_info.dart';
 
 import '../datasources/movie_local_data_source.dart';
@@ -16,7 +18,7 @@ class MovieRepositoryImpl implements MovieRepository {
       required this.networkInfo});
 
   @override
-  Future<Movie?>? getDetails(int? movieID) async {
+  Future<MovieDetail?>? getDetails(int? movieID) async {
     if ((await networkInfo?.isConnected)!) {
       try {
         final remoteMovie = await remoteDataSource?.getDetails(movieID);

@@ -12,7 +12,7 @@ class MovieDetailInitial extends MovieDetailState {}
 class MovieDetailLoading extends MovieDetailState {}
 
 class MovieDetailLoaded extends MovieDetailState {
-  final Movie? movie;
+  final MovieDetail? movie;
 
   MovieDetailLoaded({required this.movie});
 }

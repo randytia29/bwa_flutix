@@ -1,4 +1,4 @@
-import 'package:bwaflutix/features/movie/domain/entities/movie.dart';
+import 'package:bwaflutix/features/movie/domain/entities/movie_detail.dart';
 import 'package:bwaflutix/features/movie/domain/repositories/movie_repository.dart';
 import 'package:bwaflutix/features/movie/domain/usecases/get_details.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -16,7 +16,7 @@ void main() {
   });
 
   final tMovieID = 1;
-  final tMovie = Movie(
+  final tMovie = MovieDetail(
     id: 1,
     title: 'title',
     voteAverage: 5.0,
@@ -24,6 +24,7 @@ void main() {
     posterPath: 'posterPath',
     backdropPath: 'backdropPath',
     language: 'language',
+    genres: ['Comedy', 'Crime'],
   );
 
   test('should get movie detail from the repository', () async {

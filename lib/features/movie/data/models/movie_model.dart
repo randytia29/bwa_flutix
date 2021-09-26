@@ -8,8 +8,7 @@ class MovieModel extends Movie {
       required String overview,
       required String posterPath,
       required String backdropPath,
-      required String language,
-      List<String>? genres})
+      required String language})
       : super(
             id: id,
             title: title,
@@ -53,8 +52,7 @@ class MovieModel extends Movie {
         overview: json['overview'],
         posterPath: json['poster_path'],
         backdropPath: json['backdrop_path'],
-        language: json['original_language'],
-        genres: json['genres']);
+        language: json['original_language']);
   }
 
   Map<String, dynamic> toJson() {

@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
+import 'package:bwaflutix/features/movie/domain/entities/movie_detail.dart';
 import '../../domain/usecases/get_details.dart';
-import '../../domain/entities/movie.dart';
 import 'package:equatable/equatable.dart';
 
 part 'movie_detail_event.dart';
