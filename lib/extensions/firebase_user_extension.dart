@@ -1,4 +1,6 @@
-part of 'extensions.dart';
+import 'package:bwaflutix/models/user.dart';
+import 'package:bwaflutix/services/user_services.dart';
+import 'package:firebase_auth/firebase_auth.dart' as auth;
 
 extension FirebaseUserExtension on auth.User {
   User convertToUser(

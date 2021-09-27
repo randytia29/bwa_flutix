@@ -1,4 +1,5 @@
-part of 'services.dart';
+import 'package:bwaflutix/models/user.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UserServices {
   static CollectionReference _userCollection =

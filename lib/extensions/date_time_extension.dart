@@ -1,5 +1,3 @@
-part of 'extensions.dart';
-
 extension DateTimeExtension on DateTime {
   String get dateAndTime => '${this.shortDayName} ${this.day}, ${this.hour}:00';
 

@@ -2,15 +2,17 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:bwaflutix/core/util/convert_to_string.dart';
+import 'package:bwaflutix/extensions/date_time_extension.dart';
+import 'package:bwaflutix/extensions/string_extension.dart';
 import 'package:bwaflutix/features/credit/presentation/bloc/credit_bloc.dart';
 import 'package:bwaflutix/features/movie/domain/entities/movie_detail.dart';
 import 'package:bwaflutix/features/movie/presentation/bloc/movie_bloc.dart';
 import 'package:bwaflutix/features/movie/presentation/bloc/movie_detail_bloc.dart';
 import 'package:bwaflutix/injection_container.dart';
+import 'package:bwaflutix/models/user.dart';
 import 'package:bwaflutix/services/shared_pref.dart';
 
 import '../../bloc/blocs.dart';
-import '../../extensions/extensions.dart';
 import '../../models/models.dart';
 import '../../services/services.dart';
 import '../../shared/shared.dart';

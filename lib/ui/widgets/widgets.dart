@@ -1,8 +1,10 @@
 import 'package:bwaflutix/core/util/convert_to_string.dart';
+import 'package:bwaflutix/extensions/date_time_extension.dart';
 import 'package:bwaflutix/features/credit/domain/entities/credit.dart';
 import 'package:bwaflutix/features/credit/presentation/bloc/credit_bloc.dart';
 import 'package:bwaflutix/features/movie/domain/entities/movie.dart';
 import 'package:bwaflutix/features/movie/presentation/bloc/movie_bloc.dart';
+import 'package:bwaflutix/models/user.dart';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,7 +16,6 @@ import 'package:provider/provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 import '../../bloc/blocs.dart';
-import '../../extensions/extensions.dart';
 import '../../models/models.dart';
 import '../../shared/shared.dart';
 import '../pages/pages.dart';
