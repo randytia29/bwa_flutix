@@ -10,10 +10,12 @@ class MovieDetailPage extends StatefulWidget {
 }
 
 class _MovieDetailPageState extends State<MovieDetailPage> {
+  final movieDetailBloc = sl<MovieDetailBloc>();
   final creditBloc = sl<CreditBloc>();
 
   @override
   void initState() {
+    movieDetailBloc.add(FetchMovieDetail(movieID: widget.movieID));
     creditBloc.add(FetchCredit(movieID: widget.movieID));
     super.initState();
   }
@@ -21,8 +23,15 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocProvider(
-        create: (context) => creditBloc,
+      body: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => movieDetailBloc,
+          ),
+          BlocProvider(
+            create: (context) => creditBloc,
+          )
+        ],
         child: BlocBuilder<MovieDetailBloc, MovieDetailState>(
           builder: (_, movieDetailState) {
             if (movieDetailState is MovieDetailLoading) {
@@ -32,7 +41,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
               );
             }
             if (movieDetailState is MovieDetailLoaded) {
-              final movie = movieDetailState.movie;
+              final movieDetail = movieDetailState.movie;
 
               return SafeArea(
                 child: Container(
@@ -43,24 +52,26 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                           Container(
                             height: 270,
                             decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: NetworkImage(imageBaseUrl +
-                                        'w780' +
-                                        movie!.backdropPath),
-                                    fit: BoxFit.cover)),
+                              image: DecorationImage(
+                                  image: NetworkImage(imageBaseUrl +
+                                      'w780' +
+                                      movieDetail!.backdropPath),
+                                  fit: BoxFit.cover),
+                            ),
                           ),
                           Align(
                             alignment: Alignment.bottomCenter,
                             child: Container(
                               height: 270,
                               decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                      colors: [
-                                    Color(0xFFF6F7F9),
-                                    Colors.transparent
-                                  ],
-                                      begin: Alignment.bottomCenter,
-                                      end: Alignment.topCenter)),
+                                gradient: LinearGradient(
+                                    colors: [
+                                      Color(0xFFF6F7F9),
+                                      Colors.transparent
+                                    ],
+                                    begin: Alignment.bottomCenter,
+                                    end: Alignment.topCenter),
+                              ),
                             ),
                           ),
                           Align(
@@ -88,7 +99,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                         child: Column(
                           children: <Widget>[
                             Text(
-                              movie.title,
+                              movieDetail.title,
                               textAlign: TextAlign.center,
                               style: blackTextFont.copyWith(fontSize: 24),
                             ),
@@ -96,7 +107,8 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                               height: 6,
                             ),
                             Text(
-                              movie.genresAndLanguage,
+                              genresAndLanguage(
+                                  movieDetail.genres, movieDetail.language),
                               style: blackTextFont.copyWith(fontSize: 12),
                               textAlign: TextAlign.center,
                             ),
@@ -104,7 +116,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                               height: 6,
                             ),
                             RatingStars(
-                              voteAverage: movie.voteAverage,
+                              voteAverage: movieDetail.voteAverage,
                               color: accentColor3,
                               alignment: MainAxisAlignment.center,
                             )
@@ -123,7 +135,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                         margin: EdgeInsets.fromLTRB(
                             defaultMargin, 0, defaultMargin, 30),
                         child: Text(
-                          movie.overview,
+                          movieDetail.overview,
                           textAlign: TextAlign.justify,
                         ),
                       ),
@@ -135,8 +147,8 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                           style: whiteTextFont.copyWith(fontSize: 16),
                         ),
                         onPressed: () {
-                          Navigator.of(context)
-                              .push(routeTransition(SelectSchedulePage(movie)));
+                          Navigator.of(context).push(
+                              routeTransition(SelectSchedulePage(movieDetail)));
                         },
                       ),
                       SizedBox(

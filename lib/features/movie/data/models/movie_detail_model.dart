@@ -21,6 +21,10 @@ class MovieDetailModel extends MovieDetail {
             genres: genres);
 
   factory MovieDetailModel.fromJson(Map<String, dynamic> json) {
+    final genres = List.from(json['genres'])
+        .map<String>((e) => (e as Map<String, dynamic>)['name'])
+        .toList();
+
     return MovieDetailModel(
         id: json['id'],
         title: json['title'],
@@ -29,7 +33,7 @@ class MovieDetailModel extends MovieDetail {
         posterPath: json['poster_path'],
         backdropPath: json['backdrop_path'],
         language: json['original_language'],
-        genres: json['genres']);
+        genres: genres);
   }
 
   Map<String, dynamic> toJson() {

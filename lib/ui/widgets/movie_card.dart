@@ -9,9 +9,9 @@ class MovieCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context
-            .read<MovieDetailBloc>()
-            .add(FetchMovieDetail(movieID: movie.id));
+        // context
+        //     .read<MovieDetailBloc>()
+        //     .add(FetchMovieDetail(movieID: movie.id));
 
         Navigator.of(context).push(routeTransition(MovieDetailPage(
           movieID: movie.id,
