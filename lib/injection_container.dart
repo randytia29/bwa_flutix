@@ -1,4 +1,12 @@
+import 'package:bwaflutix/features/ticket/data/datasources/ticket_local_data_source.dart';
+import 'package:bwaflutix/features/ticket/data/datasources/ticket_remote_data_source.dart';
+import 'package:bwaflutix/features/ticket/data/repositories/ticket_repository_impl.dart';
+import 'package:bwaflutix/features/ticket/domain/repositories/ticket_repository.dart';
+import 'package:bwaflutix/features/ticket/domain/usecases/get_tickets.dart';
+import 'package:bwaflutix/features/ticket/domain/usecases/save_ticket.dart';
+import 'package:bwaflutix/features/ticket/presentation/bloc/ticket_bloc.dart';
 import 'package:bwaflutix/services/shared_pref.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'core/network/network_info.dart';
 import 'features/credit/data/datasources/credit_local_data_source.dart';
@@ -23,23 +31,32 @@ import 'package:shared_preferences/shared_preferences.dart';
 final sl = GetIt.instance;
 
 Future<void> init() async {
+  // Shared Preference
   final sharedPreferences = await SharedPreferences.getInstance();
+
+  // Firebase Firestore
+  final firebaseFirestore = FirebaseFirestore.instance;
 
   //! Features
   // Bloc
   sl.registerFactory(() => MovieBloc(movies: sl()));
   sl.registerFactory(() => MovieDetailBloc(details: sl()));
   sl.registerFactory(() => CreditBloc(credits: sl()));
+  sl.registerFactory(() => TicketBloc(tickets: sl()));
 
   // Use cases
   sl.registerLazySingleton(() => GetMovies(sl()));
   sl.registerLazySingleton(() => GetDetails(sl()));
   sl.registerLazySingleton(() => GetCredits(sl()));
+  sl.registerLazySingleton(() => GetTickets(sl()));
+  sl.registerLazySingleton(() => SaveTicket(sl()));
 
   // Repository
   sl.registerLazySingleton<MovieRepository>(() => MovieRepositoryImpl(
       remoteDataSource: sl(), localDataSource: sl(), networkInfo: sl()));
   sl.registerLazySingleton<CreditRepository>(() => CreditRepositoryImpl(
+      remoteDataSource: sl(), localDataSource: sl(), networkInfo: sl()));
+  sl.registerLazySingleton<TicketRepository>(() => TicketRepositoryImpl(
       remoteDataSource: sl(), localDataSource: sl(), networkInfo: sl()));
 
   // Data sources
@@ -47,10 +64,16 @@ Future<void> init() async {
       () => MovieRemoteDataSourceImpl(client: sl()));
   sl.registerLazySingleton<MovieLocalDataSource>(
       () => MovieLocalDataSourceImpl(sharedPreferences: sharedPreferences));
+
   sl.registerLazySingleton<CreditRemoteDataSource>(
       () => CreditRemoteDataSourceImpl(client: sl()));
   sl.registerLazySingleton<CreditLocalDataSource>(
       () => CreditLocalDataSourceImpl(sharedPreferences: sharedPreferences));
+
+  sl.registerLazySingleton<TicketRemoteDataSource>(
+      () => TicketRemoteDataSourceImpl(firebaseFirestore: firebaseFirestore));
+  sl.registerLazySingleton<TicketLocalDataSource>(
+      () => TicketLocalDataSourceImpl(sharedPreferences: sharedPreferences));
 
   //! Core
   sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));
