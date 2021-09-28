@@ -21,5 +21,5 @@ class Params extends Equatable {
   Params({this.movieID});
 
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [movieID];
 }

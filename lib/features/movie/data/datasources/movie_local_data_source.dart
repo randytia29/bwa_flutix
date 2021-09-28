@@ -33,6 +33,7 @@ class MovieLocalDataSourceImpl implements MovieLocalDataSource {
   Future<void>? cacheMovies(List<MovieModel>? moviesToCache) {
     final jsonMap = moviesToCache?.map((e) => e.toJson()).toList();
     final jsonString = json.encode(jsonMap);
+
     return sharedPreferences?.setString(CACHED_MOVIE_LIST, jsonString);
   }
 
@@ -53,6 +54,7 @@ class MovieLocalDataSourceImpl implements MovieLocalDataSource {
       final response = json.decode(jsonString);
       final result =
           List.from(response).map((e) => MovieModel.fromJson(e)).toList();
+
       return Future.value(result);
     } else {
       throw CacheException();

@@ -22,5 +22,5 @@ class Params extends Equatable {
   Params({this.page});
 
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [page];
 }
