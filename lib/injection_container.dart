@@ -4,6 +4,7 @@ import 'package:bwaflutix/features/ticket/data/repositories/ticket_repository_im
 import 'package:bwaflutix/features/ticket/domain/repositories/ticket_repository.dart';
 import 'package:bwaflutix/features/ticket/domain/usecases/get_tickets.dart';
 import 'package:bwaflutix/features/ticket/domain/usecases/save_ticket.dart';
+import 'package:bwaflutix/features/ticket/presentation/bloc/order_ticket_bloc.dart';
 import 'package:bwaflutix/features/ticket/presentation/bloc/ticket_bloc.dart';
 import 'package:bwaflutix/services/shared_pref.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -43,6 +44,7 @@ Future<void> init() async {
   sl.registerFactory(() => MovieDetailBloc(details: sl()));
   sl.registerFactory(() => CreditBloc(credits: sl()));
   sl.registerFactory(() => TicketBloc(tickets: sl()));
+  sl.registerFactory(() => OrderTicketBloc(ticket: sl()));
 
   // Use cases
   sl.registerLazySingleton(() => GetMovies(sl()));
