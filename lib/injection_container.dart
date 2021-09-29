@@ -1,12 +1,12 @@
-import 'package:bwaflutix/features/ticket/data/datasources/ticket_local_data_source.dart';
-import 'package:bwaflutix/features/ticket/data/datasources/ticket_remote_data_source.dart';
-import 'package:bwaflutix/features/ticket/data/repositories/ticket_repository_impl.dart';
-import 'package:bwaflutix/features/ticket/domain/repositories/ticket_repository.dart';
-import 'package:bwaflutix/features/ticket/domain/usecases/get_tickets.dart';
-import 'package:bwaflutix/features/ticket/domain/usecases/save_ticket.dart';
-import 'package:bwaflutix/features/ticket/presentation/bloc/order_ticket_bloc.dart';
-import 'package:bwaflutix/features/ticket/presentation/bloc/ticket_bloc.dart';
-import 'package:bwaflutix/services/shared_pref.dart';
+import 'features/ticket/data/datasources/ticket_local_data_source.dart';
+import 'features/ticket/data/datasources/ticket_remote_data_source.dart';
+import 'features/ticket/data/repositories/ticket_repository_impl.dart';
+import 'features/ticket/domain/repositories/ticket_repository.dart';
+import 'features/ticket/domain/usecases/get_tickets.dart';
+import 'features/ticket/domain/usecases/save_ticket.dart';
+import 'features/ticket/presentation/bloc/order_ticket_bloc.dart';
+import 'features/ticket/presentation/bloc/ticket_bloc.dart';
+import 'services/shared_pref.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'core/network/network_info.dart';

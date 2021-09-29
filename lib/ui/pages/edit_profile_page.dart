@@ -1,4 +1,19 @@
-part of 'pages.dart';
+import 'dart:io';
+
+import '../../bloc/theme_bloc.dart';
+import '../../bloc/user_bloc.dart';
+import '../../models/user.dart';
+import '../../services/auth_services.dart';
+import '../../shared/page_transition.dart';
+import '../../shared/shared_methods.dart';
+import '../../shared/theme.dart';
+import 'profile_page.dart';
+import '../widgets/flutix_button.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:provider/provider.dart';
+import 'package:path/path.dart';
 
 class EditProfilePage extends StatefulWidget {
   final User user;

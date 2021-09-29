@@ -1,4 +1,4 @@
-part of 'models.dart';
+import 'dart:io';
 
 class RegistrationData {
   String name;

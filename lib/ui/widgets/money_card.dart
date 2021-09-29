@@ -1,4 +1,6 @@
-part of 'widgets.dart';
+import '../../shared/theme.dart';
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class MoneyCard extends StatelessWidget {
   final double? width;

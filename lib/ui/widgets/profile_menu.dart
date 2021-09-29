@@ -1,4 +1,13 @@
-part of 'widgets.dart';
+import '../../bloc/user_bloc.dart';
+import '../../models/user.dart';
+import '../../shared/page_transition.dart';
+import '../../shared/theme.dart';
+import '../pages/edit_profile_page.dart';
+import '../pages/splash_page.dart';
+import '../pages/wallet_page.dart';
+import 'profile_tile.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ProfileMenu extends StatelessWidget {
   const ProfileMenu({

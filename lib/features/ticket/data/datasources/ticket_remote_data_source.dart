@@ -1,4 +1,4 @@
-import 'package:bwaflutix/features/ticket/data/models/ticket_model.dart';
+import '../models/ticket_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 abstract class TicketRemoteDataSource {

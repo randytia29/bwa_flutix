@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:bwaflutix/features/movie/data/models/movie_detail_model.dart';
+import '../models/movie_detail_model.dart';
 
 import '../../../../core/error/exceptions.dart';
 import 'package:shared_preferences/shared_preferences.dart';

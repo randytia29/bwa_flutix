@@ -1,4 +1,16 @@
-part of 'pages.dart';
+import 'dart:io';
+import 'dart:typed_data';
+
+import '../../models/ticket.dart';
+import '../../shared/theme.dart';
+import '../widgets/flutix_button.dart';
+import '../widgets/ticket_detail_card.dart';
+import 'package:flutter/material.dart';
+import 'package:image_gallery_saver/image_gallery_saver.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:screenshot/screenshot.dart';
+import 'package:share_plus/share_plus.dart';
 
 class TicketDetailPage extends StatefulWidget {
   final Ticket ticket;

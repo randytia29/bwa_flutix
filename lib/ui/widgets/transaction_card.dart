@@ -1,4 +1,8 @@
-part of 'widgets.dart';
+import '../../models/flutix_transaction.dart';
+import '../../shared/shared_value.dart';
+import '../../shared/theme.dart';
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class TransactionCard extends StatelessWidget {
   final FlutixTransaction transaction;

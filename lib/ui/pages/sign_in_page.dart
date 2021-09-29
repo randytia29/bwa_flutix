@@ -1,4 +1,18 @@
-part of 'pages.dart';
+import '../../bloc/theme_bloc.dart';
+import '../../bloc/ticket_bloc.dart';
+import '../../bloc/user_bloc.dart';
+import '../../injection_container.dart';
+import '../../models/registration_data.dart';
+import '../../services/auth_services.dart';
+import '../../services/shared_pref.dart';
+import '../../shared/page_transition.dart';
+import '../../shared/theme.dart';
+import 'main_page.dart';
+import 'sign_up_page.dart';
+import 'package:email_validator/email_validator.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:provider/provider.dart';
 
 class SignInPage extends StatefulWidget {
   @override

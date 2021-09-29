@@ -1,9 +1,9 @@
-import 'package:bwaflutix/core/network/network_info.dart';
-import 'package:bwaflutix/features/ticket/data/datasources/ticket_local_data_source.dart';
-import 'package:bwaflutix/features/ticket/data/datasources/ticket_remote_data_source.dart';
-import 'package:bwaflutix/features/ticket/data/models/ticket_model.dart';
-import 'package:bwaflutix/features/ticket/domain/entities/ticket.dart';
-import 'package:bwaflutix/features/ticket/domain/repositories/ticket_repository.dart';
+import '../../../../core/network/network_info.dart';
+import '../datasources/ticket_local_data_source.dart';
+import '../datasources/ticket_remote_data_source.dart';
+import '../models/ticket_model.dart';
+import '../../domain/entities/ticket.dart';
+import '../../domain/repositories/ticket_repository.dart';
 
 class TicketRepositoryImpl implements TicketRepository {
   final TicketRemoteDataSource? remoteDataSource;

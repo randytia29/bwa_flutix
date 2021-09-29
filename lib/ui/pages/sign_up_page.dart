@@ -1,4 +1,12 @@
-part of 'pages.dart';
+import '../../bloc/theme_bloc.dart';
+import '../../models/registration_data.dart';
+import '../../shared/page_transition.dart';
+import '../../shared/shared_methods.dart';
+import '../../shared/theme.dart';
+import 'preference_page.dart';
+import 'package:email_validator/email_validator.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SignUpPage extends StatefulWidget {
   final RegistrationData registrationData;

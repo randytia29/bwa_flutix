@@ -1,4 +1,18 @@
-part of 'pages.dart';
+import '../../bloc/theme_bloc.dart';
+import '../../bloc/user_bloc.dart';
+import '../../extensions/date_time_extension.dart';
+import '../../extensions/string_extension.dart';
+import '../../models/flutix_transaction.dart';
+import '../../services/flutix_transaction_services.dart';
+import '../../shared/page_transition.dart';
+import '../../shared/theme.dart';
+import 'success_page.dart';
+import '../widgets/flutix_button.dart';
+import '../widgets/money_card.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class TopUpPage extends StatefulWidget {
   @override

@@ -1,4 +1,11 @@
-part of 'widgets.dart';
+import '../../features/movie/domain/entities/movie.dart';
+import '../../shared/page_transition.dart';
+import '../../shared/shared_value.dart';
+import '../../shared/theme.dart';
+import '../pages/movie_detail_page.dart';
+import 'rating_stars.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MovieCard extends StatelessWidget {
   final Movie movie;
@@ -9,10 +16,6 @@ class MovieCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // context
-        //     .read<MovieDetailBloc>()
-        //     .add(FetchMovieDetail(movieID: movie.id));
-
         Navigator.of(context).push(routeTransition(MovieDetailPage(
           movieID: movie.id,
         )));

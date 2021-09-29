@@ -1,4 +1,7 @@
-part of 'widgets.dart';
+import '../../models/ticket.dart';
+import '../../shared/theme.dart';
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class TicketDetailUser extends StatelessWidget {
   const TicketDetailUser({

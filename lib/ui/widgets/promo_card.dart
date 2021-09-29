@@ -1,4 +1,7 @@
-part of 'widgets.dart';
+import '../../models/promo.dart';
+import '../../shared/theme.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PromoCard extends StatelessWidget {
   final Promo promo;

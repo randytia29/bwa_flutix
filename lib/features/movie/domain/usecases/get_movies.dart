@@ -1,7 +1,6 @@
-import '../../../../core/usecases/usecase.dart';
-
 import 'package:equatable/equatable.dart';
 
+import '../../../../core/usecases/usecase.dart';
 import '../entities/movie.dart';
 import '../repositories/movie_repository.dart';
 

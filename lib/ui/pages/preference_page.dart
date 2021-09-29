@@ -1,4 +1,9 @@
-part of 'pages.dart';
+import '../../models/registration_data.dart';
+import '../../shared/page_transition.dart';
+import '../../shared/theme.dart';
+import 'account_confirmation_page.dart';
+import '../widgets/selectable_box.dart';
+import 'package:flutter/material.dart';
 
 class PreferencePage extends StatefulWidget {
   final List<String> genres = [

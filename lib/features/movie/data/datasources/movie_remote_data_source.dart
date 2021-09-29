@@ -1,9 +1,9 @@
 import 'dart:convert';
 
-import 'package:bwaflutix/features/movie/data/models/movie_detail_model.dart';
+import '../models/movie_detail_model.dart';
+import '../../../../shared/shared_value.dart';
 
 import '../../../../core/error/exceptions.dart';
-import '../../../../shared/shared.dart';
 
 import '../models/movie_model.dart';
 import 'package:http/http.dart' as http;

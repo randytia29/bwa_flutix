@@ -1,10 +1,11 @@
 import 'package:bloc/bloc.dart';
-import 'package:bwaflutix/injection_container.dart';
-import 'package:bwaflutix/models/user.dart';
-import 'package:bwaflutix/services/shared_pref.dart';
-import '../services/user_services.dart';
 import 'package:equatable/equatable.dart';
-import '../services/services.dart';
+
+import '../injection_container.dart';
+import '../models/user.dart';
+import '../services/auth_services.dart';
+import '../services/shared_pref.dart';
+import '../services/user_services.dart';
 
 part 'user_event.dart';
 part 'user_state.dart';

@@ -1,4 +1,5 @@
-part of 'widgets.dart';
+import '../../shared/theme.dart';
+import 'package:flutter/material.dart';
 
 class TicketDetailInfo extends StatelessWidget {
   const TicketDetailInfo({

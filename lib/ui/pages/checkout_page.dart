@@ -1,4 +1,22 @@
-part of 'pages.dart';
+import '../../bloc/ticket_bloc.dart';
+import '../../bloc/user_bloc.dart';
+import '../../core/util/convert_to_string.dart';
+import '../../extensions/date_time_extension.dart';
+import '../../models/flutix_transaction.dart';
+import '../../models/ticket.dart';
+import '../../models/user.dart';
+import '../../services/flutix_transaction_services.dart';
+import '../../services/notification_service.dart';
+import '../../shared/page_transition.dart';
+import '../../shared/shared_value.dart';
+import '../../shared/theme.dart';
+import 'success_page.dart';
+import 'topup_page.dart';
+import '../widgets/flutix_button.dart';
+import '../widgets/rating_stars.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 class CheckoutPage extends StatefulWidget {
   final Ticket ticket;

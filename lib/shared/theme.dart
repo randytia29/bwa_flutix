@@ -1,4 +1,7 @@
-part of 'shared.dart';
+import 'package:another_flushbar/flushbar.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 const double defaultMargin = 24;
 

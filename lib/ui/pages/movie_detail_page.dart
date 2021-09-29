@@ -1,4 +1,17 @@
-part of 'pages.dart';
+import '../../core/util/convert_to_string.dart';
+import '../../features/credit/presentation/bloc/credit_bloc.dart';
+import '../../features/movie/presentation/bloc/movie_detail_bloc.dart';
+import '../../injection_container.dart';
+import '../../shared/page_transition.dart';
+import '../../shared/shared_value.dart';
+import '../../shared/theme.dart';
+import 'select_schedule_page.dart';
+import '../widgets/credit_movie.dart';
+import '../widgets/flutix_button.dart';
+import '../widgets/rating_stars.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class MovieDetailPage extends StatefulWidget {
   final int? movieID;

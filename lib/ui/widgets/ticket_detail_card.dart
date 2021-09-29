@@ -1,4 +1,14 @@
-part of 'widgets.dart';
+import '../../core/util/convert_to_string.dart';
+import '../../extensions/date_time_extension.dart';
+import '../../models/ticket.dart';
+import '../../shared/theme.dart';
+import 'rating_stars.dart';
+import 'ticket_detail_backdrop.dart';
+import 'ticket_detail_info.dart';
+import 'ticket_detail_user.dart';
+import 'package:dotted_line/dotted_line.dart';
+import 'package:flutter/material.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 class TicketDetailCard extends StatelessWidget {
   const TicketDetailCard({Key? key, required this.ticket}) : super(key: key);

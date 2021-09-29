@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:bwaflutix/features/movie/domain/entities/movie_detail.dart';
+import '../../domain/entities/movie_detail.dart';
 import '../../domain/usecases/get_details.dart';
 import 'package:equatable/equatable.dart';
 

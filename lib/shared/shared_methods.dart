@@ -1,4 +1,11 @@
-part of 'shared.dart';
+import 'dart:io';
+
+import 'theme.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/material.dart';
+import 'package:image_cropper/image_cropper.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart';
 
 Future<File?> getImage() async {
   try {

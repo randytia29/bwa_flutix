@@ -1,4 +1,4 @@
-part of 'models.dart';
+import 'package:equatable/equatable.dart';
 
 class FlutixTransaction extends Equatable {
   final String? userID;

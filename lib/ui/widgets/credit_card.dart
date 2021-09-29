@@ -1,4 +1,6 @@
-part of 'widgets.dart';
+import '../../features/credit/domain/entities/credit.dart';
+import '../../shared/shared_value.dart';
+import 'package:flutter/material.dart';
 
 class CreditCard extends StatelessWidget {
   final Credit credit;

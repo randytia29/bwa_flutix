@@ -1,4 +1,11 @@
-part of 'pages.dart';
+import '../../core/util/convert_to_string.dart';
+import '../../models/ticket.dart';
+import '../../shared/page_transition.dart';
+import '../../shared/shared_value.dart';
+import '../../shared/theme.dart';
+import 'checkout_page.dart';
+import '../widgets/selectable_box.dart';
+import 'package:flutter/material.dart';
 
 class SelectSeatPage extends StatefulWidget {
   final Ticket ticket;

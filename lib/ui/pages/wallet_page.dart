@@ -1,4 +1,16 @@
-part of 'pages.dart';
+import '../../bloc/user_bloc.dart';
+import '../../models/flutix_transaction.dart';
+import '../../models/user.dart';
+import '../../services/flutix_transaction_services.dart';
+import '../../shared/page_transition.dart';
+import '../../shared/theme.dart';
+import 'topup_page.dart';
+import '../widgets/flutix_button.dart';
+import '../widgets/transaction_card.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:intl/intl.dart';
 
 class WalletPage extends StatelessWidget {
   @override

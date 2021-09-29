@@ -1,5 +1,5 @@
-import 'package:bwaflutix/features/ticket/data/models/ticket_model.dart';
-import 'package:bwaflutix/features/ticket/domain/entities/ticket.dart';
+import '../../data/models/ticket_model.dart';
+import '../entities/ticket.dart';
 
 abstract class TicketRepository {
   Future<void>? saveTicket(TicketModel? ticket);

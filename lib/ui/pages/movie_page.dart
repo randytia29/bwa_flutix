@@ -1,4 +1,20 @@
-part of 'pages.dart';
+import '../../bloc/user_bloc.dart';
+import '../../features/movie/presentation/bloc/movie_bloc.dart';
+import '../../injection_container.dart';
+import '../../shared/page_transition.dart';
+import '../../shared/shared_methods.dart';
+import '../../shared/shared_value.dart';
+import '../../shared/theme.dart';
+import 'profile_page.dart';
+import 'wallet_page.dart';
+import '../widgets/browse_movie.dart';
+import '../widgets/get_lucky_day.dart';
+import '../widgets/now_playing_movie.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:intl/intl.dart';
 
 class MoviePage extends StatefulWidget {
   @override

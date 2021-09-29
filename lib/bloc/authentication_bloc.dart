@@ -1,7 +1,8 @@
 import 'package:bloc/bloc.dart';
-import 'package:bwaflutix/injection_container.dart';
-import 'package:bwaflutix/services/shared_pref.dart';
 import 'package:equatable/equatable.dart';
+
+import '../injection_container.dart';
+import '../services/shared_pref.dart';
 
 part 'authentication_event.dart';
 part 'authentication_state.dart';

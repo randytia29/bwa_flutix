@@ -1,4 +1,8 @@
-part of 'widgets.dart';
+import '../../models/promo.dart';
+import '../../shared/theme.dart';
+import 'promo_card.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class GetLuckyDay extends StatelessWidget {
   const GetLuckyDay({

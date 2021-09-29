@@ -1,4 +1,12 @@
-part of 'pages.dart';
+import '../../bloc/ticket_bloc.dart';
+import '../../core/util/convert_to_string.dart';
+import '../../models/ticket.dart';
+import '../../shared/page_transition.dart';
+import '../../shared/shared_value.dart';
+import '../../shared/theme.dart';
+import 'ticket_detail_page.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TicketPage extends StatefulWidget {
   final bool isExpiredTicket;

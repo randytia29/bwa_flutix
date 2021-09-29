@@ -1,4 +1,4 @@
-part of 'models.dart';
+import 'package:equatable/equatable.dart';
 
 class Promo extends Equatable {
   final String title;

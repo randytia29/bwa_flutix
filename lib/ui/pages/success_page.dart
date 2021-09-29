@@ -1,4 +1,9 @@
-part of 'pages.dart';
+import '../../shared/page_transition.dart';
+import '../../shared/theme.dart';
+import 'main_page.dart';
+import 'wallet_page.dart';
+import '../widgets/flutix_button.dart';
+import 'package:flutter/material.dart';
 
 class SuccessPage extends StatelessWidget {
   final bool isTopUp;

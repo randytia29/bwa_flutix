@@ -1,4 +1,6 @@
-part of 'widgets.dart';
+import '../../extensions/date_time_extension.dart';
+import '../../shared/theme.dart';
+import 'package:flutter/material.dart';
 
 class DateCard extends StatelessWidget {
   final bool isSelected;

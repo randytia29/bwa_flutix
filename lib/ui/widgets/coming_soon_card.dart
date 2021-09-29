@@ -1,4 +1,7 @@
-part of 'widgets.dart';
+import '../../features/movie/domain/entities/movie.dart';
+import '../../shared/shared_value.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ComingSoonCard extends StatelessWidget {
   final Movie movie;

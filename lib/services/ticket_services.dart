@@ -1,4 +1,5 @@
-part of 'services.dart';
+import '../models/ticket.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class TicketServices {
   static CollectionReference ticketCollection =

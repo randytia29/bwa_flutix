@@ -1,4 +1,15 @@
-part of 'pages.dart';
+import '../../bloc/authentication_bloc.dart';
+import '../../bloc/ticket_bloc.dart';
+import '../../bloc/user_bloc.dart';
+import '../../models/registration_data.dart';
+import '../../shared/page_transition.dart';
+import '../../shared/theme.dart';
+import 'main_page.dart';
+import 'sign_in_page.dart';
+import 'sign_up_page.dart';
+import '../widgets/flutix_button.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SplashPage extends StatelessWidget {
   @override

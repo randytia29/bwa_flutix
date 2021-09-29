@@ -1,4 +1,12 @@
-part of 'pages.dart';
+import '../../services/notification_service.dart';
+import '../../shared/page_transition.dart';
+import '../../shared/theme.dart';
+import 'movie_page.dart';
+import 'ticket_page.dart';
+import 'topup_page.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class MainPage extends StatefulWidget {
   final int bottomNavBarIndex;

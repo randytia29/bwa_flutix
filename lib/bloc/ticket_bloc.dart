@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
-import '../models/models.dart';
-import '../services/services.dart';
+import '../models/ticket.dart';
+import '../services/ticket_services.dart';
 import 'package:equatable/equatable.dart';
 
 part 'ticket_event.dart';

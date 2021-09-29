@@ -1,4 +1,10 @@
-part of 'widgets.dart';
+import '../../bloc/user_bloc.dart';
+import '../../shared/theme.dart';
+import 'browse_button.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class BrowseMovie extends StatelessWidget {
   const BrowseMovie({

@@ -1,4 +1,4 @@
-import 'package:bwaflutix/features/movie/domain/entities/movie_detail.dart';
+import '../../domain/entities/movie_detail.dart';
 
 import '../../../../core/network/network_info.dart';
 

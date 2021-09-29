@@ -1,4 +1,11 @@
-part of 'widgets.dart';
+import '../../features/movie/domain/entities/movie.dart';
+import '../../features/movie/presentation/bloc/movie_bloc.dart';
+import '../../shared/theme.dart';
+import 'coming_soon_card.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class ComingSoonMovie extends StatelessWidget {
   const ComingSoonMovie({

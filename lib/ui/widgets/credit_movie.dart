@@ -1,4 +1,8 @@
-part of 'widgets.dart';
+import '../../features/credit/presentation/bloc/credit_bloc.dart';
+import '../../shared/theme.dart';
+import 'credit_card.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CreditMovie extends StatelessWidget {
   const CreditMovie({

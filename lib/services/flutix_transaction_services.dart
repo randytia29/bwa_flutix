@@ -1,4 +1,5 @@
-part of 'services.dart';
+import '../models/flutix_transaction.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FlutixTransactionServices {
   static CollectionReference transactionCollection =

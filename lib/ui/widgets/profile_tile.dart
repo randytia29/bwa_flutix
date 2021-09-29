@@ -1,4 +1,6 @@
-part of 'widgets.dart';
+import '../../shared/theme.dart';
+import 'package:dotted_line/dotted_line.dart';
+import 'package:flutter/material.dart';
 
 class ProfileTile extends StatelessWidget {
   const ProfileTile({

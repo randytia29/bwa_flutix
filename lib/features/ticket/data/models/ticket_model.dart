@@ -1,4 +1,4 @@
-import 'package:bwaflutix/features/ticket/domain/entities/ticket.dart';
+import '../../domain/entities/ticket.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class TicketModel extends Ticket {

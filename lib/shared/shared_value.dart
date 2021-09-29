@@ -1,4 +1,7 @@
-part of 'shared.dart';
+import 'dart:io';
+import 'dart:ui';
+
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 String? apiKey = dotenv.env['TMDB_API_KEY'];
 String imageBaseUrl = 'https://image.tmdb.org/t/p/';

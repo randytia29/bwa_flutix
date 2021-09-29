@@ -1,4 +1,6 @@
-part of 'widgets.dart';
+import '../../models/ticket.dart';
+import '../../shared/shared_value.dart';
+import 'package:flutter/material.dart';
 
 class TicketDetailBackdrop extends StatelessWidget {
   const TicketDetailBackdrop({

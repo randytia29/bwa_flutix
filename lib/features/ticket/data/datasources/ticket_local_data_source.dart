@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:bwaflutix/core/error/exceptions.dart';
-import 'package:bwaflutix/features/ticket/data/models/ticket_model.dart';
+import '../../../../core/error/exceptions.dart';
+import '../models/ticket_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class TicketLocalDataSource {

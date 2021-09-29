@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:bwaflutix/features/ticket/data/models/ticket_model.dart';
-import 'package:bwaflutix/features/ticket/domain/usecases/save_ticket.dart';
+import '../../data/models/ticket_model.dart';
+import '../../domain/usecases/save_ticket.dart';
 import 'package:equatable/equatable.dart';
 
 part 'order_ticket_event.dart';

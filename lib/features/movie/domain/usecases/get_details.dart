@@ -1,4 +1,4 @@
-import 'package:bwaflutix/features/movie/domain/entities/movie_detail.dart';
+import '../entities/movie_detail.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../../../core/usecases/usecase.dart';
