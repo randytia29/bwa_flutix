@@ -77,7 +77,7 @@ class TicketDetailCard extends StatelessWidget {
                 ),
                 TicketDetailInfo(
                   title: 'Seat Number',
-                  subtitle: ticket.seats!,
+                  subtitle: seatsInString(ticket.seats!),
                   subtitleStyle: whiteNumberFont.copyWith(
                       fontSize: 16, color: Colors.black),
                 ),

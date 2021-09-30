@@ -23,7 +23,7 @@ class InitOrderTicketProcess extends OrderTicketEvent {
   final String? name;
 
   InitOrderTicketProcess(
-      this.movieId,
+      {this.movieId,
       this.movieTitle,
       this.movieVoteAverage,
       this.movieOverview,
@@ -35,11 +35,11 @@ class InitOrderTicketProcess extends OrderTicketEvent {
       this.theaterName,
       this.time,
       this.bookingCode,
-      this.name);
+      this.name});
 }
 
 class SeatsSelected extends OrderTicketEvent {
-  final String? seats;
+  final List<String>? seats;
 
   SeatsSelected(this.seats);
 }
@@ -50,8 +50,4 @@ class TotalPriceSelected extends OrderTicketEvent {
   TotalPriceSelected(this.totalPrice);
 }
 
-class BuyTicket extends OrderTicketEvent {
-  final TicketModel? ticketModel;
-
-  BuyTicket(this.ticketModel);
-}
+class BuyTicket extends OrderTicketEvent {}

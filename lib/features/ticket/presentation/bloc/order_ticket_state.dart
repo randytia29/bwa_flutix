@@ -1,17 +1,6 @@
 part of 'order_ticket_bloc.dart';
 
-abstract class OrderTicketState extends Equatable {
-  const OrderTicketState();
-
-  @override
-  List<Object> get props => [];
-}
-
-class OrderTicketInitial extends OrderTicketState {}
-
-class OrderTicketLoading extends OrderTicketState {}
-
-class OrderTicketProcess extends OrderTicketState {
+class OrderTicketState extends Equatable {
   final int? movieId;
   final String? movieTitle;
   final double? movieVoteAverage;
@@ -24,28 +13,47 @@ class OrderTicketProcess extends OrderTicketState {
   final String? theaterName;
   final DateTime? time;
   final String? bookingCode;
-  final String? seats;
+  final List<String>? seats;
   final String? name;
   final int? totalPrice;
 
-  OrderTicketProcess(
-      {this.movieId,
-      this.movieTitle,
-      this.movieVoteAverage,
-      this.movieOverview,
-      this.moviePosterPath,
-      this.movieBackdropPath,
-      this.movieLanguage,
-      this.movieGenres,
-      this.id,
-      this.theaterName,
-      this.time,
-      this.bookingCode,
-      this.seats,
-      this.name,
-      this.totalPrice});
+  OrderTicketState(
+      {required this.movieId,
+      required this.movieTitle,
+      required this.movieVoteAverage,
+      required this.movieOverview,
+      required this.moviePosterPath,
+      required this.movieBackdropPath,
+      required this.movieLanguage,
+      required this.movieGenres,
+      required this.id,
+      required this.theaterName,
+      required this.time,
+      required this.bookingCode,
+      required this.seats,
+      required this.name,
+      required this.totalPrice});
 
-  OrderTicketProcess copyWith(
+  factory OrderTicketState.initial() {
+    return OrderTicketState(
+        movieId: 0,
+        movieTitle: '',
+        movieVoteAverage: 0.0,
+        movieOverview: '',
+        moviePosterPath: '',
+        movieBackdropPath: '',
+        movieLanguage: '',
+        movieGenres: <String>[],
+        id: '',
+        theaterName: '',
+        time: DateTime.now(),
+        bookingCode: '',
+        seats: <String>[],
+        name: '',
+        totalPrice: 0);
+  }
+
+  OrderTicketState copyWith(
       {int? movieId,
       String? movieTitle,
       double? movieVoteAverage,
@@ -58,10 +66,10 @@ class OrderTicketProcess extends OrderTicketState {
       String? theaterName,
       DateTime? time,
       String? bookingCode,
-      String? seats,
+      List<String>? seats,
       String? name,
       int? totalPrice}) {
-    return OrderTicketProcess(
+    return OrderTicketState(
         movieId: movieId ?? this.movieId,
         movieTitle: movieTitle ?? this.movieTitle,
         movieVoteAverage: movieVoteAverage ?? this.movieVoteAverage,
@@ -78,12 +86,42 @@ class OrderTicketProcess extends OrderTicketState {
         name: name ?? this.name,
         totalPrice: totalPrice ?? this.totalPrice);
   }
-}
 
-class OrderTicketSuccess extends OrderTicketState {}
+  TicketModel toTicketModel() {
+    return TicketModel(
+        movieId: movieId!,
+        movieTitle: movieTitle!,
+        movieVoteAverage: movieVoteAverage!,
+        movieOverview: movieOverview!,
+        moviePosterPath: moviePosterPath!,
+        movieBackdropPath: movieBackdropPath!,
+        movieLanguage: movieLanguage!,
+        movieGenres: movieGenres!,
+        id: id!,
+        theaterName: theaterName!,
+        time: time!,
+        bookingCode: bookingCode!,
+        seats: seats!,
+        name: name!,
+        totalPrice: totalPrice!);
+  }
 
-class OrderTicketFailToLoad extends OrderTicketState {
-  final String? message;
-
-  OrderTicketFailToLoad({required this.message});
+  @override
+  List<Object?> get props => [
+        movieId,
+        movieTitle,
+        movieVoteAverage,
+        movieOverview,
+        moviePosterPath,
+        movieBackdropPath,
+        movieLanguage,
+        movieGenres,
+        id,
+        theaterName,
+        time,
+        bookingCode,
+        seats,
+        name,
+        totalPrice
+      ];
 }

@@ -15,7 +15,7 @@ class TicketModel extends Ticket {
       required String theaterName,
       required DateTime time,
       required String bookingCode,
-      required String seats,
+      required List<String> seats,
       required String name,
       required int totalPrice})
       : super(
@@ -39,6 +39,9 @@ class TicketModel extends Ticket {
     final rawGenres = List.from(document['movieGenres']);
     final genres = rawGenres.map<String>((e) => e).toList();
 
+    final rawSeats = List.from(document['seats']);
+    final seats = rawSeats.map<String>((e) => e).toList();
+
     return TicketModel(
         movieId: document['movieID'],
         movieTitle: document['movieTitle'],
@@ -52,7 +55,7 @@ class TicketModel extends Ticket {
         theaterName: document['theaterName'],
         time: DateTime.fromMillisecondsSinceEpoch(document['time']),
         bookingCode: document['bookingCode'],
-        seats: document['seats'],
+        seats: seats,
         name: document['name'],
         totalPrice: document['totalPrice']);
   }

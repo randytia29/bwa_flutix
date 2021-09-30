@@ -1,5 +1,6 @@
-import '../../core/util/convert_to_string.dart';
-import '../../models/ticket.dart';
+import 'package:bwaflutix/features/ticket/presentation/bloc/order_ticket_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../shared/page_transition.dart';
 import '../../shared/shared_value.dart';
 import '../../shared/theme.dart';
@@ -8,16 +9,20 @@ import '../widgets/selectable_box.dart';
 import 'package:flutter/material.dart';
 
 class SelectSeatPage extends StatefulWidget {
-  final Ticket ticket;
-
-  SelectSeatPage(this.ticket);
-
   @override
   _SelectSeatPageState createState() => _SelectSeatPageState();
 }
 
 class _SelectSeatPageState extends State<SelectSeatPage> {
+  late OrderTicketBloc orderTicketBloc;
+
   List<String> selectedSeats = [];
+
+  @override
+  void initState() {
+    orderTicketBloc = BlocProvider.of<OrderTicketBloc>(context);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,32 +47,36 @@ class _SelectSeatPageState extends State<SelectSeatPage> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 20, right: defaultMargin),
-                  child: Row(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(right: 16),
-                        width: MediaQuery.of(context).size.width / 2,
-                        child: Text(
-                          widget.ticket.movieTitle!,
-                          style: blackTextFont.copyWith(fontSize: 20),
-                          maxLines: 2,
-                          overflow: TextOverflow.clip,
-                          textAlign: TextAlign.end,
-                        ),
-                      ),
-                      Container(
-                        width: 60,
-                        height: 60,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          image: DecorationImage(
-                              image: NetworkImage(imageBaseUrl +
-                                  'w154' +
-                                  widget.ticket.moviePosterPath!),
-                              fit: BoxFit.cover),
-                        ),
-                      )
-                    ],
+                  child: BlocBuilder<OrderTicketBloc, OrderTicketState>(
+                    builder: (context, orderTicketState) {
+                      return Row(
+                        children: [
+                          Container(
+                            margin: EdgeInsets.only(right: 16),
+                            width: MediaQuery.of(context).size.width / 2,
+                            child: Text(
+                              orderTicketState.movieTitle!,
+                              style: blackTextFont.copyWith(fontSize: 20),
+                              maxLines: 2,
+                              overflow: TextOverflow.clip,
+                              textAlign: TextAlign.end,
+                            ),
+                          ),
+                          Container(
+                            width: 60,
+                            height: 60,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              image: DecorationImage(
+                                  image: NetworkImage(imageBaseUrl +
+                                      'w154' +
+                                      orderTicketState.moviePosterPath!),
+                                  fit: BoxFit.cover),
+                            ),
+                          )
+                        ],
+                      );
+                    },
                   ),
                 )
               ],
@@ -98,9 +107,13 @@ class _SelectSeatPageState extends State<SelectSeatPage> {
                 ),
                 onPressed: selectedSeats.length > 0
                     ? () {
-                        Navigator.of(context).push(routeTransition(CheckoutPage(
-                            widget.ticket.copyWith(
-                                seats: seatsInString(selectedSeats)))));
+                        orderTicketBloc.add(SeatsSelected(selectedSeats));
+
+                        Navigator.of(context)
+                            .push(routeTransition(BlocProvider.value(
+                          value: orderTicketBloc,
+                          child: CheckoutPage(),
+                        )));
                       }
                     : null,
               ),

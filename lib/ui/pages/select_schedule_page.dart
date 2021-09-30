@@ -1,7 +1,9 @@
+import 'package:bwaflutix/features/ticket/presentation/bloc/order_ticket_bloc.dart';
+import 'package:bwaflutix/injection_container.dart';
+
 import '../../bloc/user_bloc.dart';
 import '../../features/movie/domain/entities/movie_detail.dart';
 import '../../models/theater.dart';
-import '../../models/ticket.dart';
 import '../../shared/page_transition.dart';
 import '../../shared/theme.dart';
 import 'select_seat_page.dart';
@@ -21,6 +23,8 @@ class SelectSchedulePage extends StatefulWidget {
 }
 
 class _SelectSchedulePageState extends State<SelectSchedulePage> {
+  final orderTicketBloc = sl<OrderTicketBloc>();
+
   late List<DateTime> dates;
   DateTime? selectedDate;
   int? selectedTime;
@@ -38,106 +42,113 @@ class _SelectSchedulePageState extends State<SelectSchedulePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: ListView(
-          children: <Widget>[
-            Align(
-              alignment: Alignment.topLeft,
-              child: Container(
-                margin: EdgeInsets.only(top: 16, left: defaultMargin),
-                height: 24,
-                child: IconButton(
-                  color: Colors.white,
-                  icon: Icon(Icons.arrow_back, size: 24, color: Colors.black),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                ),
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.fromLTRB(defaultMargin, 20, defaultMargin, 16),
-              child: Text(
-                'Choose Date',
-                style: blackTextFont.copyWith(fontSize: 20),
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.only(bottom: 24),
-              height: 90,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: dates.length,
-                itemBuilder: (_, index) => Container(
-                  margin: EdgeInsets.only(
-                      left: index == 0 ? defaultMargin : 0,
-                      right: index == dates.length - 1 ? defaultMargin : 16),
-                  child: DateCard(
-                    dates[index],
-                    isSelected: selectedDate == dates[index],
-                    onTap: () {
-                      setState(() {
-                        selectedDate = dates[index];
-                      });
+      body: BlocProvider(
+        create: (context) => orderTicketBloc,
+        child: SafeArea(
+          child: ListView(
+            children: <Widget>[
+              Align(
+                alignment: Alignment.topLeft,
+                child: Container(
+                  margin: EdgeInsets.only(top: 16, left: defaultMargin),
+                  height: 24,
+                  child: IconButton(
+                    color: Colors.white,
+                    icon: Icon(Icons.arrow_back, size: 24, color: Colors.black),
+                    onPressed: () {
+                      Navigator.of(context).pop();
                     },
                   ),
                 ),
               ),
-            ),
-            generateTimeTable(),
-            SizedBox(
-              height: 10,
-            ),
-            Align(
-              alignment: Alignment.topCenter,
-              child: BlocBuilder<UserBloc, UserState>(
-                builder: (_, userState) {
-                  if (userState is UserLoaded) {
-                    final user = userState.user;
-                    return FloatingActionButton(
-                      elevation: 0,
-                      backgroundColor: isValid ? mainColor : Color(0xFFE4E4E4),
-                      child: Icon(
-                        Icons.arrow_forward,
-                        color: isValid ? Colors.white : Color(0xFFBEBEBE),
-                      ),
-                      onPressed: () {
-                        if (isValid) {
-                          Navigator.of(context).push(
-                            routeTransition(
-                              SelectSeatPage(
-                                Ticket(
-                                    widget.movieDetail?.id,
-                                    widget.movieDetail?.title,
-                                    widget.movieDetail?.voteAverage,
-                                    widget.movieDetail?.overview,
-                                    widget.movieDetail?.posterPath,
-                                    widget.movieDetail?.backdropPath,
-                                    widget.movieDetail?.language,
-                                    widget.movieDetail?.genres,
-                                    user.id,
-                                    selectedTheater?.name,
-                                    DateTime(
-                                        selectedDate!.year,
-                                        selectedDate!.month,
-                                        selectedDate!.day,
-                                        selectedTime!),
-                                    randomAlphaNumeric(12).toUpperCase(),
-                                    null,
-                                    user.name,
-                                    null),
-                              ),
-                            ),
-                          );
-                        }
-                      },
-                    );
-                  }
-                  return Container();
-                },
+              Container(
+                margin:
+                    EdgeInsets.fromLTRB(defaultMargin, 20, defaultMargin, 16),
+                child: Text(
+                  'Choose Date',
+                  style: blackTextFont.copyWith(fontSize: 20),
+                ),
               ),
-            )
-          ],
+              Container(
+                margin: EdgeInsets.only(bottom: 24),
+                height: 90,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: dates.length,
+                  itemBuilder: (_, index) => Container(
+                    margin: EdgeInsets.only(
+                        left: index == 0 ? defaultMargin : 0,
+                        right: index == dates.length - 1 ? defaultMargin : 16),
+                    child: DateCard(
+                      dates[index],
+                      isSelected: selectedDate == dates[index],
+                      onTap: () {
+                        setState(() {
+                          selectedDate = dates[index];
+                        });
+                      },
+                    ),
+                  ),
+                ),
+              ),
+              generateTimeTable(),
+              SizedBox(
+                height: 10,
+              ),
+              Align(
+                alignment: Alignment.topCenter,
+                child: BlocBuilder<UserBloc, UserState>(
+                  builder: (_, userState) {
+                    if (userState is UserLoaded) {
+                      final user = userState.user;
+                      return FloatingActionButton(
+                        elevation: 0,
+                        backgroundColor:
+                            isValid ? mainColor : Color(0xFFE4E4E4),
+                        child: Icon(
+                          Icons.arrow_forward,
+                          color: isValid ? Colors.white : Color(0xFFBEBEBE),
+                        ),
+                        onPressed: () {
+                          orderTicketBloc.add(InitOrderTicketProcess(
+                              movieId: widget.movieDetail?.id,
+                              movieTitle: widget.movieDetail?.title,
+                              movieVoteAverage: widget.movieDetail?.voteAverage,
+                              movieOverview: widget.movieDetail?.overview,
+                              moviePosterPath: widget.movieDetail?.posterPath,
+                              movieBackdropPath:
+                                  widget.movieDetail?.backdropPath,
+                              movieLanguage: widget.movieDetail?.language,
+                              movieGenres: widget.movieDetail?.genres,
+                              id: user.id,
+                              theaterName: selectedTheater?.name,
+                              time: DateTime(
+                                  selectedDate!.year,
+                                  selectedDate!.month,
+                                  selectedDate!.day,
+                                  selectedTime!),
+                              bookingCode: randomAlphaNumeric(12).toUpperCase(),
+                              name: user.name));
+
+                          if (isValid) {
+                            Navigator.of(context).push(
+                              routeTransition(
+                                BlocProvider.value(
+                                  value: orderTicketBloc,
+                                  child: SelectSeatPage(),
+                                ),
+                              ),
+                            );
+                          }
+                        },
+                      );
+                    }
+                    return Container();
+                  },
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

@@ -14,7 +14,7 @@ class Ticket extends Equatable {
   final String? theaterName;
   final DateTime time;
   final String? bookingCode;
-  final String? seats;
+  final List<String>? seats;
   final String? name;
   final int? totalPrice;
 
@@ -49,7 +49,7 @@ class Ticket extends Equatable {
     String? theaterName,
     DateTime? time,
     String? bookingCode,
-    String? seats,
+    List<String>? seats,
     String? name,
     int? totalPrice,
   }) =>
@@ -75,6 +75,9 @@ class Ticket extends Equatable {
     final rawGenres = List.from(document['movieGenres']);
     final genres = rawGenres.map<String>((e) => e).toList();
 
+    final rawSeats = List.from(document['seats']);
+    final seats = rawSeats.map<String>((e) => e).toList();
+
     return Ticket(
         document['movieID'],
         document['movieTitle'],
@@ -88,7 +91,7 @@ class Ticket extends Equatable {
         document['theaterName'],
         DateTime.fromMillisecondsSinceEpoch(document['time']),
         document['bookingCode'],
-        document['seats'],
+        seats,
         document['name'],
         document['totalPrice']);
   }

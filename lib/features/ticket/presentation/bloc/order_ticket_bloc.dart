@@ -12,9 +12,9 @@ class OrderTicketBloc extends Bloc<OrderTicketEvent, OrderTicketState> {
   OrderTicketBloc({required SaveTicket? ticket})
       : assert(ticket != null),
         saveTicket = ticket,
-        super(OrderTicketInitial()) {
+        super(OrderTicketState.initial()) {
     on<InitOrderTicketProcess>((event, emit) {
-      emit(OrderTicketProcess(
+      emit(state.copyWith(
           movieId: event.movieId,
           movieTitle: event.movieTitle,
           movieVoteAverage: event.movieVoteAverage,
@@ -31,47 +31,22 @@ class OrderTicketBloc extends Bloc<OrderTicketEvent, OrderTicketState> {
     });
 
     on<SeatsSelected>((event, emit) {
-      final currentState = state;
-      if (currentState is OrderTicketProcess) {
-        emit(currentState.copyWith(seats: event.seats));
-      }
+      final totalPrice = 26500 * event.seats!.length;
+
+      emit(state.copyWith(seats: event.seats, totalPrice: totalPrice));
     });
 
-    on<TotalPriceSelected>((event, emit) {
-      final currentState = state;
-      if (currentState is OrderTicketProcess) {
-        emit(currentState.copyWith(totalPrice: event.totalPrice));
-      }
-    });
+    // on<TotalPriceSelected>((event, emit) {
+    //   final currentState = state;
+    //   if (currentState is OrderTicketProcess) {
+    //     emit(currentState.copyWith(totalPrice: event.totalPrice));
+    //   }
+    // });
 
     on<BuyTicket>((event, emit) async {
-      final currentState = state;
+      await saveTicket!(Params(ticket: state.toTicketModel()));
 
-      if (currentState is OrderTicketProcess) {
-        final ticketModel = TicketModel(
-            movieId: currentState.movieId!,
-            movieTitle: currentState.movieTitle!,
-            movieVoteAverage: currentState.movieVoteAverage!,
-            movieOverview: currentState.movieOverview!,
-            moviePosterPath: currentState.moviePosterPath!,
-            movieBackdropPath: currentState.movieBackdropPath!,
-            movieLanguage: currentState.movieLanguage!,
-            movieGenres: currentState.movieGenres!,
-            id: currentState.id!,
-            theaterName: currentState.theaterName!,
-            time: currentState.time!,
-            bookingCode: currentState.bookingCode!,
-            seats: currentState.seats!,
-            name: currentState.name!,
-            totalPrice: currentState.totalPrice!);
-
-        try {
-          await saveTicket!(Params(ticket: ticketModel));
-          emit(OrderTicketSuccess());
-        } catch (e) {
-          emit(OrderTicketFailToLoad(message: e.toString()));
-        }
-      }
+      emit(state);
     });
   }
 }

@@ -13,7 +13,7 @@ class Ticket extends Equatable {
   final String theaterName;
   final DateTime time;
   final String bookingCode;
-  final String seats;
+  final List<String> seats;
   final String name;
   final int totalPrice;
 
