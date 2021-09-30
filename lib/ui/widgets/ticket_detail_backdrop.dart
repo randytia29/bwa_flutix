@@ -1,4 +1,5 @@
-import '../../models/ticket.dart';
+import 'package:bwaflutix/features/ticket/domain/entities/ticket.dart';
+
 import '../../shared/shared_value.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +9,7 @@ class TicketDetailBackdrop extends StatelessWidget {
     required this.ticket,
   }) : super(key: key);
 
-  final Ticket ticket;
+  final Ticket? ticket;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,7 @@ class TicketDetailBackdrop extends StatelessWidget {
       decoration: BoxDecoration(
         image: DecorationImage(
             image:
-                NetworkImage(imageBaseUrl + "w780" + ticket.movieBackdropPath!),
+                NetworkImage(imageBaseUrl + "w780" + ticket!.movieBackdropPath),
             fit: BoxFit.cover),
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(12), topRight: Radius.circular(12)),

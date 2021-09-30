@@ -5,10 +5,6 @@ class TicketServices {
   static CollectionReference ticketCollection =
       FirebaseFirestore.instance.collection('tickets');
 
-  static Future<void> saveTicket(Ticket ticket) async {
-    await ticketCollection.doc().set(ticket.toJson());
-  }
-
   static Future<List<Ticket>> getTickets(String userId) async {
     QuerySnapshot snapshot = await ticketCollection.get();
 

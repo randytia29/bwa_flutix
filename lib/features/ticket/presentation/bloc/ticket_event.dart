@@ -7,8 +7,4 @@ abstract class TicketEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class FetchTicket extends TicketEvent {
-  final String? userId;
-
-  FetchTicket({required this.userId});
-}
+class FetchTicket extends TicketEvent {}

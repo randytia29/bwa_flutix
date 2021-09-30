@@ -1,7 +1,8 @@
 import 'dart:io';
 import 'dart:typed_data';
 
-import '../../models/ticket.dart';
+import 'package:bwaflutix/features/ticket/domain/entities/ticket.dart';
+
 import '../../shared/theme.dart';
 import '../widgets/flutix_button.dart';
 import '../widgets/ticket_detail_card.dart';
@@ -13,7 +14,7 @@ import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
 
 class TicketDetailPage extends StatefulWidget {
-  final Ticket ticket;
+  final Ticket? ticket;
 
   TicketDetailPage(this.ticket);
 
@@ -88,7 +89,7 @@ class _TicketDetailPageState extends State<TicketDetailPage> {
         .replaceAll(':', '-');
 
     await ImageGallerySaver.saveImage(imageBytes,
-        name: '${widget.ticket.movieTitle}_$time');
+        name: '${widget.ticket!.movieTitle}_$time');
   }
 
   Future<void> shareImage(Uint8List bytes) async {

@@ -43,7 +43,7 @@ Future<void> init() async {
   sl.registerFactory(() => MovieBloc(movies: sl()));
   sl.registerFactory(() => MovieDetailBloc(details: sl()));
   sl.registerFactory(() => CreditBloc(credits: sl()));
-  sl.registerFactory(() => TicketBloc(tickets: sl()));
+  sl.registerFactory(() => TicketBloc(tickets: sl(), pref: sl()));
   sl.registerFactory(() => OrderTicketBloc(ticket: sl()));
 
   // Use cases

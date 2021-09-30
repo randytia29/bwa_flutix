@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:bwaflutix/services/shared_pref.dart';
 import '../../domain/entities/ticket.dart';
 import '../../domain/usecases/get_tickets.dart';
 import 'package:equatable/equatable.dart';
@@ -8,17 +9,28 @@ part 'ticket_state.dart';
 
 class TicketBloc extends Bloc<TicketEvent, TicketState> {
   final GetTickets? getTickets;
+  final SharedPref? sharedPref;
 
-  TicketBloc({required GetTickets? tickets})
+  TicketBloc({required GetTickets? tickets, required SharedPref? pref})
       : assert(tickets != null),
+        assert(pref != null),
         getTickets = tickets,
+        sharedPref = pref,
         super(TicketInitial()) {
     on<FetchTicket>((event, emit) async {
       emit(TicketLoading());
       try {
-        final tickets = await getTickets!(Params(userId: event.userId));
+        final userId = sharedPref?.getUserId();
+        final tickets = await getTickets!(Params(userId: userId));
+        tickets?.sort((a, b) => a.time
+            .difference(DateTime.now())
+            .compareTo(b.time.difference(DateTime.now())));
 
-        emit(TicketLoaded(tickets: tickets));
+        if (tickets!.length > 0) {
+          emit(TicketLoaded(tickets: tickets));
+        } else {
+          emit(TicketEmpty());
+        }
       } catch (e) {
         emit(TicketFailToLoad(message: e.toString()));
       }

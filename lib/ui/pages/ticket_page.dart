@@ -1,6 +1,10 @@
-import '../../bloc/ticket_bloc.dart';
+import 'package:bwaflutix/features/ticket/domain/entities/ticket.dart';
+import 'package:bwaflutix/features/ticket/presentation/bloc/ticket_bloc.dart';
+import 'package:bwaflutix/injection_container.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+
+// import '../../bloc/ticket_bloc.dart';
 import '../../core/util/convert_to_string.dart';
-import '../../models/ticket.dart';
 import '../../shared/page_transition.dart';
 import '../../shared/shared_value.dart';
 import '../../shared/theme.dart';
@@ -18,116 +22,139 @@ class TicketPage extends StatefulWidget {
 }
 
 class _TicketPageState extends State<TicketPage> {
+  final ticketBloc = sl<TicketBloc>();
+
   late bool isExpiredTickets;
 
   @override
   void initState() {
     super.initState();
     isExpiredTickets = widget.isExpiredTicket;
+    ticketBloc.add(FetchTicket());
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          BlocBuilder<TicketBloc, TicketState>(
-              builder: (_, ticketState) => Container(
-                    margin: EdgeInsets.symmetric(horizontal: defaultMargin),
-                    child: TicketViewer(isExpiredTickets
-                        ? ticketState.tickets
-                            .where((ticket) =>
-                                ticket.time.isBefore(DateTime.now()))
-                            .toList()
-                        : ticketState.tickets
-                            .where((ticket) =>
-                                !ticket.time.isBefore(DateTime.now()))
-                            .toList()),
-                  )),
-          ClipPath(
-            clipper: HeaderClipper(),
-            child: Container(
-              height: 113,
-              decoration: BoxDecoration(color: accentColor1),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(left: defaultMargin, bottom: 32),
-                    child: Text(
-                      "My Tickets",
-                      style: whiteTextFont.copyWith(fontSize: 20),
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Column(
-                        children: [
-                          GestureDetector(
-                            child: Text(
-                              "Newest",
-                              style: whiteTextFont.copyWith(
-                                  fontSize: 16,
-                                  color: isExpiredTickets
-                                      ? Color(0xFF6F678E)
-                                      : Colors.white),
-                            ),
-                            onTap: () {
-                              setState(() {
-                                if (isExpiredTickets)
-                                  isExpiredTickets = !isExpiredTickets;
-                              });
-                            },
-                          ),
-                          SizedBox(
-                            height: 15,
-                          ),
-                          Container(
-                              height: 4,
-                              width: MediaQuery.of(context).size.width / 2,
-                              color: isExpiredTickets
-                                  ? Colors.transparent
-                                  : accentColor2)
-                        ],
+      body: BlocProvider(
+        create: (context) => ticketBloc,
+        child: Stack(
+          children: [
+            BlocBuilder<TicketBloc, TicketState>(builder: (_, ticketState) {
+              if (ticketState is TicketLoading) {
+                return SpinKitFadingCircle(
+                  color: mainColor,
+                  size: 50,
+                );
+              }
+              if (ticketState is TicketEmpty) {
+                return Center(
+                  child: Text('kosong'),
+                );
+              }
+              if (ticketState is TicketLoaded) {
+                final tickets = ticketState.tickets;
+
+                return Container(
+                  margin: EdgeInsets.symmetric(horizontal: defaultMargin),
+                  child: TicketViewer(isExpiredTickets
+                      ? tickets!
+                          .where(
+                              (ticket) => ticket.time.isBefore(DateTime.now()))
+                          .toList()
+                      : tickets!
+                          .where(
+                              (ticket) => !ticket.time.isBefore(DateTime.now()))
+                          .toList()),
+                );
+              }
+              return Container();
+            }),
+            ClipPath(
+              clipper: HeaderClipper(),
+              child: Container(
+                height: 113,
+                decoration: BoxDecoration(color: accentColor1),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(left: defaultMargin, bottom: 32),
+                      child: Text(
+                        "My Tickets",
+                        style: whiteTextFont.copyWith(fontSize: 20),
                       ),
-                      Column(
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                if (!isExpiredTickets)
-                                  isExpiredTickets = !isExpiredTickets;
-                              });
-                            },
-                            child: Text(
-                              "Oldest",
-                              style: whiteTextFont.copyWith(
-                                  fontSize: 16,
-                                  color: isExpiredTickets
-                                      ? Colors.white
-                                      : Color(0xFF6F678E)),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Column(
+                          children: [
+                            GestureDetector(
+                              child: Text(
+                                "Newest",
+                                style: whiteTextFont.copyWith(
+                                    fontSize: 16,
+                                    color: isExpiredTickets
+                                        ? Color(0xFF6F678E)
+                                        : Colors.white),
+                              ),
+                              onTap: () {
+                                setState(() {
+                                  if (isExpiredTickets)
+                                    isExpiredTickets = !isExpiredTickets;
+                                });
+                              },
                             ),
-                          ),
-                          SizedBox(
-                            height: 15,
-                          ),
-                          Container(
-                              height: 4,
-                              width: MediaQuery.of(context).size.width / 2,
-                              color: isExpiredTickets
-                                  ? accentColor2
-                                  : Colors.transparent)
-                        ],
-                      )
-                    ],
-                  )
-                ],
+                            SizedBox(
+                              height: 15,
+                            ),
+                            Container(
+                                height: 4,
+                                width: MediaQuery.of(context).size.width / 2,
+                                color: isExpiredTickets
+                                    ? Colors.transparent
+                                    : accentColor2)
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  if (!isExpiredTickets)
+                                    isExpiredTickets = !isExpiredTickets;
+                                });
+                              },
+                              child: Text(
+                                "Oldest",
+                                style: whiteTextFont.copyWith(
+                                    fontSize: 16,
+                                    color: isExpiredTickets
+                                        ? Colors.white
+                                        : Color(0xFF6F678E)),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            Container(
+                                height: 4,
+                                width: MediaQuery.of(context).size.width / 2,
+                                color: isExpiredTickets
+                                    ? accentColor2
+                                    : Colors.transparent)
+                          ],
+                        )
+                      ],
+                    )
+                  ],
+                ),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }
@@ -183,7 +210,7 @@ class TicketViewer extends StatelessWidget {
                     image: DecorationImage(
                         image: NetworkImage(imageBaseUrl +
                             "w500" +
-                            sortedTickets[index].moviePosterPath!),
+                            sortedTickets[index].moviePosterPath),
                         fit: BoxFit.cover)),
               ),
               SizedBox(
@@ -193,7 +220,7 @@ class TicketViewer extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      sortedTickets[index].movieTitle!,
+                      sortedTickets[index].movieTitle,
                       style: blackTextFont.copyWith(fontSize: 18),
                       maxLines: 2,
                       overflow: TextOverflow.clip,
@@ -201,15 +228,14 @@ class TicketViewer extends StatelessWidget {
                     Container(
                       margin: EdgeInsets.symmetric(vertical: 6),
                       child: Text(
-                        genresAndLanguage(sortedTickets[index].movieGenres!,
-                            sortedTickets[index].movieLanguage!),
-                        // sortedTickets[index].movie!.genresAndLanguage,
+                        genresAndLanguage(sortedTickets[index].movieGenres,
+                            sortedTickets[index].movieLanguage),
                         style: greyTextFont.copyWith(
                             fontSize: 12, fontWeight: FontWeight.w400),
                       ),
                     ),
                     Text(
-                      sortedTickets[index].theaterName!,
+                      sortedTickets[index].theaterName,
                       style: greyTextFont.copyWith(
                           fontSize: 12, fontWeight: FontWeight.w400),
                       maxLines: 2,

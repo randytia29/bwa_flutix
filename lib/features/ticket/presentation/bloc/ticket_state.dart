@@ -11,6 +11,8 @@ class TicketInitial extends TicketState {}
 
 class TicketLoading extends TicketState {}
 
+class TicketEmpty extends TicketState {}
+
 class TicketLoaded extends TicketState {
   final List<Ticket>? tickets;
 

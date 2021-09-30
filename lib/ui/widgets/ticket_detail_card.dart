@@ -1,6 +1,7 @@
+import 'package:bwaflutix/features/ticket/domain/entities/ticket.dart';
+
 import '../../core/util/convert_to_string.dart';
 import '../../extensions/date_time_extension.dart';
-import '../../models/ticket.dart';
 import '../../shared/theme.dart';
 import 'rating_stars.dart';
 import 'ticket_detail_backdrop.dart';
@@ -13,7 +14,7 @@ import 'package:qr_flutter/qr_flutter.dart';
 class TicketDetailCard extends StatelessWidget {
   const TicketDetailCard({Key? key, required this.ticket}) : super(key: key);
 
-  final Ticket ticket;
+  final Ticket? ticket;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +34,7 @@ class TicketDetailCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  ticket.movieTitle!,
+                  ticket!.movieTitle,
                   style: blackTextFont.copyWith(fontSize: 18),
                   maxLines: 2,
                   overflow: TextOverflow.clip,
@@ -42,8 +43,7 @@ class TicketDetailCard extends StatelessWidget {
                   height: 6,
                 ),
                 Text(
-                  genresAndLanguage(ticket.movieGenres!, ticket.movieLanguage!),
-                  // ticket.movie!.genresAndLanguage,
+                  genresAndLanguage(ticket!.movieGenres, ticket!.movieLanguage),
                   style: greyTextFont.copyWith(fontSize: 12),
                   maxLines: 2,
                   overflow: TextOverflow.clip,
@@ -52,7 +52,7 @@ class TicketDetailCard extends StatelessWidget {
                   height: 6,
                 ),
                 RatingStars(
-                  voteAverage: ticket.movieVoteAverage!,
+                  voteAverage: ticket!.movieVoteAverage,
                   color: Colors.grey,
                 ),
                 SizedBox(
@@ -60,7 +60,7 @@ class TicketDetailCard extends StatelessWidget {
                 ),
                 TicketDetailInfo(
                   title: 'Cinema',
-                  subtitle: ticket.theaterName!,
+                  subtitle: ticket!.theaterName,
                   subtitleStyle: blackTextFont.copyWith(fontSize: 16),
                 ),
                 SizedBox(
@@ -68,7 +68,7 @@ class TicketDetailCard extends StatelessWidget {
                 ),
                 TicketDetailInfo(
                   title: 'Date & Time',
-                  subtitle: ticket.time.dateAndTime,
+                  subtitle: ticket!.time.dateAndTime,
                   subtitleStyle: whiteNumberFont.copyWith(
                       fontSize: 16, color: Colors.black),
                 ),
@@ -77,7 +77,7 @@ class TicketDetailCard extends StatelessWidget {
                 ),
                 TicketDetailInfo(
                   title: 'Seat Number',
-                  subtitle: seatsInString(ticket.seats!),
+                  subtitle: seatsInString(ticket!.seats),
                   subtitleStyle: whiteNumberFont.copyWith(
                       fontSize: 16, color: Colors.black),
                 ),
@@ -86,7 +86,7 @@ class TicketDetailCard extends StatelessWidget {
                 ),
                 TicketDetailInfo(
                   title: 'ID Order',
-                  subtitle: ticket.bookingCode!,
+                  subtitle: ticket!.bookingCode,
                   subtitleStyle: whiteNumberFont.copyWith(
                       fontSize: 16, color: Colors.black),
                 ),
@@ -105,7 +105,7 @@ class TicketDetailCard extends StatelessWidget {
                   children: [
                     TicketDetailUser(ticket: ticket),
                     QrImage(
-                      data: ticket.bookingCode!,
+                      data: ticket!.bookingCode,
                       version: 6,
                       foregroundColor: Colors.black,
                       errorCorrectionLevel: QrErrorCorrectLevel.M,

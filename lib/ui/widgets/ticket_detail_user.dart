@@ -1,4 +1,5 @@
-import '../../models/ticket.dart';
+import 'package:bwaflutix/features/ticket/domain/entities/ticket.dart';
+
 import '../../shared/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -9,7 +10,7 @@ class TicketDetailUser extends StatelessWidget {
     required this.ticket,
   }) : super(key: key);
 
-  final Ticket ticket;
+  final Ticket? ticket;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,7 @@ class TicketDetailUser extends StatelessWidget {
           width:
               (MediaQuery.of(context).size.width - 2 * defaultMargin - 32) / 2,
           child: Text(
-            ticket.name!,
+            ticket!.name,
             style: whiteNumberFont.copyWith(
                 color: Colors.black, fontSize: 16, fontWeight: FontWeight.w400),
           ),
@@ -43,7 +44,7 @@ class TicketDetailUser extends StatelessWidget {
         Text(
           NumberFormat.currency(
                   locale: "id_ID", decimalDigits: 0, symbol: "IDR ")
-              .format(ticket.totalPrice),
+              .format(ticket!.totalPrice),
           style: whiteNumberFont.copyWith(
               color: Colors.black, fontSize: 16, fontWeight: FontWeight.w400),
         )

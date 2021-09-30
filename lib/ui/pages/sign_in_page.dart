@@ -1,5 +1,4 @@
 import '../../bloc/theme_bloc.dart';
-import '../../bloc/ticket_bloc.dart';
 import '../../bloc/user_bloc.dart';
 import '../../injection_container.dart';
 import '../../models/registration_data.dart';
@@ -152,9 +151,9 @@ class _SignInPageState extends State<SignInPage> {
                                       context
                                           .read<UserBloc>()
                                           .add(LoadUser(result.user!.id));
-                                      context
-                                          .read<TicketBloc>()
-                                          .add(GetTickets(result.user!.id));
+                                      // context
+                                      //     .read<TicketBloc>()
+                                      //     .add(GetTickets(result.user!.id));
 
                                       await sl<SharedPref>()
                                           .setUserId(result.user!.id);

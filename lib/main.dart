@@ -1,6 +1,5 @@
 import 'bloc/authentication_bloc.dart';
 import 'bloc/theme_bloc.dart';
-import 'bloc/ticket_bloc.dart';
 import 'bloc/user_bloc.dart';
 import 'services/notification_service.dart';
 import 'shared/shared_value.dart';
@@ -52,7 +51,7 @@ Future<void> main() async {
     providers: [
       BlocProvider(create: (_) => UserBloc()),
       BlocProvider(create: (_) => ThemeBloc()),
-      BlocProvider(create: (_) => TicketBloc()),
+      // BlocProvider(create: (_) => TicketBloc()),
       BlocProvider(
         create: (_) => AuthenticationBloc()..add(CheckIsAuthenticated()),
       ),

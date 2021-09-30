@@ -1,5 +1,4 @@
 import '../../bloc/authentication_bloc.dart';
-import '../../bloc/ticket_bloc.dart';
 import '../../bloc/user_bloc.dart';
 import '../../models/registration_data.dart';
 import '../../shared/page_transition.dart';
@@ -22,7 +21,7 @@ class SplashPage extends StatelessWidget {
             String userId = authenticationState.userId;
 
             context.read<UserBloc>().add(LoadUser(userId));
-            context.read<TicketBloc>().add(GetTickets(userId));
+            // context.read<TicketBloc>().add(GetTickets(userId));
 
             Navigator.of(context).pushReplacement(routeTransition(MainPage()));
           }
