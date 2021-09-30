@@ -36,13 +36,6 @@ class OrderTicketBloc extends Bloc<OrderTicketEvent, OrderTicketState> {
       emit(state.copyWith(seats: event.seats, totalPrice: totalPrice));
     });
 
-    // on<TotalPriceSelected>((event, emit) {
-    //   final currentState = state;
-    //   if (currentState is OrderTicketProcess) {
-    //     emit(currentState.copyWith(totalPrice: event.totalPrice));
-    //   }
-    // });
-
     on<BuyTicket>((event, emit) async {
       await saveTicket!(Params(ticket: state.toTicketModel()));
 

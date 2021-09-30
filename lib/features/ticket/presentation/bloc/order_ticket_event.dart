@@ -44,10 +44,4 @@ class SeatsSelected extends OrderTicketEvent {
   SeatsSelected(this.seats);
 }
 
-class TotalPriceSelected extends OrderTicketEvent {
-  final int? totalPrice;
-
-  TotalPriceSelected(this.totalPrice);
-}
-
 class BuyTicket extends OrderTicketEvent {}
