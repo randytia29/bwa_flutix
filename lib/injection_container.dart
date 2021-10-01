@@ -1,3 +1,12 @@
+import 'package:bwaflutix/features/flutix_transaction/data/datasources/flutix_transaction_local_data_source.dart';
+import 'package:bwaflutix/features/flutix_transaction/data/datasources/flutix_transaction_remote_data_source.dart';
+import 'package:bwaflutix/features/flutix_transaction/data/repositories/flutix_transaction_repository_impl.dart';
+import 'package:bwaflutix/features/flutix_transaction/domain/repositories/flutix_transaction_repository.dart';
+import 'package:bwaflutix/features/flutix_transaction/domain/usecases/get_transactions.dart';
+import 'package:bwaflutix/features/flutix_transaction/domain/usecases/save_transaction.dart';
+import 'package:bwaflutix/features/flutix_transaction/presentation/bloc/flutix_transaction_bloc.dart';
+import 'package:bwaflutix/features/flutix_transaction/presentation/bloc/order_transaction_bloc.dart';
+
 import 'features/ticket/data/datasources/ticket_local_data_source.dart';
 import 'features/ticket/data/datasources/ticket_remote_data_source.dart';
 import 'features/ticket/data/repositories/ticket_repository_impl.dart';
@@ -35,9 +44,6 @@ Future<void> init() async {
   // Shared Preference
   final sharedPreferences = await SharedPreferences.getInstance();
 
-  // Firebase Firestore
-  final firebaseFirestore = FirebaseFirestore.instance;
-
   //! Features
   // Bloc
   sl.registerFactory(() => MovieBloc(movies: sl()));
@@ -45,6 +51,9 @@ Future<void> init() async {
   sl.registerFactory(() => CreditBloc(credits: sl()));
   sl.registerFactory(() => TicketBloc(tickets: sl(), pref: sl()));
   sl.registerFactory(() => OrderTicketBloc(ticket: sl()));
+  sl.registerFactory(
+      () => FlutixTransactionBloc(transactions: sl(), pref: sl()));
+  sl.registerFactory(() => OrderTransactionBloc(transaction: sl()));
 
   // Use cases
   sl.registerLazySingleton(() => GetMovies(sl()));
@@ -52,6 +61,8 @@ Future<void> init() async {
   sl.registerLazySingleton(() => GetCredits(sl()));
   sl.registerLazySingleton(() => GetTickets(sl()));
   sl.registerLazySingleton(() => SaveTicket(sl()));
+  sl.registerLazySingleton(() => GetTransaction(sl()));
+  sl.registerLazySingleton(() => SaveTransaction(sl()));
 
   // Repository
   sl.registerLazySingleton<MovieRepository>(() => MovieRepositoryImpl(
@@ -60,6 +71,9 @@ Future<void> init() async {
       remoteDataSource: sl(), localDataSource: sl(), networkInfo: sl()));
   sl.registerLazySingleton<TicketRepository>(() => TicketRepositoryImpl(
       remoteDataSource: sl(), localDataSource: sl(), networkInfo: sl()));
+  sl.registerLazySingleton<FlutixTransactionRepository>(() =>
+      FlutixTransactionRepositoryImpl(
+          remoteDataSource: sl(), localDataSource: sl(), networkInfo: sl()));
 
   // Data sources
   sl.registerLazySingleton<MovieRemoteDataSource>(
@@ -73,9 +87,15 @@ Future<void> init() async {
       () => CreditLocalDataSourceImpl(sharedPreferences: sharedPreferences));
 
   sl.registerLazySingleton<TicketRemoteDataSource>(
-      () => TicketRemoteDataSourceImpl(firebaseFirestore: firebaseFirestore));
+      () => TicketRemoteDataSourceImpl(firebaseFirestore: sl()));
   sl.registerLazySingleton<TicketLocalDataSource>(
       () => TicketLocalDataSourceImpl(sharedPreferences: sharedPreferences));
+
+  sl.registerLazySingleton<FlutixTransactionRemoteDataSource>(
+      () => FlutixTransactionRemoteDataSourceImpl(firebaseFirestore: sl()));
+  sl.registerLazySingleton<FlutixTransactionLocalDataSource>(() =>
+      FlutixTransactionLocalDataSourceImpl(
+          sharedPreferences: sharedPreferences));
 
   //! Core
   sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));
@@ -85,4 +105,5 @@ Future<void> init() async {
   //! External
   sl.registerLazySingleton(() => http.Client());
   sl.registerLazySingleton(() => InternetConnectionChecker());
+  sl.registerLazySingleton(() => FirebaseFirestore.instance);
 }

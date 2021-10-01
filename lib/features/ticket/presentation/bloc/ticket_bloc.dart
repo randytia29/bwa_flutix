@@ -22,9 +22,7 @@ class TicketBloc extends Bloc<TicketEvent, TicketState> {
       try {
         final userId = sharedPref?.getUserId();
         final tickets = await getTickets!(Params(userId: userId));
-        tickets?.sort((a, b) => a.time
-            .difference(DateTime.now())
-            .compareTo(b.time.difference(DateTime.now())));
+        tickets?.sort((a, b) => b.time.compareTo(a.time));
 
         if (tickets!.length > 0) {
           emit(TicketLoaded(tickets: tickets));

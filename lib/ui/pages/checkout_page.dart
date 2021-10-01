@@ -386,8 +386,6 @@ class _CheckoutPageState extends State<CheckoutPage> {
                               .add(Purchase(orderTicketState.totalPrice!));
 
                           orderTicketBloc.add(BuyTicket());
-                          // context.read<TicketBloc>().add(BuyTicket(
-                          //     widget.ticket.copyWith(totalPrice: total)));
 
                           await FlutixTransactionServices.saveTransaction(
                               FlutixTransaction(
