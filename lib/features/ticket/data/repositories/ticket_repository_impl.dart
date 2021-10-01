@@ -21,6 +21,7 @@ class TicketRepositoryImpl implements TicketRepository {
       try {
         final remoteTicket = await remoteDataSource?.getTickets(userId);
         localDataSource?.cacheTickets(remoteTicket);
+
         return remoteTicket;
       } catch (e) {
         print(e.toString());
@@ -28,6 +29,7 @@ class TicketRepositoryImpl implements TicketRepository {
     } else {
       try {
         final localTicket = await localDataSource?.getLastTickets();
+
         return localTicket;
       } catch (e) {
         print(e.toString());
