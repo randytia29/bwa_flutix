@@ -26,7 +26,7 @@ dependencies:
   another_flushbar: ^1.10.24
   cloud_firestore: ^2.5.3
   cupertino_icons: ^1.0.3
-  dotted_line: ^3.0.0
+  dotted_line: ^3.0.1
   email_validator: ^2.0.1
   equatable: ^2.0.3
   firebase_auth: ^3.1.2
@@ -53,7 +53,7 @@ dependencies:
   qr_flutter: ^4.0.0
   random_string: ^2.3.1
   screenshot: ^1.2.3
-  share_plus: ^2.1.4
+  share_plus: ^2.2.0
   shared_preferences: ^2.0.8
 
 dev_dependencies:

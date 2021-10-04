@@ -15,13 +15,13 @@ class OrderTransactionBloc
         saveTransaction = transaction,
         super(OrderTransactionState.initial()) {
     on<PostTransaction>((event, emit) async {
-      state.copyWith(
+      emit(state.copyWith(
           userID: event.userID,
           title: event.title,
           subtitle: event.subtitle,
           amount: event.amount,
           time: event.time,
-          picture: event.picture);
+          picture: event.picture));
 
       await saveTransaction!(
           Params(flutixTransactionModel: state.toFlutixTransactionModel()));
