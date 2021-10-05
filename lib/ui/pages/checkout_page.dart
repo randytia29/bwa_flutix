@@ -401,15 +401,6 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                 amount: -orderTicketState.totalPrice!,
                                 picture: orderTicketState.moviePosterPath));
 
-                            // await FlutixTransactionServices.saveTransaction(
-                            //     FlutixTransaction(
-                            //         userID: user.id,
-                            //         title: orderTicketState.movieTitle,
-                            //         subtitle: orderTicketState.theaterName,
-                            //         time: DateTime.now(),
-                            //         amount: -orderTicketState.totalPrice!,
-                            //         picture: orderTicketState.moviePosterPath));
-
                             // await NotificationService.setScheduleMovie(
                             //     Random().nextInt(100) + 1,
                             //     'Movie Coming',

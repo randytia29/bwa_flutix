@@ -1,5 +1,6 @@
 import 'package:bwaflutix/features/flutix_transaction/presentation/bloc/order_transaction_bloc.dart';
 import 'package:bwaflutix/injection_container.dart';
+import 'package:bwaflutix/services/notification_service.dart';
 
 import '../../bloc/theme_bloc.dart';
 import '../../bloc/user_bloc.dart';
@@ -163,13 +164,8 @@ class _TopUpPageState extends State<TopUpPage> {
                           '${DateTime.now().dayName}, ${DateTime.now().day} ${DateTime.now().monthName} ${DateTime.now().year}',
                       time: DateTime.now()));
 
-                  // await FlutixTransactionServices.saveTransaction(FlutixTransaction(
-                  //     userID: (userState as UserLoaded).user.id,
-                  //     title: 'Top Up Wallet',
-                  //     amount: selectedAmount,
-                  //     subtitle:
-                  //         '${DateTime.now().dayName}, ${DateTime.now().day} ${DateTime.now().monthName} ${DateTime.now().year}',
-                  //     time: DateTime.now()));
+                  await NotificationService.showNotificationNow(
+                      1, 'TopUp Success', 'Congratulation');
                 },
                 child: FlutixButton(
                   margin: EdgeInsets.symmetric(horizontal: 55),

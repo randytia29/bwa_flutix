@@ -51,7 +51,6 @@ Future<void> main() async {
     providers: [
       BlocProvider(create: (_) => UserBloc()),
       BlocProvider(create: (_) => ThemeBloc()),
-      // BlocProvider(create: (_) => TicketBloc()),
       BlocProvider(
         create: (_) => AuthenticationBloc()..add(CheckIsAuthenticated()),
       ),
