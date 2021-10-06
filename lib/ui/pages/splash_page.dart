@@ -21,7 +21,6 @@ class SplashPage extends StatelessWidget {
             String userId = authenticationState.userId;
 
             context.read<UserBloc>().add(LoadUser(userId));
-            // context.read<TicketBloc>().add(GetTickets(userId));
 
             Navigator.of(context).pushReplacement(routeTransition(MainPage()));
           }

@@ -121,9 +121,6 @@ class _AccountConfirmationPageState extends State<AccountConfirmationPage> {
                             context
                                 .read<UserBloc>()
                                 .add(LoadUser(result.user!.id));
-                            // context
-                            //     .read<TicketBloc>()
-                            //     .add(GetTickets(result.user!.id));
 
                             await sl<SharedPref>().setUserId(result.user!.id);
 

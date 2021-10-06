@@ -31,7 +31,7 @@ class NotificationService {
 
   static NotificationDetails _setupNotificationDetails() {
     final notificationDetailsAndroid = AndroidNotificationDetails(
-        'channel id', 'channel name', 'channel description',
+        'channel id', 'channel name',
         icon: 'flutix_logo',
         sound: RawResourceAndroidNotificationSound('kamen_rider_birth'),
         priority: Priority.high,
@@ -48,15 +48,19 @@ class NotificationService {
   static Future<void> setScheduleMovie(
       int id, String title, String body, DateTime time,
       {String payload = ''}) async {
-    tz.TZDateTime scheduleNotificationDateTime =
-        tz.TZDateTime.from(time, tz.local).subtract(Duration(minutes: 30));
+    final duration = time.difference(DateTime.now());
 
-    await flutterLocalNotificationsPlugin.zonedSchedule(id, title, body,
-        scheduleNotificationDateTime, _setupNotificationDetails(),
-        uiLocalNotificationDateInterpretation:
-            UILocalNotificationDateInterpretation.absoluteTime,
-        androidAllowWhileIdle: true,
-        payload: payload);
+    if (duration.inMinutes > 30) {
+      tz.TZDateTime scheduleNotificationDateTime =
+          tz.TZDateTime.from(time, tz.local).subtract(Duration(minutes: 30));
+
+      await flutterLocalNotificationsPlugin.zonedSchedule(id, title, body,
+          scheduleNotificationDateTime, _setupNotificationDetails(),
+          uiLocalNotificationDateInterpretation:
+              UILocalNotificationDateInterpretation.absoluteTime,
+          androidAllowWhileIdle: true,
+          payload: payload);
+    }
   }
 
   static Future<void> showNotificationNow(int id, String? title, String? body,
