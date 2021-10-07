@@ -250,7 +250,7 @@ class _WalletPageState extends State<WalletPage> {
                         builder: (context, flutixTransactionState) {
                           if (flutixTransactionState
                               is FlutixTransactionLoading) {
-                            SpinKitFadingCircle(
+                            return SpinKitFadingCircle(
                               color: mainColor,
                               size: 50,
                             );

@@ -48,9 +48,7 @@ class NotificationService {
   static Future<void> setScheduleMovie(
       int id, String title, String body, DateTime time,
       {String payload = ''}) async {
-    final duration = time.difference(DateTime.now());
-
-    if (duration.inMinutes > 30) {
+    try {
       tz.TZDateTime scheduleNotificationDateTime =
           tz.TZDateTime.from(time, tz.local).subtract(Duration(minutes: 30));
 
@@ -60,6 +58,8 @@ class NotificationService {
               UILocalNotificationDateInterpretation.absoluteTime,
           androidAllowWhileIdle: true,
           payload: payload);
+    } catch (e) {
+      print(e.toString());
     }
   }
 

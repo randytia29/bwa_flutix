@@ -36,12 +36,6 @@ class TicketModel extends Ticket {
             totalPrice: totalPrice);
 
   factory TicketModel.fromJson(QueryDocumentSnapshot document) {
-    final rawGenres = List.from(document['movieGenres']);
-    final genres = rawGenres.map<String>((e) => e).toList();
-
-    final rawSeats = List.from(document['seats']);
-    final seats = rawSeats.map<String>((e) => e).toList();
-
     return TicketModel(
         movieId: document['movieID'],
         movieTitle: document['movieTitle'],
@@ -50,12 +44,13 @@ class TicketModel extends Ticket {
         moviePosterPath: document['moviePosterPath'],
         movieBackdropPath: document['movieBackdropPath'],
         movieLanguage: document['movieLanguage'],
-        movieGenres: genres,
+        movieGenres:
+            (document['movieGenres'] as List).map((e) => e.toString()).toList(),
         id: document['userID'],
         theaterName: document['theaterName'],
         time: DateTime.fromMillisecondsSinceEpoch(document['time']),
         bookingCode: document['bookingCode'],
-        seats: seats,
+        seats: (document['seats'] as List).map((e) => e.toString()).toList(),
         name: document['name'],
         totalPrice: document['totalPrice']);
   }

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:bwaflutix/features/flutix_transaction/presentation/bloc/order_transaction_bloc.dart';
 import 'package:bwaflutix/features/ticket/presentation/bloc/order_ticket_bloc.dart';
 import 'package:bwaflutix/injection_container.dart';
@@ -401,11 +403,11 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                 amount: -orderTicketState.totalPrice!,
                                 picture: orderTicketState.moviePosterPath));
 
-                            // await NotificationService.setScheduleMovie(
-                            //     Random().nextInt(100) + 1,
-                            //     'Movie Coming',
-                            //     'Hurry up',
-                            //     widget.ticket.time);
+                            await NotificationService.setScheduleMovie(
+                                Random().nextInt(100) + 1,
+                                'Movie Coming',
+                                'Hurry up',
+                                orderTicketState.time!);
 
                             await NotificationService.showNotificationNow(
                                 1, 'Ticket Bought', 'Congratulation');
