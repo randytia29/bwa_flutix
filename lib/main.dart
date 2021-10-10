@@ -1,3 +1,7 @@
+import 'package:bwaflutix/features/flutix_transaction/domain/entities/flutix_transaction.dart';
+import 'package:hive/hive.dart';
+import 'package:path_provider/path_provider.dart';
+
 import 'bloc/authentication_bloc.dart';
 import 'bloc/theme_bloc.dart';
 import 'bloc/user_bloc.dart';
@@ -32,6 +36,10 @@ Future<void> backgroundHandler(RemoteMessage message) async {
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  final appDocumentDirectory = await getApplicationDocumentsDirectory();
+  Hive.init(appDocumentDirectory.path);
+  Hive.registerAdapter(FlutixTransactionAdapter());
 
   await Firebase.initializeApp();
 

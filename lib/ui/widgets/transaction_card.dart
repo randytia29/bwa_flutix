@@ -21,12 +21,25 @@ class TransactionCard extends StatelessWidget {
           margin: EdgeInsets.only(right: 16),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
-            image: DecorationImage(
-                image: ((transaction.picture.isNotEmpty)
-                    ? NetworkImage(imageBaseUrl + "w500" + transaction.picture)
-                    : AssetImage("assets/bg_topup.png")) as ImageProvider,
-                fit: BoxFit.cover),
           ),
+          child: transaction.picture.isNotEmpty
+              ? ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: Image.network(
+                    imageBaseUrl + 'w500' + transaction.picture,
+                    errorBuilder: (context, error, stackTrace) {
+                      return Center(child: Text('😢'));
+                    },
+                    fit: BoxFit.fill,
+                  ),
+                )
+              : ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: Image.asset(
+                    'assets/bg_topup.png',
+                    fit: BoxFit.fill,
+                  ),
+                ),
         ),
         Column(
           children: [

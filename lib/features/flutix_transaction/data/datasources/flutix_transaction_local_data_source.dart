@@ -1,42 +1,42 @@
-import 'dart:convert';
-
 import 'package:bwaflutix/core/error/exceptions.dart';
-import 'package:bwaflutix/features/flutix_transaction/data/models/flutix_transaction_model.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:bwaflutix/features/flutix_transaction/domain/entities/flutix_transaction.dart';
+import 'package:hive/hive.dart';
 
 abstract class FlutixTransactionLocalDataSource {
-  Future<List<FlutixTransactionModel>>? getLastFlutixTransactions();
+  Future<List<FlutixTransaction>>? getLastFlutixTransactions();
   Future<void>? cacheFlutixTransaction(
-      List<FlutixTransactionModel>? flutixTransactionToCache);
+      List<FlutixTransaction>? flutixTransactionToCache);
 }
 
 const CACHED_FLUTIX_TRANSACTION_LIST = 'CACHED_FLUTIX_TRANSACTION_LIST';
 
+const FLUTIX_TRANSACTION_BOX = 'FLUTIX_TRANSACTION_BOX';
+
 class FlutixTransactionLocalDataSourceImpl
     implements FlutixTransactionLocalDataSource {
-  final SharedPreferences? sharedPreferences;
+  final HiveInterface? hive;
 
-  FlutixTransactionLocalDataSourceImpl({required this.sharedPreferences});
+  FlutixTransactionLocalDataSourceImpl({required this.hive});
 
   @override
   Future<void>? cacheFlutixTransaction(
-      List<FlutixTransactionModel>? flutixTransactionToCache) {
-    final jsonMap = flutixTransactionToCache?.map((e) => e.toJson()).toList();
-    final jsonString = json.encode(jsonMap);
+      List<FlutixTransaction>? flutixTransactionToCache) async {
+    final flutixTransactionBox = await hive?.openBox(FLUTIX_TRANSACTION_BOX);
 
-    return sharedPreferences?.setString(
-        CACHED_FLUTIX_TRANSACTION_LIST, jsonString);
+    flutixTransactionBox?.deleteAll(flutixTransactionBox.keys);
+    flutixTransactionBox?.addAll(flutixTransactionToCache!.map((e) => e));
+
+    flutixTransactionBox?.close();
   }
 
   @override
-  Future<List<FlutixTransactionModel>>? getLastFlutixTransactions() {
-    final jsonString =
-        sharedPreferences?.getString(CACHED_FLUTIX_TRANSACTION_LIST);
-    if (jsonString != null) {
-      final response = json.decode(jsonString);
-      final result = List.from(response)
-          .map((e) => FlutixTransactionModel.fromJson(e))
-          .toList();
+  Future<List<FlutixTransaction>>? getLastFlutixTransactions() async {
+    final flutixTransactionBox = await hive?.openBox(FLUTIX_TRANSACTION_BOX);
+
+    if (flutixTransactionBox!.isNotEmpty) {
+      final result =
+          flutixTransactionBox.values.map<FlutixTransaction>((e) => e).toList();
+      await flutixTransactionBox.close();
 
       return Future.value(result);
     } else {

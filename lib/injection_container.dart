@@ -6,6 +6,7 @@ import 'package:bwaflutix/features/flutix_transaction/domain/usecases/get_transa
 import 'package:bwaflutix/features/flutix_transaction/domain/usecases/save_transaction.dart';
 import 'package:bwaflutix/features/flutix_transaction/presentation/bloc/flutix_transaction_bloc.dart';
 import 'package:bwaflutix/features/flutix_transaction/presentation/bloc/order_transaction_bloc.dart';
+import 'package:hive/hive.dart';
 
 import 'features/ticket/data/datasources/ticket_local_data_source.dart';
 import 'features/ticket/data/datasources/ticket_remote_data_source.dart';
@@ -93,9 +94,8 @@ Future<void> init() async {
 
   sl.registerLazySingleton<FlutixTransactionRemoteDataSource>(
       () => FlutixTransactionRemoteDataSourceImpl(firebaseFirestore: sl()));
-  sl.registerLazySingleton<FlutixTransactionLocalDataSource>(() =>
-      FlutixTransactionLocalDataSourceImpl(
-          sharedPreferences: sharedPreferences));
+  sl.registerLazySingleton<FlutixTransactionLocalDataSource>(
+      () => FlutixTransactionLocalDataSourceImpl(hive: sl()));
 
   //! Core
   sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));
@@ -106,4 +106,5 @@ Future<void> init() async {
   sl.registerLazySingleton(() => http.Client());
   sl.registerLazySingleton(() => InternetConnectionChecker());
   sl.registerLazySingleton(() => FirebaseFirestore.instance);
+  sl.registerLazySingleton(() => Hive);
 }
