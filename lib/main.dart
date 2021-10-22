@@ -44,7 +44,7 @@ Future<void> main() async {
   await Firebase.initializeApp();
 
   SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(statusBarColor: accentColor1));
+      const SystemUiOverlayStyle(statusBarColor: accentColor1));
 
   await NotificationService.notificationInitialize();
   NotificationService.timezoneInitialize();
@@ -69,7 +69,7 @@ Future<void> main() async {
         builder: () => MaterialApp(
           theme: themeState.themeData,
           debugShowCheckedModeBanner: false,
-          home: SplashPage(),
+          home: const SplashPage(),
         ),
       ),
     ),

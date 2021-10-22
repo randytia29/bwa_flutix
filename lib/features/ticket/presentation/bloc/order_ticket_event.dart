@@ -22,7 +22,7 @@ class InitOrderTicketProcess extends OrderTicketEvent {
   final String? bookingCode;
   final String? name;
 
-  InitOrderTicketProcess(
+  const InitOrderTicketProcess(
       {this.movieId,
       this.movieTitle,
       this.movieVoteAverage,
@@ -41,7 +41,7 @@ class InitOrderTicketProcess extends OrderTicketEvent {
 class SeatsSelected extends OrderTicketEvent {
   final List<String>? seats;
 
-  SeatsSelected(this.seats);
+  const SeatsSelected(this.seats);
 }
 
 class BuyTicket extends OrderTicketEvent {}

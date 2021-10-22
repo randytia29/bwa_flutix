@@ -6,7 +6,6 @@ import 'package:bwaflutix/injection_container.dart';
 
 import '../../bloc/user_bloc.dart';
 import '../../core/util/convert_to_string.dart';
-import '../../extensions/date_time_extension.dart';
 import '../../models/user.dart';
 import '../../services/notification_service.dart';
 import '../../shared/page_transition.dart';
@@ -21,6 +20,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
 class CheckoutPage extends StatefulWidget {
+  const CheckoutPage({Key? key}) : super(key: key);
+
   @override
   _CheckoutPageState createState() => _CheckoutPageState();
 }
@@ -51,12 +52,12 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       Stack(
                         children: [
                           Container(
-                            margin:
-                                EdgeInsets.only(top: 16, left: defaultMargin),
+                            margin: const EdgeInsets.only(
+                                top: 16, left: defaultMargin),
                             height: 24,
                             child: IconButton(
                               color: Colors.white,
-                              icon: Icon(Icons.arrow_back,
+                              icon: const Icon(Icons.arrow_back,
                                   size: 24, color: Colors.black),
                               onPressed: () {
                                 Navigator.of(context).pop();
@@ -66,7 +67,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                           Align(
                             alignment: Alignment.topCenter,
                             child: Container(
-                              margin: EdgeInsets.symmetric(vertical: 20),
+                              margin: const EdgeInsets.symmetric(vertical: 20),
                               child: Text(
                                 'Checkout\nMovie',
                                 style: blackTextFont.copyWith(fontSize: 20),
@@ -79,8 +80,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       Row(
                         children: [
                           Container(
-                            margin:
-                                EdgeInsets.only(left: defaultMargin, right: 20),
+                            margin: const EdgeInsets.only(
+                                left: defaultMargin, right: 20),
                             width: 70,
                             height: 90,
                             decoration: BoxDecoration(
@@ -107,7 +108,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                 ),
                               ),
                               Container(
-                                margin: EdgeInsets.symmetric(vertical: 6),
+                                margin: const EdgeInsets.symmetric(vertical: 6),
                                 width: MediaQuery.of(context).size.width -
                                     2 * defaultMargin -
                                     70 -
@@ -132,9 +133,9 @@ class _CheckoutPageState extends State<CheckoutPage> {
                         ],
                       ),
                       Container(
-                        margin: EdgeInsets.symmetric(
+                        margin: const EdgeInsets.symmetric(
                             horizontal: defaultMargin, vertical: 20),
-                        child: Divider(
+                        child: const Divider(
                           thickness: 1,
                           color: Color(0xFFE4E4E4),
                         ),
@@ -160,7 +161,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 9,
                       ),
                       Padding(
@@ -187,7 +188,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 9,
                       ),
                       Padding(
@@ -203,7 +204,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                   fontSize: 16, fontWeight: FontWeight.w400),
                             ),
                             Text(
-                              orderTicketState.time!.dateAndTime,
+                              dateAndTime(
+                                  orderTicketState.time ?? DateTime.now()),
                               style: whiteNumberFont.copyWith(
                                   color: Colors.black,
                                   fontSize: 16,
@@ -213,7 +215,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 9,
                       ),
                       Padding(
@@ -242,7 +244,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 9,
                       ),
                       Padding(
@@ -271,7 +273,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 9,
                       ),
                       Padding(
@@ -300,7 +302,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 9,
                       ),
                       Padding(
@@ -334,9 +336,9 @@ class _CheckoutPageState extends State<CheckoutPage> {
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.symmetric(
+                        margin: const EdgeInsets.symmetric(
                             horizontal: defaultMargin, vertical: 20),
-                        child: Divider(
+                        child: const Divider(
                           thickness: 1,
                           color: Color(0xFFE4E4E4),
                         ),
@@ -364,8 +366,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                 style: whiteNumberFont.copyWith(
                                     color: (user.balance! >=
                                             orderTicketState.totalPrice!)
-                                        ? Color(0xFF3E9D9D)
-                                        : Color(0xFFFF5C83),
+                                        ? const Color(0xFF3E9D9D)
+                                        : const Color(0xFFFF5C83),
                                     fontSize: 16,
                                     fontWeight: FontWeight.w600),
                                 textAlign: TextAlign.end,
@@ -375,11 +377,11 @@ class _CheckoutPageState extends State<CheckoutPage> {
                         ),
                       ),
                       FlutixButton(
-                        margin: EdgeInsets.fromLTRB(
+                        margin: const EdgeInsets.fromLTRB(
                             defaultMargin, 36, defaultMargin, 50),
                         primaryColor:
                             (user.balance! >= orderTicketState.totalPrice!)
-                                ? Color(0xFF3E9D9D)
+                                ? const Color(0xFF3E9D9D)
                                 : mainColor,
                         child: Text(
                           (user.balance! >= orderTicketState.totalPrice!)
@@ -412,12 +414,12 @@ class _CheckoutPageState extends State<CheckoutPage> {
                             await NotificationService.showNotificationNow(
                                 1, 'Ticket Bought', 'Congratulation');
 
-                            Navigator.of(context)
-                                .push(routeTransition(SuccessPage(false)));
+                            Navigator.of(context).push(
+                                routeTransition(const SuccessPage(false)));
                           } else {
                             Navigator.of(context)
                               ..popUntil((route) => route.isFirst)
-                              ..push(routeTransition(TopUpPage()));
+                              ..push(routeTransition(const TopUpPage()));
                           }
                         },
                       )

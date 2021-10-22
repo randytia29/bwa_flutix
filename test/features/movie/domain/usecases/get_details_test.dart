@@ -15,8 +15,8 @@ void main() {
     usecase = GetDetails(mockMovieRepository);
   });
 
-  final tMovieID = 1;
-  final tMovie = MovieDetail(
+  const tMovieID = 1;
+  const tMovie = MovieDetail(
     id: 1,
     title: 'title',
     voteAverage: 5.0,
@@ -31,7 +31,7 @@ void main() {
     when(mockMovieRepository!.getDetails(any))
         .thenAnswer((realInvocation) async => tMovie);
 
-    final result = await usecase(Params(movieID: tMovieID));
+    final result = await usecase(const Params(movieID: tMovieID));
 
     expect(result, tMovie);
     verify(mockMovieRepository!.getDetails(tMovieID));

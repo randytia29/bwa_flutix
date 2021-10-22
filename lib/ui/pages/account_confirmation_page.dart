@@ -15,7 +15,8 @@ import 'package:provider/provider.dart';
 class AccountConfirmationPage extends StatefulWidget {
   final RegistrationData registrationData;
 
-  AccountConfirmationPage(this.registrationData);
+  const AccountConfirmationPage(this.registrationData, {Key? key})
+      : super(key: key);
 
   @override
   _AccountConfirmationPageState createState() =>
@@ -30,13 +31,13 @@ class _AccountConfirmationPageState extends State<AccountConfirmationPage> {
     return Scaffold(
       body: Container(
         color: Colors.white,
-        padding: EdgeInsets.symmetric(horizontal: defaultMargin),
+        padding: const EdgeInsets.symmetric(horizontal: defaultMargin),
         child: ListView(
           children: <Widget>[
             Column(
               children: <Widget>[
                 Container(
-                  margin: EdgeInsets.only(top: 20, bottom: 90),
+                  margin: const EdgeInsets.only(top: 20, bottom: 90),
                   height: 56,
                   child: Stack(
                     children: <Widget>[
@@ -46,7 +47,7 @@ class _AccountConfirmationPageState extends State<AccountConfirmationPage> {
                           onTap: () {
                             Navigator.of(context).pop();
                           },
-                          child: Icon(
+                          child: const Icon(
                             Icons.arrow_back,
                             color: Colors.black,
                           ),
@@ -65,12 +66,12 @@ class _AccountConfirmationPageState extends State<AccountConfirmationPage> {
                 Container(
                   width: 150,
                   height: 150,
-                  margin: EdgeInsets.only(bottom: 20),
+                  margin: const EdgeInsets.only(bottom: 20),
                   decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       image: DecorationImage(
                           image: ((widget.registrationData.profileImage == null)
-                                  ? AssetImage("assets/user_pic.png")
+                                  ? const AssetImage("assets/user_pic.png")
                                   : FileImage(
                                       widget.registrationData.profileImage!))
                               as ImageProvider<Object>,
@@ -82,20 +83,20 @@ class _AccountConfirmationPageState extends State<AccountConfirmationPage> {
                       fontSize: 16, fontWeight: FontWeight.w300),
                 ),
                 Text(
-                  "${widget.registrationData.name}",
+                  widget.registrationData.name,
                   textAlign: TextAlign.center,
                   style: blackTextFont.copyWith(fontSize: 20),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 110,
                 ),
                 (isSigningUp)
-                    ? SpinKitFadingCircle(
+                    ? const SpinKitFadingCircle(
                         color: Color(0xFF3E9D9D),
                         size: 45,
                       )
                     : FlutixButton(
-                        primaryColor: Color(0xFF3E9D9D),
+                        primaryColor: const Color(0xFF3E9D9D),
                         child: Text(
                           'Create My Account',
                           style: whiteTextFont.copyWith(fontSize: 16),
@@ -126,7 +127,8 @@ class _AccountConfirmationPageState extends State<AccountConfirmationPage> {
 
                             Navigator.of(context)
                               ..popUntil((route) => route.isFirst)
-                              ..pushReplacement(routeTransition(MainPage()));
+                              ..pushReplacement(
+                                  routeTransition(const MainPage()));
                           }
                         },
                       )

@@ -5,33 +5,31 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class BrowseButton extends StatelessWidget {
   final String genre;
 
-  BrowseButton(this.genre);
+  const BrowseButton(this.genre, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Container(
-            width: 100.h,
-            height: 100.h,
-            decoration: BoxDecoration(
-              color: Color(0xFFEBFFF6),
-              borderRadius: BorderRadius.circular(8),
-              image: DecorationImage(
-                  image: AssetImage(_genreAsset(genre)), fit: BoxFit.cover),
-            ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Container(
+          width: 100.h,
+          height: 100.h,
+          decoration: BoxDecoration(
+            color: const Color(0xFFEBFFF6),
+            borderRadius: BorderRadius.circular(8),
+            image: DecorationImage(
+                image: AssetImage(_genreAsset(genre)), fit: BoxFit.cover),
           ),
-          SizedBox(
-            height: 6.h,
-          ),
-          Text(
-            genre,
-            style: blackTextFont,
-          )
-        ],
-      ),
+        ),
+        SizedBox(
+          height: 6.h,
+        ),
+        Text(
+          genre,
+          style: blackTextFont,
+        )
+      ],
     );
   }
 

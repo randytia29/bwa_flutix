@@ -1,7 +1,6 @@
 import 'package:bwaflutix/features/ticket/domain/entities/ticket.dart';
 
 import '../../core/util/convert_to_string.dart';
-import '../../extensions/date_time_extension.dart';
 import '../../shared/theme.dart';
 import 'rating_stars.dart';
 import 'ticket_detail_backdrop.dart';
@@ -19,8 +18,8 @@ class TicketDetailCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: defaultMargin),
-      decoration: BoxDecoration(
+      margin: const EdgeInsets.symmetric(horizontal: defaultMargin),
+      decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(12), topRight: Radius.circular(12)),
@@ -29,7 +28,7 @@ class TicketDetailCard extends StatelessWidget {
         children: [
           TicketDetailBackdrop(ticket: ticket),
           Container(
-            margin: EdgeInsets.fromLTRB(16, 16, 16, 16),
+            margin: const EdgeInsets.fromLTRB(16, 16, 16, 16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -39,7 +38,7 @@ class TicketDetailCard extends StatelessWidget {
                   maxLines: 2,
                   overflow: TextOverflow.clip,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 6,
                 ),
                 Text(
@@ -48,14 +47,14 @@ class TicketDetailCard extends StatelessWidget {
                   maxLines: 2,
                   overflow: TextOverflow.clip,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 6,
                 ),
                 RatingStars(
                   voteAverage: ticket!.movieVoteAverage,
                   color: Colors.grey,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 16,
                 ),
                 TicketDetailInfo(
@@ -63,16 +62,16 @@ class TicketDetailCard extends StatelessWidget {
                   subtitle: ticket!.theaterName,
                   subtitleStyle: blackTextFont.copyWith(fontSize: 16),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 8,
                 ),
                 TicketDetailInfo(
                   title: 'Date & Time',
-                  subtitle: ticket!.time.dateAndTime,
+                  subtitle: dateAndTime(ticket?.time ?? DateTime.now()),
                   subtitleStyle: whiteNumberFont.copyWith(
                       fontSize: 16, color: Colors.black),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 8,
                 ),
                 TicketDetailInfo(
@@ -81,7 +80,7 @@ class TicketDetailCard extends StatelessWidget {
                   subtitleStyle: whiteNumberFont.copyWith(
                       fontSize: 16, color: Colors.black),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 8,
                 ),
                 TicketDetailInfo(
@@ -90,13 +89,13 @@ class TicketDetailCard extends StatelessWidget {
                   subtitleStyle: whiteNumberFont.copyWith(
                       fontSize: 16, color: Colors.black),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
-                DottedLine(
+                const DottedLine(
                   dashLength: 7,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Row(
@@ -109,7 +108,7 @@ class TicketDetailCard extends StatelessWidget {
                       version: 6,
                       foregroundColor: Colors.black,
                       errorCorrectionLevel: QrErrorCorrectLevel.M,
-                      padding: EdgeInsets.all(0),
+                      padding: const EdgeInsets.all(0),
                       size: 100,
                     )
                   ],

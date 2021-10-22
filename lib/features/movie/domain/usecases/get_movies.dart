@@ -18,7 +18,7 @@ class GetMovies implements Usecase<List<Movie>, Params> {
 class Params extends Equatable {
   final int? page;
 
-  Params({this.page});
+  const Params({this.page});
 
   @override
   List<Object?> get props => [page];

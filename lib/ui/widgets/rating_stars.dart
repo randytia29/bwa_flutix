@@ -8,10 +8,12 @@ class RatingStars extends StatelessWidget {
   final Color? color;
   final MainAxisAlignment alignment;
 
-  RatingStars(
-      {this.voteAverage = 0,
+  const RatingStars(
+      {Key? key,
+      this.voteAverage = 0,
       this.color,
-      this.alignment = MainAxisAlignment.start});
+      this.alignment = MainAxisAlignment.start})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,7 @@ class RatingStars extends StatelessWidget {
               color: accentColor2,
               size: 40.sp,
             ));
-    widgets.add(SizedBox(
+    widgets.add(const SizedBox(
       width: 3,
     ));
     widgets.add(Text(

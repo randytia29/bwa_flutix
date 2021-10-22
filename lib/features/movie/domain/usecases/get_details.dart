@@ -18,7 +18,7 @@ class GetDetails implements Usecase<MovieDetail, Params> {
 class Params extends Equatable {
   final int? movieID;
 
-  Params({this.movieID});
+  const Params({this.movieID});
 
   @override
   List<Object?> get props => [movieID];

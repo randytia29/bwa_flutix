@@ -5,7 +5,7 @@ import 'package:timezone/data/latest.dart' as tz;
 
 class NotificationService {
   static Future<void> notificationInitialize() async {
-    final initializationSettingsAndroid =
+    const initializationSettingsAndroid =
         AndroidInitializationSettings('flutix_logo');
 
     final initializationSettingsIOS = IOSInitializationSettings(
@@ -30,7 +30,7 @@ class NotificationService {
   }
 
   static NotificationDetails _setupNotificationDetails() {
-    final notificationDetailsAndroid = AndroidNotificationDetails(
+    const notificationDetailsAndroid = AndroidNotificationDetails(
         'channel id', 'channel name',
         icon: 'flutix_logo',
         sound: RawResourceAndroidNotificationSound('kamen_rider_birth'),
@@ -38,10 +38,10 @@ class NotificationService {
         importance: Importance.max,
         largeIcon: DrawableResourceAndroidBitmap('flutix_logo'));
 
-    final notificationDetailsIOS = IOSNotificationDetails(
+    const notificationDetailsIOS = IOSNotificationDetails(
         presentAlert: true, presentBadge: true, presentSound: true);
 
-    return NotificationDetails(
+    return const NotificationDetails(
         android: notificationDetailsAndroid, iOS: notificationDetailsIOS);
   }
 
@@ -50,7 +50,8 @@ class NotificationService {
       {String payload = ''}) async {
     try {
       tz.TZDateTime scheduleNotificationDateTime =
-          tz.TZDateTime.from(time, tz.local).subtract(Duration(minutes: 30));
+          tz.TZDateTime.from(time, tz.local)
+              .subtract(const Duration(minutes: 30));
 
       await flutterLocalNotificationsPlugin.zonedSchedule(id, title, body,
           scheduleNotificationDateTime, _setupNotificationDetails(),

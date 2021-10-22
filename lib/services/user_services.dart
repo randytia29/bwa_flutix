@@ -2,7 +2,7 @@ import '../models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UserServices {
-  static CollectionReference _userCollection =
+  static final CollectionReference _userCollection =
       FirebaseFirestore.instance.collection('users');
 
   static Future<void> updateUser(User user) async {

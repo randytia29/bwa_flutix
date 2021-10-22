@@ -17,7 +17,7 @@ class OrderTicketState extends Equatable {
   final String? name;
   final int? totalPrice;
 
-  OrderTicketState(
+  const OrderTicketState(
       {required this.movieId,
       required this.movieTitle,
       required this.movieVoteAverage,
@@ -43,12 +43,12 @@ class OrderTicketState extends Equatable {
         moviePosterPath: '',
         movieBackdropPath: '',
         movieLanguage: '',
-        movieGenres: <String>[],
+        movieGenres: const <String>[],
         id: '',
         theaterName: '',
         time: DateTime.now(),
         bookingCode: '',
-        seats: <String>[],
+        seats: const <String>[],
         name: '',
         totalPrice: 0);
   }

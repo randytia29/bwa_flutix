@@ -7,7 +7,7 @@ abstract class UserEvent extends Equatable {
 class LoadUser extends UserEvent {
   final String id;
 
-  LoadUser(this.id);
+  const LoadUser(this.id);
 
   @override
   List<Object> get props => [id];
@@ -22,7 +22,7 @@ class UpdateData extends UserEvent {
   final String? name;
   final String? profileImage;
 
-  UpdateData({this.name, this.profileImage});
+  const UpdateData({this.name, this.profileImage});
 
   @override
   List<Object?> get props => [name, profileImage];
@@ -31,7 +31,7 @@ class UpdateData extends UserEvent {
 class TopUp extends UserEvent {
   final int? amount;
 
-  TopUp(this.amount);
+  const TopUp(this.amount);
 
   @override
   List<Object?> get props => [amount];
@@ -40,7 +40,7 @@ class TopUp extends UserEvent {
 class Purchase extends UserEvent {
   final int amount;
 
-  Purchase(this.amount);
+  const Purchase(this.amount);
 
   @override
   List<Object> get props => [amount];

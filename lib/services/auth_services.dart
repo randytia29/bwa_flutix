@@ -1,17 +1,18 @@
-import '../extensions/firebase_user_extension.dart';
+import 'package:bwaflutix/core/util/convert_user.dart';
+
 import '../models/user.dart';
 import 'user_services.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 
 class AuthServices {
-  static auth.FirebaseAuth _auth = auth.FirebaseAuth.instance;
+  static final auth.FirebaseAuth _auth = auth.FirebaseAuth.instance;
 
   static Future<SignInSignUpResult> signUp(String email, String password,
       String name, List<String> selectedGenres, String selectedLanguage) async {
     try {
       auth.UserCredential result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
-      User user = result.user!.convertToUser(
+      User user = convertToUser(result.user!,
           name: name,
           selectedGenres: selectedGenres,
           selectedLanguage: selectedLanguage);
@@ -27,7 +28,7 @@ class AuthServices {
     try {
       auth.UserCredential result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
-      User user = await result.user!.fromFireStore();
+      User user = await fromFireStore(result.user!);
       return SignInSignUpResult(user: user);
     } catch (e) {
       return SignInSignUpResult(message: e.toString().split(']')[1].trim());

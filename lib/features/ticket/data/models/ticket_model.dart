@@ -2,7 +2,7 @@ import '../../domain/entities/ticket.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class TicketModel extends Ticket {
-  TicketModel(
+  const TicketModel(
       {required int movieId,
       required String movieTitle,
       required double movieVoteAverage,

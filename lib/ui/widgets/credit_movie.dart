@@ -15,7 +15,7 @@ class CreditMovie extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          margin: EdgeInsets.fromLTRB(
+          margin: const EdgeInsets.fromLTRB(
               defaultMargin, defaultMargin, defaultMargin, 12),
           child: Text(
             'Cast & Crew',

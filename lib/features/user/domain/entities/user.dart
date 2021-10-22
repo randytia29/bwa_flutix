@@ -8,7 +8,7 @@ class User extends Equatable {
   final String selectedLanguage;
   final int balance;
 
-  User(
+  const User(
       {required this.email,
       required this.name,
       required this.profilePicture,

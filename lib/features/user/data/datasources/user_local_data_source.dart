@@ -9,7 +9,7 @@ abstract class UserLocalDataSource {
   Future<void>? cacheUser(UserModel? userToCache);
 }
 
-const CACHED_USER = 'CACHED_USER';
+const cachedUser = 'CACHED_USER';
 
 class UserLocalDataSourceImpl implements UserLocalDataSource {
   final SharedPreferences? sharedPreferences;
@@ -21,12 +21,12 @@ class UserLocalDataSourceImpl implements UserLocalDataSource {
     final jsonMap = userToCache?.toJson();
     final jsonString = json.encode(jsonMap);
 
-    return sharedPreferences?.setString(CACHED_USER, jsonString);
+    return sharedPreferences?.setString(cachedUser, jsonString);
   }
 
   @override
   Future<UserModel>? getLastUser() {
-    final jsonString = sharedPreferences?.getString(CACHED_USER);
+    final jsonString = sharedPreferences?.getString(cachedUser);
     if (jsonString != null) {
       final response = json.decode(jsonString);
       final result = UserModel.fromJson(response);

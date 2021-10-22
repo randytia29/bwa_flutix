@@ -29,22 +29,21 @@ void main() {
     test(
         'should return CreditList from SharedPreferences when there is on in the cache',
         () async {
-      when(mockSharedPreferences?.getString(CACHED_CREDIT_LIST))
+      when(mockSharedPreferences?.getString(cachedCreditList))
           .thenReturn(fixture('credit_list.json'));
 
       final result = await dataSource?.getLastCredits();
 
-      verify(mockSharedPreferences?.getString(CACHED_CREDIT_LIST));
+      verify(mockSharedPreferences?.getString(cachedCreditList));
       expect(result, equals(tCreditModelList));
     });
 
     test('should throw a CacheException when there is not a cached value',
         () async {
-      when(mockSharedPreferences?.getString(CACHED_CREDIT_LIST))
-          .thenReturn(null);
+      when(mockSharedPreferences?.getString(cachedCreditList)).thenReturn(null);
 
       expect(() => dataSource?.getLastCredits(),
-          throwsA(TypeMatcher<CacheException>()));
+          throwsA(const TypeMatcher<CacheException>()));
     });
   });
 }

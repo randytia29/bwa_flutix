@@ -52,13 +52,13 @@ void main() {
   }
 
   group('getCredits', () {
-    final tMovieID = 1;
-    final tCreditModel = [
+    const tMovieID = 1;
+    const tCreditModel = [
       CreditModel(
           name: 'Kostja Ullmann',
           profilePath: '/mQguH03eznJhsfwpZJZrnWCs5Su.jpg')
     ];
-    final List<Credit> tCredits = tCreditModel;
+    const List<Credit> tCredits = tCreditModel;
 
     test('should check if the device is online', () async {
       when(mockNetworkInfo?.isConnected)

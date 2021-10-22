@@ -20,7 +20,8 @@ class ProfileMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: defaultMargin, vertical: 30),
+      margin:
+          const EdgeInsets.symmetric(horizontal: defaultMargin, vertical: 30),
       child: Column(
         children: [
           ProfileTile(
@@ -31,17 +32,17 @@ class ProfileMenu extends StatelessWidget {
                   .push(routeTransition(EditProfilePage(user)));
             },
           ),
-          SizedBox(
+          const SizedBox(
             height: 16,
           ),
           ProfileTile(
             assetName: 'assets/my_wallet.png',
             title: 'My Wallet',
             onTap: () {
-              Navigator.of(context).push(routeTransition(WalletPage()));
+              Navigator.of(context).push(routeTransition(const WalletPage()));
             },
           ),
-          SizedBox(
+          const SizedBox(
             height: 16,
           ),
           ProfileTile(
@@ -49,7 +50,7 @@ class ProfileMenu extends StatelessWidget {
             title: 'Change Language',
             onTap: () {},
           ),
-          SizedBox(
+          const SizedBox(
             height: 16,
           ),
           ProfileTile(
@@ -57,7 +58,7 @@ class ProfileMenu extends StatelessWidget {
             title: 'Help Centre',
             onTap: () {},
           ),
-          SizedBox(
+          const SizedBox(
             height: 16,
           ),
           ProfileTile(
@@ -65,7 +66,7 @@ class ProfileMenu extends StatelessWidget {
             title: 'Rate Flutix App',
             onTap: () {},
           ),
-          SizedBox(
+          const SizedBox(
             height: 16,
           ),
           ProfileTile(
@@ -75,7 +76,7 @@ class ProfileMenu extends StatelessWidget {
               context.read<UserBloc>().add(SignOut());
               Navigator.of(context)
                 ..popUntil((route) => route.isFirst)
-                ..pushReplacement(routeTransition(SplashPage()));
+                ..pushReplacement(routeTransition(const SplashPage()));
             },
           )
         ],

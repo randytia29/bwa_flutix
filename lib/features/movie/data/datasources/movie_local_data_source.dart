@@ -15,8 +15,8 @@ abstract class MovieLocalDataSource {
   Future<void>? cacheMovies(List<MovieModel>? moviesToCache);
 }
 
-const CACHED_MOVIE = 'CACHED_MOVIE';
-const CACHED_MOVIE_LIST = 'CACHED_MOVIE_LIST';
+const cachedMovie = 'CACHED_MOVIE';
+const cachedMovieList = 'CACHED_MOVIE_LIST';
 
 class MovieLocalDataSourceImpl implements MovieLocalDataSource {
   final SharedPreferences? sharedPreferences;
@@ -26,7 +26,7 @@ class MovieLocalDataSourceImpl implements MovieLocalDataSource {
   @override
   Future<void>? cacheMovie(MovieDetailModel? movieToCache) {
     return sharedPreferences?.setString(
-        CACHED_MOVIE, json.encode(movieToCache?.toJson()));
+        cachedMovie, json.encode(movieToCache?.toJson()));
   }
 
   @override
@@ -34,12 +34,12 @@ class MovieLocalDataSourceImpl implements MovieLocalDataSource {
     final jsonMap = moviesToCache?.map((e) => e.toJson()).toList();
     final jsonString = json.encode(jsonMap);
 
-    return sharedPreferences?.setString(CACHED_MOVIE_LIST, jsonString);
+    return sharedPreferences?.setString(cachedMovieList, jsonString);
   }
 
   @override
   Future<MovieDetailModel>? getLastMovie() {
-    final jsonString = sharedPreferences?.getString(CACHED_MOVIE);
+    final jsonString = sharedPreferences?.getString(cachedMovie);
     if (jsonString != null) {
       return Future.value(MovieDetailModel.fromJson(json.decode(jsonString)));
     } else {
@@ -49,7 +49,7 @@ class MovieLocalDataSourceImpl implements MovieLocalDataSource {
 
   @override
   Future<List<MovieModel>>? getLastMovies() {
-    final jsonString = sharedPreferences?.getString(CACHED_MOVIE_LIST);
+    final jsonString = sharedPreferences?.getString(cachedMovieList);
     if (jsonString != null) {
       final response = json.decode(jsonString);
       final result =

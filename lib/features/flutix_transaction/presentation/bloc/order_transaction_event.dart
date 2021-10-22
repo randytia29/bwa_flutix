@@ -15,7 +15,7 @@ class PostTransaction extends OrderTransactionEvent {
   final DateTime? time;
   final String? picture;
 
-  PostTransaction(
+  const PostTransaction(
       {this.userID,
       this.title,
       this.subtitle,

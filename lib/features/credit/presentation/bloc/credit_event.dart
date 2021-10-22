@@ -10,5 +10,5 @@ abstract class CreditEvent extends Equatable {
 class FetchCredit extends CreditEvent {
   final int? movieID;
 
-  FetchCredit({required this.movieID});
+  const FetchCredit({required this.movieID});
 }

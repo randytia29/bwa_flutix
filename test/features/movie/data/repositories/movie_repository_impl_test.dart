@@ -54,8 +54,8 @@ void main() {
   }
 
   group('getDetails', () {
-    final tMovieID = 1;
-    final tMovieModel = MovieDetailModel(
+    const tMovieID = 1;
+    const tMovieModel = MovieDetailModel(
         id: 436969,
         title: 'The Suicide Squad',
         voteAverage: 8,
@@ -65,7 +65,7 @@ void main() {
         backdropPath: '/jlGmlFOcfo8n5tURmhC7YVd4Iyy.jpg',
         language: 'en',
         genres: ['Comedy', 'Crime']);
-    final MovieDetail tMovie = tMovieModel;
+    const MovieDetail tMovie = tMovieModel;
 
     test('should check if the device is online', () async {
       when(mockNetworkInfo?.isConnected)
@@ -119,8 +119,8 @@ void main() {
   });
 
   group('getMovies', () {
-    final tPage = 1;
-    final tMovieModel = [
+    const tPage = 1;
+    const tMovieModel = [
       MovieModel(
           id: 436969,
           title: 'The Suicide Squad',
@@ -131,7 +131,7 @@ void main() {
           backdropPath: '/jlGmlFOcfo8n5tURmhC7YVd4Iyy.jpg',
           language: 'en')
     ];
-    final List<Movie> tMovie = tMovieModel;
+    const List<Movie> tMovie = tMovieModel;
 
     test('should check if the device is online', () async {
       when(mockNetworkInfo?.isConnected)

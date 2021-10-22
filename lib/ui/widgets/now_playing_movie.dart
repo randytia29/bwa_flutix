@@ -20,7 +20,8 @@ class NowPlayingMovie extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          margin: EdgeInsets.fromLTRB(defaultMargin, 30, defaultMargin, 12),
+          margin:
+              const EdgeInsets.fromLTRB(defaultMargin, 30, defaultMargin, 12),
           child: Text(
             'Now Playing',
             style: blackTextFont.copyWith(
@@ -50,8 +51,8 @@ class NowPlayingMovie extends StatelessWidget {
                             movieState.movies![index],
                           ),
                         )
-                      : Padding(
-                          padding: const EdgeInsets.only(right: 24),
+                      : const Padding(
+                          padding: EdgeInsets.only(right: 24),
                           child: SpinKitFadingCircle(
                             color: mainColor,
                             size: 50,
@@ -59,7 +60,7 @@ class NowPlayingMovie extends StatelessWidget {
                         ),
                 );
               } else {
-                return SpinKitFadingCircle(
+                return const SpinKitFadingCircle(
                   color: mainColor,
                   size: 50,
                 );

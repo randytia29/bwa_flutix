@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/animation.dart';
 import 'package:flutter/widgets.dart';
 
-Offset beginTransitionPage = Offset(1, 0);
+const Offset beginTransitionPage = Offset(1, 0);
 Offset endTransitionPage = Offset.zero;
 Curve curve = Curves.easeIn;
 

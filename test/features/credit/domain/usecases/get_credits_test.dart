@@ -16,14 +16,14 @@ void main() {
     usecase = GetCredits(mockCreditRepository);
   });
 
-  final tMovieID = 1;
-  final tCredits = [Credit(name: 'name', profilePath: 'profilePath')];
+  const tMovieID = 1;
+  const tCredits = [Credit(name: 'name', profilePath: 'profilePath')];
 
   test('should get list of credits from the repository', () async {
     when(mockCreditRepository!.getCredits(any))
         .thenAnswer((realInvocation) async => tCredits);
 
-    final result = await usecase(Params(movieID: tMovieID));
+    final result = await usecase(const Params(movieID: tMovieID));
 
     expect(result, tCredits);
     verify(mockCreditRepository!.getCredits(tMovieID));

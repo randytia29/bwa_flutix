@@ -17,7 +17,7 @@ class GetTransaction implements Usecase<List<FlutixTransaction>, Params> {
 class Params extends Equatable {
   final String? userId;
 
-  Params({this.userId});
+  const Params({this.userId});
 
   @override
   List<Object?> get props => [userId];

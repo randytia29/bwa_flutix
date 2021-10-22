@@ -27,21 +27,21 @@ void main() {
     test(
         'should return Movie from SharedPreferences when there is on in the cache',
         () async {
-      when(mockSharedPreferences?.getString(CACHED_MOVIE))
+      when(mockSharedPreferences?.getString(cachedMovie))
           .thenReturn(fixture('movie.json'));
 
       final result = await dataSource?.getLastMovie();
 
-      verify(mockSharedPreferences?.getString(CACHED_MOVIE));
+      verify(mockSharedPreferences?.getString(cachedMovie));
       expect(result, equals(tMovieModel));
     });
 
     test('should throw a CacheException when there is not a cached value',
         () async {
-      when(mockSharedPreferences?.getString(CACHED_MOVIE)).thenReturn(null);
+      when(mockSharedPreferences?.getString(cachedMovie)).thenReturn(null);
 
       expect(() => dataSource?.getLastMovie(),
-          throwsA(TypeMatcher<CacheException>()));
+          throwsA(const TypeMatcher<CacheException>()));
     });
   });
 
@@ -53,22 +53,21 @@ void main() {
     test(
         'should return MovieList from SharedPreferences when there is on in the cache',
         () async {
-      when(mockSharedPreferences?.getString(CACHED_MOVIE_LIST))
+      when(mockSharedPreferences?.getString(cachedMovieList))
           .thenReturn(fixture('movie_list.json'));
 
       final result = await dataSource?.getLastMovies();
 
-      verify(mockSharedPreferences?.getString(CACHED_MOVIE_LIST));
+      verify(mockSharedPreferences?.getString(cachedMovieList));
       expect(result, equals(tMovieModelList));
     });
 
     test('should throw a CacheException when there is not a cached value',
         () async {
-      when(mockSharedPreferences?.getString(CACHED_MOVIE_LIST))
-          .thenReturn(null);
+      when(mockSharedPreferences?.getString(cachedMovieList)).thenReturn(null);
 
       expect(() => dataSource?.getLastMovies(),
-          throwsA(TypeMatcher<CacheException>()));
+          throwsA(const TypeMatcher<CacheException>()));
     });
   });
 

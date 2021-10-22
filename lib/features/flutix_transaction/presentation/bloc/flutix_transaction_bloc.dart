@@ -27,7 +27,7 @@ class FlutixTransactionBloc
             await getTransactions!(Params(userId: userId));
         flutixTransactions?.sort((a, b) => b.time.compareTo(a.time));
 
-        if (flutixTransactions!.length > 0) {
+        if ((flutixTransactions ?? <FlutixTransaction>[]).isNotEmpty) {
           emit(FlutixTransactionLoaded(flutixTransactions: flutixTransactions));
         } else {
           emit(FlutixTransactionEmpty());

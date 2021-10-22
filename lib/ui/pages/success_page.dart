@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 class SuccessPage extends StatelessWidget {
   final bool isTopUp;
 
-  SuccessPage(this.isTopUp);
+  const SuccessPage(this.isTopUp, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,14 +31,14 @@ class SuccessPage extends StatelessWidget {
               ),
             ),
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 85, vertical: 70),
+              margin: const EdgeInsets.symmetric(horizontal: 85, vertical: 70),
               child: Column(
                 children: [
                   Text(
                     isTopUp ? "Emmm Yummy!" : "Happy Watching",
                     style: blackTextFont.copyWith(fontSize: 20),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 17,
                   ),
                   Text(
@@ -62,19 +62,19 @@ class SuccessPage extends StatelessWidget {
                   ? () {
                       Navigator.of(context)
                         ..popUntil((route) => route.isFirst)
-                        ..push(routeTransition(WalletPage()));
+                        ..push(routeTransition(const WalletPage()));
                     }
                   : () {
                       Navigator.of(context)
                         ..popUntil((route) => route.isFirst)
                         ..pop()
-                        ..push(routeTransition(MainPage(
+                        ..push(routeTransition(const MainPage(
                           bottomNavBarIndex: 1,
                         )));
                     },
             ),
             Container(
-              margin: EdgeInsets.only(top: 20),
+              margin: const EdgeInsets.only(top: 20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -85,7 +85,7 @@ class SuccessPage extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.of(context)..popUntil((route) => route.isFirst);
+                      Navigator.of(context).popUntil((route) => route.isFirst);
                     },
                     child: Text(
                       "Back to Home",

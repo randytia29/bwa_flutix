@@ -1,7 +1,7 @@
 import '../../domain/entities/movie_detail.dart';
 
 class MovieDetailModel extends MovieDetail {
-  MovieDetailModel(
+  const MovieDetailModel(
       {required int id,
       required String title,
       required double voteAverage,

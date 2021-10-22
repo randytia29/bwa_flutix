@@ -1,11 +1,11 @@
+import 'package:bwaflutix/core/util/convert_bool.dart';
+import 'package:bwaflutix/core/util/convert_to_string.dart';
 import 'package:bwaflutix/features/flutix_transaction/presentation/bloc/order_transaction_bloc.dart';
 import 'package:bwaflutix/injection_container.dart';
 import 'package:bwaflutix/services/notification_service.dart';
 
 import '../../bloc/theme_bloc.dart';
 import '../../bloc/user_bloc.dart';
-import '../../extensions/date_time_extension.dart';
-import '../../extensions/string_extension.dart';
 import '../../shared/page_transition.dart';
 import '../../shared/theme.dart';
 import 'success_page.dart';
@@ -17,6 +17,8 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class TopUpPage extends StatefulWidget {
+  const TopUpPage({Key? key}) : super(key: key);
+
   @override
   _TopUpPageState createState() => _TopUpPageState();
 }
@@ -29,8 +31,8 @@ class _TopUpPageState extends State<TopUpPage> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<ThemeBloc>().add(
-        ChangeTheme(ThemeData().copyWith(primaryColor: Color(0xFFE4E4E4))));
+    context.watch<ThemeBloc>().add(ChangeTheme(
+        ThemeData().copyWith(primaryColor: const Color(0xFFE4E4E4))));
     double cardWidth =
         (MediaQuery.of(context).size.width - 2 * defaultMargin - 40) / 3;
     return Scaffold(
@@ -42,12 +44,12 @@ class _TopUpPageState extends State<TopUpPage> {
               Stack(
                 children: [
                   Container(
-                    margin: EdgeInsets.only(top: 20, left: defaultMargin),
+                    margin: const EdgeInsets.only(top: 20, left: defaultMargin),
                     height: 24,
                     child: IconButton(
                       color: Colors.white,
-                      icon:
-                          Icon(Icons.arrow_back, size: 24, color: Colors.black),
+                      icon: const Icon(Icons.arrow_back,
+                          size: 24, color: Colors.black),
                       onPressed: () {
                         Navigator.of(context).pop();
                       },
@@ -56,7 +58,7 @@ class _TopUpPageState extends State<TopUpPage> {
                   Align(
                     alignment: Alignment.topCenter,
                     child: Container(
-                      margin: EdgeInsets.only(top: 20),
+                      margin: const EdgeInsets.only(top: 20),
                       child: Text(
                         "Top Up",
                         style: blackTextFont.copyWith(fontSize: 20),
@@ -66,17 +68,17 @@ class _TopUpPageState extends State<TopUpPage> {
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 50,
               ),
               Container(
-                margin:
-                    EdgeInsets.fromLTRB(defaultMargin, 0, defaultMargin, 20),
+                margin: const EdgeInsets.fromLTRB(
+                    defaultMargin, 0, defaultMargin, 20),
                 child: TextField(
                   onChanged: (text) {
                     String temp = '';
                     for (int i = 0; i < text.length; i++) {
-                      temp += text.isDigit(i) ? text[i] : '';
+                      temp += isDigit(text, i) ? text[i] : '';
                     }
                     setState(() {
                       selectedAmount = int.tryParse(temp) ?? 0;
@@ -97,13 +99,13 @@ class _TopUpPageState extends State<TopUpPage> {
                 ),
               ),
               Container(
-                margin: EdgeInsets.symmetric(horizontal: defaultMargin),
+                margin: const EdgeInsets.symmetric(horizontal: defaultMargin),
                 child: Text(
                   "Choose by Template",
                   style: blackTextFont.copyWith(fontSize: 20),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Padding(
@@ -151,7 +153,7 @@ class _TopUpPageState extends State<TopUpPage> {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 100,
               ),
               BlocListener<UserBloc, UserState>(
@@ -161,23 +163,23 @@ class _TopUpPageState extends State<TopUpPage> {
                       title: 'Top Up Wallet',
                       amount: selectedAmount,
                       subtitle:
-                          '${DateTime.now().dayName}, ${DateTime.now().day} ${DateTime.now().monthName} ${DateTime.now().year}',
+                          '${dayName(DateTime.now())}, ${DateTime.now().day} ${monthName(DateTime.now())} ${DateTime.now().year}',
                       time: DateTime.now()));
 
                   await NotificationService.showNotificationNow(
                       1, 'TopUp Success', 'Congratulation');
                 },
                 child: FlutixButton(
-                  margin: EdgeInsets.symmetric(horizontal: 55),
-                  primaryColor: Color(0xFF3E9D9D),
-                  onSurfaceColor: Color(0xFF3E9D9D),
+                  margin: const EdgeInsets.symmetric(horizontal: 55),
+                  primaryColor: const Color(0xFF3E9D9D),
+                  onSurfaceColor: const Color(0xFF3E9D9D),
                   child: Text(
                     'Top Up My Wallet',
                     style: whiteTextFont.copyWith(
                       fontSize: 16,
                       color: selectedAmount! > 0
                           ? Colors.white
-                          : Color(0xFFBEBEBE),
+                          : const Color(0xFFBEBEBE),
                     ),
                   ),
                   onPressed: (selectedAmount! > 0)
@@ -185,12 +187,12 @@ class _TopUpPageState extends State<TopUpPage> {
                           context.read<UserBloc>().add(TopUp(selectedAmount));
 
                           Navigator.of(context)
-                              .push(routeTransition(SuccessPage(true)));
+                              .push(routeTransition(const SuccessPage(true)));
                         }
                       : null,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 100,
               )
             ],

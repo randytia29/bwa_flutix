@@ -18,7 +18,7 @@ class GetCredits implements Usecase<List<Credit>, Params> {
 class Params extends Equatable {
   final int? movieID;
 
-  Params({this.movieID});
+  const Params({this.movieID});
 
   @override
   List<Object?> get props => [movieID];

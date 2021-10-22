@@ -11,6 +11,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SplashPage extends StatelessWidget {
+  const SplashPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,23 +24,24 @@ class SplashPage extends StatelessWidget {
 
             context.read<UserBloc>().add(LoadUser(userId));
 
-            Navigator.of(context).pushReplacement(routeTransition(MainPage()));
+            Navigator.of(context)
+                .pushReplacement(routeTransition(const MainPage()));
           }
         },
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: defaultMargin),
+          padding: const EdgeInsets.symmetric(horizontal: defaultMargin),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Container(
                 height: 136,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                     image:
                         DecorationImage(image: AssetImage('assets/logo.png'))),
               ),
               Container(
-                margin: EdgeInsets.only(top: 70, bottom: 16),
+                margin: const EdgeInsets.only(top: 70, bottom: 16),
                 child: Text(
                   'New Experience',
                   style: blackTextFont.copyWith(fontSize: 20),
@@ -51,7 +54,7 @@ class SplashPage extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               FlutixButton(
-                margin: EdgeInsets.only(top: 70, bottom: 19),
+                margin: const EdgeInsets.only(top: 70, bottom: 19),
                 primaryColor: mainColor,
                 child: Text(
                   'Get Started',
@@ -71,7 +74,8 @@ class SplashPage extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.of(context).push(routeTransition(SignInPage()));
+                      Navigator.of(context)
+                          .push(routeTransition(const SignInPage()));
                     },
                     child: Text(
                       'Sign In',

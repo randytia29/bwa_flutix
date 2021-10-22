@@ -9,7 +9,8 @@ class TransactionCard extends StatelessWidget {
   final FlutixTransaction transaction;
   final double width;
 
-  TransactionCard(this.transaction, this.width);
+  const TransactionCard(this.transaction, this.width, {Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class TransactionCard extends StatelessWidget {
         Container(
           width: 70,
           height: 90,
-          margin: EdgeInsets.only(right: 16),
+          margin: const EdgeInsets.only(right: 16),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
           ),
@@ -28,7 +29,7 @@ class TransactionCard extends StatelessWidget {
                   child: Image.network(
                     imageBaseUrl + 'w500' + transaction.picture,
                     errorBuilder: (context, error, stackTrace) {
-                      return Center(child: Text('😢'));
+                      return const Center(child: Text('😢'));
                     },
                     fit: BoxFit.fill,
                   ),
@@ -66,8 +67,8 @@ class TransactionCard extends StatelessWidget {
                       fontWeight: FontWeight.w400,
                       fontSize: 12,
                       color: (transaction.amount < 0)
-                          ? Color(0xFFFF5C83)
-                          : Color(0xFF3E9D9D)),
+                          ? const Color(0xFFFF5C83)
+                          : const Color(0xFF3E9D9D)),
                 ),
               ),
             ),

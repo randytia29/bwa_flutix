@@ -8,7 +8,7 @@ class OrderTransactionState extends Equatable {
   final DateTime? time;
   final String? picture;
 
-  OrderTransactionState(
+  const OrderTransactionState(
       {required this.userID,
       required this.title,
       required this.subtitle,

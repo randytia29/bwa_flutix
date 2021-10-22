@@ -16,7 +16,7 @@ class MovieBloc extends Bloc<MovieEvent, MovieState> {
     on<FetchMovies>((event, emit) async {
       try {
         if (state is MovieInitial) {
-          final movies = await getMovies!(Params(page: 1));
+          final movies = await getMovies!(const Params(page: 1));
 
           emit(MovieLoaded(
               movies: movies, hasReachedMax: false, currentPage: 1));

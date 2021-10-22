@@ -27,7 +27,7 @@ class FlutixButton extends StatelessWidget {
               elevation: 0,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8)),
-              minimumSize: Size(250, 46)),
+              minimumSize: const Size(250, 46)),
           child: child,
           onPressed: onPressed),
     );

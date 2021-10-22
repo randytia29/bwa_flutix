@@ -11,7 +11,7 @@ import 'package:provider/provider.dart';
 class SignUpPage extends StatefulWidget {
   final RegistrationData registrationData;
 
-  SignUpPage(this.registrationData);
+  const SignUpPage(this.registrationData, {Key? key}) : super(key: key);
 
   @override
   _SignUpPageState createState() => _SignUpPageState();
@@ -38,13 +38,13 @@ class _SignUpPageState extends State<SignUpPage> {
     return Scaffold(
       body: Container(
         color: Colors.white,
-        padding: EdgeInsets.symmetric(horizontal: defaultMargin),
+        padding: const EdgeInsets.symmetric(horizontal: defaultMargin),
         child: ListView(
           children: <Widget>[
             Column(
               children: <Widget>[
                 Container(
-                  margin: EdgeInsets.only(top: 20, bottom: 22),
+                  margin: const EdgeInsets.only(top: 20, bottom: 22),
                   height: 56,
                   child: Stack(
                     children: <Widget>[
@@ -54,7 +54,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           onTap: () {
                             Navigator.of(context).pop();
                           },
-                          child: Icon(
+                          child: const Icon(
                             Icons.arrow_back,
                             color: Colors.black,
                           ),
@@ -70,7 +70,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ],
                   ),
                 ),
-                Container(
+                SizedBox(
                   width: 90,
                   height: 104,
                   child: Stack(
@@ -82,11 +82,11 @@ class _SignUpPageState extends State<SignUpPage> {
                             shape: BoxShape.circle,
                             image: DecorationImage(
                                 image: ((widget.registrationData.profileImage ==
-                                            null)
-                                        ? AssetImage('assets/user_pic.png')
-                                        : FileImage(widget
-                                            .registrationData.profileImage!))
-                                    as ImageProvider<Object>,
+                                        null)
+                                    ? const AssetImage('assets/user_pic.png')
+                                    : FileImage(widget.registrationData
+                                        .profileImage!)) as ImageProvider<
+                                    Object>,
                                 fit: BoxFit.cover)),
                       ),
                       Align(
@@ -118,7 +118,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 36,
                 ),
                 TextField(
@@ -131,7 +131,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           borderRadius: BorderRadius.circular(10)),
                       labelText: 'Full Name'),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 16,
                 ),
                 TextField(
@@ -144,7 +144,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           borderRadius: BorderRadius.circular(10)),
                       labelText: 'Email'),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 16,
                 ),
                 TextField(
@@ -157,7 +157,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           borderRadius: BorderRadius.circular(10)),
                       labelText: 'Password'),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 16,
                 ),
                 TextField(
@@ -168,11 +168,11 @@ class _SignUpPageState extends State<SignUpPage> {
                           borderRadius: BorderRadius.circular(10)),
                       labelText: 'Confirm Password'),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 FloatingActionButton(
-                  child: Icon(Icons.arrow_forward),
+                  child: const Icon(Icons.arrow_forward),
                   backgroundColor: mainColor,
                   elevation: 0,
                   onPressed: () {

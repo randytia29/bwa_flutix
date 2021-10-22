@@ -16,7 +16,7 @@ import 'package:random_string/random_string.dart';
 class SelectSchedulePage extends StatefulWidget {
   final MovieDetail? movieDetail;
 
-  SelectSchedulePage(this.movieDetail);
+  const SelectSchedulePage(this.movieDetail, {Key? key}) : super(key: key);
 
   @override
   _SelectSchedulePageState createState() => _SelectSchedulePageState();
@@ -50,11 +50,12 @@ class _SelectSchedulePageState extends State<SelectSchedulePage> {
               Align(
                 alignment: Alignment.topLeft,
                 child: Container(
-                  margin: EdgeInsets.only(top: 16, left: defaultMargin),
+                  margin: const EdgeInsets.only(top: 16, left: defaultMargin),
                   height: 24,
                   child: IconButton(
                     color: Colors.white,
-                    icon: Icon(Icons.arrow_back, size: 24, color: Colors.black),
+                    icon: const Icon(Icons.arrow_back,
+                        size: 24, color: Colors.black),
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
@@ -62,15 +63,15 @@ class _SelectSchedulePageState extends State<SelectSchedulePage> {
                 ),
               ),
               Container(
-                margin:
-                    EdgeInsets.fromLTRB(defaultMargin, 20, defaultMargin, 16),
+                margin: const EdgeInsets.fromLTRB(
+                    defaultMargin, 20, defaultMargin, 16),
                 child: Text(
                   'Choose Date',
                   style: blackTextFont.copyWith(fontSize: 20),
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(bottom: 24),
+                margin: const EdgeInsets.only(bottom: 24),
                 height: 90,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
@@ -92,7 +93,7 @@ class _SelectSchedulePageState extends State<SelectSchedulePage> {
                 ),
               ),
               generateTimeTable(),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Align(
@@ -104,10 +105,11 @@ class _SelectSchedulePageState extends State<SelectSchedulePage> {
                       return FloatingActionButton(
                         elevation: 0,
                         backgroundColor:
-                            isValid ? mainColor : Color(0xFFE4E4E4),
+                            isValid ? mainColor : const Color(0xFFE4E4E4),
                         child: Icon(
                           Icons.arrow_forward,
-                          color: isValid ? Colors.white : Color(0xFFBEBEBE),
+                          color:
+                              isValid ? Colors.white : const Color(0xFFBEBEBE),
                         ),
                         onPressed: () {
                           orderTicketBloc.add(InitOrderTicketProcess(
@@ -135,7 +137,7 @@ class _SelectSchedulePageState extends State<SelectSchedulePage> {
                               routeTransition(
                                 BlocProvider.value(
                                   value: orderTicketBloc,
-                                  child: SelectSeatPage(),
+                                  child: const SelectSeatPage(),
                                 ),
                               ),
                             );
@@ -159,7 +161,7 @@ class _SelectSchedulePageState extends State<SelectSchedulePage> {
     List<Widget> widgets = [];
     for (var theater in dummyTheaters) {
       widgets.add(Container(
-        margin: EdgeInsets.fromLTRB(defaultMargin, 0, defaultMargin, 16),
+        margin: const EdgeInsets.fromLTRB(defaultMargin, 0, defaultMargin, 16),
         child: Text(
           theater.name!,
           style: blackTextFont.copyWith(fontSize: 20),
@@ -167,7 +169,7 @@ class _SelectSchedulePageState extends State<SelectSchedulePage> {
       ));
       widgets.add(Container(
         height: 50,
-        margin: EdgeInsets.only(bottom: 20),
+        margin: const EdgeInsets.only(bottom: 20),
         child: ListView.builder(
           itemCount: schedule.length,
           scrollDirection: Axis.horizontal,

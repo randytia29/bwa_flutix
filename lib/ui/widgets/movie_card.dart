@@ -10,7 +10,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class MovieCard extends StatelessWidget {
   final Movie movie;
 
-  MovieCard(this.movie);
+  const MovieCard(this.movie, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class MovieCard extends StatelessWidget {
         child: Container(
           height: 280.h,
           width: 420.w,
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
               gradient: LinearGradient(

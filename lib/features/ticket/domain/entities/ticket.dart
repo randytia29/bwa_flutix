@@ -17,7 +17,7 @@ class Ticket extends Equatable {
   final String name;
   final int totalPrice;
 
-  Ticket(
+  const Ticket(
       {required this.movieId,
       required this.movieTitle,
       required this.movieVoteAverage,

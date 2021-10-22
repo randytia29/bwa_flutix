@@ -7,7 +7,7 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../../../fixtures/fixture_reader.dart';
 
 void main() {
-  final tCreditModel = CreditModel(
+  const tCreditModel = CreditModel(
       name: 'Kostja Ullmann', profilePath: '/mQguH03eznJhsfwpZJZrnWCs5Su.jpg');
 
   test('should be subclass of Credit Entity', () async {

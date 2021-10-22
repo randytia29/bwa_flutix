@@ -1,7 +1,7 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPrefKey {
-  static const String USER_ID = 'userId';
+  static const String userId = 'userId';
 }
 
 class SharedPref {
@@ -11,19 +11,19 @@ class SharedPref {
 
   Future<bool> setUserId(String userId) async {
     bool userIdSaved =
-        await sharedPreferences!.setString(SharedPrefKey.USER_ID, userId);
+        await sharedPreferences!.setString(SharedPrefKey.userId, userId);
 
     return userIdSaved;
   }
 
   String? getUserId() {
-    String? userId = sharedPreferences!.getString(SharedPrefKey.USER_ID);
+    String? userId = sharedPreferences!.getString(SharedPrefKey.userId);
 
     return userId;
   }
 
   Future<bool> clearUserId() async {
-    bool userIdRemoved = await sharedPreferences!.remove(SharedPrefKey.USER_ID);
+    bool userIdRemoved = await sharedPreferences!.remove(SharedPrefKey.userId);
 
     return userIdRemoved;
   }

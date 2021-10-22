@@ -25,15 +25,15 @@ Reference _reference = FirebaseStorage.instance.ref();
 Future<File?> _cropImage(String sourcePath) async {
   File? file = await ImageCropper.cropImage(
       sourcePath: sourcePath,
-      aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
+      aspectRatio: const CropAspectRatio(ratioX: 1, ratioY: 1),
       compressQuality: 50,
-      androidUiSettings: AndroidUiSettings(
+      androidUiSettings: const AndroidUiSettings(
           toolbarTitle: 'Crop Image',
           toolbarColor: accentColor1,
           toolbarWidgetColor: Colors.white,
           statusBarColor: accentColor1,
           activeControlsWidgetColor: mainColor),
-      iosUiSettings: IOSUiSettings(title: 'Photo Cropper'));
+      iosUiSettings: const IOSUiSettings(title: 'Photo Cropper'));
 
   return file;
 }

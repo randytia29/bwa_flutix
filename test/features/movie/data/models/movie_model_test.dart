@@ -7,7 +7,7 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../../../fixtures/fixture_reader.dart';
 
 void main() {
-  final tMovieModel = MovieModel(
+  const tMovieModel = MovieModel(
       id: 436969,
       title: 'The Suicide Squad',
       voteAverage: 8,

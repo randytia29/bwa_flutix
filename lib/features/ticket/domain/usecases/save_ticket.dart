@@ -17,7 +17,7 @@ class SaveTicket implements Usecase<void, Params> {
 class Params extends Equatable {
   final TicketModel? ticket;
 
-  Params({this.ticket});
+  const Params({this.ticket});
 
   @override
   List<Object?> get props => [ticket];

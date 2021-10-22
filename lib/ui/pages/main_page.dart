@@ -12,7 +12,8 @@ class MainPage extends StatefulWidget {
   final int bottomNavBarIndex;
   final bool isExpired;
 
-  MainPage({this.bottomNavBarIndex = 0, this.isExpired = false});
+  const MainPage({Key? key, this.bottomNavBarIndex = 0, this.isExpired = false})
+      : super(key: key);
 
   @override
   _MainPageState createState() => _MainPageState();
@@ -48,21 +49,19 @@ class _MainPageState extends State<MainPage> {
       body: Stack(
         children: <Widget>[
           SafeArea(
-            child: Container(
-              child: PageView(
-                controller: pageController,
-                onPageChanged: (index) {
-                  setState(() {
-                    bottomNavBarIndex = index;
-                  });
-                },
-                children: <Widget>[
-                  MoviePage(),
-                  TicketPage(
-                    isExpiredTicket: widget.isExpired,
-                  )
-                ],
-              ),
+            child: PageView(
+              controller: pageController,
+              onPageChanged: (index) {
+                setState(() {
+                  bottomNavBarIndex = index;
+                });
+              },
+              children: <Widget>[
+                const MoviePage(),
+                TicketPage(
+                  isExpiredTicket: widget.isExpired,
+                )
+              ],
             ),
           ),
           createCustomBottomNavBar(),
@@ -71,7 +70,7 @@ class _MainPageState extends State<MainPage> {
             child: Container(
               height: 46,
               width: 46,
-              margin: EdgeInsets.only(bottom: 42),
+              margin: const EdgeInsets.only(bottom: 42),
               child: FloatingActionButton(
                   elevation: 0,
                   backgroundColor: accentColor2,
@@ -84,7 +83,8 @@ class _MainPageState extends State<MainPage> {
                     ),
                   ),
                   onPressed: () {
-                    Navigator.of(context).push(routeTransition(TopUpPage()));
+                    Navigator.of(context)
+                        .push(routeTransition(const TopUpPage()));
                   }),
             ),
           )
@@ -99,7 +99,7 @@ class _MainPageState extends State<MainPage> {
           clipper: BottomNavBarClipper(),
           child: Container(
             height: 70,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(20), topRight: Radius.circular(20)),
@@ -108,7 +108,7 @@ class _MainPageState extends State<MainPage> {
               elevation: 0,
               backgroundColor: Colors.transparent,
               selectedItemColor: mainColor,
-              unselectedItemColor: Color(0xFFE5E5E5),
+              unselectedItemColor: const Color(0xFFE5E5E5),
               currentIndex: bottomNavBarIndex!,
               onTap: (index) {
                 setState(() {
@@ -120,7 +120,7 @@ class _MainPageState extends State<MainPage> {
                 BottomNavigationBarItem(
                   label: 'New Movie',
                   icon: Container(
-                    margin: EdgeInsets.only(bottom: 6),
+                    margin: const EdgeInsets.only(bottom: 6),
                     height: 20,
                     child: Image.asset((bottomNavBarIndex == 0)
                         ? 'assets/ic_movies.png'
@@ -130,7 +130,7 @@ class _MainPageState extends State<MainPage> {
                 BottomNavigationBarItem(
                   label: 'My Tickets',
                   icon: Container(
-                    margin: EdgeInsets.only(bottom: 6),
+                    margin: const EdgeInsets.only(bottom: 6),
                     height: 20,
                     child: Image.asset((bottomNavBarIndex == 1)
                         ? 'assets/ic_ticket.png'

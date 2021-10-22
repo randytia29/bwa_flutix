@@ -20,7 +20,7 @@ class TicketDetailUser extends StatelessWidget {
         Text("Name",
             style: greyTextFont.copyWith(
                 fontSize: 16, fontWeight: FontWeight.w400)),
-        SizedBox(
+        const SizedBox(
           height: 2,
         ),
         SizedBox(
@@ -32,13 +32,13 @@ class TicketDetailUser extends StatelessWidget {
                 color: Colors.black, fontSize: 16, fontWeight: FontWeight.w400),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 8,
         ),
         Text("Paid",
             style: greyTextFont.copyWith(
                 fontSize: 16, fontWeight: FontWeight.w400)),
-        SizedBox(
+        const SizedBox(
           height: 2,
         ),
         Text(

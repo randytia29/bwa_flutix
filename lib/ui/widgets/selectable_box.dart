@@ -10,13 +10,15 @@ class SelectableBox extends StatelessWidget {
   final Function? onTap;
   final TextStyle? textStyle;
 
-  SelectableBox(this.text,
-      {this.isSelected = false,
+  const SelectableBox(this.text,
+      {Key? key,
+      this.isSelected = false,
       this.isEnabled = true,
       this.width = 144,
       this.height = 60,
       this.onTap,
-      this.textStyle});
+      this.textStyle})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,16 +34,16 @@ class SelectableBox extends StatelessWidget {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(6),
               color: (!isEnabled)
-                  ? Color(0xFFE4E4E4)
+                  ? const Color(0xFFE4E4E4)
                   : isSelected
                       ? accentColor2
                       : Colors.transparent,
               border: Border.all(
                   color: (!isEnabled)
-                      ? Color(0xFFE4E4E4)
+                      ? const Color(0xFFE4E4E4)
                       : isSelected
                           ? Colors.transparent
-                          : Color(0xFFE4E4E4))),
+                          : const Color(0xFFE4E4E4))),
           child: Center(
             child: Text(
               text,

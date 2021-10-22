@@ -2,7 +2,7 @@ import 'package:bwaflutix/features/user/domain/entities/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UserModel extends User {
-  UserModel(
+  const UserModel(
       {required String email,
       required String name,
       required String profilePicture,

@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 class CreditCard extends StatelessWidget {
   final Credit credit;
 
-  CreditCard(this.credit);
+  const CreditCard(this.credit, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: 70,
       height: 110,
       child: Column(
@@ -25,15 +25,15 @@ class CreditCard extends StatelessWidget {
                   fit: BoxFit.cover),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 6,
           ),
-          Container(
+          SizedBox(
             width: 70,
             height: 24,
             child: Text(
               credit.name,
-              style: TextStyle(fontSize: 10),
+              style: const TextStyle(fontSize: 10),
               textAlign: TextAlign.center,
             ),
           ),

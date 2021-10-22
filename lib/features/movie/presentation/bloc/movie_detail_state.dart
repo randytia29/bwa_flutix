@@ -14,11 +14,11 @@ class MovieDetailLoading extends MovieDetailState {}
 class MovieDetailLoaded extends MovieDetailState {
   final MovieDetail? movie;
 
-  MovieDetailLoaded({required this.movie});
+  const MovieDetailLoaded({required this.movie});
 }
 
 class MovieDetailFailToLoad extends MovieDetailState {
   final String message;
 
-  MovieDetailFailToLoad({required this.message});
+  const MovieDetailFailToLoad({required this.message});
 }

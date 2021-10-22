@@ -15,6 +15,8 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:intl/intl.dart';
 
 class WalletPage extends StatefulWidget {
+  const WalletPage({Key? key}) : super(key: key);
+
   @override
   State<WalletPage> createState() => _WalletPageState();
 }
@@ -36,260 +38,254 @@ class _WalletPageState extends State<WalletPage> {
         child: Stack(
           children: [
             SafeArea(
-              child: Container(
-                child: BlocBuilder<UserBloc, UserState>(
-                  builder: (_, userState) {
-                    User user = (userState as UserLoaded).user;
-                    return ListView(children: [
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Stack(
+              child: BlocBuilder<UserBloc, UserState>(
+                builder: (_, userState) {
+                  User user = (userState as UserLoaded).user;
+                  return ListView(children: [
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Stack(
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.only(left: defaultMargin),
+                          height: 24,
+                          child: IconButton(
+                            color: Colors.white,
+                            icon: const Icon(Icons.arrow_back,
+                                size: 24, color: Colors.black),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.topCenter,
+                          child: Text(
+                            "My Wallet",
+                            style: blackTextFont.copyWith(fontSize: 20),
+                            textAlign: TextAlign.center,
+                          ),
+                        )
+                      ],
+                    ),
+                    Container(
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: defaultMargin, vertical: 20),
+                      width: double.infinity,
+                      height: 185,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: const Color(0xFF382A74),
+                          boxShadow: const [
+                            BoxShadow(
+                                color: Colors.black26,
+                                blurRadius: 10,
+                                spreadRadius: 0,
+                                offset: Offset(0, 5))
+                          ]),
+                      child: Stack(
                         children: [
-                          Container(
-                            margin: EdgeInsets.only(left: defaultMargin),
-                            height: 24,
-                            child: IconButton(
-                              color: Colors.white,
-                              icon: Icon(Icons.arrow_back,
-                                  size: 24, color: Colors.black),
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
+                          ClipPath(
+                            clipper: CardReflectionClipper(),
+                            child: Container(
+                              height: 185,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                  gradient: LinearGradient(
+                                      begin: Alignment.bottomRight,
+                                      end: Alignment.topLeft,
+                                      colors: [
+                                        Colors.white.withOpacity(0.1),
+                                        Colors.white.withOpacity(0)
+                                      ])),
                             ),
                           ),
-                          Align(
-                            alignment: Alignment.topCenter,
-                            child: Container(
-                              child: Text(
-                                "My Wallet",
-                                style: blackTextFont.copyWith(fontSize: 20),
-                                textAlign: TextAlign.center,
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left: 20),
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      width: 18,
+                                      height: 18,
+                                      decoration: BoxDecoration(
+                                          color: const Color(0xFFFFF2CB),
+                                          borderRadius:
+                                              BorderRadius.circular(9)),
+                                    ),
+                                    const SizedBox(
+                                      width: 5,
+                                    ),
+                                    Container(
+                                      width: 30,
+                                      height: 30,
+                                      decoration: BoxDecoration(
+                                          color: accentColor2,
+                                          borderRadius:
+                                              BorderRadius.circular(15)),
+                                    )
+                                  ],
+                                ),
                               ),
-                            ),
-                          )
+                              Padding(
+                                padding: const EdgeInsets.only(left: 20),
+                                child: Text(
+                                  NumberFormat.currency(
+                                          locale: 'id_ID',
+                                          decimalDigits: 0,
+                                          symbol: 'IDR ')
+                                      .format(user.balance),
+                                  style: whiteNumberFont.copyWith(
+                                      fontSize: 28,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 20),
+                                child: Row(
+                                  children: [
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "Card Holder",
+                                          style: whiteTextFont.copyWith(
+                                              fontSize: 10,
+                                              fontWeight: FontWeight.w300),
+                                        ),
+                                        const SizedBox(
+                                          height: 5,
+                                        ),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              "${user.name} ",
+                                              style: whiteTextFont.copyWith(
+                                                  fontSize: 12),
+                                            ),
+                                            Container(
+                                              width: 14,
+                                              height: 14,
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(7),
+                                                  color:
+                                                      const Color(0xFF28C5B2)),
+                                              child: const Icon(
+                                                Icons.check,
+                                                color: Colors.white,
+                                                size: 14,
+                                              ),
+                                            ),
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                    const SizedBox(
+                                      width: 30,
+                                    ),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "Card ID",
+                                          style: whiteTextFont.copyWith(
+                                              fontSize: 10,
+                                              fontWeight: FontWeight.w300),
+                                        ),
+                                        const SizedBox(
+                                          height: 5,
+                                        ),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              "${user.id.substring(0, 10).toUpperCase()} ",
+                                              style: whiteNumberFont.copyWith(
+                                                  fontSize: 12),
+                                            ),
+                                            Container(
+                                              width: 14,
+                                              height: 14,
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(7),
+                                                  color:
+                                                      const Color(0xFF28C5B2)),
+                                              child: const Icon(
+                                                Icons.check,
+                                                color: Colors.white,
+                                                size: 14,
+                                              ),
+                                            )
+                                          ],
+                                        )
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
                         ],
                       ),
-                      Container(
-                        margin: EdgeInsets.symmetric(
-                            horizontal: defaultMargin, vertical: 20),
-                        width: double.infinity,
-                        height: 185,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            color: Color(0xFF382A74),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.black26,
-                                  blurRadius: 10,
-                                  spreadRadius: 0,
-                                  offset: Offset(0, 5))
-                            ]),
-                        child: Stack(
-                          children: [
-                            ClipPath(
-                              clipper: CardReflectionClipper(),
-                              child: Container(
-                                height: 185,
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(15),
-                                    gradient: LinearGradient(
-                                        begin: Alignment.bottomRight,
-                                        end: Alignment.topLeft,
-                                        colors: [
-                                          Colors.white.withOpacity(0.1),
-                                          Colors.white.withOpacity(0)
-                                        ])),
-                              ),
-                            ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 20),
-                                  child: Row(
-                                    children: [
-                                      Container(
-                                        width: 18,
-                                        height: 18,
-                                        decoration: BoxDecoration(
-                                            color: Color(0xFFFFF2CB),
-                                            borderRadius:
-                                                BorderRadius.circular(9)),
-                                      ),
-                                      SizedBox(
-                                        width: 5,
-                                      ),
-                                      Container(
-                                        width: 30,
-                                        height: 30,
-                                        decoration: BoxDecoration(
-                                            color: accentColor2,
-                                            borderRadius:
-                                                BorderRadius.circular(15)),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 20),
-                                  child: Text(
-                                    NumberFormat.currency(
-                                            locale: 'id_ID',
-                                            decimalDigits: 0,
-                                            symbol: 'IDR ')
-                                        .format(user.balance),
-                                    style: whiteNumberFont.copyWith(
-                                        fontSize: 28,
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 20),
-                                  child: Row(
-                                    children: [
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "Card Holder",
-                                            style: whiteTextFont.copyWith(
-                                                fontSize: 10,
-                                                fontWeight: FontWeight.w300),
-                                          ),
-                                          SizedBox(
-                                            height: 5,
-                                          ),
-                                          Row(
-                                            children: [
-                                              Text(
-                                                "${user.name} ",
-                                                style: whiteTextFont.copyWith(
-                                                    fontSize: 12),
-                                              ),
-                                              Container(
-                                                width: 14,
-                                                height: 14,
-                                                decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            7),
-                                                    color: Color(0xFF28C5B2)),
-                                                child: Icon(
-                                                  Icons.check,
-                                                  color: Colors.white,
-                                                  size: 14,
-                                                ),
-                                              ),
-                                            ],
-                                          )
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        width: 30,
-                                      ),
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "Card ID",
-                                            style: whiteTextFont.copyWith(
-                                                fontSize: 10,
-                                                fontWeight: FontWeight.w300),
-                                          ),
-                                          SizedBox(
-                                            height: 5,
-                                          ),
-                                          Row(
-                                            children: [
-                                              Text(
-                                                "${user.id.substring(0, 10).toUpperCase()} ",
-                                                style: whiteNumberFont.copyWith(
-                                                    fontSize: 12),
-                                              ),
-                                              Container(
-                                                width: 14,
-                                                height: 14,
-                                                decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            7),
-                                                    color: Color(0xFF28C5B2)),
-                                                child: Icon(
-                                                  Icons.check,
-                                                  color: Colors.white,
-                                                  size: 14,
-                                                ),
-                                              )
-                                            ],
-                                          )
-                                        ],
-                                      )
-                                    ],
-                                  ),
-                                )
-                              ],
-                            ),
-                          ],
-                        ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          left: defaultMargin, bottom: 12),
+                      child: Text(
+                        "Recent Transactions",
+                        style: blackTextFont.copyWith(fontSize: 14),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            left: defaultMargin, bottom: 12),
-                        child: Text(
-                          "Recent Transactions",
-                          style: blackTextFont.copyWith(fontSize: 14),
-                        ),
-                      ),
-                      BlocBuilder<FlutixTransactionBloc,
-                          FlutixTransactionState>(
-                        builder: (context, flutixTransactionState) {
-                          if (flutixTransactionState
-                              is FlutixTransactionLoading) {
-                            return SpinKitFadingCircle(
-                              color: mainColor,
-                              size: 50,
-                            );
-                          }
-                          if (flutixTransactionState
-                              is FlutixTransactionEmpty) {
-                            return Center(child: Text('kosong'));
-                          }
-                          if (flutixTransactionState
-                              is FlutixTransactionLoaded) {
-                            final transactions =
-                                flutixTransactionState.flutixTransactions;
-                            return generateTransactionList(
-                                transactions,
-                                MediaQuery.of(context).size.width -
-                                    2 * defaultMargin);
-                          }
-                          return Container();
-                        },
-                      ),
-                      SizedBox(
-                        height: 75,
-                      )
-                    ]);
-                  },
-                ),
+                    ),
+                    BlocBuilder<FlutixTransactionBloc, FlutixTransactionState>(
+                      builder: (context, flutixTransactionState) {
+                        if (flutixTransactionState
+                            is FlutixTransactionLoading) {
+                          return const SpinKitFadingCircle(
+                            color: mainColor,
+                            size: 50,
+                          );
+                        }
+                        if (flutixTransactionState is FlutixTransactionEmpty) {
+                          return const Center(child: Text('kosong'));
+                        }
+                        if (flutixTransactionState is FlutixTransactionLoaded) {
+                          final transactions =
+                              flutixTransactionState.flutixTransactions;
+                          return generateTransactionList(
+                              transactions,
+                              MediaQuery.of(context).size.width -
+                                  2 * defaultMargin);
+                        }
+                        return Container();
+                      },
+                    ),
+                    const SizedBox(
+                      height: 75,
+                    )
+                  ]);
+                },
               ),
             ),
             Align(
               alignment: Alignment.bottomCenter,
               child: FlutixButton(
-                margin: EdgeInsets.only(bottom: 30),
+                margin: const EdgeInsets.only(bottom: 30),
                 primaryColor: mainColor,
                 child: Text(
                   'Top Up My Wallet',
                   style: whiteTextFont.copyWith(fontSize: 16),
                 ),
                 onPressed: () {
-                  Navigator.of(context).push(routeTransition(TopUpPage()));
+                  Navigator.of(context)
+                      .push(routeTransition(const TopUpPage()));
                 },
               ),
             )

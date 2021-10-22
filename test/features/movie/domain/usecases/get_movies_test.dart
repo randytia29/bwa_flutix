@@ -15,8 +15,8 @@ void main() {
     usecase = GetMovies(mockMovieRepository);
   });
 
-  final tPage = 1;
-  final tMovie = [
+  const tPage = 1;
+  const tMovie = [
     Movie(
         id: 1,
         title: 'title',
@@ -31,7 +31,7 @@ void main() {
     when(mockMovieRepository!.getMovies(any))
         .thenAnswer((realInvocation) async => tMovie);
 
-    final result = await usecase(Params(page: tPage));
+    final result = await usecase(const Params(page: tPage));
 
     expect(result, tMovie);
     verify(mockMovieRepository!.getMovies(tPage));

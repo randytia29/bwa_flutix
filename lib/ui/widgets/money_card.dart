@@ -8,8 +8,13 @@ class MoneyCard extends StatelessWidget {
   final int? amount;
   final Function? onTap;
 
-  MoneyCard(
-      {this.width = 90, this.isSelected = false, this.amount = 0, this.onTap});
+  const MoneyCard(
+      {Key? key,
+      this.width = 90,
+      this.isSelected = false,
+      this.amount = 0,
+      this.onTap})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +30,8 @@ class MoneyCard extends StatelessWidget {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(6),
             border: Border.all(
-                color: isSelected ? Colors.transparent : Color(0xFFE4E4E4)),
+                color:
+                    isSelected ? Colors.transparent : const Color(0xFFE4E4E4)),
             color: isSelected ? accentColor2 : Colors.transparent),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -36,7 +42,7 @@ class MoneyCard extends StatelessWidget {
               style: greyTextFont.copyWith(
                   fontSize: 20, fontWeight: FontWeight.w400),
             ),
-            SizedBox(
+            const SizedBox(
               height: 6,
             ),
             Text(

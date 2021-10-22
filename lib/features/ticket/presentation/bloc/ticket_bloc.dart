@@ -24,7 +24,7 @@ class TicketBloc extends Bloc<TicketEvent, TicketState> {
         final tickets = await getTickets!(Params(userId: userId));
         tickets?.sort((a, b) => b.time.compareTo(a.time));
 
-        if (tickets!.length > 0) {
+        if ((tickets ?? <Ticket>[]).isNotEmpty) {
           emit(TicketLoaded(tickets: tickets));
         } else {
           emit(TicketEmpty());

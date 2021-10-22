@@ -17,7 +17,7 @@ class FlutixTransaction extends Equatable {
   @HiveField(5)
   final String picture;
 
-  FlutixTransaction(
+  const FlutixTransaction(
       {required this.userID,
       required this.title,
       required this.subtitle,

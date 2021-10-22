@@ -1,4 +1,5 @@
-import '../../extensions/date_time_extension.dart';
+import 'package:bwaflutix/core/util/convert_to_string.dart';
+
 import '../../shared/theme.dart';
 import 'package:flutter/material.dart';
 
@@ -9,8 +10,13 @@ class DateCard extends StatelessWidget {
   final DateTime date;
   final Function? onTap;
 
-  DateCard(this.date,
-      {this.isSelected = false, this.width = 70, this.height = 90, this.onTap});
+  const DateCard(this.date,
+      {Key? key,
+      this.isSelected = false,
+      this.width = 70,
+      this.height = 90,
+      this.onTap})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,16 +33,18 @@ class DateCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(6),
               color: isSelected ? accentColor2 : Colors.transparent,
               border: Border.all(
-                  color: isSelected ? Colors.transparent : Color(0xFFE4E4E4))),
+                  color: isSelected
+                      ? Colors.transparent
+                      : const Color(0xFFE4E4E4))),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                date.shortDayName,
+                shortDayName(date),
                 style: blackTextFont.copyWith(
                     fontSize: 16, fontWeight: FontWeight.w400),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 6,
               ),
               Text(

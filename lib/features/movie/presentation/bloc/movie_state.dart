@@ -16,7 +16,7 @@ class MovieLoaded extends MovieState {
   final bool? hasReachedMax;
   final int? currentPage;
 
-  MovieLoaded(
+  const MovieLoaded(
       {required this.movies,
       required this.hasReachedMax,
       this.currentPage = 1});
@@ -33,5 +33,5 @@ class MovieLoaded extends MovieState {
 class MovieFailToLoad extends MovieState {
   final String? message;
 
-  MovieFailToLoad({required this.message});
+  const MovieFailToLoad({required this.message});
 }

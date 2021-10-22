@@ -18,7 +18,8 @@ class ComingSoonMovie extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          margin: EdgeInsets.fromLTRB(defaultMargin, 30, defaultMargin, 12),
+          margin:
+              const EdgeInsets.fromLTRB(defaultMargin, 30, defaultMargin, 12),
           child: Text(
             'Coming Soon',
             style: blackTextFont.copyWith(
@@ -44,7 +45,7 @@ class ComingSoonMovie extends StatelessWidget {
                   ),
                 );
               } else {
-                return SpinKitFadingCircle(
+                return const SpinKitFadingCircle(
                   color: mainColor,
                   size: 50,
                 );

@@ -6,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class PromoCard extends StatelessWidget {
   final Promo promo;
 
-  PromoCard(this.promo);
+  const PromoCard(this.promo, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class PromoCard extends StatelessWidget {
       children: <Widget>[
         Container(
           height: 160.h,
-          padding: EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           decoration: BoxDecoration(
               color: mainColor, borderRadius: BorderRadius.circular(15)),
           child: Row(
@@ -58,14 +58,14 @@ class PromoCard extends StatelessWidget {
                     begin: Alignment.centerRight,
                     end: Alignment.centerLeft,
                     colors: [Colors.black.withOpacity(0.1), Colors.transparent])
-                .createShader(Rect.fromLTRB(0, 0, 117, 80));
+                .createShader(const Rect.fromLTRB(0, 0, 117, 80));
           },
           blendMode: BlendMode.dstIn,
           child: SizedBox(
             height: 160.h,
             width: 117,
             child: ClipRRect(
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(15),
                     bottomLeft: Radius.circular(15)),
                 child: Image.asset('assets/reflection2.png')),
@@ -81,7 +81,7 @@ class PromoCard extends StatelessWidget {
                   colors: [
                     Colors.black.withOpacity(0.1),
                     Colors.transparent
-                  ]).createShader(Rect.fromLTRB(0, 0, 134, 45));
+                  ]).createShader(const Rect.fromLTRB(0, 0, 134, 45));
             },
             blendMode: BlendMode.dstIn,
             child: SizedBox(
@@ -89,7 +89,7 @@ class PromoCard extends StatelessWidget {
               width: 134,
               child: ClipRRect(
                   borderRadius:
-                      BorderRadius.only(topRight: Radius.circular(15)),
+                      const BorderRadius.only(topRight: Radius.circular(15)),
                   child: Image.asset('assets/reflection1.png')),
             ),
           ),
@@ -104,7 +104,7 @@ class PromoCard extends StatelessWidget {
                   colors: [
                     Colors.black.withOpacity(0.1),
                     Colors.transparent
-                  ]).createShader(Rect.fromLTRB(0, 0, 74, 25));
+                  ]).createShader(const Rect.fromLTRB(0, 0, 74, 25));
             },
             blendMode: BlendMode.dstIn,
             child: SizedBox(
@@ -112,7 +112,7 @@ class PromoCard extends StatelessWidget {
               width: 74,
               child: ClipRRect(
                   borderRadius:
-                      BorderRadius.only(topRight: Radius.circular(15)),
+                      const BorderRadius.only(topRight: Radius.circular(15)),
                   child: Image.asset('assets/reflection1.png')),
             ),
           ),

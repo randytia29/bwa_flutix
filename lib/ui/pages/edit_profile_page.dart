@@ -18,7 +18,7 @@ import 'package:path/path.dart';
 class EditProfilePage extends StatefulWidget {
   final User user;
 
-  EditProfilePage(this.user);
+  const EditProfilePage(this.user, {Key? key}) : super(key: key);
 
   @override
   _EditProfilePageState createState() => _EditProfilePageState();
@@ -47,7 +47,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          padding: EdgeInsets.fromLTRB(defaultMargin, 20, defaultMargin, 0),
+          padding:
+              const EdgeInsets.fromLTRB(defaultMargin, 20, defaultMargin, 0),
           child: ListView(
             children: [
               Stack(
@@ -61,7 +62,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     ),
                   ),
                   IconButton(
-                    icon: Icon(Icons.arrow_back),
+                    icon: const Icon(Icons.arrow_back),
                     onPressed: () async {
                       Navigator.of(context).pop();
                     },
@@ -73,23 +74,24 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   Container(
                     width: 90,
                     height: 104,
-                    margin: EdgeInsets.only(top: 28, bottom: 30),
+                    margin: const EdgeInsets.only(top: 28, bottom: 30),
                     child: Stack(
                       children: [
                         Container(
                           width: 90,
                           height: 90,
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(45),
-                              image: DecorationImage(
-                                  image: (profileImageFile != null)
-                                      ? FileImage(profileImageFile!)
-                                      : ((profilePath != '')
-                                              ? NetworkImage(profilePath!)
-                                              : AssetImage(
-                                                  "assets/user_pic.png"))
-                                          as ImageProvider<Object>,
-                                  fit: BoxFit.cover)),
+                            borderRadius: BorderRadius.circular(45),
+                            image: DecorationImage(
+                                image: (profileImageFile != null)
+                                    ? FileImage(profileImageFile!)
+                                    : ((profilePath != '')
+                                            ? NetworkImage(profilePath!)
+                                            : const AssetImage(
+                                                "assets/user_pic.png"))
+                                        as ImageProvider<Object>,
+                                fit: BoxFit.cover),
+                          ),
                         ),
                         Align(
                           alignment: Alignment.bottomCenter,
@@ -137,12 +139,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       style: whiteNumberFont.copyWith(color: accentColor3),
                       controller: TextEditingController(text: widget.user.id),
                       decoration: InputDecoration(
-                          labelText: "User ID",
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(6))),
+                        labelText: "User ID",
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(6)),
+                      ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 16,
                   ),
                   AbsorbPointer(
@@ -156,7 +159,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               borderRadius: BorderRadius.circular(6))),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 16,
                   ),
                   TextField(
@@ -175,7 +178,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(6))),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
                   FlutixButton(
@@ -186,12 +189,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(
+                          const Icon(
                             MdiIcons.alertCircle,
                             color: Colors.white,
                             size: 20,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 5,
                           ),
                           Text(
@@ -199,13 +202,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             style: whiteTextFont.copyWith(
                                 fontSize: 16,
                                 color: (isUpdating)
-                                    ? Color(0xFFBEBEBE)
+                                    ? const Color(0xFFBEBEBE)
                                     : Colors.white),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 5,
                           ),
-                          Icon(
+                          const Icon(
                             MdiIcons.alertCircle,
                             color: Colors.white,
                             size: 20,
@@ -223,11 +226,11 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                 'The link to change your password has been sent to your email');
                           },
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 16,
                   ),
                   (isUpdating)
-                      ? SizedBox(
+                      ? const SizedBox(
                           width: 50,
                           height: 50,
                           child: SpinKitFadingCircle(
@@ -235,15 +238,15 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           ),
                         )
                       : FlutixButton(
-                          primaryColor: Color(0xFF3E9D9D),
-                          onSurfaceColor: Color(0xFF3E9D9D),
+                          primaryColor: const Color(0xFF3E9D9D),
+                          onSurfaceColor: const Color(0xFF3E9D9D),
                           child: Text(
                             'Update My Profile',
                             style: whiteTextFont.copyWith(
                                 fontSize: 16,
                                 color: (isDataEdited)
                                     ? Colors.white
-                                    : Color(0xFFBEBEBE)),
+                                    : const Color(0xFFBEBEBE)),
                           ),
                           onPressed: (isDataEdited)
                               ? () async {
@@ -273,7 +276,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
                                   Navigator.of(context)
                                     ..popUntil((route) => route.isFirst)
-                                    ..push(routeTransition(ProfilePage()));
+                                    ..push(
+                                        routeTransition(const ProfilePage()));
                                 }
                               : null,
                         ),

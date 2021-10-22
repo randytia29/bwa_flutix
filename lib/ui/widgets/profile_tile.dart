@@ -25,7 +25,7 @@ class ProfileTile extends StatelessWidget {
               Container(
                 width: 24,
                 height: 24,
-                margin: EdgeInsets.only(right: 10),
+                margin: const EdgeInsets.only(right: 10),
                 decoration: BoxDecoration(
                   image: DecorationImage(
                       image: AssetImage(assetName), fit: BoxFit.cover),
@@ -39,10 +39,10 @@ class ProfileTile extends StatelessWidget {
               )
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 16,
           ),
-          DottedLine(
+          const DottedLine(
             dashLength: 10,
           ),
         ],

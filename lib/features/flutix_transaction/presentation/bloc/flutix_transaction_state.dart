@@ -16,11 +16,11 @@ class FlutixTransactionEmpty extends FlutixTransactionState {}
 class FlutixTransactionLoaded extends FlutixTransactionState {
   final List<FlutixTransaction>? flutixTransactions;
 
-  FlutixTransactionLoaded({required this.flutixTransactions});
+  const FlutixTransactionLoaded({required this.flutixTransactions});
 }
 
 class FlutixTransactionFailToLoad extends FlutixTransactionState {
   final String? message;
 
-  FlutixTransactionFailToLoad({required this.message});
+  const FlutixTransactionFailToLoad({required this.message});
 }

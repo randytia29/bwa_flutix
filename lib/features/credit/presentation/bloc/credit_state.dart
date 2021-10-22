@@ -14,11 +14,11 @@ class CreditLoading extends CreditState {}
 class CreditLoaded extends CreditState {
   final List<Credit>? credits;
 
-  CreditLoaded({required this.credits});
+  const CreditLoaded({required this.credits});
 }
 
 class CreditFailToLoad extends CreditState {
   final String? message;
 
-  CreditFailToLoad({required this.message});
+  const CreditFailToLoad({required this.message});
 }

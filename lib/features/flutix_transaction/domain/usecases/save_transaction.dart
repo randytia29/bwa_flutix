@@ -17,7 +17,7 @@ class SaveTransaction implements Usecase<void, Params> {
 class Params extends Equatable {
   final FlutixTransactionModel? flutixTransactionModel;
 
-  Params({this.flutixTransactionModel});
+  const Params({this.flutixTransactionModel});
 
   @override
   List<Object?> get props => [flutixTransactionModel];

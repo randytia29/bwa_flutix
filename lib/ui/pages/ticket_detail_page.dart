@@ -16,7 +16,7 @@ import 'package:share_plus/share_plus.dart';
 class TicketDetailPage extends StatefulWidget {
   final Ticket? ticket;
 
-  TicketDetailPage(this.ticket);
+  const TicketDetailPage(this.ticket, {Key? key}) : super(key: key);
 
   @override
   _TicketDetailPageState createState() => _TicketDetailPageState();
@@ -33,7 +33,8 @@ class _TicketDetailPageState extends State<TicketDetailPage> {
           children: [
             Container(
               height: 24,
-              margin: EdgeInsets.only(top: 20, left: defaultMargin, bottom: 20),
+              margin: const EdgeInsets.only(
+                  top: 20, left: defaultMargin, bottom: 20),
               child: Stack(
                 children: [
                   Align(
@@ -46,7 +47,7 @@ class _TicketDetailPageState extends State<TicketDetailPage> {
                   Align(
                     alignment: Alignment.centerLeft,
                     child: IconButton(
-                      icon: Icon(Icons.arrow_back),
+                      icon: const Icon(Icons.arrow_back),
                       onPressed: () async {
                         Navigator.of(context).pop();
                       },
@@ -60,7 +61,7 @@ class _TicketDetailPageState extends State<TicketDetailPage> {
               child: TicketDetailCard(ticket: widget.ticket),
             ),
             FlutixButton(
-              margin: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+              margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
               primaryColor: mainColor,
               child: Text(
                 'Share',

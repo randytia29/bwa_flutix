@@ -9,7 +9,7 @@ abstract class TicketLocalDataSource {
   Future<void>? cacheTickets(List<TicketModel>? ticketsToCache);
 }
 
-const CACHED_TICKET_LIST = 'CACHED_TICKET_LIST';
+const cachedTicketList = 'CACHED_TICKET_LIST';
 
 class TicketLocalDataSourceImpl implements TicketLocalDataSource {
   final SharedPreferences? sharedPreferences;
@@ -21,12 +21,12 @@ class TicketLocalDataSourceImpl implements TicketLocalDataSource {
     final jsonMap = ticketsToCache?.map((e) => e.toJson()).toList();
     final jsonString = json.encode(jsonMap);
 
-    return sharedPreferences?.setString(CACHED_TICKET_LIST, jsonString);
+    return sharedPreferences?.setString(cachedTicketList, jsonString);
   }
 
   @override
   Future<List<TicketModel>>? getLastTickets() {
-    final jsonString = sharedPreferences?.getString(CACHED_TICKET_LIST);
+    final jsonString = sharedPreferences?.getString(cachedTicketList);
     if (jsonString != null) {
       final response = json.decode(jsonString);
       final result =

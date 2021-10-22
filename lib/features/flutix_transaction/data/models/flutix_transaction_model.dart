@@ -2,7 +2,7 @@ import 'package:bwaflutix/features/flutix_transaction/domain/entities/flutix_tra
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FlutixTransactionModel extends FlutixTransaction {
-  FlutixTransactionModel(
+  const FlutixTransactionModel(
       {required String userID,
       required String title,
       required String subtitle,

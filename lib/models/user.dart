@@ -9,7 +9,7 @@ class User extends Equatable {
   final String? selectedLanguage;
   final int? balance;
 
-  User(this.id, this.email,
+  const User(this.id, this.email,
       {this.name,
       this.profilePicture,
       this.selectedGenres,
@@ -17,7 +17,7 @@ class User extends Equatable {
       this.balance});
 
   User copyWith({String? name, String? profilePicture, int? balance}) =>
-      User(this.id, this.email,
+      User(id, email,
           name: name ?? this.name,
           profilePicture: profilePicture ?? this.profilePicture,
           balance: balance ?? this.balance,

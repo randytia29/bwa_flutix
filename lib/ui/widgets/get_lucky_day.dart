@@ -15,7 +15,8 @@ class GetLuckyDay extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          margin: EdgeInsets.fromLTRB(defaultMargin, 30, defaultMargin, 12),
+          margin:
+              const EdgeInsets.fromLTRB(defaultMargin, 30, defaultMargin, 12),
           child: Text(
             'Get Lucky Day',
             style: blackTextFont.copyWith(
@@ -25,8 +26,8 @@ class GetLuckyDay extends StatelessWidget {
         Column(
           children: dummyPromos
               .map((e) => Padding(
-                  padding:
-                      EdgeInsets.fromLTRB(defaultMargin, 0, defaultMargin, 16),
+                  padding: const EdgeInsets.fromLTRB(
+                      defaultMargin, 0, defaultMargin, 16),
                   child: PromoCard(e)))
               .toList(),
         )

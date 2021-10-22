@@ -17,7 +17,7 @@ class PreferencePage extends StatefulWidget {
   final List<String> languages = ['Bahasa', 'English', 'Japanese', 'Korean'];
   final RegistrationData registrationData;
 
-  PreferencePage(this.registrationData);
+  PreferencePage(this.registrationData, {Key? key}) : super(key: key);
 
   @override
   _PreferencePageState createState() => _PreferencePageState();
@@ -32,7 +32,7 @@ class _PreferencePageState extends State<PreferencePage> {
     return Scaffold(
       body: Container(
         color: Colors.white,
-        padding: EdgeInsets.symmetric(horizontal: defaultMargin),
+        padding: const EdgeInsets.symmetric(horizontal: defaultMargin),
         child: ListView(
           children: <Widget>[
             Column(
@@ -40,18 +40,18 @@ class _PreferencePageState extends State<PreferencePage> {
               children: <Widget>[
                 Container(
                   height: 56,
-                  margin: EdgeInsets.only(top: 20, bottom: 4),
+                  margin: const EdgeInsets.only(top: 20, bottom: 4),
                   child: GestureDetector(
                       onTap: () {
                         Navigator.of(context).pop();
                       },
-                      child: Icon(Icons.arrow_back)),
+                      child: const Icon(Icons.arrow_back)),
                 ),
                 Text(
                   'Select Your Four\nFavorite Genres',
                   style: blackTextFont.copyWith(fontSize: 20),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 16,
                 ),
                 Wrap(
@@ -59,14 +59,14 @@ class _PreferencePageState extends State<PreferencePage> {
                   runSpacing: 24,
                   children: generateGenreWidgets(context),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 24,
                 ),
                 Text(
                   'Movie Language\nYou Prefer?',
                   style: blackTextFont.copyWith(fontSize: 20),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 16,
                 ),
                 Wrap(
@@ -74,14 +74,14 @@ class _PreferencePageState extends State<PreferencePage> {
                   runSpacing: 24,
                   children: generateLangWidgets(context),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Center(
                   child: FloatingActionButton(
                     elevation: 0,
                     backgroundColor: mainColor,
-                    child: Icon(Icons.arrow_forward),
+                    child: const Icon(Icons.arrow_forward),
                     onPressed: () {
                       if (selectedGenres.length != 4) {
                         flutixSnackbar(context, 'Please select 4 genres');
@@ -95,7 +95,7 @@ class _PreferencePageState extends State<PreferencePage> {
                     },
                   ),
                 ),
-                SizedBox(
+                Container(
                   height: 50,
                 )
               ],

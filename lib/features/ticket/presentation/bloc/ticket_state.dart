@@ -16,11 +16,11 @@ class TicketEmpty extends TicketState {}
 class TicketLoaded extends TicketState {
   final List<Ticket>? tickets;
 
-  TicketLoaded({required this.tickets});
+  const TicketLoaded({required this.tickets});
 }
 
 class TicketFailToLoad extends TicketState {
   final String? message;
 
-  TicketFailToLoad({required this.message});
+  const TicketFailToLoad({required this.message});
 }

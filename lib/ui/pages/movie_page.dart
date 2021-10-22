@@ -17,6 +17,8 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:intl/intl.dart';
 
 class MoviePage extends StatefulWidget {
+  const MoviePage({Key? key}) : super(key: key);
+
   @override
   _MoviePageState createState() => _MoviePageState();
 }
@@ -49,13 +51,14 @@ class _MoviePageState extends State<MoviePage> {
           children: <Widget>[
             //note: HEADER
             Container(
-              decoration: BoxDecoration(
-                  color: accentColor1,
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(20),
-                      bottomRight: Radius.circular(20))),
-              padding:
-                  EdgeInsets.fromLTRB(defaultMargin, 20, defaultMargin, 30),
+              decoration: const BoxDecoration(
+                color: accentColor1,
+                borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(20),
+                    bottomRight: Radius.circular(20)),
+              ),
+              padding: const EdgeInsets.fromLTRB(
+                  defaultMargin, 20, defaultMargin, 30),
               child: BlocBuilder<UserBloc, UserState>(
                 builder: (_, userState) {
                   if (userState is UserLoaded) {
@@ -72,17 +75,17 @@ class _MoviePageState extends State<MoviePage> {
                         GestureDetector(
                           onTap: () async {
                             Navigator.of(context)
-                                .push(routeTransition(ProfilePage()));
+                                .push(routeTransition(const ProfilePage()));
                           },
                           child: Container(
-                            padding: EdgeInsets.all(5),
+                            padding: const EdgeInsets.all(5),
                             decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 border: Border.all(
-                                    color: Color(0xFF5F558B), width: 1)),
+                                    color: const Color(0xFF5F558B), width: 1)),
                             child: Stack(
                               children: <Widget>[
-                                SpinKitFadingCircle(
+                                const SpinKitFadingCircle(
                                   color: accentColor2,
                                   size: 50,
                                 ),
@@ -95,7 +98,7 @@ class _MoviePageState extends State<MoviePage> {
                                           image:
                                               ((userState.user.profilePicture ==
                                                           '')
-                                                      ? AssetImage(
+                                                      ? const AssetImage(
                                                           'assets/user_pic.png')
                                                       : NetworkImage(userState
                                                           .user
@@ -107,7 +110,7 @@ class _MoviePageState extends State<MoviePage> {
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 16,
                         ),
                         Column(
@@ -127,7 +130,7 @@ class _MoviePageState extends State<MoviePage> {
                             GestureDetector(
                               onTap: () {
                                 Navigator.of(context)
-                                    .push(routeTransition(WalletPage()));
+                                    .push(routeTransition(const WalletPage()));
                               },
                               child: Text(
                                 NumberFormat.currency(
@@ -144,7 +147,7 @@ class _MoviePageState extends State<MoviePage> {
                       ],
                     );
                   } else {
-                    return SpinKitFadingCircle(
+                    return const SpinKitFadingCircle(
                       color: accentColor2,
                       size: 50,
                     );
@@ -155,9 +158,9 @@ class _MoviePageState extends State<MoviePage> {
             NowPlayingMovie(
               controller: controller,
             ),
-            BrowseMovie(),
+            const BrowseMovie(),
             // ComingSoonMovie(),
-            GetLuckyDay(),
+            const GetLuckyDay(),
             SizedBox(
               height: 200.h,
             )

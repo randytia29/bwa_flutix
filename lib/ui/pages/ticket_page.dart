@@ -15,7 +15,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class TicketPage extends StatefulWidget {
   final bool isExpiredTicket;
 
-  TicketPage({this.isExpiredTicket = false});
+  const TicketPage({Key? key, this.isExpiredTicket = false}) : super(key: key);
 
   @override
   _TicketPageState createState() => _TicketPageState();
@@ -42,13 +42,13 @@ class _TicketPageState extends State<TicketPage> {
           children: [
             BlocBuilder<TicketBloc, TicketState>(builder: (_, ticketState) {
               if (ticketState is TicketLoading) {
-                return SpinKitFadingCircle(
+                return const SpinKitFadingCircle(
                   color: mainColor,
                   size: 50,
                 );
               }
               if (ticketState is TicketEmpty) {
-                return Center(
+                return const Center(
                   child: Text('kosong'),
                 );
               }
@@ -56,7 +56,7 @@ class _TicketPageState extends State<TicketPage> {
                 final tickets = ticketState.tickets;
 
                 return Container(
-                  margin: EdgeInsets.symmetric(horizontal: defaultMargin),
+                  margin: const EdgeInsets.symmetric(horizontal: defaultMargin),
                   child: TicketViewer(isExpiredTickets
                       ? tickets!
                           .where(
@@ -74,13 +74,14 @@ class _TicketPageState extends State<TicketPage> {
               clipper: HeaderClipper(),
               child: Container(
                 height: 113,
-                decoration: BoxDecoration(color: accentColor1),
+                decoration: const BoxDecoration(color: accentColor1),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      margin: EdgeInsets.only(left: defaultMargin, bottom: 32),
+                      margin: const EdgeInsets.only(
+                          left: defaultMargin, bottom: 32),
                       child: Text(
                         "My Tickets",
                         style: whiteTextFont.copyWith(fontSize: 20),
@@ -97,17 +98,18 @@ class _TicketPageState extends State<TicketPage> {
                                 style: whiteTextFont.copyWith(
                                     fontSize: 16,
                                     color: isExpiredTickets
-                                        ? Color(0xFF6F678E)
+                                        ? const Color(0xFF6F678E)
                                         : Colors.white),
                               ),
                               onTap: () {
                                 setState(() {
-                                  if (isExpiredTickets)
+                                  if (isExpiredTickets) {
                                     isExpiredTickets = !isExpiredTickets;
+                                  }
                                 });
                               },
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 15,
                             ),
                             Container(
@@ -123,8 +125,9 @@ class _TicketPageState extends State<TicketPage> {
                             GestureDetector(
                               onTap: () {
                                 setState(() {
-                                  if (!isExpiredTickets)
+                                  if (!isExpiredTickets) {
                                     isExpiredTickets = !isExpiredTickets;
+                                  }
                                 });
                               },
                               child: Text(
@@ -133,10 +136,10 @@ class _TicketPageState extends State<TicketPage> {
                                     fontSize: 16,
                                     color: isExpiredTickets
                                         ? Colors.white
-                                        : Color(0xFF6F678E)),
+                                        : const Color(0xFF6F678E)),
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 15,
                             ),
                             Container(
@@ -181,7 +184,7 @@ class HeaderClipper extends CustomClipper<Path> {
 class TicketViewer extends StatelessWidget {
   final List<Ticket> tickets;
 
-  TicketViewer(this.tickets);
+  const TicketViewer(this.tickets, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -202,7 +205,7 @@ class TicketViewer extends StatelessWidget {
           child: Row(
             children: [
               Container(
-                margin: EdgeInsets.only(right: 16),
+                margin: const EdgeInsets.only(right: 16),
                 width: 70,
                 height: 90,
                 decoration: BoxDecoration(
@@ -226,7 +229,7 @@ class TicketViewer extends StatelessWidget {
                       overflow: TextOverflow.clip,
                     ),
                     Container(
-                      margin: EdgeInsets.symmetric(vertical: 6),
+                      margin: const EdgeInsets.symmetric(vertical: 6),
                       child: Text(
                         genresAndLanguage(sortedTickets[index].movieGenres,
                             sortedTickets[index].movieLanguage),

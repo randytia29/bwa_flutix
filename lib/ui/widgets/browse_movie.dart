@@ -17,7 +17,8 @@ class BrowseMovie extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          margin: EdgeInsets.fromLTRB(defaultMargin, 30, defaultMargin, 12),
+          margin:
+              const EdgeInsets.fromLTRB(defaultMargin, 30, defaultMargin, 12),
           child: Text(
             'Browse Movie',
             style: blackTextFont.copyWith(
@@ -28,7 +29,7 @@ class BrowseMovie extends StatelessWidget {
           builder: (_, userState) {
             if (userState is UserLoaded) {
               return Container(
-                margin: EdgeInsets.symmetric(horizontal: defaultMargin),
+                margin: const EdgeInsets.symmetric(horizontal: defaultMargin),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: List.generate(
@@ -38,7 +39,7 @@ class BrowseMovie extends StatelessWidget {
                 ),
               );
             } else {
-              return SpinKitFadingCircle(
+              return const SpinKitFadingCircle(
                 color: mainColor,
                 size: 50,
               );

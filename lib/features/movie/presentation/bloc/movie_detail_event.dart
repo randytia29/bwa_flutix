@@ -10,5 +10,5 @@ abstract class MovieDetailEvent extends Equatable {
 class FetchMovieDetail extends MovieDetailEvent {
   final int? movieID;
 
-  FetchMovieDetail({required this.movieID});
+  const FetchMovieDetail({required this.movieID});
 }

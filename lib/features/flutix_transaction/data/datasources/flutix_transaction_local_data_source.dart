@@ -8,9 +8,7 @@ abstract class FlutixTransactionLocalDataSource {
       List<FlutixTransaction>? flutixTransactionToCache);
 }
 
-const CACHED_FLUTIX_TRANSACTION_LIST = 'CACHED_FLUTIX_TRANSACTION_LIST';
-
-const FLUTIX_TRANSACTION_BOX = 'FLUTIX_TRANSACTION_BOX';
+const flutixTransactionBOX = 'FLUTIX_TRANSACTION_BOX';
 
 class FlutixTransactionLocalDataSourceImpl
     implements FlutixTransactionLocalDataSource {
@@ -21,22 +19,22 @@ class FlutixTransactionLocalDataSourceImpl
   @override
   Future<void>? cacheFlutixTransaction(
       List<FlutixTransaction>? flutixTransactionToCache) async {
-    final flutixTransactionBox = await hive?.openBox(FLUTIX_TRANSACTION_BOX);
+    final flutixTransactionBox = await hive?.openBox(flutixTransactionBOX);
 
     flutixTransactionBox?.deleteAll(flutixTransactionBox.keys);
     flutixTransactionBox?.addAll(flutixTransactionToCache!.map((e) => e));
 
-    flutixTransactionBox?.close();
+    // flutixTransactionBox?.close();
   }
 
   @override
   Future<List<FlutixTransaction>>? getLastFlutixTransactions() async {
-    final flutixTransactionBox = await hive?.openBox(FLUTIX_TRANSACTION_BOX);
+    final flutixTransactionBox = await hive?.openBox(flutixTransactionBOX);
 
     if (flutixTransactionBox!.isNotEmpty) {
       final result =
           flutixTransactionBox.values.map<FlutixTransaction>((e) => e).toList();
-      await flutixTransactionBox.close();
+      // await flutixTransactionBox.close();
 
       return Future.value(result);
     } else {

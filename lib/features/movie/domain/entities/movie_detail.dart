@@ -10,7 +10,7 @@ class MovieDetail extends Equatable {
   final String language;
   final List<String> genres;
 
-  MovieDetail(
+  const MovieDetail(
       {required this.id,
       required this.title,
       required this.voteAverage,

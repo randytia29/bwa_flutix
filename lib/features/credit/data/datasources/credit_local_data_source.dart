@@ -10,7 +10,7 @@ abstract class CreditLocalDataSource {
   Future<void>? cacheCredits(List<CreditModel>? creditToCache);
 }
 
-const CACHED_CREDIT_LIST = 'CACHED_CREDIT_LIST';
+const cachedCreditList = 'CACHED_CREDIT_LIST';
 
 class CreditLocalDataSourceImpl implements CreditLocalDataSource {
   final SharedPreferences? sharedPreferences;
@@ -21,12 +21,12 @@ class CreditLocalDataSourceImpl implements CreditLocalDataSource {
   Future<void>? cacheCredits(List<CreditModel>? creditToCache) {
     final jsonMap = creditToCache?.map((e) => e.toJson()).toList();
     final jsonString = json.encode(jsonMap);
-    return sharedPreferences?.setString(CACHED_CREDIT_LIST, jsonString);
+    return sharedPreferences?.setString(cachedCreditList, jsonString);
   }
 
   @override
   Future<List<CreditModel>>? getLastCredits() {
-    final jsonString = sharedPreferences?.getString(CACHED_CREDIT_LIST);
+    final jsonString = sharedPreferences?.getString(cachedCreditList);
     if (jsonString != null) {
       final response = json.decode(jsonString);
       final result =

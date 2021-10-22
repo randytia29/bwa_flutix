@@ -14,6 +14,8 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
 
 class SignInPage extends StatefulWidget {
+  const SignInPage({Key? key}) : super(key: key);
+
   @override
   _SignInPageState createState() => _SignInPageState();
 }
@@ -33,14 +35,14 @@ class _SignInPageState extends State<SignInPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal: defaultMargin),
+        padding: const EdgeInsets.symmetric(horizontal: defaultMargin),
         child: ListView(
           children: <Widget>[
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 SizedBox(
@@ -48,7 +50,7 @@ class _SignInPageState extends State<SignInPage> {
                   child: Image.asset('assets/logo.png'),
                 ),
                 Container(
-                  margin: EdgeInsets.only(top: 70, bottom: 40),
+                  margin: const EdgeInsets.only(top: 70, bottom: 40),
                   child: Text(
                     'Welcome Back,\nExplorer!',
                     style: blackTextFont.copyWith(fontSize: 20),
@@ -69,7 +71,7 @@ class _SignInPageState extends State<SignInPage> {
                           borderRadius: BorderRadius.circular(10)),
                       labelText: 'Email Address'),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 16,
                 ),
                 TextField(
@@ -85,7 +87,7 @@ class _SignInPageState extends State<SignInPage> {
                           borderRadius: BorderRadius.circular(10)),
                       labelText: 'Password'),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 6,
                 ),
                 Row(
@@ -117,9 +119,9 @@ class _SignInPageState extends State<SignInPage> {
                   child: Container(
                     width: 50,
                     height: 50,
-                    margin: EdgeInsets.only(top: 40, bottom: 30),
+                    margin: const EdgeInsets.only(top: 40, bottom: 30),
                     child: isSigningIn
-                        ? SpinKitFadingCircle(
+                        ? const SpinKitFadingCircle(
                             color: mainColor,
                           )
                         : FloatingActionButton(
@@ -128,11 +130,11 @@ class _SignInPageState extends State<SignInPage> {
                               Icons.arrow_forward,
                               color: isEmailValid && isPasswordValid
                                   ? Colors.white
-                                  : Color(0xFFBEBEBE),
+                                  : const Color(0xFFBEBEBE),
                             ),
                             backgroundColor: isEmailValid && isPasswordValid
                                 ? mainColor
-                                : Color(0xFFE4E4E4),
+                                : const Color(0xFFE4E4E4),
                             onPressed: isEmailValid && isPasswordValid
                                 ? () async {
                                     setState(() {
@@ -158,7 +160,7 @@ class _SignInPageState extends State<SignInPage> {
                                       Navigator.of(context)
                                         ..popUntil((route) => route.isFirst)
                                         ..pushReplacement(
-                                            routeTransition(MainPage()));
+                                            routeTransition(const MainPage()));
                                     }
                                   }
                                 : null),

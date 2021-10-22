@@ -9,7 +9,7 @@ class Movie extends Equatable {
   final String backdropPath;
   final String language;
 
-  Movie(
+  const Movie(
       {required this.id,
       required this.title,
       required this.voteAverage,
