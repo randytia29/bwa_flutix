@@ -1,6 +1,3 @@
-import 'dart:ui';
-
-import 'package:flutter/animation.dart';
 import 'package:flutter/widgets.dart';
 
 const Offset beginTransitionPage = Offset(1, 0);
