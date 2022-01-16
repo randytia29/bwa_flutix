@@ -8,12 +8,57 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:646985768273:android:a302162b04db0bcf420770",
+        "android_client_info": {
+          "package_name": "com.abarobotics.firebase_test"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "646985768273-puruf3eeris6ocaiquhlrqmtj9ojn1ee.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.abarobotics.firebase_test",
+            "certificate_hash": "148da00678c8b5753d6c9dd8f500226a7cb3efe0"
+          }
+        },
+        {
+          "client_id": "646985768273-hhckdf8749k1eb2lhtqlue2l2vu29m33.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcM0FOQy6vwUlQFdedNn-nyYaxLiebjkA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "646985768273-hhckdf8749k1eb2lhtqlue2l2vu29m33.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:646985768273:android:d03afc5ff305e915420770",
         "android_client_info": {
           "package_name": "com.example.bwaflutix"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "646985768273-4q4rgmqa531j138dg7f6rjipvt9cr76u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.bwaflutix",
+            "certificate_hash": "148da00678c8b5753d6c9dd8f500226a7cb3efe0"
+          }
+        },
         {
           "client_id": "646985768273-hhckdf8749k1eb2lhtqlue2l2vu29m33.apps.googleusercontent.com",
           "client_type": 3
