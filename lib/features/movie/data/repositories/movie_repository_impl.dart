@@ -26,6 +26,7 @@ class MovieRepositoryImpl implements MovieRepository {
         return remoteMovie;
       } catch (e) {
         print(e.toString());
+        return null;
       }
     } else {
       try {
@@ -33,6 +34,7 @@ class MovieRepositoryImpl implements MovieRepository {
         return localMovie;
       } catch (e) {
         print(e.toString());
+        return null;
       }
     }
   }
@@ -46,6 +48,7 @@ class MovieRepositoryImpl implements MovieRepository {
         return remoteMovie;
       } catch (e) {
         print(e.toString());
+        return null;
       }
     } else {
       try {
@@ -53,6 +56,7 @@ class MovieRepositoryImpl implements MovieRepository {
         return localMovie;
       } catch (e) {
         print(e.toString());
+        return null;
       }
     }
   }

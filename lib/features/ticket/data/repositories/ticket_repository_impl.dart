@@ -25,6 +25,7 @@ class TicketRepositoryImpl implements TicketRepository {
         return remoteTicket;
       } catch (e) {
         print(e.toString());
+        return null;
       }
     } else {
       try {
@@ -33,6 +34,7 @@ class TicketRepositoryImpl implements TicketRepository {
         return localTicket;
       } catch (e) {
         print(e.toString());
+        return null;
       }
     }
   }

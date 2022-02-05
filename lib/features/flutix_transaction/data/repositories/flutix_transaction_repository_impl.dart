@@ -26,6 +26,7 @@ class FlutixTransactionRepositoryImpl implements FlutixTransactionRepository {
         return remoteFlutixTransaction;
       } catch (e) {
         print(e.toString());
+        return null;
       }
     } else {
       try {
@@ -35,6 +36,7 @@ class FlutixTransactionRepositoryImpl implements FlutixTransactionRepository {
         return localFlutixTransaction;
       } catch (e) {
         print(e.toString());
+        return null;
       }
     }
   }

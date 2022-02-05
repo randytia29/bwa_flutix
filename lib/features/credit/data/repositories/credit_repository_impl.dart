@@ -24,6 +24,7 @@ class CreditRepositoryImpl implements CreditRepository {
         return remoteMovie;
       } catch (e) {
         print(e.toString());
+        return null;
       }
     } else {
       try {
@@ -31,6 +32,7 @@ class CreditRepositoryImpl implements CreditRepository {
         return localMovie;
       } catch (e) {
         print(e.toString());
+        return null;
       }
     }
   }

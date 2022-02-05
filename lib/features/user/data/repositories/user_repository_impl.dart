@@ -24,6 +24,7 @@ class UserRepositoryImpl implements UserRepository {
         return remoteUser;
       } catch (e) {
         print(e.toString());
+        return null;
       }
     } else {
       try {
@@ -32,6 +33,7 @@ class UserRepositoryImpl implements UserRepository {
         return localUser;
       } catch (e) {
         print(e.toString());
+        return null;
       }
     }
   }

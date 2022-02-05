@@ -67,6 +67,13 @@ Future<void> main() async {
       builder: (_, themeState) => ScreenUtilInit(
         designSize: samsungJ6,
         builder: () => MaterialApp(
+          builder: (context, child) {
+            ScreenUtil.setContext(context);
+
+            return MediaQuery(
+                data: MediaQuery.of(context).copyWith(textScaleFactor: 1),
+                child: child ?? Container());
+          },
           theme: themeState.themeData,
           debugShowCheckedModeBanner: false,
           home: const SplashPage(),
