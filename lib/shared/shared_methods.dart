@@ -7,23 +7,24 @@ import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
 
-Future<File?> getImage() async {
-  try {
-    ImagePicker _picker = ImagePicker();
-    XFile? xFile = await _picker.pickImage(source: ImageSource.gallery);
-    File? file = await _cropImage(xFile!.path);
+Reference _reference = FirebaseStorage.instance.ref();
 
-    return file ?? File(xFile.path);
-  } catch (e) {
-    print('getImage catch: $e');
+Future<File?> getImage() async {
+  final picker = ImagePicker();
+  final xFile = await picker.pickImage(source: ImageSource.gallery);
+
+  if (xFile != null) {
+    final file = await _cropImage(xFile.path);
+
+    return file;
+  } else {
     return null;
   }
 }
 
-Reference _reference = FirebaseStorage.instance.ref();
-
-Future<File?> _cropImage(String sourcePath) async {
-  File? file = await ImageCropper.cropImage(
+Future<File> _cropImage(String sourcePath) async {
+  final cropper = ImageCropper();
+  final file = await cropper.cropImage(
       sourcePath: sourcePath,
       aspectRatio: const CropAspectRatio(ratioX: 1, ratioY: 1),
       compressQuality: 50,
@@ -35,7 +36,11 @@ Future<File?> _cropImage(String sourcePath) async {
           activeControlsWidgetColor: mainColor),
       iosUiSettings: const IOSUiSettings(title: 'Photo Cropper'));
 
-  return file;
+  if (file != null) {
+    return file;
+  } else {
+    return File(sourcePath);
+  }
 }
 
 // Future<Uint8List?> _compressImage(String path) async {
