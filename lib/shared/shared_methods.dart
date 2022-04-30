@@ -23,21 +23,23 @@ Future<File?> getImage() async {
 }
 
 Future<File> _cropImage(String sourcePath) async {
-  final cropper = ImageCropper();
-  final file = await cropper.cropImage(
-      sourcePath: sourcePath,
-      aspectRatio: const CropAspectRatio(ratioX: 1, ratioY: 1),
-      compressQuality: 50,
-      androidUiSettings: const AndroidUiSettings(
+  final croppedFile = await ImageCropper().cropImage(
+    sourcePath: sourcePath,
+    aspectRatio: const CropAspectRatio(ratioX: 1, ratioY: 1),
+    compressQuality: 50,
+    uiSettings: [
+      AndroidUiSettings(
           toolbarTitle: 'Crop Image',
           toolbarColor: accentColor1,
           toolbarWidgetColor: Colors.white,
           statusBarColor: accentColor1,
           activeControlsWidgetColor: mainColor),
-      iosUiSettings: const IOSUiSettings(title: 'Photo Cropper'));
+      IOSUiSettings(title: 'Photo Cropper')
+    ],
+  );
 
-  if (file != null) {
-    return file;
+  if (croppedFile != null) {
+    return File(croppedFile.path);
   } else {
     return File(sourcePath);
   }

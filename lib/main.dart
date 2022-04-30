@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:bwaflutix/features/flutix_transaction/domain/entities/flutix_transaction.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
@@ -55,6 +57,8 @@ Future<void> main() async {
 
   await di.init();
 
+  HttpOverrides.global = MyHttpOverrides();
+
   runApp(MultiBlocProvider(
     providers: [
       BlocProvider(create: (_) => UserBloc()),
@@ -66,14 +70,10 @@ Future<void> main() async {
     child: BlocBuilder<ThemeBloc, ThemeState>(
       builder: (_, themeState) => ScreenUtilInit(
         designSize: samsungJ6,
-        builder: () => MaterialApp(
-          builder: (context, child) {
-            ScreenUtil.setContext(context);
-
-            return MediaQuery(
-                data: MediaQuery.of(context).copyWith(textScaleFactor: 1),
-                child: child ?? Container());
-          },
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: (_) => MaterialApp(
+          useInheritedMediaQuery: true,
           theme: themeState.themeData,
           debugShowCheckedModeBanner: false,
           home: const SplashPage(),
@@ -81,4 +81,13 @@ Future<void> main() async {
       ),
     ),
   ));
+}
+
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
+  }
 }
