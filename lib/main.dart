@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:bwaflutix/features/flutix_transaction/domain/entities/flutix_transaction.dart';
@@ -28,8 +29,8 @@ Future<void> backgroundHandler(RemoteMessage message) async {
   RemoteNotification? notification = message.notification;
 
   if (notification != null) {
-    print(notification.title);
-    print(notification.body);
+    log(notification.title ?? '');
+    log(notification.body ?? '');
 
     await NotificationService.showNotificationNow(
         notification.hashCode, notification.title, notification.body);

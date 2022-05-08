@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import '../../../../core/network/network_info.dart';
 import '../datasources/ticket_local_data_source.dart';
 import '../datasources/ticket_remote_data_source.dart';
@@ -24,7 +26,7 @@ class TicketRepositoryImpl implements TicketRepository {
 
         return remoteTicket;
       } catch (e) {
-        print(e.toString());
+        log(e.toString());
         return null;
       }
     } else {
@@ -33,7 +35,7 @@ class TicketRepositoryImpl implements TicketRepository {
 
         return localTicket;
       } catch (e) {
-        print(e.toString());
+        log(e.toString());
         return null;
       }
     }

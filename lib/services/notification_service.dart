@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import '../main.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/timezone.dart' as tz;
@@ -19,7 +21,7 @@ class NotificationService {
       initializationSettings,
       onSelectNotification: (payload) async {
         if (payload != null) {
-          print('Notification payload: $payload');
+          log('Notification payload: $payload');
         }
       },
     );
@@ -60,7 +62,7 @@ class NotificationService {
           androidAllowWhileIdle: true,
           payload: payload);
     } catch (e) {
-      print(e.toString());
+      log(e.toString());
     }
   }
 

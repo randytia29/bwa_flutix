@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import '../../../../core/network/network_info.dart';
 
 import '../datasources/credit_local_data_source.dart';
@@ -23,7 +25,7 @@ class CreditRepositoryImpl implements CreditRepository {
         localDataSource?.cacheCredits(remoteMovie);
         return remoteMovie;
       } catch (e) {
-        print(e.toString());
+        log(e.toString());
         return null;
       }
     } else {
@@ -31,7 +33,7 @@ class CreditRepositoryImpl implements CreditRepository {
         final localMovie = await localDataSource?.getLastCredits();
         return localMovie;
       } catch (e) {
-        print(e.toString());
+        log(e.toString());
         return null;
       }
     }

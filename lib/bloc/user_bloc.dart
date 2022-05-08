@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
@@ -43,7 +45,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
 
           emit(UserLoaded(updatedUser));
         } catch (e) {
-          print(e);
+          log(e.toString());
         }
       }
     });
@@ -57,7 +59,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
 
           emit(UserLoaded(updatedUser));
         } catch (e) {
-          print(e);
+          log(e.toString());
         }
       }
     });

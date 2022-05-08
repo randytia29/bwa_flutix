@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import '../../services/notification_service.dart';
 import '../../shared/page_transition.dart';
 import '../../shared/theme.dart';
@@ -34,8 +36,8 @@ class _MainPageState extends State<MainPage> {
     FirebaseMessaging.onMessage.listen((message) async {
       RemoteNotification? notification = message.notification;
       if (notification != null) {
-        print(notification.title);
-        print(notification.body);
+        log(notification.title ?? '');
+        log(notification.body ?? '');
 
         await NotificationService.showNotificationNow(
             notification.hashCode, notification.title, notification.body);

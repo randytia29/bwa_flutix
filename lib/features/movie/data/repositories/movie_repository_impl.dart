@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import '../../domain/entities/movie_detail.dart';
 
 import '../../../../core/network/network_info.dart';
@@ -25,7 +27,7 @@ class MovieRepositoryImpl implements MovieRepository {
         localDataSource?.cacheMovie(remoteMovie);
         return remoteMovie;
       } catch (e) {
-        print(e.toString());
+        log(e.toString());
         return null;
       }
     } else {
@@ -33,7 +35,7 @@ class MovieRepositoryImpl implements MovieRepository {
         final localMovie = await localDataSource?.getLastMovie();
         return localMovie;
       } catch (e) {
-        print(e.toString());
+        log(e.toString());
         return null;
       }
     }
@@ -47,7 +49,7 @@ class MovieRepositoryImpl implements MovieRepository {
         localDataSource?.cacheMovies(remoteMovie);
         return remoteMovie;
       } catch (e) {
-        print(e.toString());
+        log(e.toString());
         return null;
       }
     } else {
@@ -55,7 +57,7 @@ class MovieRepositoryImpl implements MovieRepository {
         final localMovie = await localDataSource?.getLastMovies();
         return localMovie;
       } catch (e) {
-        print(e.toString());
+        log(e.toString());
         return null;
       }
     }

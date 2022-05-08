@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bwaflutix/core/network/network_info.dart';
 import 'package:bwaflutix/features/flutix_transaction/data/datasources/flutix_transaction_local_data_source.dart';
 import 'package:bwaflutix/features/flutix_transaction/data/datasources/flutix_transaction_remote_data_source.dart';
@@ -25,7 +27,7 @@ class FlutixTransactionRepositoryImpl implements FlutixTransactionRepository {
 
         return remoteFlutixTransaction;
       } catch (e) {
-        print(e.toString());
+        log(e.toString());
         return null;
       }
     } else {
@@ -35,7 +37,7 @@ class FlutixTransactionRepositoryImpl implements FlutixTransactionRepository {
 
         return localFlutixTransaction;
       } catch (e) {
-        print(e.toString());
+        log(e.toString());
         return null;
       }
     }

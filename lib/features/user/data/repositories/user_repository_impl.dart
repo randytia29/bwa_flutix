@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bwaflutix/core/network/network_info.dart';
 import 'package:bwaflutix/features/user/data/datasources/user_local_data_source.dart';
 import 'package:bwaflutix/features/user/data/datasources/user_remote_data_source.dart';
@@ -23,7 +25,7 @@ class UserRepositoryImpl implements UserRepository {
 
         return remoteUser;
       } catch (e) {
-        print(e.toString());
+        log(e.toString());
         return null;
       }
     } else {
@@ -32,7 +34,7 @@ class UserRepositoryImpl implements UserRepository {
 
         return localUser;
       } catch (e) {
-        print(e.toString());
+        log(e.toString());
         return null;
       }
     }
