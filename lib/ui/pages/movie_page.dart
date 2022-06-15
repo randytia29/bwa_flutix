@@ -20,7 +20,7 @@ class MoviePage extends StatefulWidget {
   const MoviePage({Key? key}) : super(key: key);
 
   @override
-  _MoviePageState createState() => _MoviePageState();
+  State<MoviePage> createState() => _MoviePageState();
 }
 
 class _MoviePageState extends State<MoviePage> {

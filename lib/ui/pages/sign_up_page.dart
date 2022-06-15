@@ -1,3 +1,5 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../bloc/theme_bloc.dart';
 import '../../models/registration_data.dart';
 import '../../shared/page_transition.dart';
@@ -6,7 +8,6 @@ import '../../shared/theme.dart';
 import 'preference_page.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class SignUpPage extends StatefulWidget {
   final RegistrationData registrationData;
@@ -14,7 +15,7 @@ class SignUpPage extends StatefulWidget {
   const SignUpPage(this.registrationData, {Key? key}) : super(key: key);
 
   @override
-  _SignUpPageState createState() => _SignUpPageState();
+  State<SignUpPage> createState() => _SignUpPageState();
 }
 
 class _SignUpPageState extends State<SignUpPage> {
@@ -172,7 +173,6 @@ class _SignUpPageState extends State<SignUpPage> {
                   height: 30,
                 ),
                 FloatingActionButton(
-                  child: const Icon(Icons.arrow_forward),
                   backgroundColor: mainColor,
                   elevation: 0,
                   onPressed: () {
@@ -200,6 +200,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           PreferencePage(widget.registrationData)));
                     }
                   },
+                  child: const Icon(Icons.arrow_forward),
                 )
               ],
             )

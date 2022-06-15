@@ -21,7 +21,7 @@ class CreditCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(5),
               image: DecorationImage(
                   image:
-                      NetworkImage(imageBaseUrl + "w780" + credit.profilePath),
+                      NetworkImage("${imageBaseUrl}w780${credit.profilePath}"),
                   fit: BoxFit.cover),
             ),
           ),

@@ -1,8 +1,8 @@
-import 'package:bloc/bloc.dart';
 import 'package:bwaflutix/features/flutix_transaction/domain/entities/flutix_transaction.dart';
 import 'package:bwaflutix/features/flutix_transaction/domain/usecases/get_transactions.dart';
 import 'package:bwaflutix/services/shared_pref.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'flutix_transaction_event.dart';
 part 'flutix_transaction_state.dart';

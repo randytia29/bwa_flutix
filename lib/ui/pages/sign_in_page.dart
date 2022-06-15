@@ -1,3 +1,5 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../bloc/theme_bloc.dart';
 import '../../bloc/user_bloc.dart';
 import '../../injection_container.dart';
@@ -11,13 +13,12 @@ import 'sign_up_page.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:provider/provider.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({Key? key}) : super(key: key);
 
   @override
-  _SignInPageState createState() => _SignInPageState();
+  State<SignInPage> createState() => _SignInPageState();
 }
 
 class _SignInPageState extends State<SignInPage> {
@@ -98,15 +99,15 @@ class _SignInPageState extends State<SignInPage> {
                           fontSize: 12, fontWeight: FontWeight.w400),
                     ),
                     GestureDetector(
-                      onTap: () async {
-                        ResetPasswordResult resetPassword =
-                            await AuthServices.resetPassword(
-                                emailController.text);
-                        flutixSnackbar(
-                            context,
-                            isEmailValid
-                                ? 'The link to change your password has been sent to your email'
-                                : resetPassword.message);
+                      onTap: () {
+                        AuthServices.resetPassword(emailController.text)
+                            .then((resetPassword) {
+                          flutixSnackbar(
+                              context,
+                              isEmailValid
+                                  ? 'The link to change your password has been sent to your email'
+                                  : resetPassword.message);
+                        });
                       },
                       child: Text(
                         'Get Now',
@@ -126,44 +127,46 @@ class _SignInPageState extends State<SignInPage> {
                           )
                         : FloatingActionButton(
                             elevation: 0,
+                            backgroundColor: isEmailValid && isPasswordValid
+                                ? mainColor
+                                : const Color(0xFFE4E4E4),
+                            onPressed: isEmailValid && isPasswordValid
+                                ? () {
+                                    setState(() {
+                                      isSigningIn = true;
+                                    });
+
+                                    AuthServices.signIn(emailController.text,
+                                            passwordController.text)
+                                        .then((result) {
+                                      if (result.user == null) {
+                                        setState(() {
+                                          isSigningIn = false;
+                                        });
+
+                                        flutixSnackbar(context, result.message);
+                                      } else {
+                                        context
+                                            .read<UserBloc>()
+                                            .add(LoadUser(result.user!.id));
+
+                                        sl<SharedPref>()
+                                            .setUserId(result.user!.id);
+
+                                        Navigator.of(context)
+                                          ..popUntil((route) => route.isFirst)
+                                          ..pushReplacement(routeTransition(
+                                              const MainPage()));
+                                      }
+                                    });
+                                  }
+                                : null,
                             child: Icon(
                               Icons.arrow_forward,
                               color: isEmailValid && isPasswordValid
                                   ? Colors.white
                                   : const Color(0xFFBEBEBE),
-                            ),
-                            backgroundColor: isEmailValid && isPasswordValid
-                                ? mainColor
-                                : const Color(0xFFE4E4E4),
-                            onPressed: isEmailValid && isPasswordValid
-                                ? () async {
-                                    setState(() {
-                                      isSigningIn = true;
-                                    });
-                                    SignInSignUpResult result =
-                                        await AuthServices.signIn(
-                                            emailController.text,
-                                            passwordController.text);
-                                    if (result.user == null) {
-                                      setState(() {
-                                        isSigningIn = false;
-                                      });
-                                      flutixSnackbar(context, result.message);
-                                    } else {
-                                      context
-                                          .read<UserBloc>()
-                                          .add(LoadUser(result.user!.id));
-
-                                      await sl<SharedPref>()
-                                          .setUserId(result.user!.id);
-
-                                      Navigator.of(context)
-                                        ..popUntil((route) => route.isFirst)
-                                        ..pushReplacement(
-                                            routeTransition(const MainPage()));
-                                    }
-                                  }
-                                : null),
+                            )),
                   ),
                 ),
                 Row(

@@ -1,4 +1,5 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../domain/usecases/get_credits.dart';
 import '../../domain/entities/credit.dart';
 import 'package:equatable/equatable.dart';

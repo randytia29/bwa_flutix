@@ -27,7 +27,7 @@ class TransactionCard extends StatelessWidget {
               ? ClipRRect(
                   borderRadius: BorderRadius.circular(8),
                   child: Image.network(
-                    imageBaseUrl + 'w500' + transaction.picture,
+                    '${imageBaseUrl}w500${transaction.picture}',
                     errorBuilder: (context, error, stackTrace) {
                       return const Center(child: Text('😢'));
                     },

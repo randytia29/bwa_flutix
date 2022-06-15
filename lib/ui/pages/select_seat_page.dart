@@ -12,7 +12,7 @@ class SelectSeatPage extends StatefulWidget {
   const SelectSeatPage({Key? key}) : super(key: key);
 
   @override
-  _SelectSeatPageState createState() => _SelectSeatPageState();
+  State<SelectSeatPage> createState() => _SelectSeatPageState();
 }
 
 class _SelectSeatPageState extends State<SelectSeatPage> {
@@ -71,9 +71,8 @@ class _SelectSeatPageState extends State<SelectSeatPage> {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),
                               image: DecorationImage(
-                                  image: NetworkImage(imageBaseUrl +
-                                      'w154' +
-                                      orderTicketState.moviePosterPath!),
+                                  image: NetworkImage(
+                                      '${imageBaseUrl}w154${orderTicketState.moviePosterPath!}'),
                                   fit: BoxFit.cover),
                             ),
                           )
@@ -103,12 +102,6 @@ class _SelectSeatPageState extends State<SelectSeatPage> {
                 backgroundColor: selectedSeats.isNotEmpty
                     ? mainColor
                     : const Color(0xFFE4E4E4),
-                child: Icon(
-                  Icons.arrow_forward,
-                  color: selectedSeats.isNotEmpty
-                      ? Colors.white
-                      : const Color(0xFFBEBEBE),
-                ),
                 onPressed: selectedSeats.isNotEmpty
                     ? () {
                         orderTicketBloc.add(SeatsSelected(selectedSeats));
@@ -120,6 +113,12 @@ class _SelectSeatPageState extends State<SelectSeatPage> {
                         )));
                       }
                     : null,
+                child: Icon(
+                  Icons.arrow_forward,
+                  color: selectedSeats.isNotEmpty
+                      ? Colors.white
+                      : const Color(0xFFBEBEBE),
+                ),
               ),
             ),
             const SizedBox(

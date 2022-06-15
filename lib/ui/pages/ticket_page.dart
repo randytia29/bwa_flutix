@@ -18,7 +18,7 @@ class TicketPage extends StatefulWidget {
   const TicketPage({Key? key, this.isExpiredTicket = false}) : super(key: key);
 
   @override
-  _TicketPageState createState() => _TicketPageState();
+  State<TicketPage> createState() => _TicketPageState();
 }
 
 class _TicketPageState extends State<TicketPage> {
@@ -209,12 +209,12 @@ class TicketViewer extends StatelessWidget {
                 width: 70,
                 height: 90,
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    image: DecorationImage(
-                        image: NetworkImage(imageBaseUrl +
-                            "w500" +
-                            sortedTickets[index].moviePosterPath),
-                        fit: BoxFit.cover)),
+                  borderRadius: BorderRadius.circular(8),
+                  image: DecorationImage(
+                      image: NetworkImage(
+                          "${imageBaseUrl}w500${sortedTickets[index].moviePosterPath}"),
+                      fit: BoxFit.cover),
+                ),
               ),
               SizedBox(
                 width:

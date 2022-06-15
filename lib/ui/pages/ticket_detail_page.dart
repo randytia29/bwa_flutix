@@ -19,7 +19,7 @@ class TicketDetailPage extends StatefulWidget {
   const TicketDetailPage(this.ticket, {Key? key}) : super(key: key);
 
   @override
-  _TicketDetailPageState createState() => _TicketDetailPageState();
+  State<TicketDetailPage> createState() => _TicketDetailPageState();
 }
 
 class _TicketDetailPageState extends State<TicketDetailPage> {

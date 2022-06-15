@@ -1,7 +1,7 @@
-import 'package:bloc/bloc.dart';
 import 'package:bwaflutix/features/flutix_transaction/data/models/flutix_transaction_model.dart';
 import 'package:bwaflutix/features/flutix_transaction/domain/usecases/save_transaction.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'order_transaction_event.dart';
 part 'order_transaction_state.dart';

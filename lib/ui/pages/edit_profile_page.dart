@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../bloc/theme_bloc.dart';
 import '../../bloc/user_bloc.dart';
 import '../../models/user.dart';
@@ -12,7 +14,6 @@ import '../widgets/flutix_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:provider/provider.dart';
 import 'package:path/path.dart';
 
 class EditProfilePage extends StatefulWidget {
@@ -21,7 +22,7 @@ class EditProfilePage extends StatefulWidget {
   const EditProfilePage(this.user, {Key? key}) : super(key: key);
 
   @override
-  _EditProfilePageState createState() => _EditProfilePageState();
+  State<EditProfilePage> createState() => _EditProfilePageState();
 }
 
 class _EditProfilePageState extends State<EditProfilePage> {
@@ -184,6 +185,14 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   FlutixButton(
                     primaryColor: Colors.red[400],
                     onSurfaceColor: Colors.red[400],
+                    onPressed: (isUpdating)
+                        ? null
+                        : () {
+                            AuthServices.resetPassword(widget.user.email!);
+
+                            flutixSnackbar(context,
+                                'The link to change your password has been sent to your email');
+                          },
                     child: SizedBox(
                       width: 250,
                       child: Row(
@@ -216,15 +225,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         ],
                       ),
                     ),
-                    onPressed: (isUpdating)
-                        ? null
-                        : () async {
-                            await AuthServices.resetPassword(
-                                widget.user.email!);
-
-                            flutixSnackbar(context,
-                                'The link to change your password has been sent to your email');
-                          },
                   ),
                   const SizedBox(
                     height: 16,
@@ -240,16 +240,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       : FlutixButton(
                           primaryColor: const Color(0xFF3E9D9D),
                           onSurfaceColor: const Color(0xFF3E9D9D),
-                          child: Text(
-                            'Update My Profile',
-                            style: whiteTextFont.copyWith(
-                                fontSize: 16,
-                                color: (isDataEdited)
-                                    ? Colors.white
-                                    : const Color(0xFFBEBEBE)),
-                          ),
                           onPressed: (isDataEdited)
-                              ? () async {
+                              ? () {
                                   setState(() {
                                     isUpdating = true;
                                   });
@@ -263,11 +255,16 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                           .split('?')[0]
                                           .trim();
                                     }
-                                    profilePath =
-                                        await uploadImage(profileImageFile!);
+
+                                    uploadImage(profileImageFile!)
+                                        .then((value) {
+                                      profilePath = value;
+                                    });
+
                                     profileImageFile = null;
+
                                     if (photoDelete != '') {
-                                      await deleteImage(photoDelete!);
+                                      deleteImage(photoDelete!);
                                     }
                                   }
                                   context.read<UserBloc>().add(UpdateData(
@@ -280,6 +277,14 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                         routeTransition(const ProfilePage()));
                                 }
                               : null,
+                          child: Text(
+                            'Update My Profile',
+                            style: whiteTextFont.copyWith(
+                                fontSize: 16,
+                                color: (isDataEdited)
+                                    ? Colors.white
+                                    : const Color(0xFFBEBEBE)),
+                          ),
                         ),
                 ],
               )

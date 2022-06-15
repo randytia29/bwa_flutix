@@ -1,5 +1,5 @@
-import 'package:bloc/bloc.dart';
 import 'package:bwaflutix/services/shared_pref.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../domain/entities/ticket.dart';
 import '../../domain/usecases/get_tickets.dart';
 import 'package:equatable/equatable.dart';

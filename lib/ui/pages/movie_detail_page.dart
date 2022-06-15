@@ -65,9 +65,8 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                           height: 270,
                           decoration: BoxDecoration(
                             image: DecorationImage(
-                                image: NetworkImage(imageBaseUrl +
-                                    'w780' +
-                                    movieDetail!.backdropPath),
+                                image: NetworkImage(
+                                    '${imageBaseUrl}w780${movieDetail!.backdropPath}'),
                                 fit: BoxFit.cover),
                           ),
                         ),

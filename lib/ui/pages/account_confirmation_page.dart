@@ -1,3 +1,5 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../bloc/user_bloc.dart';
 import '../../injection_container.dart';
 import '../../models/registration_data.dart';
@@ -10,7 +12,6 @@ import 'main_page.dart';
 import '../widgets/flutix_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:provider/provider.dart';
 
 class AccountConfirmationPage extends StatefulWidget {
   final RegistrationData registrationData;
@@ -19,7 +20,7 @@ class AccountConfirmationPage extends StatefulWidget {
       : super(key: key);
 
   @override
-  _AccountConfirmationPageState createState() =>
+  State<AccountConfirmationPage> createState() =>
       _AccountConfirmationPageState();
 }
 
@@ -101,35 +102,39 @@ class _AccountConfirmationPageState extends State<AccountConfirmationPage> {
                           'Create My Account',
                           style: whiteTextFont.copyWith(fontSize: 16),
                         ),
-                        onPressed: () async {
+                        onPressed: () {
                           setState(() {
                             isSigningUp = true;
                           });
+
                           imageFileToUpload =
                               widget.registrationData.profileImage;
-                          SignInSignUpResult result = await AuthServices.signUp(
-                              widget.registrationData.email,
-                              widget.registrationData.password,
-                              widget.registrationData.name,
-                              widget.registrationData.selectedGenres,
-                              widget.registrationData.selectedLang);
-                          if (result.user == null) {
-                            setState(() {
-                              isSigningUp = false;
-                            });
-                            flutixSnackbar(context, result.message);
-                          } else {
-                            context
-                                .read<UserBloc>()
-                                .add(LoadUser(result.user!.id));
 
-                            await sl<SharedPref>().setUserId(result.user!.id);
+                          AuthServices.signUp(
+                                  widget.registrationData.email,
+                                  widget.registrationData.password,
+                                  widget.registrationData.name,
+                                  widget.registrationData.selectedGenres,
+                                  widget.registrationData.selectedLang)
+                              .then((result) {
+                            if (result.user == null) {
+                              setState(() {
+                                isSigningUp = false;
+                              });
+                              flutixSnackbar(context, result.message);
+                            } else {
+                              context
+                                  .read<UserBloc>()
+                                  .add(LoadUser(result.user!.id));
 
-                            Navigator.of(context)
-                              ..popUntil((route) => route.isFirst)
-                              ..pushReplacement(
-                                  routeTransition(const MainPage()));
-                          }
+                              sl<SharedPref>().setUserId(result.user!.id);
+
+                              Navigator.of(context)
+                                ..popUntil((route) => route.isFirst)
+                                ..pushReplacement(
+                                    routeTransition(const MainPage()));
+                            }
+                          });
                         },
                       )
               ],

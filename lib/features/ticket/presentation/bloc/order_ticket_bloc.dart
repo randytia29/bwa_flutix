@@ -1,4 +1,5 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../data/models/ticket_model.dart';
 import '../../domain/usecases/save_ticket.dart';
 import 'package:equatable/equatable.dart';

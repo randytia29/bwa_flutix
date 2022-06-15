@@ -19,7 +19,7 @@ class SelectSchedulePage extends StatefulWidget {
   const SelectSchedulePage(this.movieDetail, {Key? key}) : super(key: key);
 
   @override
-  _SelectSchedulePageState createState() => _SelectSchedulePageState();
+  State<SelectSchedulePage> createState() => _SelectSchedulePageState();
 }
 
 class _SelectSchedulePageState extends State<SelectSchedulePage> {

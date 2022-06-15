@@ -19,7 +19,7 @@ class TopUpPage extends StatefulWidget {
   const TopUpPage({Key? key}) : super(key: key);
 
   @override
-  _TopUpPageState createState() => _TopUpPageState();
+  State<TopUpPage> createState() => _TopUpPageState();
 }
 
 class _TopUpPageState extends State<TopUpPage> {
@@ -172,6 +172,14 @@ class _TopUpPageState extends State<TopUpPage> {
                   margin: const EdgeInsets.symmetric(horizontal: 55),
                   primaryColor: const Color(0xFF3E9D9D),
                   onSurfaceColor: const Color(0xFF3E9D9D),
+                  onPressed: (selectedAmount! > 0)
+                      ? () {
+                          context.read<UserBloc>().add(TopUp(selectedAmount));
+
+                          Navigator.of(context)
+                              .push(routeTransition(const SuccessPage(true)));
+                        }
+                      : null,
                   child: Text(
                     'Top Up My Wallet',
                     style: whiteTextFont.copyWith(
@@ -181,14 +189,6 @@ class _TopUpPageState extends State<TopUpPage> {
                           : const Color(0xFFBEBEBE),
                     ),
                   ),
-                  onPressed: (selectedAmount! > 0)
-                      ? () {
-                          context.read<UserBloc>().add(TopUp(selectedAmount));
-
-                          Navigator.of(context)
-                              .push(routeTransition(const SuccessPage(true)));
-                        }
-                      : null,
                 ),
               ),
               const SizedBox(

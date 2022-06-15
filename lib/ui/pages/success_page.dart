@@ -54,10 +54,6 @@ class SuccessPage extends StatelessWidget {
             ),
             FlutixButton(
               primaryColor: mainColor,
-              child: Text(
-                isTopUp ? "My Wallet" : "My Tickets",
-                style: whiteTextFont.copyWith(fontSize: 16),
-              ),
               onPressed: isTopUp
                   ? () {
                       Navigator.of(context)
@@ -72,6 +68,10 @@ class SuccessPage extends StatelessWidget {
                           bottomNavBarIndex: 1,
                         )));
                     },
+              child: Text(
+                isTopUp ? "My Wallet" : "My Tickets",
+                style: whiteTextFont.copyWith(fontSize: 16),
+              ),
             ),
             Container(
               margin: const EdgeInsets.only(top: 20),

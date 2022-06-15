@@ -20,7 +20,7 @@ class PreferencePage extends StatefulWidget {
   PreferencePage(this.registrationData, {Key? key}) : super(key: key);
 
   @override
-  _PreferencePageState createState() => _PreferencePageState();
+  State<PreferencePage> createState() => _PreferencePageState();
 }
 
 class _PreferencePageState extends State<PreferencePage> {

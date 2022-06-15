@@ -23,7 +23,7 @@ class CheckoutPage extends StatefulWidget {
   const CheckoutPage({Key? key}) : super(key: key);
 
   @override
-  _CheckoutPageState createState() => _CheckoutPageState();
+  State<CheckoutPage> createState() => _CheckoutPageState();
 }
 
 class _CheckoutPageState extends State<CheckoutPage> {
@@ -85,12 +85,12 @@ class _CheckoutPageState extends State<CheckoutPage> {
                             width: 70,
                             height: 90,
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
-                                image: DecorationImage(
-                                    image: NetworkImage(imageBaseUrl +
-                                        'w342' +
-                                        orderTicketState.moviePosterPath!),
-                                    fit: BoxFit.cover)),
+                              borderRadius: BorderRadius.circular(8),
+                              image: DecorationImage(
+                                  image: NetworkImage(
+                                      '${imageBaseUrl}w342${orderTicketState.moviePosterPath!}'),
+                                  fit: BoxFit.cover),
+                            ),
                           ),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -389,7 +389,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                               : 'Top Up My Wallet',
                           style: whiteTextFont.copyWith(fontSize: 16),
                         ),
-                        onPressed: () async {
+                        onPressed: () {
                           if (user.balance! >= orderTicketState.totalPrice!) {
                             context
                                 .read<UserBloc>()
@@ -405,13 +405,13 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                 amount: -orderTicketState.totalPrice!,
                                 picture: orderTicketState.moviePosterPath));
 
-                            await NotificationService.setScheduleMovie(
+                            NotificationService.setScheduleMovie(
                                 Random().nextInt(100) + 1,
                                 'Movie Coming',
                                 'Hurry up',
                                 orderTicketState.time!);
 
-                            await NotificationService.showNotificationNow(
+                            NotificationService.showNotificationNow(
                                 1, 'Ticket Bought', 'Congratulation');
 
                             Navigator.of(context).push(
