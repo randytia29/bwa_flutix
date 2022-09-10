@@ -60,28 +60,31 @@ Future<void> main() async {
 
   HttpOverrides.global = MyHttpOverrides();
 
-  runApp(MultiBlocProvider(
-    providers: [
-      BlocProvider(create: (_) => UserBloc()),
-      BlocProvider(create: (_) => ThemeBloc()),
-      BlocProvider(
-        create: (_) => AuthenticationBloc()..add(CheckIsAuthenticated()),
-      ),
-    ],
-    child: BlocBuilder<ThemeBloc, ThemeState>(
-      builder: (_, themeState) => ScreenUtilInit(
-        designSize: samsungJ6,
-        minTextAdapt: true,
-        splitScreenMode: true,
-        builder: (_) => MaterialApp(
-          useInheritedMediaQuery: true,
-          theme: themeState.themeData,
-          debugShowCheckedModeBanner: false,
-          home: const SplashPage(),
+  runApp(
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_) => UserBloc()),
+        BlocProvider(create: (_) => ThemeBloc()),
+        BlocProvider(
+          create: (_) => AuthenticationBloc()..add(CheckIsAuthenticated()),
+        ),
+      ],
+      child: BlocBuilder<ThemeBloc, ThemeState>(
+        builder: (_, themeState) => ScreenUtilInit(
+          designSize: samsungJ6,
+          minTextAdapt: true,
+          splitScreenMode: true,
+          builder: (_, child) => MaterialApp(
+            useInheritedMediaQuery: true,
+            theme: themeState.themeData,
+            debugShowCheckedModeBanner: false,
+            home: child,
+          ),
+          child: const SplashPage(),
         ),
       ),
     ),
-  ));
+  );
 }
 
 class MyHttpOverrides extends HttpOverrides {

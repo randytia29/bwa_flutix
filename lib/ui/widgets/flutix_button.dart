@@ -22,8 +22,9 @@ class FlutixButton extends StatelessWidget {
       margin: margin,
       child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-              primary: primaryColor,
-              onSurface: onSurfaceColor,
+              backgroundColor: primaryColor,
+              disabledForegroundColor: onSurfaceColor?.withOpacity(0.38),
+              disabledBackgroundColor: onSurfaceColor?.withOpacity(0.12),
               elevation: 0,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8)),

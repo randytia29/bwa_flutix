@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'theme.dart';
@@ -54,6 +55,8 @@ Future<File> _cropImage(String sourcePath) async {
 
 Future<String> uploadImage(File image) async {
   String fileName = basename(image.path);
+  log(fileName);
+  log(image.path);
   UploadTask task = _reference.child(fileName).putFile(image);
   TaskSnapshot snapshot = await task.whenComplete(() => task);
 
