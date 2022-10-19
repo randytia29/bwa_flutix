@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:bwaflutix/features/ticket/domain/entities/ticket.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../shared/theme.dart';
 import '../widgets/flutix_button.dart';
@@ -70,9 +71,9 @@ class _TicketDetailPageState extends State<TicketDetailPage> {
               onPressed: () async {
                 Uint8List? imageBytes = await screenshotController.capture();
 
-                // await saveImage(imageBytes!);
-
-                await shareImage(imageBytes!);
+                if (imageBytes != null) {
+                  await shareImage(imageBytes);
+                }
               },
             )
           ],
@@ -95,9 +96,12 @@ class _TicketDetailPageState extends State<TicketDetailPage> {
 
   Future<void> shareImage(Uint8List bytes) async {
     Directory directory = await getApplicationDocumentsDirectory();
-    File imagePath = File('${directory.path}/flutix.jpg');
-    imagePath.writeAsBytesSync(bytes);
 
-    await Share.shareFiles([imagePath.path]);
+    File filePath = File('${directory.path}/flutix.jpg');
+    filePath.writeAsBytesSync(bytes);
+
+    XFile imagePath = XFile(filePath.path);
+
+    await Share.shareXFiles([imagePath]);
   }
 }

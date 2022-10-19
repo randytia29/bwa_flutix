@@ -1,6 +1,7 @@
 import '../../bloc/user_bloc.dart';
 import '../../features/movie/presentation/bloc/movie_bloc.dart';
 import '../../injection_container.dart';
+import '../../services/notification_service.dart';
 import '../../shared/page_transition.dart';
 import '../../shared/shared_methods.dart';
 import '../../shared/shared_value.dart';
@@ -161,9 +162,16 @@ class _MoviePageState extends State<MoviePage> {
             const BrowseMovie(),
             // ComingSoonMovie(),
             const GetLuckyDay(),
+            ElevatedButton(
+              onPressed: () async {
+                await NotificationService.showNotificationNow(
+                    1, 'notification.title', 'notification.body');
+              },
+              child: const Text('test'),
+            ),
             SizedBox(
               height: 200.h,
-            )
+            ),
           ],
         ),
       ),

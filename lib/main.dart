@@ -37,6 +37,17 @@ Future<void> backgroundHandler(RemoteMessage message) async {
   }
 }
 
+// @pragma('vm:entry-point')
+void notificationTapBackground(NotificationResponse notificationResponse) {
+  log('test background');
+  log('notification(${notificationResponse.id}) action tapped: '
+      '${notificationResponse.actionId} with'
+      ' payload: ${notificationResponse.payload}');
+  if (notificationResponse.input?.isNotEmpty ?? false) {
+    log('notification action tapped with input: ${notificationResponse.input}');
+  }
+}
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -49,7 +60,7 @@ Future<void> main() async {
   SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(statusBarColor: accentColor1));
 
-  await NotificationService.notificationInitialize();
+  await NotificationService.notificationInitialize(notificationTapBackground);
   NotificationService.timezoneInitialize();
 
   FirebaseMessaging.onBackgroundMessage(backgroundHandler);
