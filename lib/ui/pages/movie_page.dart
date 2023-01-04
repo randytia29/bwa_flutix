@@ -1,7 +1,6 @@
 import '../../bloc/user_bloc.dart';
 import '../../features/movie/presentation/bloc/movie_bloc.dart';
 import '../../injection_container.dart';
-import '../../services/notification_service.dart';
 import '../../shared/page_transition.dart';
 import '../../shared/shared_methods.dart';
 import '../../shared/shared_value.dart';
@@ -55,11 +54,16 @@ class _MoviePageState extends State<MoviePage> {
               decoration: const BoxDecoration(
                 color: accentColor1,
                 borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(20),
-                    bottomRight: Radius.circular(20)),
+                  bottomLeft: Radius.circular(20),
+                  bottomRight: Radius.circular(20),
+                ),
               ),
               padding: const EdgeInsets.fromLTRB(
-                  defaultMargin, 20, defaultMargin, 30),
+                defaultMargin,
+                20,
+                defaultMargin,
+                30,
+              ),
               child: BlocBuilder<UserBloc, UserState>(
                 builder: (_, userState) {
                   if (userState is UserLoaded) {
@@ -81,9 +85,12 @@ class _MoviePageState extends State<MoviePage> {
                           child: Container(
                             padding: const EdgeInsets.all(5),
                             decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border: Border.all(
-                                    color: const Color(0xFF5F558B), width: 1)),
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                color: const Color(0xFF5F558B),
+                                width: 1,
+                              ),
+                            ),
                             child: Stack(
                               children: <Widget>[
                                 const SpinKitFadingCircle(
@@ -94,18 +101,19 @@ class _MoviePageState extends State<MoviePage> {
                                   width: 50,
                                   height: 50,
                                   decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      image: DecorationImage(
-                                          image:
-                                              ((userState.user.profilePicture ==
-                                                          '')
-                                                      ? const AssetImage(
-                                                          'assets/user_pic.png')
-                                                      : NetworkImage(userState
-                                                          .user
-                                                          .profilePicture!))
-                                                  as ImageProvider<Object>,
-                                          fit: BoxFit.cover)),
+                                    shape: BoxShape.circle,
+                                    image: DecorationImage(
+                                      image: ((userState.user.profilePicture ==
+                                              '')
+                                          ? const AssetImage(
+                                              'assets/user_pic.png',
+                                            )
+                                          : NetworkImage(
+                                              userState.user.profilePicture!,
+                                            )) as ImageProvider<Object>,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
                                 )
                               ],
                             ),
@@ -135,10 +143,12 @@ class _MoviePageState extends State<MoviePage> {
                               },
                               child: Text(
                                 NumberFormat.currency(
-                                        locale: 'id_ID',
-                                        decimalDigits: 0,
-                                        symbol: 'IDR ')
-                                    .format(userState.user.balance),
+                                  locale: 'id_ID',
+                                  decimalDigits: 0,
+                                  symbol: 'IDR ',
+                                ).format(
+                                  userState.user.balance,
+                                ),
                                 style: yellowNumberFont.copyWith(
                                     fontSize: 14, fontWeight: FontWeight.w400),
                               ),
@@ -162,13 +172,6 @@ class _MoviePageState extends State<MoviePage> {
             const BrowseMovie(),
             // ComingSoonMovie(),
             const GetLuckyDay(),
-            ElevatedButton(
-              onPressed: () async {
-                await NotificationService.showNotificationNow(
-                    1, 'notification.title', 'notification.body');
-              },
-              child: const Text('test'),
-            ),
             SizedBox(
               height: 200.h,
             ),
