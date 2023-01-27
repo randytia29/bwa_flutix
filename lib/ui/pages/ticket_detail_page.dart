@@ -2,7 +2,6 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:bwaflutix/features/ticket/domain/entities/ticket.dart';
-import 'package:image_picker/image_picker.dart';
 
 import '../../shared/theme.dart';
 import '../widgets/flutix_button.dart';
