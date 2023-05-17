@@ -86,7 +86,6 @@ Future<void> main() async {
           minTextAdapt: true,
           splitScreenMode: true,
           builder: (_, child) => MaterialApp(
-            useInheritedMediaQuery: true,
             theme: themeState.themeData,
             debugShowCheckedModeBanner: false,
             home: child,
