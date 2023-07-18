@@ -198,7 +198,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Icon(
+                          Icon(
                             MdiIcons.alertCircle,
                             color: Colors.white,
                             size: 20,
@@ -217,7 +217,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           const SizedBox(
                             width: 5,
                           ),
-                          const Icon(
+                          Icon(
                             MdiIcons.alertCircle,
                             color: Colors.white,
                             size: 20,
