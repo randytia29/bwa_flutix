@@ -6,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class PromoCard extends StatelessWidget {
   final Promo promo;
 
-  const PromoCard(this.promo, {Key? key}) : super(key: key);
+  const PromoCard(this.promo, {super.key});
 
   @override
   Widget build(BuildContext context) {

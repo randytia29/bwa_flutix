@@ -16,8 +16,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 class AccountConfirmationPage extends StatefulWidget {
   final RegistrationData registrationData;
 
-  const AccountConfirmationPage(this.registrationData, {Key? key})
-      : super(key: key);
+  const AccountConfirmationPage(this.registrationData, {super.key});
 
   @override
   State<AccountConfirmationPage> createState() =>

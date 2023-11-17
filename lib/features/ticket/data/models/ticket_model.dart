@@ -3,37 +3,21 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class TicketModel extends Ticket {
   const TicketModel(
-      {required int movieId,
-      required String movieTitle,
-      required double movieVoteAverage,
-      required String movieOverview,
-      required String moviePosterPath,
-      required String movieBackdropPath,
-      required String movieLanguage,
-      required List<String> movieGenres,
-      required String id,
-      required String theaterName,
-      required DateTime time,
-      required String bookingCode,
-      required List<String> seats,
-      required String name,
-      required int totalPrice})
-      : super(
-            movieId: movieId,
-            movieTitle: movieTitle,
-            movieVoteAverage: movieVoteAverage,
-            movieOverview: movieOverview,
-            moviePosterPath: moviePosterPath,
-            movieBackdropPath: movieBackdropPath,
-            movieLanguage: movieLanguage,
-            movieGenres: movieGenres,
-            id: id,
-            theaterName: theaterName,
-            time: time,
-            bookingCode: bookingCode,
-            seats: seats,
-            name: name,
-            totalPrice: totalPrice);
+      {required super.movieId,
+      required super.movieTitle,
+      required super.movieVoteAverage,
+      required super.movieOverview,
+      required super.moviePosterPath,
+      required super.movieBackdropPath,
+      required super.movieLanguage,
+      required super.movieGenres,
+      required super.id,
+      required super.theaterName,
+      required super.time,
+      required super.bookingCode,
+      required super.seats,
+      required super.name,
+      required super.totalPrice});
 
   factory TicketModel.fromJson(QueryDocumentSnapshot document) {
     return TicketModel(

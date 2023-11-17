@@ -19,7 +19,7 @@ import 'package:path/path.dart';
 class EditProfilePage extends StatefulWidget {
   final User user;
 
-  const EditProfilePage(this.user, {Key? key}) : super(key: key);
+  const EditProfilePage(this.user, {super.key});
 
   @override
   State<EditProfilePage> createState() => _EditProfilePageState();

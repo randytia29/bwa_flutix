@@ -12,9 +12,9 @@ import 'package:flutter/material.dart';
 
 class ProfileMenu extends StatelessWidget {
   const ProfileMenu({
-    Key? key,
+    super.key,
     required this.user,
-  }) : super(key: key);
+  });
 
   final User user;
 

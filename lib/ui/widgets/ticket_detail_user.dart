@@ -6,9 +6,9 @@ import 'package:intl/intl.dart';
 
 class TicketDetailUser extends StatelessWidget {
   const TicketDetailUser({
-    Key? key,
+    super.key,
     required this.ticket,
-  }) : super(key: key);
+  });
 
   final Ticket? ticket;
 

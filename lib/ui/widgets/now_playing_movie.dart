@@ -8,9 +8,9 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class NowPlayingMovie extends StatelessWidget {
   const NowPlayingMovie({
-    Key? key,
+    super.key,
     this.controller,
-  }) : super(key: key);
+  });
 
   final ScrollController? controller;
 

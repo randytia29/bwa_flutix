@@ -17,7 +17,7 @@ class PreferencePage extends StatefulWidget {
   final List<String> languages = ['Bahasa', 'English', 'Japanese', 'Korean'];
   final RegistrationData registrationData;
 
-  PreferencePage(this.registrationData, {Key? key}) : super(key: key);
+  PreferencePage(this.registrationData, {super.key});
 
   @override
   State<PreferencePage> createState() => _PreferencePageState();

@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 
 class TicketDetailBackdrop extends StatelessWidget {
   const TicketDetailBackdrop({
-    Key? key,
+    super.key,
     required this.ticket,
-  }) : super(key: key);
+  });
 
   final Ticket? ticket;
 

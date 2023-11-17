@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class BrowseButton extends StatelessWidget {
   final String genre;
 
-  const BrowseButton(this.genre, {Key? key}) : super(key: key);
+  const BrowseButton(this.genre, {super.key});
 
   @override
   Widget build(BuildContext context) {

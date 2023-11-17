@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 class TicketDetailCard extends StatelessWidget {
-  const TicketDetailCard({Key? key, required this.ticket}) : super(key: key);
+  const TicketDetailCard({super.key, required this.ticket});
 
   final Ticket? ticket;
 

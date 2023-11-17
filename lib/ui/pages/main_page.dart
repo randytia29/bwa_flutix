@@ -14,8 +14,8 @@ class MainPage extends StatefulWidget {
   final int bottomNavBarIndex;
   final bool isExpired;
 
-  const MainPage({Key? key, this.bottomNavBarIndex = 0, this.isExpired = false})
-      : super(key: key);
+  const MainPage(
+      {super.key, this.bottomNavBarIndex = 0, this.isExpired = false});
 
   @override
   State<MainPage> createState() => _MainPageState();

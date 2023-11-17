@@ -15,7 +15,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class TicketPage extends StatefulWidget {
   final bool isExpiredTicket;
 
-  const TicketPage({Key? key, this.isExpiredTicket = false}) : super(key: key);
+  const TicketPage({super.key, this.isExpiredTicket = false});
 
   @override
   State<TicketPage> createState() => _TicketPageState();
@@ -184,7 +184,7 @@ class HeaderClipper extends CustomClipper<Path> {
 class TicketViewer extends StatelessWidget {
   final List<Ticket> tickets;
 
-  const TicketViewer(this.tickets, {Key? key}) : super(key: key);
+  const TicketViewer(this.tickets, {super.key});
 
   @override
   Widget build(BuildContext context) {

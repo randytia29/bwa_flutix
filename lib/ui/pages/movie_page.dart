@@ -17,7 +17,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:intl/intl.dart';
 
 class MoviePage extends StatefulWidget {
-  const MoviePage({Key? key}) : super(key: key);
+  const MoviePage({super.key});
 
   @override
   State<MoviePage> createState() => _MoviePageState();

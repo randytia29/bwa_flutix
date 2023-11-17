@@ -1,8 +1,7 @@
 import '../../domain/entities/credit.dart';
 
 class CreditModel extends Credit {
-  const CreditModel({required String name, required String profilePath})
-      : super(name: name, profilePath: profilePath);
+  const CreditModel({required super.name, required super.profilePath});
 
   factory CreditModel.fromJson(Map<String, dynamic> json) {
     return CreditModel(

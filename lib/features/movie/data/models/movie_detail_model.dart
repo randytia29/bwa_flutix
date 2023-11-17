@@ -2,23 +2,14 @@ import '../../domain/entities/movie_detail.dart';
 
 class MovieDetailModel extends MovieDetail {
   const MovieDetailModel(
-      {required int id,
-      required String title,
-      required double voteAverage,
-      required String overview,
-      required String posterPath,
-      required String backdropPath,
-      required String language,
-      required List<String> genres})
-      : super(
-            id: id,
-            title: title,
-            voteAverage: voteAverage,
-            overview: overview,
-            posterPath: posterPath,
-            backdropPath: backdropPath,
-            language: language,
-            genres: genres);
+      {required super.id,
+      required super.title,
+      required super.voteAverage,
+      required super.overview,
+      required super.posterPath,
+      required super.backdropPath,
+      required super.language,
+      required super.genres});
 
   factory MovieDetailModel.fromJson(Map<String, dynamic> json) {
     return MovieDetailModel(
