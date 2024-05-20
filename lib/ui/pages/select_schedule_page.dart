@@ -16,7 +16,7 @@ import 'package:random_string/random_string.dart';
 class SelectSchedulePage extends StatefulWidget {
   final MovieDetail? movieDetail;
 
-  const SelectSchedulePage(this.movieDetail, {Key? key}) : super(key: key);
+  const SelectSchedulePage(this.movieDetail, {super.key});
 
   @override
   State<SelectSchedulePage> createState() => _SelectSchedulePageState();

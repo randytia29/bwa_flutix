@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 class FlutixButton extends StatelessWidget {
   const FlutixButton({
-    Key? key,
+    super.key,
     this.primaryColor,
     required this.child,
     this.onPressed,
     this.margin,
     this.onSurfaceColor,
-  }) : super(key: key);
+  });
 
   final Color? primaryColor;
   final Color? onSurfaceColor;

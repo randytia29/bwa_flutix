@@ -9,11 +9,10 @@ class RatingStars extends StatelessWidget {
   final MainAxisAlignment alignment;
 
   const RatingStars(
-      {Key? key,
+      {super.key,
       this.voteAverage = 0,
       this.color,
-      this.alignment = MainAxisAlignment.start})
-      : super(key: key);
+      this.alignment = MainAxisAlignment.start});
 
   @override
   Widget build(BuildContext context) {

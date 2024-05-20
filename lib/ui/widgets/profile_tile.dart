@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 
 class ProfileTile extends StatelessWidget {
   const ProfileTile({
-    Key? key,
+    super.key,
     required this.assetName,
     required this.title,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   final String assetName;
   final String title;

@@ -9,8 +9,7 @@ class TransactionCard extends StatelessWidget {
   final FlutixTransaction transaction;
   final double width;
 
-  const TransactionCard(this.transaction, this.width, {Key? key})
-      : super(key: key);
+  const TransactionCard(this.transaction, this.width, {super.key});
 
   @override
   Widget build(BuildContext context) {

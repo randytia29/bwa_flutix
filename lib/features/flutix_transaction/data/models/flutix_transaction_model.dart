@@ -3,19 +3,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FlutixTransactionModel extends FlutixTransaction {
   const FlutixTransactionModel(
-      {required String userID,
-      required String title,
-      required String subtitle,
-      required int amount,
-      required DateTime time,
-      required String picture})
-      : super(
-            userID: userID,
-            title: title,
-            subtitle: subtitle,
-            amount: amount,
-            time: time,
-            picture: picture);
+      {required super.userID,
+      required super.title,
+      required super.subtitle,
+      required super.amount,
+      required super.time,
+      required super.picture});
 
   factory FlutixTransactionModel.fromJson(QueryDocumentSnapshot document) {
     return FlutixTransactionModel(

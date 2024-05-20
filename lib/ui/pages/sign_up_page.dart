@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 class SignUpPage extends StatefulWidget {
   final RegistrationData registrationData;
 
-  const SignUpPage(this.registrationData, {Key? key}) : super(key: key);
+  const SignUpPage(this.registrationData, {super.key});
 
   @override
   State<SignUpPage> createState() => _SignUpPageState();

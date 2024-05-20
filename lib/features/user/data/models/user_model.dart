@@ -3,19 +3,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UserModel extends User {
   const UserModel(
-      {required String email,
-      required String name,
-      required String profilePicture,
-      required List<String> selectedGenres,
-      required String selectedLanguage,
-      required int balance})
-      : super(
-            email: email,
-            name: name,
-            profilePicture: profilePicture,
-            selectedGenres: selectedGenres,
-            selectedLanguage: selectedLanguage,
-            balance: balance);
+      {required super.email,
+      required super.name,
+      required super.profilePicture,
+      required super.selectedGenres,
+      required super.selectedLanguage,
+      required super.balance});
 
   factory UserModel.fromJson(QueryDocumentSnapshot document) {
     return UserModel(

@@ -16,7 +16,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
 class TopUpPage extends StatefulWidget {
-  const TopUpPage({Key? key}) : super(key: key);
+  const TopUpPage({super.key});
 
   @override
   State<TopUpPage> createState() => _TopUpPageState();

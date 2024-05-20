@@ -19,7 +19,7 @@ import 'package:path/path.dart';
 class EditProfilePage extends StatefulWidget {
   final User user;
 
-  const EditProfilePage(this.user, {Key? key}) : super(key: key);
+  const EditProfilePage(this.user, {super.key});
 
   @override
   State<EditProfilePage> createState() => _EditProfilePageState();
@@ -198,7 +198,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Icon(
+                          Icon(
                             MdiIcons.alertCircle,
                             color: Colors.white,
                             size: 20,
@@ -217,7 +217,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           const SizedBox(
                             width: 5,
                           ),
-                          const Icon(
+                          Icon(
                             MdiIcons.alertCircle,
                             color: Colors.white,
                             size: 20,

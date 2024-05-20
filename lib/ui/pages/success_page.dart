@@ -8,12 +8,12 @@ import 'package:flutter/material.dart';
 class SuccessPage extends StatelessWidget {
   final bool isTopUp;
 
-  const SuccessPage(this.isTopUp, {Key? key}) : super(key: key);
+  const SuccessPage(this.isTopUp, {super.key});
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async => false,
+    return PopScope(
+      canPop: false,
       child: Scaffold(
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,

@@ -65,7 +65,7 @@ class NotificationService {
           scheduleNotificationDateTime, _setupNotificationDetails(),
           uiLocalNotificationDateInterpretation:
               UILocalNotificationDateInterpretation.absoluteTime,
-          androidAllowWhileIdle: true,
+          androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
           payload: payload);
     } catch (e) {
       log(e.toString());

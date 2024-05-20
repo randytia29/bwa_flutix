@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 
 class TicketDetailInfo extends StatelessWidget {
   const TicketDetailInfo({
-    Key? key,
+    super.key,
     required this.title,
     required this.subtitle,
     this.subtitleStyle,
-  }) : super(key: key);
+  });
 
   final String title;
   final String subtitle;

@@ -16,7 +16,7 @@ import 'package:share_plus/share_plus.dart';
 class TicketDetailPage extends StatefulWidget {
   final Ticket? ticket;
 
-  const TicketDetailPage(this.ticket, {Key? key}) : super(key: key);
+  const TicketDetailPage(this.ticket, {super.key});
 
   @override
   State<TicketDetailPage> createState() => _TicketDetailPageState();

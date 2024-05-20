@@ -9,7 +9,7 @@ import '../widgets/selectable_box.dart';
 import 'package:flutter/material.dart';
 
 class SelectSeatPage extends StatefulWidget {
-  const SelectSeatPage({Key? key}) : super(key: key);
+  const SelectSeatPage({super.key});
 
   @override
   State<SelectSeatPage> createState() => _SelectSeatPageState();

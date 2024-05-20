@@ -11,14 +11,13 @@ class SelectableBox extends StatelessWidget {
   final TextStyle? textStyle;
 
   const SelectableBox(this.text,
-      {Key? key,
+      {super.key,
       this.isSelected = false,
       this.isEnabled = true,
       this.width = 144,
       this.height = 60,
       this.onTap,
-      this.textStyle})
-      : super(key: key);
+      this.textStyle});
 
   @override
   Widget build(BuildContext context) {

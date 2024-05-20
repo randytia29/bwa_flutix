@@ -9,12 +9,11 @@ class MoneyCard extends StatelessWidget {
   final Function? onTap;
 
   const MoneyCard(
-      {Key? key,
+      {super.key,
       this.width = 90,
       this.isSelected = false,
       this.amount = 0,
-      this.onTap})
-      : super(key: key);
+      this.onTap});
 
   @override
   Widget build(BuildContext context) {

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class CreditCard extends StatelessWidget {
   final Credit credit;
 
-  const CreditCard(this.credit, {Key? key}) : super(key: key);
+  const CreditCard(this.credit, {super.key});
 
   @override
   Widget build(BuildContext context) {

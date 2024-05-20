@@ -7,7 +7,7 @@ class ComingSoonCard extends StatelessWidget {
   final Movie movie;
   final Function? onTap;
 
-  const ComingSoonCard(this.movie, {Key? key, this.onTap}) : super(key: key);
+  const ComingSoonCard(this.movie, {super.key, this.onTap});
 
   @override
   Widget build(BuildContext context) {

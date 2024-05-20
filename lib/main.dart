@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:bwaflutix/features/flutix_transaction/domain/entities/flutix_transaction.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -85,12 +86,17 @@ Future<void> main() async {
           designSize: samsungJ6,
           minTextAdapt: true,
           splitScreenMode: true,
-          builder: (_, child) => MaterialApp(
-            useInheritedMediaQuery: true,
-            theme: themeState.themeData,
-            debugShowCheckedModeBanner: false,
-            home: child,
-          ),
+          builder: (_, child) {
+            final analytics = FirebaseAnalytics.instance;
+            final observer = FirebaseAnalyticsObserver(analytics: analytics);
+
+            return MaterialApp(
+              theme: themeState.themeData,
+              debugShowCheckedModeBanner: false,
+              navigatorObservers: [observer],
+              home: child,
+            );
+          },
           child: const SplashPage(),
         ),
       ),

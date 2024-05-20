@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 class TicketDetailCard extends StatelessWidget {
-  const TicketDetailCard({Key? key, required this.ticket}) : super(key: key);
+  const TicketDetailCard({super.key, required this.ticket});
 
   final Ticket? ticket;
 
@@ -103,10 +103,17 @@ class TicketDetailCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     TicketDetailUser(ticket: ticket),
-                    QrImage(
+                    QrImageView(
                       data: ticket!.bookingCode,
                       version: 6,
-                      foregroundColor: Colors.black,
+                      eyeStyle: const QrEyeStyle(
+                        eyeShape: QrEyeShape.circle,
+                        color: Colors.black,
+                      ),
+                      dataModuleStyle: const QrDataModuleStyle(
+                        dataModuleShape: QrDataModuleShape.circle,
+                        color: Colors.black,
+                      ),
                       errorCorrectionLevel: QrErrorCorrectLevel.M,
                       padding: const EdgeInsets.all(0),
                       size: 100,
