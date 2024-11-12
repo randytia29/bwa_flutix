@@ -12,9 +12,7 @@ class NotificationService {
     const initializationSettingsAndroid =
         AndroidInitializationSettings('flutix_logo');
 
-    final initializationSettingsIOS = DarwinInitializationSettings(
-      onDidReceiveLocalNotification: (id, title, body, payload) async {},
-    );
+    final initializationSettingsIOS = DarwinInitializationSettings();
 
     final initializationSettings = InitializationSettings(
         android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
