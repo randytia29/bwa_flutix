@@ -81,7 +81,7 @@ class _MainPageState extends State<MainPage> {
                     width: 26,
                     child: Icon(
                       MdiIcons.walletPlus,
-                      color: Colors.black.withOpacity(0.54),
+                      color: Colors.black.withValues(alpha: 0.54),
                     ),
                   ),
                   onPressed: () {

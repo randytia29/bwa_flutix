@@ -1,0 +1,2 @@
+D:/Practice/bwa_flutix/android/app/.cxx/Debug/1p2s161z/x86/CMakeFiles/edit_cache.dir
+D:/Practice/bwa_flutix/android/app/.cxx/Debug/1p2s161z/x86/CMakeFiles/rebuild_cache.dir

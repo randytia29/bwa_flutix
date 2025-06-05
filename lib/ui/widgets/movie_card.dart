@@ -39,8 +39,8 @@ class MovieCard extends StatelessWidget {
                   begin: Alignment.bottomCenter,
                   end: Alignment.topCenter,
                   colors: [
-                    Colors.black.withOpacity(0.61),
-                    Colors.black.withOpacity(0)
+                    Colors.black.withValues(alpha: 0.61),
+                    Colors.black.withValues(alpha: 0)
                   ])),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,

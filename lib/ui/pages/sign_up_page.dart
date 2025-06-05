@@ -200,7 +200,10 @@ class _SignUpPageState extends State<SignUpPage> {
                           PreferencePage(widget.registrationData)));
                     }
                   },
-                  child: const Icon(Icons.arrow_forward),
+                  child: const Icon(
+                    Icons.arrow_forward,
+                    color: Colors.white,
+                  ),
                 )
               ],
             )

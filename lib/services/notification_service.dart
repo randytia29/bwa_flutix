@@ -61,8 +61,6 @@ class NotificationService {
 
       await flutterLocalNotificationsPlugin.zonedSchedule(id, title, body,
           scheduleNotificationDateTime, _setupNotificationDetails(),
-          uiLocalNotificationDateInterpretation:
-              UILocalNotificationDateInterpretation.absoluteTime,
           androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
           payload: payload);
     } catch (e) {

@@ -104,7 +104,8 @@ Future<void> init() async {
 
   //! External
   sl.registerLazySingleton(() => http.Client());
-  sl.registerLazySingleton(() => InternetConnectionChecker());
+  sl.registerLazySingleton(() => InternetConnectionChecker.instance,
+      dispose: (param) => param.dispose());
   sl.registerLazySingleton(() => FirebaseFirestore.instance);
   sl.registerLazySingleton(() => Hive);
 }

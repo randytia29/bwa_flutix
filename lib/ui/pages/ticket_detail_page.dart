@@ -7,9 +7,7 @@ import '../../shared/theme.dart';
 import '../widgets/flutix_button.dart';
 import '../widgets/ticket_detail_card.dart';
 import 'package:flutter/material.dart';
-import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -81,17 +79,17 @@ class _TicketDetailPageState extends State<TicketDetailPage> {
     );
   }
 
-  Future<void> saveImage(Uint8List imageBytes) async {
-    await [Permission.storage].request();
+  // Future<void> saveImage(Uint8List imageBytes) async {
+  //   await [Permission.storage].request();
 
-    String time = DateTime.now()
-        .toIso8601String()
-        .replaceAll('.', '-')
-        .replaceAll(':', '-');
+  //   String time = DateTime.now()
+  //       .toIso8601String()
+  //       .replaceAll('.', '-')
+  //       .replaceAll(':', '-');
 
-    await ImageGallerySaver.saveImage(imageBytes,
-        name: '${widget.ticket!.movieTitle}_$time');
-  }
+  //   await ImageGallerySaver.saveImage(imageBytes,
+  //       name: '${widget.ticket!.movieTitle}_$time');
+  // }
 
   Future<void> shareImage(Uint8List bytes) async {
     Directory directory = await getApplicationDocumentsDirectory();
@@ -101,6 +99,6 @@ class _TicketDetailPageState extends State<TicketDetailPage> {
 
     XFile imagePath = XFile(filePath.path);
 
-    await Share.shareXFiles([imagePath]);
+    await SharePlus.instance.share(ShareParams(files: [imagePath]));
   }
 }

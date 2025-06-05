@@ -55,10 +55,12 @@ class PromoCard extends StatelessWidget {
         ShaderMask(
           shaderCallback: (rectangle) {
             return LinearGradient(
-                    begin: Alignment.centerRight,
-                    end: Alignment.centerLeft,
-                    colors: [Colors.black.withOpacity(0.1), Colors.transparent])
-                .createShader(const Rect.fromLTRB(0, 0, 117, 80));
+                begin: Alignment.centerRight,
+                end: Alignment.centerLeft,
+                colors: [
+                  Colors.black.withValues(alpha: 0.1),
+                  Colors.transparent
+                ]).createShader(const Rect.fromLTRB(0, 0, 117, 80));
           },
           blendMode: BlendMode.dstIn,
           child: SizedBox(
@@ -79,7 +81,7 @@ class PromoCard extends StatelessWidget {
                   end: Alignment.centerRight,
                   begin: Alignment.centerLeft,
                   colors: [
-                    Colors.black.withOpacity(0.1),
+                    Colors.black.withValues(alpha: 0.1),
                     Colors.transparent
                   ]).createShader(const Rect.fromLTRB(0, 0, 134, 45));
             },
@@ -102,7 +104,7 @@ class PromoCard extends StatelessWidget {
                   end: Alignment.centerRight,
                   begin: Alignment.centerLeft,
                   colors: [
-                    Colors.black.withOpacity(0.1),
+                    Colors.black.withValues(alpha: 0.1),
                     Colors.transparent
                   ]).createShader(const Rect.fromLTRB(0, 0, 74, 25));
             },

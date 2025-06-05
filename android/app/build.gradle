@@ -30,7 +30,8 @@ if (flutterVersionName == null) {
 // }
 
 android {
-    compileSdkVersion 34
+    namespace "com.example.bwaflutix"
+    compileSdkVersion 35
 
     lintOptions {
         disable 'InvalidPackage'

@@ -97,8 +97,8 @@ class _WalletPageState extends State<WalletPage> {
                                       begin: Alignment.bottomRight,
                                       end: Alignment.topLeft,
                                       colors: [
-                                        Colors.white.withOpacity(0.1),
-                                        Colors.white.withOpacity(0)
+                                        Colors.white.withValues(alpha: 0.1),
+                                        Colors.white.withValues(alpha: 0)
                                       ])),
                             ),
                           ),
